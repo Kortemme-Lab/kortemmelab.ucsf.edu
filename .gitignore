@@ -1,0 +1,5 @@
+# macOS folder metadata
+.DS_Store
+# Python's cache of compiled scripts (created whenever scripts/ runs)
+__pycache__/
+*.pyc
