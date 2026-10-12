@@ -1,0 +1,6 @@
+# Form exports and uploaded photos hold personal details (emails, faces).
+# Keep them out of the public repository.
+*.csv
+!example-responses.csv
+photos/*
+!photos/.gitkeep

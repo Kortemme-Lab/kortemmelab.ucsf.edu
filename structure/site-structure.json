@@ -1,0 +1,1177 @@
+{
+  "site": "https://kortemmelab.ucsf.edu",
+  "platform": "Weebly",
+  "page_count": 101,
+  "navigation": [
+    {
+      "title": "Home",
+      "href": "index.html",
+      "children": []
+    },
+    {
+      "title": "People",
+      "href": "",
+      "children": [
+        {
+          "title": "Current Members",
+          "href": "current-members.html",
+          "children": []
+        },
+        {
+          "title": "Lab Alumni",
+          "href": "lab-alumni.html",
+          "children": []
+        },
+        {
+          "title": "Join the Lab",
+          "href": "join-the-lab.html",
+          "children": []
+        }
+      ]
+    },
+    {
+      "title": "Publications",
+      "href": "publications.html",
+      "children": []
+    },
+    {
+      "title": "News",
+      "href": "news.html",
+      "children": []
+    },
+    {
+      "title": "Gallery",
+      "href": "gallery.html",
+      "children": []
+    },
+    {
+      "title": "Contact",
+      "href": "contact.html",
+      "children": [
+        {
+          "title": "Meetings",
+          "href": "meetings.html",
+          "children": []
+        },
+        {
+          "title": "Directions",
+          "href": "directions.html",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "slug": "a-gtpasegef-pair-for-controling-protein-signaling",
+      "title": "A GTPase/GEF Pair for Controling Protein Signaling - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/a-gtpasegef-pair-for-controling-protein-signaling.html",
+      "mirror_file": "site/a-gtpasegef-pair-for-controling-protein-signaling.html",
+      "content_file": "content/archive/a-gtpasegef-pair-for-controling-protein-signaling.md",
+      "word_count": 0,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "alumni---amanda-loshbaugh",
+      "title": "Alumni - Amanda Loshbaugh - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---amanda-loshbaugh.html",
+      "mirror_file": "site/alumni---amanda-loshbaugh.html",
+      "content_file": "content/alumni/amanda-loshbaugh.md",
+      "word_count": 171,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---amelie-stein",
+      "title": "Alumni - Amelie Stein - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---amelie-stein.html",
+      "mirror_file": "site/alumni---amelie-stein.html",
+      "content_file": "content/alumni/amelie-stein.md",
+      "word_count": 476,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 5
+    },
+    {
+      "slug": "alumni---anthony-linares",
+      "title": "Alumni - Anthony Linares - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---anthony-linares.html",
+      "mirror_file": "site/alumni---anthony-linares.html",
+      "content_file": "content/alumni/anthony-linares.md",
+      "word_count": 44,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---anum-glasgow",
+      "title": "Alumni - Anum Glasgow - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---anum-glasgow.html",
+      "mirror_file": "site/alumni---anum-glasgow.html",
+      "content_file": "content/alumni/anum-glasgow.md",
+      "word_count": 704,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 17
+    },
+    {
+      "slug": "alumni---benjamin-jagger",
+      "title": "Alumni - Benjamin Jagger - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---benjamin-jagger.html",
+      "mirror_file": "site/alumni---benjamin-jagger.html",
+      "content_file": "content/alumni/benjamin-jagger.md",
+      "word_count": 303,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 7
+    },
+    {
+      "slug": "alumni---benjamin-orr",
+      "title": "Alumni - Benjamin Orr - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---benjamin-orr.html",
+      "mirror_file": "site/alumni---benjamin-orr.html",
+      "content_file": "content/alumni/benjamin-orr.md",
+      "word_count": 63,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 2
+    },
+    {
+      "slug": "alumni---catherine-shi",
+      "title": "Alumni - Catherine Shi - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---catherine-shi.html",
+      "mirror_file": "site/alumni---catherine-shi.html",
+      "content_file": "content/alumni/catherine-shi.md",
+      "word_count": 50,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---chris-mathy",
+      "title": "Alumni - Chris Mathy - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---chris-mathy.html",
+      "mirror_file": "site/alumni---chris-mathy.html",
+      "content_file": "content/alumni/chris-mathy.md",
+      "word_count": 730,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 6
+    },
+    {
+      "slug": "alumni---cody-krivacic",
+      "title": "Alumni - Cody Krivacic - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---cody-krivacic.html",
+      "mirror_file": "site/alumni---cody-krivacic.html",
+      "content_file": "content/alumni/cody-krivacic.md",
+      "word_count": 395,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 6
+    },
+    {
+      "slug": "alumni---colin-smith",
+      "title": "Alumni - Colin Smith - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---colin-smith.html",
+      "mirror_file": "site/alumni---colin-smith.html",
+      "content_file": "content/alumni/colin-smith.md",
+      "word_count": 305,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 8
+    },
+    {
+      "slug": "alumni---connor-galvin",
+      "title": "Alumni - Connor Galvin - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---connor-galvin.html",
+      "mirror_file": "site/alumni---connor-galvin.html",
+      "content_file": "content/alumni/connor-galvin.md",
+      "word_count": 143,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---cristina-melero",
+      "title": "Alumni - Cristina Melero - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---cristina-melero.html",
+      "mirror_file": "site/alumni---cristina-melero.html",
+      "content_file": "content/alumni/cristina-melero.md",
+      "word_count": 129,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---dan-mandell",
+      "title": "Alumni - Dan Mandell - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---dan-mandell.html",
+      "mirror_file": "site/alumni---dan-mandell.html",
+      "content_file": "content/alumni/dan-mandell.md",
+      "word_count": 294,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 7
+    },
+    {
+      "slug": "alumni---daniel-hoersch",
+      "title": "Alumni - Daniel Hoersch - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---daniel-hoersch.html",
+      "mirror_file": "site/alumni---daniel-hoersch.html",
+      "content_file": "content/alumni/daniel-hoersch.md",
+      "word_count": 84,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---debbie-jeon",
+      "title": "Alumni - Debbie Jeon - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---debbie-jeon.html",
+      "mirror_file": "site/alumni---debbie-jeon.html",
+      "content_file": "content/alumni/debbie-jeon.md",
+      "word_count": 68,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---deniz-akpinaroglu",
+      "title": "Alumni - Deniz Akpinaroglu - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---deniz-akpinaroglu.html",
+      "mirror_file": "site/alumni---deniz-akpinaroglu.html",
+      "content_file": "content/alumni/deniz-akpinaroglu.md",
+      "word_count": 199,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 5
+    },
+    {
+      "slug": "alumni---eleanor-zhu",
+      "title": "Alumni - Eleanor Zhu - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---eleanor-zhu.html",
+      "mirror_file": "site/alumni---eleanor-zhu.html",
+      "content_file": "content/alumni/eleanor-zhu.md",
+      "word_count": 118,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 2
+    },
+    {
+      "slug": "alumni---elizabeth-humphris",
+      "title": "Alumni - Elizabeth Humphris - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---elizabeth-humphris.html",
+      "mirror_file": "site/alumni---elizabeth-humphris.html",
+      "content_file": "content/alumni/elizabeth-humphris.md",
+      "word_count": 124,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 4
+    },
+    {
+      "slug": "alumni---eyal-akiva",
+      "title": "Alumni - Eyal Akiva - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---eyal-akiva.html",
+      "mirror_file": "site/alumni---eyal-akiva.html",
+      "content_file": "content/alumni/eyal-akiva.md",
+      "word_count": 152,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 2
+    },
+    {
+      "slug": "alumni---florian-lauck",
+      "title": "Alumni - Florian Lauck - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---florian-lauck.html",
+      "mirror_file": "site/alumni---florian-lauck.html",
+      "content_file": "content/alumni/florian-lauck.md",
+      "word_count": 45,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---greg-friedland",
+      "title": "Alumni - Greg Friedland - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---greg-friedland.html",
+      "mirror_file": "site/alumni---greg-friedland.html",
+      "content_file": "content/alumni/greg-friedland.md",
+      "word_count": 216,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 6
+    },
+    {
+      "slug": "alumni---greg-kapp",
+      "title": "Alumni - Greg Kapp - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---greg-kapp.html",
+      "mirror_file": "site/alumni---greg-kapp.html",
+      "content_file": "content/alumni/greg-kapp.md",
+      "word_count": 62,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---james-lucas",
+      "title": "Alumni - James Lucas - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---james-lucas.html",
+      "mirror_file": "site/alumni---james-lucas.html",
+      "content_file": "content/alumni/james-lucas.md",
+      "word_count": 238,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 5
+    },
+    {
+      "slug": "alumni---jenna-pellegrino",
+      "title": "Alumni - Jenna Pellegrino - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---jenna-pellegrino.html",
+      "mirror_file": "site/alumni---jenna-pellegrino.html",
+      "content_file": "content/alumni/jenna-pellegrino.md",
+      "word_count": 68,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---joel-karpiak",
+      "title": "Alumni - Joel Karpiak - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---joel-karpiak.html",
+      "mirror_file": "site/alumni---joel-karpiak.html",
+      "content_file": "content/alumni/joel-karpiak.md",
+      "word_count": 52,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---kale-kundert",
+      "title": "Alumni - Kale Kundert - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---kale-kundert.html",
+      "mirror_file": "site/alumni---kale-kundert.html",
+      "content_file": "content/alumni/kale-kundert.md",
+      "word_count": 181,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 4
+    },
+    {
+      "slug": "alumni---kyle-barlow",
+      "title": "Alumni - Kyle Barlow - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---kyle-barlow.html",
+      "mirror_file": "site/alumni---kyle-barlow.html",
+      "content_file": "content/alumni/kyle-barlow.md",
+      "word_count": 854,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 8
+    },
+    {
+      "slug": "alumni---lin-liu",
+      "title": "Alumni - Lin Liu - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---lin-liu.html",
+      "mirror_file": "site/alumni---lin-liu.html",
+      "content_file": "content/alumni/lin-liu.md",
+      "word_count": 102,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 2
+    },
+    {
+      "slug": "alumni---lin-liu1",
+      "title": "Alumni - Lin Liu - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---lin-liu1.html",
+      "mirror_file": "site/alumni---lin-liu1.html",
+      "content_file": "content/alumni/lin-liu1.md",
+      "word_count": 52,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---lu-hong",
+      "title": "Alumni - Lu Hong - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---lu-hong.html",
+      "mirror_file": "site/alumni---lu-hong.html",
+      "content_file": "content/alumni/lu-hong.md",
+      "word_count": 270,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 6
+    },
+    {
+      "slug": "alumni---mariana-babor",
+      "title": "Alumni - Mariana Babor - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---mariana-babor.html",
+      "mirror_file": "site/alumni---mariana-babor.html",
+      "content_file": "content/alumni/mariana-babor.md",
+      "word_count": 72,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 2
+    },
+    {
+      "slug": "alumni---matt-chroust",
+      "title": "Alumni - Matt Chroust - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---matt-chroust.html",
+      "mirror_file": "site/alumni---matt-chroust.html",
+      "content_file": "content/alumni/matt-chroust.md",
+      "word_count": 50,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---matt-eames",
+      "title": "Alumni - Matt Eames - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---matt-eames.html",
+      "mirror_file": "site/alumni---matt-eames.html",
+      "content_file": "content/alumni/matt-eames.md",
+      "word_count": 98,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---michael-michalik",
+      "title": "Alumni - Michael Michalik - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---michael-michalik.html",
+      "mirror_file": "site/alumni---michael-michalik.html",
+      "content_file": "content/alumni/michael-michalik.md",
+      "word_count": 37,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---noah-ollikainen",
+      "title": "Alumni - Noah Ollikainen - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---noah-ollikainen.html",
+      "mirror_file": "site/alumni---noah-ollikainen.html",
+      "content_file": "content/alumni/noah-ollikainen.md",
+      "word_count": 633,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 10
+    },
+    {
+      "slug": "alumni---pooja-suresh",
+      "title": "Alumni - Pooja Suresh - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---pooja-suresh.html",
+      "mirror_file": "site/alumni---pooja-suresh.html",
+      "content_file": "content/alumni/pooja-suresh.md",
+      "word_count": 52,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---pradeep-bandaru",
+      "title": "Alumni - Pradeep Bandaru - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---pradeep-bandaru.html",
+      "mirror_file": "site/alumni---pradeep-bandaru.html",
+      "content_file": "content/alumni/pradeep-bandaru.md",
+      "word_count": 55,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---rich-oberdorf",
+      "title": "Alumni - Rich Oberdorf - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---rich-oberdorf.html",
+      "mirror_file": "site/alumni---rich-oberdorf.html",
+      "content_file": "content/alumni/rich-oberdorf.md",
+      "word_count": 38,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---robert-alberstein",
+      "title": "Alumni - Robert Alberstein - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---robert-alberstein.html",
+      "mirror_file": "site/alumni---robert-alberstein.html",
+      "content_file": "content/alumni/robert-alberstein.md",
+      "word_count": 367,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 8
+    },
+    {
+      "slug": "alumni---rocco-varela",
+      "title": "Alumni - Rocco Varela - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---rocco-varela.html",
+      "mirror_file": "site/alumni---rocco-varela.html",
+      "content_file": "content/alumni/rocco-varela.md",
+      "word_count": 50,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---rochel-munitz",
+      "title": "Alumni -  Rochel Munitz - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---rochel-munitz.html",
+      "mirror_file": "site/alumni---rochel-munitz.html",
+      "content_file": "content/alumni/rochel-munitz.md",
+      "word_count": 45,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 0
+    },
+    {
+      "slug": "alumni---roland-pache",
+      "title": "Alumni - Roland Pache - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---roland-pache.html",
+      "mirror_file": "site/alumni---roland-pache.html",
+      "content_file": "content/alumni/roland-pache.md",
+      "word_count": 210,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 4
+    },
+    {
+      "slug": "alumni---ryan-ritterson",
+      "title": "Alumni - Ryan Ritterson - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---ryan-ritterson.html",
+      "mirror_file": "site/alumni---ryan-ritterson.html",
+      "content_file": "content/alumni/ryan-ritterson.md",
+      "word_count": 117,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---samuel-thompson",
+      "title": "Alumni - Samuel Thompson - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---samuel-thompson.html",
+      "mirror_file": "site/alumni---samuel-thompson.html",
+      "content_file": "content/alumni/samuel-thompson.md",
+      "word_count": 214,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "alumni---sen-liu",
+      "title": "Alumni - Sen Liu - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---sen-liu.html",
+      "mirror_file": "site/alumni---sen-liu.html",
+      "content_file": "content/alumni/sen-liu.md",
+      "word_count": 62,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---shane-oconnor",
+      "title": "Alumni - Shane O'Connor - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---shane-oconnor.html",
+      "mirror_file": "site/alumni---shane-oconnor.html",
+      "content_file": "content/alumni/shane-oconnor.md",
+      "word_count": 919,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 9
+    },
+    {
+      "slug": "alumni---simon-kretschmer",
+      "title": "Alumni - Simon Kretschmer - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---simon-kretschmer.html",
+      "mirror_file": "site/alumni---simon-kretschmer.html",
+      "content_file": "content/alumni/simon-kretschmer.md",
+      "word_count": 522,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 17
+    },
+    {
+      "slug": "alumni---thomas-bliska",
+      "title": "Alumni - Thomas Bliska - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---thomas-bliska.html",
+      "mirror_file": "site/alumni---thomas-bliska.html",
+      "content_file": "content/alumni/thomas-bliska.md",
+      "word_count": 50,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni---tina-perica",
+      "title": "Alumni - Tina Perica - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---tina-perica.html",
+      "mirror_file": "site/alumni---tina-perica.html",
+      "content_file": "content/alumni/tina-perica.md",
+      "word_count": 845,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 13
+    },
+    {
+      "slug": "alumni---xingjie-pan",
+      "title": "Alumni - XingJie Pan - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---xingjie-pan.html",
+      "mirror_file": "site/alumni---xingjie-pan.html",
+      "content_file": "content/alumni/xingjie-pan.md",
+      "word_count": 503,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 6
+    },
+    {
+      "slug": "alumni---yang-zhang",
+      "title": "Alumni - Yang Zhang - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---yang-zhang.html",
+      "mirror_file": "site/alumni---yang-zhang.html",
+      "content_file": "content/alumni/yang-zhang.md",
+      "word_count": 1631,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 20
+    },
+    {
+      "slug": "alumni---yao-ming-huang",
+      "title": "Alumni - Yao-ming Huang - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni---yao-ming-huang.html",
+      "mirror_file": "site/alumni---yao-ming-huang.html",
+      "content_file": "content/alumni/yao-ming-huang.md",
+      "word_count": 68,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "alumni--amy-guo",
+      "title": "Alumni- Amy Guo - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/alumni--amy-guo.html",
+      "mirror_file": "site/alumni--amy-guo.html",
+      "content_file": "content/alumni/amy-guo.md",
+      "word_count": 138,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 3
+    },
+    {
+      "slug": "computational-protein-design-and-modeling",
+      "title": "Computational Protein Design and Modeling - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/computational-protein-design-and-modeling.html",
+      "mirror_file": "site/computational-protein-design-and-modeling.html",
+      "content_file": "content/archive/computational-protein-design-and-modeling.md",
+      "word_count": 766,
+      "reachable_from_home": false,
+      "image_count": 2,
+      "external_link_count": 2
+    },
+    {
+      "slug": "conformational-ensembles-from-backrub-movements",
+      "title": "Conformational Ensembles from \"Backrub\" Movements - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/conformational-ensembles-from-backrub-movements.html",
+      "mirror_file": "site/conformational-ensembles-from-backrub-movements.html",
+      "content_file": "content/archive/conformational-ensembles-from-backrub-movements.md",
+      "word_count": 298,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "contact",
+      "title": "Contact - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/contact.html",
+      "mirror_file": "site/contact.html",
+      "content_file": "content/contact.md",
+      "word_count": 86,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 10
+    },
+    {
+      "slug": "control-of-biological-systems",
+      "title": "Control of Biological Systems - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/control-of-biological-systems.html",
+      "mirror_file": "site/control-of-biological-systems.html",
+      "content_file": "content/archive/control-of-biological-systems.md",
+      "word_count": 1002,
+      "reachable_from_home": false,
+      "image_count": 3,
+      "external_link_count": 3
+    },
+    {
+      "slug": "cost-benefit-tradeoffs-in-engineered-lac-operons",
+      "title": "Cost-benefit Tradeoffs in Engineered Lac Operons - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/cost-benefit-tradeoffs-in-engineered-lac-operons.html",
+      "mirror_file": "site/cost-benefit-tradeoffs-in-engineered-lac-operons.html",
+      "content_file": "content/archive/cost-benefit-tradeoffs-in-engineered-lac-operons.md",
+      "word_count": 539,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 1
+    },
+    {
+      "slug": "coupled-sidechain-backbone-moves",
+      "title": "Coupled Sidechain-Backbone Moves - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/coupled-sidechain-backbone-moves.html",
+      "mirror_file": "site/coupled-sidechain-backbone-moves.html",
+      "content_file": "content/archive/coupled-sidechain-backbone-moves.md",
+      "word_count": 0,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "current---alex-li",
+      "title": "Current - Alex Li - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---alex-li.html",
+      "mirror_file": "site/current---alex-li.html",
+      "content_file": "content/current-members/alex-li.md",
+      "word_count": 125,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 6
+    },
+    {
+      "slug": "current---catherine-kuhn",
+      "title": "Current - Catherine Kuhn - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---catherine-kuhn.html",
+      "mirror_file": "site/current---catherine-kuhn.html",
+      "content_file": "content/current-members/catherine-kuhn.md",
+      "word_count": 25,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 0
+    },
+    {
+      "slug": "current---dominic-grisingher",
+      "title": "Current - Dominic Grisingher - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---dominic-grisingher.html",
+      "mirror_file": "site/current---dominic-grisingher.html",
+      "content_file": "content/current-members/dominic-grisingher.md",
+      "word_count": 62,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "current---dru-myerscough",
+      "title": "Current - Dru Myerscough - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---dru-myerscough.html",
+      "mirror_file": "site/current---dru-myerscough.html",
+      "content_file": "content/current-members/dru-myerscough.md",
+      "word_count": 26,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 0
+    },
+    {
+      "slug": "current---giuseppe-cimicata",
+      "title": "Current - Giuseppe Cimicata - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---giuseppe-cimicata.html",
+      "mirror_file": "site/current---giuseppe-cimicata.html",
+      "content_file": "content/current-members/giuseppe-cimicata.md",
+      "word_count": 375,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 6
+    },
+    {
+      "slug": "current---isabella-alfonso",
+      "title": "Current - Isabella Alfonso - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---isabella-alfonso.html",
+      "mirror_file": "site/current---isabella-alfonso.html",
+      "content_file": "content/current-members/isabella-alfonso.md",
+      "word_count": 36,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 0
+    },
+    {
+      "slug": "current---jonathan-zhang",
+      "title": "Current - Jonathan Zhang - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---jonathan-zhang.html",
+      "mirror_file": "site/current---jonathan-zhang.html",
+      "content_file": "content/current-members/jonathan-zhang.md",
+      "word_count": 40,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "current---kevin-alexander-estrada-alamo",
+      "title": "Current - Kevin Alexander Estrada Alamo - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---kevin-alexander-estrada-alamo.html",
+      "mirror_file": "site/current---kevin-alexander-estrada-alamo.html",
+      "content_file": "content/current-members/kevin-alexander-estrada-alamo.md",
+      "word_count": 235,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 4
+    },
+    {
+      "slug": "current---kosuke-seki",
+      "title": "Current -  Kosuke Seki - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---kosuke-seki.html",
+      "mirror_file": "site/current---kosuke-seki.html",
+      "content_file": "content/current-members/kosuke-seki.md",
+      "word_count": 296,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 7
+    },
+    {
+      "slug": "current---kyrellos-ibrahim",
+      "title": "Current - Kyrellos Ibrahim - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---kyrellos-ibrahim.html",
+      "mirror_file": "site/current---kyrellos-ibrahim.html",
+      "content_file": "content/current-members/kyrellos-ibrahim.md",
+      "word_count": 236,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 2
+    },
+    {
+      "slug": "current---lisa-schmidt",
+      "title": "Current -  Lisa Schmidt - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---lisa-schmidt.html",
+      "mirror_file": "site/current---lisa-schmidt.html",
+      "content_file": "content/current-members/lisa-schmidt.md",
+      "word_count": 223,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 5
+    },
+    {
+      "slug": "current---maple-chen",
+      "title": "Current - Maple Chen - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---maple-chen.html",
+      "mirror_file": "site/current---maple-chen.html",
+      "content_file": "content/current-members/maple-chen.md",
+      "word_count": 102,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 2
+    },
+    {
+      "slug": "current---meytal-radzinski",
+      "title": "Current -  Meytal Radzinski - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---meytal-radzinski.html",
+      "mirror_file": "site/current---meytal-radzinski.html",
+      "content_file": "content/current-members/meytal-radzinski.md",
+      "word_count": 348,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 7
+    },
+    {
+      "slug": "current---philipp-huettemann",
+      "title": "Current - Philipp Huettemann - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---philipp-huettemann.html",
+      "mirror_file": "site/current---philipp-huettemann.html",
+      "content_file": "content/current-members/philipp-huettemann.md",
+      "word_count": 142,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 3
+    },
+    {
+      "slug": "current---radhika-dalal",
+      "title": "Current - Radhika Dalal - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---radhika-dalal.html",
+      "mirror_file": "site/current---radhika-dalal.html",
+      "content_file": "content/current-members/radhika-dalal.md",
+      "word_count": 122,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "current---stephanie-crilly",
+      "title": "Current - Stephanie Crilly - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---stephanie-crilly.html",
+      "mirror_file": "site/current---stephanie-crilly.html",
+      "content_file": "content/current-members/stephanie-crilly.md",
+      "word_count": 331,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 8
+    },
+    {
+      "slug": "current---tanja-kortemme",
+      "title": "Current - Tanja Kortemme - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---tanja-kortemme.html",
+      "mirror_file": "site/current---tanja-kortemme.html",
+      "content_file": "content/current-members/tanja-kortemme.md",
+      "word_count": 6052,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 118
+    },
+    {
+      "slug": "current---tobias-dorer",
+      "title": "Current -  Tobias Dorer - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---tobias-dorer.html",
+      "mirror_file": "site/current---tobias-dorer.html",
+      "content_file": "content/current-members/tobias-dorer.md",
+      "word_count": 33,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 0
+    },
+    {
+      "slug": "current---yilun-qi",
+      "title": "Current - Yilun Qi - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---yilun-qi.html",
+      "mirror_file": "site/current---yilun-qi.html",
+      "content_file": "content/current-members/yilun-qi.md",
+      "word_count": 330,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 7
+    },
+    {
+      "slug": "current---yulia-gutierrez",
+      "title": "Current - Yulia Gutierrez - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current---yulia-gutierrez.html",
+      "mirror_file": "site/current---yulia-gutierrez.html",
+      "content_file": "content/current-members/yulia-gutierrez.md",
+      "word_count": 95,
+      "reachable_from_home": true,
+      "image_count": 1,
+      "external_link_count": 2
+    },
+    {
+      "slug": "current-members",
+      "title": "Current Members - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/current-members.html",
+      "mirror_file": "site/current-members.html",
+      "content_file": "content/current-members.md",
+      "word_count": 945,
+      "reachable_from_home": true,
+      "image_count": 21,
+      "external_link_count": 9
+    },
+    {
+      "slug": "design-of-a-photoswitchable-cadherin",
+      "title": "Design of a Photoswitchable Cadherin - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/design-of-a-photoswitchable-cadherin.html",
+      "mirror_file": "site/design-of-a-photoswitchable-cadherin.html",
+      "content_file": "content/archive/design-of-a-photoswitchable-cadherin.md",
+      "word_count": 24,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "determinants-of-protein-dosage-sensitivity",
+      "title": "Determinants of Protein Dosage Sensitivity - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/determinants-of-protein-dosage-sensitivity.html",
+      "mirror_file": "site/determinants-of-protein-dosage-sensitivity.html",
+      "content_file": "content/archive/determinants-of-protein-dosage-sensitivity.md",
+      "word_count": 0,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "directions",
+      "title": "Directions - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/directions.html",
+      "mirror_file": "site/directions.html",
+      "content_file": "content/directions.md",
+      "word_count": 431,
+      "reachable_from_home": true,
+      "image_count": 3,
+      "external_link_count": 4
+    },
+    {
+      "slug": "evolution-of-structure-function-and-network-interactions",
+      "title": "Evolution of Structure, Function, and Network Interactions - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/evolution-of-structure-function-and-network-interactions.html",
+      "mirror_file": "site/evolution-of-structure-function-and-network-interactions.html",
+      "content_file": "content/archive/evolution-of-structure-function-and-network-interactions.md",
+      "word_count": 655,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "gallery",
+      "title": "Gallery - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/gallery.html",
+      "mirror_file": "site/gallery.html",
+      "content_file": "content/gallery.md",
+      "word_count": 315,
+      "reachable_from_home": true,
+      "image_count": 50,
+      "external_link_count": 0
+    },
+    {
+      "slug": "hidden-pages",
+      "title": "Hidden Pages - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/hidden-pages.html",
+      "mirror_file": "site/hidden-pages.html",
+      "content_file": "content/archive/hidden-pages.md",
+      "word_count": 0,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "incomplete---computational-protein-design-and-modeling",
+      "title": "Incomplete - Computational Protein Design and Modeling - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/incomplete---computational-protein-design-and-modeling.html",
+      "mirror_file": "site/incomplete---computational-protein-design-and-modeling.html",
+      "content_file": "content/archive/incomplete---computational-protein-design-and-modeling.md",
+      "word_count": 802,
+      "reachable_from_home": false,
+      "image_count": 4,
+      "external_link_count": 3
+    },
+    {
+      "slug": "incomplete---evolution-of-structure-function-and-network-interactions",
+      "title": "Incomplete - Evolution of Structure, Function, and Network Interactions - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/incomplete---evolution-of-structure-function-and-network-interactions.html",
+      "mirror_file": "site/incomplete---evolution-of-structure-function-and-network-interactions.html",
+      "content_file": "content/archive/incomplete---evolution-of-structure-function-and-network-interactions.md",
+      "word_count": 692,
+      "reachable_from_home": false,
+      "image_count": 3,
+      "external_link_count": 2
+    },
+    {
+      "slug": "index",
+      "title": "KORTEMME LAB @ UCSF - Home",
+      "source_url": "https://kortemmelab.ucsf.edu/index.html",
+      "mirror_file": "site/index.html",
+      "content_file": "content/index.md",
+      "word_count": 463,
+      "reachable_from_home": true,
+      "image_count": 2,
+      "external_link_count": 9
+    },
+    {
+      "slug": "internal",
+      "title": "Internal - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/internal.html",
+      "mirror_file": "site/internal.html",
+      "content_file": "content/archive/internal.md",
+      "word_count": 41,
+      "reachable_from_home": false,
+      "image_count": 4,
+      "external_link_count": 7
+    },
+    {
+      "slug": "join-the-lab",
+      "title": "Join the Lab - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/join-the-lab.html",
+      "mirror_file": "site/join-the-lab.html",
+      "content_file": "content/join-the-lab.md",
+      "word_count": 249,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 6
+    },
+    {
+      "slug": "lab-alumni",
+      "title": "Lab Alumni - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/lab-alumni.html",
+      "mirror_file": "site/lab-alumni.html",
+      "content_file": "content/lab-alumni.md",
+      "word_count": 983,
+      "reachable_from_home": true,
+      "image_count": 45,
+      "external_link_count": 8
+    },
+    {
+      "slug": "meetings",
+      "title": "Meetings - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/meetings.html",
+      "mirror_file": "site/meetings.html",
+      "content_file": "content/meetings.md",
+      "word_count": 17,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "news",
+      "title": "News - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/news.html",
+      "mirror_file": "site/news.html",
+      "content_file": "content/news.md",
+      "word_count": 1453,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 3
+    },
+    {
+      "slug": "publications",
+      "title": "Publications - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/publications.html",
+      "mirror_file": "site/publications.html",
+      "content_file": "content/publications.md",
+      "word_count": 6028,
+      "reachable_from_home": true,
+      "image_count": 0,
+      "external_link_count": 117
+    },
+    {
+      "slug": "reprogramming-an-atpase-into-light-gated-nanocage",
+      "title": "Reprogramming an ATPase into Light-gated Nanocage - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/reprogramming-an-atpase-into-light-gated-nanocage.html",
+      "mirror_file": "site/reprogramming-an-atpase-into-light-gated-nanocage.html",
+      "content_file": "content/archive/reprogramming-an-atpase-into-light-gated-nanocage.md",
+      "word_count": 314,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "research",
+      "title": "Research - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/research.html",
+      "mirror_file": "site/research.html",
+      "content_file": "content/archive/research.md",
+      "word_count": 265,
+      "reachable_from_home": false,
+      "image_count": 0,
+      "external_link_count": 0
+    },
+    {
+      "slug": "robotics-inspired-loop-reconstruction",
+      "title": "Robotics-inspired Loop Reconstruction - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/robotics-inspired-loop-reconstruction.html",
+      "mirror_file": "site/robotics-inspired-loop-reconstruction.html",
+      "content_file": "content/archive/robotics-inspired-loop-reconstruction.md",
+      "word_count": 318,
+      "reachable_from_home": false,
+      "image_count": 1,
+      "external_link_count": 1
+    },
+    {
+      "slug": "rosetta",
+      "title": "Rosetta - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/rosetta.html",
+      "mirror_file": "site/rosetta.html",
+      "content_file": "content/archive/rosetta.md",
+      "word_count": 25,
+      "reachable_from_home": false,
+      "image_count": 2,
+      "external_link_count": 3
+    },
+    {
+      "slug": "style-guide",
+      "title": "Style Guide - KORTEMME LAB @ UCSF",
+      "source_url": "https://kortemmelab.ucsf.edu/style-guide.html",
+      "mirror_file": "site/style-guide.html",
+      "content_file": "content/archive/style-guide.md",
+      "word_count": 53,
+      "reachable_from_home": false,
+      "image_count": 3,
+      "external_link_count": 0
+    }
+  ]
+}

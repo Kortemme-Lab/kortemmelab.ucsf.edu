@@ -1,0 +1,6 @@
+Timestamp,Email Address,Full name (as it should appear on the website),Pronouns,Role in the lab,Graduate program or department,Year you joined the lab,Co-mentors,Research summary (1-3 sentences),Longer bio,Education,Headshot photo,Lab email address,Show my email on the website,ORCID iD,Include publications from before you joined the lab,"DOIs of publications to list (in addition to, or instead of, ORCID)",Google Scholar profile,Personal website,GitHub
+2026/09/01 10:00:00,,Josiah Carberry,he/him,Postdoctoral Scholar,,2026,,Studies how psychoceramics can inform protein design.,,"PhD, Psychoceramics, Brown University, 2025",,,No,0000-0002-1825-0097,Yes,,,,
+2026/09/02 11:30:00,,Ada Example,she/her,Graduate Student,Biophysics,2026,Mike Keiser,Designs protein switches that respond to light.,"Before joining the lab, Ada worked on enzyme engineering.","BS, Chemistry, Example University, 2024
+MS, Bioengineering, Example University, 2026",,ada.example@ucsf.edu,Yes,,No,"10.1126/science.abc0881
+https://doi.org/10.1038/s41586-021-03819-2
+arXiv:2204.13048",,ada.example.org,adaexample

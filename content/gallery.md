@@ -1,0 +1,180 @@
+---
+title: "Gallery - KORTEMME LAB @ UCSF"
+slug: gallery
+source_url: https://kortemmelab.ucsf.edu/gallery.html
+mirror_file: site/gallery.html
+word_count: 315
+reachable_from_home: true
+images:
+  - site/images/img-0890.jpg
+  - site/images/img-0889.jpg
+  - site/images/dsc-2078.jpeg
+  - site/images/dsc-2082.jpeg
+  - site/images/dsc-2080.jpeg
+  - site/images/img-2375.jpeg
+  - site/images/img-9649.jpg
+  - site/images/img-2389.jpeg
+  - site/images/img-2385.jpeg
+  - site/images/image-from-ios-2.jpg
+  - site/images/lab-pic-cropped.jpg
+  - site/images/img-2726.jpg
+  - site/images/img-6321.jpg
+  - site/images/img-9717.jpg
+  - site/images/img-7655.jpg
+  - site/images/img-0008.jpg
+  - site/images/img-0111.jpg
+  - site/images/img-1724.jpg
+  - site/images/img-1939.jpg
+  - site/images/img-1041.jpg
+  - site/images/img-1773.jpg
+  - site/images/presidio-2018.png
+  - site/images/img-8531.jpg
+  - site/images/img-8532.jpg
+  - site/images/2442712.jpg
+  - site/images/samuels-cool-award.jpeg
+  - site/images/kyle-grad-2.jpg
+  - site/images/kyle-grad-1.jpg
+  - site/images/kyle-wedding.jpg
+  - site/images/chris-quals-whiteboard.jpg
+  - site/images/asilomar2017-2.jpg
+  - site/images/asilomar2017-3.jpg
+  - site/images/asilomar2017-1.jpg
+  - site/images/groupphoto2017.jpg
+  - site/images/3701069.jpg
+  - site/images/chris-shipment.jpg
+  - site/images/samuel-shipment.jpg
+  - site/images/asilomar-1.jpg
+  - site/images/asilomar-2.jpg
+  - site/images/ski-trip-2018-1.jpg
+  - site/images/under-construction.jpg
+  - site/images/5178762.jpg
+  - site/images/3870051.jpg
+  - site/images/img-1061.jpg
+  - site/images/1511553.jpg
+  - site/images/5825597.jpg
+  - site/images/49757.jpg
+  - site/images/127585.jpg
+  - site/images/273214.jpg
+  - site/images/3036752.jpg
+---
+
+## Gallery (50 images)
+
+![Alumni from all over the world returned to San Francisco for the Kortemme Lab's 20 year reunion! April, 2024](images/img-0890.jpg)
+*Alumni from all over the world returned to San Francisco for the Kortemme Lab's 20 year reunion! April, 2024*
+
+![](images/img-0889.jpg)
+
+![](images/dsc-2078.jpeg)
+
+![](images/dsc-2082.jpeg)
+
+![](images/dsc-2080.jpeg)
+
+![Lab Retreat 2024!!](images/img-2375.jpeg)
+*Lab Retreat 2024!!*
+
+![](images/img-9649.jpg)
+
+![](images/img-2389.jpeg)
+
+![](images/img-2385.jpeg)
+
+![](images/image-from-ios-2.jpg)
+
+![](images/lab-pic-cropped.jpg)
+
+![](images/img-2726.jpg)
+
+![](images/img-6321.jpg)
+
+![](images/img-9717.jpg)
+
+![](images/img-7655.jpg)
+
+![](images/img-0008.jpg)
+
+![](images/img-0111.jpg)
+
+![](images/img-1724.jpg)
+
+![](images/img-1939.jpg)
+
+![](images/img-1041.jpg)
+
+![](images/img-1773.jpg)
+
+![](images/presidio-2018.png)
+
+![](images/img-8531.jpg)
+
+![](images/img-8532.jpg)
+
+![Everyone here is very nice. We promise!](images/2442712.jpg)
+*Everyone here is very nice. We promise!*
+
+![Samuel at Protein Engineering Canada 2018.](images/samuels-cool-award.jpeg)
+*Samuel at Protein Engineering Canada 2018.*
+
+![A snapshot of a barrier crossing via a high energy transition state (Kyle's graduation).](images/kyle-grad-2.jpg)
+*A snapshot of a barrier crossing via a high energy transition state (Kyle's graduation).*
+
+![Kyle's graduation.](images/kyle-grad-1.jpg)
+*Kyle's graduation.*
+
+![Kyle's wedding reception.](images/kyle-wedding.jpg)
+*Kyle's wedding reception.*
+
+![Chris successfully advances to candidacy.](images/chris-quals-whiteboard.jpg)
+*Chris successfully advances to candidacy.*
+
+![](images/asilomar2017-2.jpg)
+
+![](images/asilomar2017-3.jpg)
+
+![Asilomar 2017 -- can't quite get the group photo right.](images/asilomar2017-1.jpg)
+*Asilomar 2017 -- can't quite get the group photo right.*
+
+![Asilomar 2017](images/groupphoto2017.jpg)
+*Asilomar 2017*
+
+![Now I can hear when Tanja is coming!](images/3701069.jpg)
+*Now I can hear when Tanja is coming!*
+
+![We love our science.](images/chris-shipment.jpg)
+*We love our science.*
+
+![If I fits, I sits -- Illumina edition.](images/samuel-shipment.jpg)
+*If I fits, I sits -- Illumina edition.*
+
+![Lab retreat 2016 at Asilomar - Ollie! The camera is the other way...](images/asilomar-1.jpg)
+*Lab retreat 2016 at Asilomar - Ollie! The camera is the other way...*
+
+![Lab retreat 2016 at Asilomar - We can't seem to face the same direction.](images/asilomar-2.jpg)
+*Lab retreat 2016 at Asilomar - We can't seem to face the same direction.*
+
+![Ski trip 2018.](images/ski-trip-2018-1.jpg)
+*Ski trip 2018.*
+
+![Under construction, pardon our mess.](images/under-construction.jpg)
+*Under construction, pardon our mess.*
+
+![Farewell Superman (Noah)!](images/5178762.jpg)
+*Farewell Superman (Noah)!*
+
+![](images/3870051.jpg)
+
+![](images/img-1061.jpg)
+
+![](images/1511553.jpg)
+
+![](images/5825597.jpg)
+
+![](images/49757.jpg)
+
+![](images/127585.jpg)
+
+![Why fly to RosettaCon when you can drive a yellow Mustang?](images/273214.jpg)
+*Why fly to RosettaCon when you can drive a yellow Mustang?*
+
+![](images/3036752.jpg)

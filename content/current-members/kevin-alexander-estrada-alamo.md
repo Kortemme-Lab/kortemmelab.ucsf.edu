@@ -1,0 +1,48 @@
+---
+title: "Current - Kevin Alexander Estrada Alamo - KORTEMME LAB @ UCSF"
+slug: current---kevin-alexander-estrada-alamo
+source_url: https://kortemmelab.ucsf.edu/current---kevin-alexander-estrada-alamo.html
+mirror_file: site/current---kevin-alexander-estrada-alamo.html
+word_count: 136
+reachable_from_home: true
+images:
+  - site/images/kevin.jpg
+external_links:
+  - https://www.susalab.com/
+  - https://doi.org/10.1101/2024.06.21.600123
+  - https://doi.org/10.1182/blood.2023020181
+  - https://doi.org/10.3390/molecules26196034
+publications:
+  - "10.1002/adma.202500872"
+  - "10.1182/blood.2023020181"
+  - "10.3390/molecules26196034"
+---
+
+**Kevin Alexander Estrada Alamo**
+co-mentored by [Katherine Susa](https://www.susalab.com/)
+
+Graduate Student
+
+I'm interested in using de novo protein design to modulate cells and designing proteins to bind and organize the BCR complex and other co-receptors to modulate BCR signaling.
+​
+*ARCS Foundation Fellow
+IMSD Fellow*
+​
+**Education**
+
+- Bachelor of Science, Biochemistry, Western Washington University
+
+[![Derp.](images/kevin.jpg)](index.html)
+
+**Publications**
+
+<!-- publications:start -->
+<!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
+
+1. Wang, X., Guillem‐Marti, J., Kumar, S., Lee, D. S., Cabrerizo‐Aguado, D., Werther, R., Alamo, K. A. E., Zhao, Y. T., Nguyen, A., Kopyeva, I., Huang, B., Li, J., Hao, Y., Li, X., Brizuela‐Velasco, A., Murray, A., Gerben, S., Roy, A., DeForest, C. A., Springer, T., Ruohola‐Baker, H., Cooper, J. A., Campbell, M. G., Manero, J. M., Ginebra, M. & Baker, D. [De Novo Design of Integrin α5β1 Modulating Proteins to Enhance Biomaterial Properties](https://doi.org/10.1002/adma.202500872). *Adv. Mater.* **37**, 2500872 (2025).
+2. Childers, K. C., Avery, N. G., Estrada Alamo, K. A., Davulcu, O., Haynes, R. M., Lollar, P., Doering, C. B., Coxon, C. H. Dr & Spiegel, P. C. Jr. [Structure of coagulation factor VIII bound to a patient-derived anti-C1 domain antibody inhibitor](https://doi.org/10.1182/blood.2023020181). *Blood* [https://doi.org/10.1182/blood.2023020181](https://doi.org/10.1182/blood.2023020181) (2023).
+3. Wofford, H. A., Myers-Dean, J., Vogel, B. A., Alamo, K. A. E., Longshore-Neate, F. A., Jagodzinski, F. & Amacher, J. F. [Domain Analysis and Motif Matcher (DAMM): A Program to Predict Selectivity Determinants in Monosiga brevicollis PDZ Domains Using Human PDZ Data](https://doi.org/10.3390/molecules26196034). *Molecules* **26**, 6034 (2021).
+
+<!-- publications:end -->
+
+​

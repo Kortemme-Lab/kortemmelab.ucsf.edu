@@ -1,0 +1,442 @@
+---
+title: "News - KORTEMME LAB @ UCSF"
+slug: news
+source_url: https://kortemmelab.ucsf.edu/news.html
+mirror_file: site/news.html
+word_count: 1453
+reachable_from_home: true
+external_links:
+  - https://www.youtube.com/watch?v=ZL7OC-oVmhU
+  - http://synberc.org/perfect-pitch
+  - http://gen9bio.com/news/2012-11-14/
+---
+
+**January 2026**​
+
+**December 2025**
+
+**November 2025**
+
+**October 2025**
+
+**September 2025**
+
+**August 2025**
+
+**June 2025**
+
+Connor starts a position as adjunct Professor in Chemistry at the University of San Francisco
+
+Connor and Deniz graduate
+
+Amy starts a new position as Senior Machine Learning Scientist at Genentech
+
+Our ideas on biological error correction are funded by an NIH Pioneer award
+
+Ben graduates and starts a new position as Director of Computational Biology and AI at Animate Biosciences
+
+Meytal receives a fellowship from the Rappaport Foundation
+
+Colin receives tenure
+
+**May 2025**
+​
+
+**March 2025**
+
+**December 2024**
+​​
+
+**December 2024**​
+
+**September 2024**​
+
+**June 2024**​
+
+**May 2024**​
+
+**May 2024**​
+
+**January** **2024**
+
+**November** **2023**
+
+**November**​ **2023**
+
+Our work on PKS engineering is funded by a USPRD IDEAS lab NSF grant, in collaboration with Karthik Sankar, Jay Keating, Mike Jewett, Brooks Abel, Corrinne Scown, and Twist Biosciences
+
+Tanja receives the International Feodor Lynen Medal
+
+Radhika, Deniz, and Tanja, along with lab alumni Colin Smith, Sen Liu, Amelie Stein and Roland Pache, join the celebrations in Stockholm for David Baker’s Nobel Prize
+
+Amy graduates
+
+Alex is named a UCSF Discovery Fellow
+
+Kevin receives an ARCS scholarship
+
+Philipp’s project on designing synthetic membrane clustering systems is funded by a grant from the NSF
+
+Radhika wins a 2024 Mary Anne Koda-Kimble Seed Award for Innovation
+
+Simon starts a new position as Scientist at Altos
+
+Meytal receives a Rothschild postdoctoral fellowship and a fellowship from Hebrew University
+
+Dom receives the 2023 Herbert Landahl Mathematical Biophysics Student Excellence Award
+
+**August 2023**
+
+​Deniz receives a RosettaCommons award for her leadership in teaching and mentoring.
+
+**August 2023**
+
+**May 2023**
+
+​Lu starts a new position as Research Scientist at AbCellera.
+
+​Jon wins a 2023 Mary Anne Koda-Kimble Seed Award for Innovation.
+
+**April 2023**
+
+​Radhika is awarded an NSF graduate research fellowship.
+
+**July 2022**
+
+Cody starts a new position as Senior Scientist at Evercrisp.
+
+​**June 2022**
+
+Chris and Cody graduate.
+
+**June 2022**
+
+​Our work on computational design of ligand binding proteins and GTPases is funded by an R35 MIRA grant from the NIH.
+
+**April 2022**
+
+Deniz and Ben are awarded NSF graduate research fellowships.
+
+**February 2022**
+
+Ben O. wins a 2022 Mary Anne Koda-Kimble Seed Award for Innovation.
+
+**January 2022**
+
+Anum starts her own lab as Assistant Professor at Columbia University.
+
+**January 2022**
+
+Tanja is selected as a Chan Zuckerberg Biohub Investigator for another 5 years.
+
+**January 2022**
+
+Simon is awarded a Li Foundation Endowed Fellowship.
+
+**December 2021**
+
+Our work on deep learning for protein design is funded by a grant from the UCSF Program for Breakthrough Biomedical Research, in collaboration with Mike Keiser.
+
+**November 2021**
+
+Ben J. starts a new position as Principal Scientist at Evercrisp Biosciences.
+
+**October 2021**
+
+Ben O. receives the Herbert Landahl Mathematical Biophysics Student Excellence Award. ​
+
+**September 2021**
+
+Amy is named a UCSF Discovery Fellow.
+
+**July 2021**
+
+Rob receives an Arnold O. Beckman Postdoctoral Fellowship
+
+**July 2021**
+
+Simon receives a Postdoctoral Independent Research Grant from the UCSF Program for Breakthrough Biomedical Research
+
+**July 2021**
+
+Tina starts her own lab as Assistant Professor at the University of Zurich.
+
+**June 2021**
+
+Dom is awarded an ARCS graduate student fellowship.
+
+**December 2020**
+
+Chris is invited to speak at the 2021 St. Jude National Graduate Student Symposium.
+
+**December 2020**
+
+XingJie graduates.
+
+**June 2020**
+
+Samuel graduates.
+
+**May 2020**
+
+Our work on *de novo* design principles of proteins and small molecule sensors is funded by a grant from the NIH.
+
+**April 2020**
+
+Our design work blocking SARS-CoV-2 is funded by the UCSF Program for Breakthrough Biomedical Research
+
+**March 2020**
+
+James graduates
+
+**March 2020**
+
+Anum receives a K99 award from the NIH.
+
+**October 2019**
+
+Chris receives a Best Poster Award at the 2019 QBC Retreat.
+
+**July 2019**
+
+Our de novo design work receives funding from the UCSF Program for Breakthrough Biomedical Research
+
+**April 2019**
+
+Amanda graduates.
+
+**October 2018**
+
+Chris is named a UCSF Discovery Fellow.
+
+**October 2018**
+
+Samuel receives a Best Poster Award at the 2018 QBC Retreat.
+
+**June 2018**
+
+Samuel receives a Best Talk Award at Protein Engineering Canada 2018.
+
+**June 2018**
+
+Kale graduates.
+
+**May 2018**
+
+Anum is awarded the inaugural Chancellor's Postdoctoral Fellowship at UCSF.
+
+**November 2017**
+
+Samuel receives the Dr. Herbert Landahl Mathematical Biophysics Student Excellence Award.
+
+**November 2017**
+
+Pradeep graduates.
+
+**November 2017**
+
+Xingjie is named a UCSF Discovery Fellow.
+
+**October 2017**
+
+Anum is awarded a UCSF IRACDA fellowship.
+
+**August 2017**
+
+Kyle graduates.
+
+**June 2017**
+
+Samuel receives ​the Mel Jones Excellence in Graduate Student Research Award.
+
+**February 2017**
+
+Tanja is selected as a Chan Zuckerberg Biohub Investigator.
+
+**August 2016**
+
+Samuel's project for multi-state design and high-throughput screening of functional proteins is funded by a grant from the NSF.
+
+**April 2016**
+
+Our project to generate biosensors for small molecules is funded by a grant from the NIH.
+
+**January 2016**
+
+Tina's work on yeast protein interaction networks is funded by a grant from the NIH.
+
+**April 2015**
+
+James is awarded a NSF graduate research fellowship while at UC Davis.
+
+**February 2015**
+
+Noah graduates.
+
+**September 2014**
+
+Amanda's 90-second video, "[A generalized strategy for engineering biological sense/response pairs](https://www.youtube.com/watch?v=ZL7OC-oVmhU)," wins 3rd place in the [2014 Synberc Perfect Pitch Contest](http://synberc.org/perfect-pitch).
+
+**April 2014**
+
+Samuel is awarded a NSF graduate research fellowship.
+
+**August 2013**
+
+Ryan graduates.
+
+**June 2013**
+
+Samuel is awarded the UCSF Chuan Lyu Fellowship.
+
+**November 2012**
+
+Our biosensor project wins first prize in [Gen9's inaugural G-Prize contest.](http://gen9bio.com/news/2012-11-14/)
+
+**July 2012**
+
+Dan's work on engineering molecular machines is funded by a grant from the UCSF Program for Breakthrough Biomedical Research.
+
+**July 2012**
+
+Matt's paper on cost / benefit tradeoffs in the lac operon is highlighted by Faculty of 1000.
+
+**June 2012**
+
+Kyle is awarded an ARCS graduate student fellowship.
+
+**December 2011**
+
+Rich graduates.
+
+**September 2011**
+
+Ryan’s work on engineering light-controlled cadherins is funded by a grant from the NSF.
+
+**August 2011**
+
+A new project on quantifying systems-level protein interaction specificity is funded by the NIH, in collaboration with Nevan Krogan’s group.
+
+**July 2011**
+
+Colin graduates.
+
+**July 2011**
+
+Noah’s abstract is selected for a talk at the “Structural Bioinformatics and Computational Biophysics” ISMB meeting in Vienna.
+
+**June 2011**
+
+Laurens is awarded an ARCS graduate student fellowship.
+
+**June 2011**
+
+Amelie is awarded an EMBO postdoctoral fellowship.
+
+**March 2011**
+
+Dan's work on engineering small molecule biosensors is funded by a grant from the NIH.
+
+**February 2011**
+
+Dan is awarded a postdoctoral fellowship from the German Research Foundation.
+
+**September 2010**
+
+Colin's paper on specificity prediction is highlighted by Faculty of 1000.
+
+**September 2010**
+
+Ryan receives the Mel Jones Excellence in Graduate Student Research Award.
+
+**June 2010**
+
+Dan receives the Julius R. Krevans Distinguished Dissertation Award.
+
+​**June 2010**
+
+Dan graduates.
+
+**May 2010**
+
+Matt graduates.
+
+**October 2009**
+
+Elisabeth graduates.
+
+**August 2009**
+
+The NSF "Emerging Frontiers" program awards our lab an ARRA research grant to improve and disseminate molecular modeling and prediction methods for the characterization and redesign of interactions between proteins, building on Florian's webserver work.
+
+**April 2009**
+
+Noah is awarded a NSF graduate research fellowship.
+
+**January 2009**
+
+The UC Office of the President awards our lab in collaboration with Charlie Strauss at LANL a UC Lab Research Grant on "New algorithms for computational design of protein biosensors". Our lab's contribution builds on Dan and Vageli's work on kinematic loop closure methods.
+
+**January 2009**
+
+Dan is awarded a PhRMA Foundation predoctoral fellowship in informatics.
+
+**December 2008**
+
+Greg F. graduates.
+
+**July 2008**
+
+Ryan is awarded a UCSF HHMI/NIBIB fellowship.
+
+​**July 2008**
+
+Noah is awarded a UCSF HHMI/NIBIB fellowship.
+
+**June 2008**
+
+Rich is awarded a Kozloff graduate fellowship.
+
+**March 2008**
+
+Tanja receives an NSF CAREER award.
+
+**July 2007**
+
+Rich is awarded an iPQB fellowship in complex biological systems.
+
+**April 2007**
+
+Colin is awarded graduate student fellowships from Genentech, NSF, and DOD.
+
+**October 2006**
+
+Dan and Elisabeth are recipients of the UCSF/UC Berkeley Nanosciences and Biology Student Award.
+
+**August 2006**
+
+Elisabeth is awarded a Genentech/Sandler graduate student fellowship.
+
+**July 2006**
+
+Matt's work on quantifying how alternative mechanisms of protein evolution shape organism fitness is funded by a grant from the Sandler Program in Basic Sciences.
+
+**June 2006**
+
+Dan is awarded an ARCS graduate student fellowship.
+
+**September 2005**
+
+Cristina's and Greg K.'s work on engineering protein interaction modules is funded by an NIH grant on "Engineering Cellular Control: Synthetic Signaling and Motility Systems", headed by Wendell Lim and in collaboration with labs at UCSF and UC Berkeley. Our group will be leading the "molecular tool kit" platform of the center.
+
+**September 2005**
+
+Wah Chiu's NIH nanomedicine grant "Center for Protein Folding Machinery" is funded. Dan's work on developing methods for flexible backbone protein design and engineering "protein adaptors" will be part of the computational core of the center, in collaboration with Judith Frydman and Vijay Pande (Stanford University), and Andrej Sali.
+
+**May 2005**
+
+Greg F. is awarded a NSF graduate research fellowship.
+
+**February 2005**
+
+Tanja is named an Alfred P. Sloan Fellow in Molecular Biology.
