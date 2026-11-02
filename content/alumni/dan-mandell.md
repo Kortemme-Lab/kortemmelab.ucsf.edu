@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2005-2011"
 current_position: "Co-founder and CEO, GRO Biosciences"
+position_after_lab: "LSRF Postdoctoral Fellowship, Harvard University"
 co_mentors: []
 summary: ""
 photo: "images/people/dan-mandell.jpg"

@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2005-2011"
 current_position: "Writer and Director, Consultant Cognition IP, Multimedia Producer Northeastern University"
+position_after_lab: "Postdoc, NYU"
 co_mentors: []
 summary: ""
 photo: "images/people/matt-eames.jpg"

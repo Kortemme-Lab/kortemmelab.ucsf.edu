@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2008-2015"
 current_position: "Staff Scientist, National Institute on Aging"
+position_after_lab: "ACS Postdoctoral Fellow, CalTech"
 co_mentors: []
 summary: ""
 photo: "images/people/noah-ollikainen.jpg"

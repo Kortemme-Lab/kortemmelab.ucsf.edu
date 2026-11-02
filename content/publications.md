@@ -167,7 +167,7 @@ external_links:
 
 1. Koehler Leman, J., Lyskov, S., Lewis, S. M., Adolf-Bryfogle, J., Alford, R. F. et al. [Ensuring scientific reproducibility in bio-macromolecular modeling via extensive, automated benchmarks](https://doi.org/10.1038/s41467-021-27222-7). *Nat. Commun.* **12**, 6947 (2021).
 2. Pan, X. & Kortemme, T. [De novo protein fold families expand the designable ligand binding site space](https://doi.org/10.1371/journal.pcbi.1009620). *PLoS Comput. Biol.* **17**, e1009620 (2021).
-3. Perica, T.\*, Mathy, C. J. P.\*, Xu, J., Jang, G. Μ., Zhang, Y. et al. [Systems-level effects of allosteric perturbations to a model molecular switch](https://doi.org/10.1038/s41586-021-03982-6). *Nature* **599**, 152–157 (2021).
+3. Perica, T.\*, Mathy, C. J. P.\*, Xu, J., Jang, G. M., Zhang, Y. et al. [Systems-level effects of allosteric perturbations to a model molecular switch](https://doi.org/10.1038/s41586-021-03982-6). *Nature* **599**, 152–157 (2021).
 4. Pan, X. & Kortemme, T. [Recent advances in de novo protein design: Principles, methods, and applications](https://doi.org/10.1016/j.jbc.2021.100558). *J. Biol. Chem.* **296**, 100558 (2021).
 
 ### 2020 Publications

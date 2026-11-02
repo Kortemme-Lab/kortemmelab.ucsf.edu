@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2013-2019"
 current_position: "Senior Scientist, Systimmune"
+position_after_lab: "Scientist, Lyell Immunopharma"
 co_mentors: []
 summary: ""
 photo: "images/people/amanda-loshbaugh.jpg"

@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2012-2017"
 current_position: "Senior Scientist, Adimab"
+position_after_lab: "Scientist, Adimab, LLC"
 co_mentors: []
 summary: ""
 photo: "images/people/kyle-barlow.jpg"

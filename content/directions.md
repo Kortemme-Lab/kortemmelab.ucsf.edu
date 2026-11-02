@@ -16,10 +16,7 @@ external_links:
   - https://www.google.com/maps/dir/Oakland+International+Airport,+Airport+Access+Road,+Oakland,+CA/1700+4th+Street,+San+Francisco,+CA/@37.7687677,-122.3760075,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x808f85a1afd46a6d:0xab2406be1f4f1879!2m2!1d-122.1986718!2d37.7277069!1m5!1m1!1s0x808f7fcf444da87f:0x1760faed340b1c4a!2m2!1d-122.3914712!2d37.767294!3e3?hl=en
 ---
 
-## directions
-
-##
-Campus map
+## Campus map
 
 ![Picture](images/1262696.png)
 

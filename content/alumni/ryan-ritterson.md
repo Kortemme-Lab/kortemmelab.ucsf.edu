@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2007-2015"
 current_position: "Specialist Lead, Deloitte Consulting"
+position_after_lab: "Intern, Gryphon Scientific LLC"
 co_mentors: []
 summary: ""
 photo: "images/people/ryan-ritterson.jpg"

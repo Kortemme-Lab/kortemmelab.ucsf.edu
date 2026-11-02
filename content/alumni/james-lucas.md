@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2016-2020"
 current_position: "Associate Director, Generate Biomedicines, Inc."
+position_after_lab: "Protein Design Scientist, Nautilus Biotechnology"
 co_mentors: []
 summary: ""
 photo: "images/people/james-lucas.jpg"

@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2006-2011"
 current_position: "Software Developer, Ab Initio Software Corporation"
+position_after_lab: "Consultant, Ab Initio Software Corporation"
 co_mentors: []
 summary: ""
 photo: "images/people/rich-oberdorf.jpg"

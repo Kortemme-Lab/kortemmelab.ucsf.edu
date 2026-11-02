@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2005-2009"
 current_position: "Associate Director, Orna Therapeutics"
+position_after_lab: "NIH N32 Postdoctoral Fellow, Yale"
 co_mentors: []
 summary: ""
 photo: "images/people/elizabeth-humphris.jpg"

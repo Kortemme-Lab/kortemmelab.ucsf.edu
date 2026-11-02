@@ -1,8 +1,16 @@
-# kortemmelab.ucsf.edu — local copy
+# kortemmelab.ucsf.edu
 
-A local copy of <https://kortemmelab.ucsf.edu/>, captured **2026-09-03** from
-the lab's Weebly site. It's cleaned up into a conventional static-site layout,
-and the page text is extracted to serve as a starting point for a rebuild.
+The Kortemme Lab website, rebuilt as plain HTML from Markdown files, plus a
+copy of the old Weebly site it came from.
+
+- **`docs/`** is the new website, generated from `content/` by
+  `scripts/build-site.py`. Open `docs/index.html` to view it. See
+  [The website](#the-website) below.
+- **`site/`** is a local copy of the old <https://kortemmelab.ucsf.edu/>,
+  captured **2026-09-03** and cleaned up. It's kept for reference and as the
+  source of the old photos; nothing in it needs editing any more.
+
+The old copy, in numbers:
 
 | | |
 |---|---|
@@ -11,7 +19,66 @@ and the page text is extracted to serve as a starting point for a rebuild.
 | Photos | 237 (182 referenced from page text, the rest gallery and click-to-enlarge originals) |
 | Size | 50 MB, of which 46 MB is photos |
 
-## Viewing it
+## The website
+
+`content/` holds every page as a Markdown file; `scripts/build-site.py` turns
+them into plain HTML in `docs/`. To change the site, edit `content/`, then:
+
+```bash
+python3 scripts/render-publications.py
+```
+
+```bash
+python3 scripts/build-site.py
+```
+
+The first redraws publication lists (only needed if a `publications:` list or
+`content/bibliography.json` changed). The second rebuilds `docs/` from
+scratch and checks every internal link and image; it stops with a list if one
+is broken. Then open `docs/index.html` in a browser. No server and nothing to
+install: only the Python standard library.
+
+What the build makes:
+
+| Page | From |
+|---|---|
+| Home, News, Gallery, Contact, Meetings, Directions, Join the Lab, Publications | `content/<page>.md` |
+| Home's Selected Publications and Perspectives and Reviews | the DOIs in `featured_publications` / `featured_reviews` in `content/index.md`'s header |
+| Current Members | every file in `content/current-members/`, grouped by `role` |
+| Lab Alumni | every file in `content/alumni/`, by role and then newest first, plus `content/rotation-students.csv` |
+| `people/<name>.html` | each person's file, unless it says `profile_page: false` (17 older alumni who appear on the roster only) |
+| `current---kosuke-seki.html` and the like | small pages forwarding the old site's profile addresses to the new ones |
+
+The look lives in `theme/layout.html` (the frame around every page: header,
+menu, footer) and `theme/site.css`. They follow the old theme: Raleway, the
+menu centered between thin rules, teal links. Body text is a shade darker than
+the old site's for readability. The menu itself is `NAV` near the top of
+`build-site.py`. Pages work on phones; the menu folds into a button.
+
+Markdown in `content/` can use headings, paragraphs (a single line break stays
+a line break), `-` and `1.` lists, `---` rules, links, images, `**bold**` and
+`*italic*`. An image alone in its paragraph becomes a figure, with an
+`*italic*` line under it as its caption, and several in a row become a photo
+grid. A line of raw HTML passes through as it is, which is how the map and
+calendar are embedded.
+
+### Publishing on GitHub Pages
+
+In the repository's Settings > Pages, choose "Deploy from a branch", branch
+`main`, folder `/docs`. After that, every push publishes the site. Two things
+to know first:
+
+- **Pages on a private repository needs a paid GitHub plan** (Pro, Team or
+  Enterprise). On a free plan the repository would have to be public, and
+  `site/` and `structure/emails.csv` hold lab members' email addresses.
+- **A published site is public**, even from a private repository. That
+  includes the email addresses on profiles, which the old site also showed.
+
+To keep the address kortemmelab.ucsf.edu, add a `docs/CNAME` file containing
+it (the build leaves that file alone) and point the domain at GitHub Pages in
+UCSF's DNS.
+
+### Viewing the old site
 
 Open `site/index.html` in a browser. Or serve it, which is closer to how a host
 would serve it:
@@ -22,13 +89,16 @@ cd site && python3 -m http.server 8899
 
 Then visit <http://localhost:8899/>. Everything is local except two live
 Google embeds that need an internet connection: the map on the Contact page and
-the calendar on Meetings.
+the calendar on Meetings. (The new site has the same two; its map is a plain
+Google Maps embed, since the old one went through Weebly.)
 
 ## Layout
 
 ```
 kortemmelab.ucsf.edu/
-├── site/                  the website; this folder is the web root
+├── docs/                  the new website, generated: don't edit, rebuild
+├── theme/                 its look: layout.html and site.css
+├── site/                  the old website; this folder is the web root
 │   ├── *.html             100 pages, same filenames as the live site
 │   ├── images/            every photo, flat
 │   │   └── backgrounds/   page background images
@@ -43,7 +113,8 @@ kortemmelab.ucsf.edu/
 │   ├── journal-abbreviations.json   Nature-style journal abbreviations
 │   ├── *.md               the 10 pages on the site's menu
 │   ├── current-members/   one file per current lab member (20)
-│   ├── alumni/            one file per alumnus (52)
+│   ├── alumni/            one file per alumnus (52, plus 17 roster-only)
+│   ├── rotation-students.csv   past rotation students, for Lab Alumni
 │   ├── images/people/     every profile's headshot
 │   └── archive/           pages kept but not in use (18), see below
 ├── structure/             inventories for a rebuild
@@ -75,8 +146,8 @@ mv content/current-members/kosuke-seki.md content/alumni/
 Any file in `content/` stays wherever you put it, and `structure/pages.csv`
 follows it. The live site's `current---`/`alumni---` prefixes only decide where
 a person goes the first time their file is created. `content/current-members.md`
-and `content/lab-alumni.md` are the old roster pages' text, and still list
-people by name; a rebuild should generate rosters from the two folders instead.
+and `content/lab-alumni.md` are the old roster pages' text, kept for reference;
+the new site generates both rosters from the two folders instead.
 
 **Alumni files record their years in the lab** as `years_in_lab` in the
 frontmatter (e.g. `"2019-2025"`). The live site kept these only on the Lab
@@ -205,8 +276,12 @@ directly. Email addresses are stored only for people who agreed to show them.
 script with `--dry-run`. One uses ORCID's own test researcher, Josiah
 Carberry.
 
+Then rebuild the site (`python3 scripts/build-site.py`).
+
 **When someone graduates**, change `years_in_lab` from `"2026-present"` to
-the end year (`"2026-2031"`) and move their file to `content/alumni/`.
+the end year (`"2026-2031"`), add `current_position` (and
+`position_after_lab`, once they've moved on from their first job), move their
+file to `content/alumni/`, and rebuild.
 
 ## Profiles
 
@@ -414,7 +489,14 @@ for s in normalize-filenames restructure-root fix-mailto fetch-gallery-images cu
 | `co-first-authors.py` | Marks co-first authors from the asterisks in the original citations |
 | `render-publications.py` | Draws every publication list from the bibliography; `--check-preprints` looks for newly published preprints |
 
-`bibliography.py` holds the parts those two share, including the Nature-style
+Two more scripts make the new site from that:
+
+| Script | What it does |
+|---|---|
+| `prepare-site-content.py` | Ran once: moved what the new site needed from the old pages into `content/` (roster-only alumni, rotation students, Home's featured papers, the map and calendar, News as dated items) |
+| `build-site.py` | Builds `docs/` from `content/` (see [The website](#the-website)) |
+
+`bibliography.py` holds the parts the publication scripts share, including the Nature-style
 formatter. `convert-profiles.py` converted the migrated profiles once and has
 nothing left to do. `add-person.py` isn't part of this pipeline; it's for adding new
 lab members (above).

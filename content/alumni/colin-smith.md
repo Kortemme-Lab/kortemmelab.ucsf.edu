@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2006-2011"
 current_position: "Associate Professor, Wesleyan University"
+position_after_lab: "Humboldt Postdoctoral Fellow, Max Planck Institute"
 co_mentors: []
 summary: ""
 photo: "images/people/colin-smith.jpg"

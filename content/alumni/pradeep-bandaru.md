@@ -5,6 +5,7 @@ role: "Graduate Student"
 program: ""
 years_in_lab: "2013-2017"
 current_position: "Data Scientist, Palantir Technologies"
+position_after_lab: "Postdoc, Stanford"
 co_mentors: []
 summary: ""
 photo: "images/people/pradeep-bandaru.jpg"
