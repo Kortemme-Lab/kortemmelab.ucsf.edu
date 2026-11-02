@@ -14,7 +14,7 @@ links:
   website: "http://alexjli.github.io/"
   github: "http://github.com/alexjli"
 education:
-  - "Bachelor of Science, Chemistry, Massachusetts Institute of Technology"
+  - "B.S., Chemistry, Massachusetts Institute of Technology"
 publications:
   - "10.1002/pro.4554"
   - "10.48550/arxiv.2204.13048"

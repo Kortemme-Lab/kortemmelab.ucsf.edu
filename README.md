@@ -84,7 +84,10 @@ your browser until you save, so you can stop and come back.
    joined, and any co-mentors.
 4. Write a **research summary** (one sentence on what you work on, shown under your name),
    and optionally a longer bio. Then list your **education**, one degree per
-   line, written out: `Bachelor of Science, Chemical Engineering, Northwestern University`.
+   line: the degree, the subject, then the university, e.g.
+   `B.S., Chemical Engineering, Northwestern University`. Write degrees as
+   B.S., B.A., M.S., M.Sc. or Ph.D. (if you don't, they're tidied into that
+   style when your profile is added).
 5. Add a **headshot**: a clear, recent JPG or PNG, ideally at least 400 × 400
    pixels. The website shows it square, so once it's loaded, **drag the photo**
    inside the square to choose what's shown, and use **Zoom** to frame it

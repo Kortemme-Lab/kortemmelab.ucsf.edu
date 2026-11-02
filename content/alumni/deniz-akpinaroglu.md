@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Bioengineering, UC Merced"
+  - "B.S., Bioengineering, UC Merced"
 publications:
   - "10.1371/journal.pone.0258173"
   - "10.1242/dev.200325"

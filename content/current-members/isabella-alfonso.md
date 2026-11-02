@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelors of Arts, Molecular and Cellular Biology, University of California, Berkeley"
+  - "B.A., Molecular and Cellular Biology, University of California, Berkeley"
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---isabella-alfonso.html"

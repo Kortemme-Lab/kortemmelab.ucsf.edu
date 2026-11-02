@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biochemistry, UC Santa Barbara"
+  - "B.S., Biochemistry, UC Santa Barbara"
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1126/science.aax8780"

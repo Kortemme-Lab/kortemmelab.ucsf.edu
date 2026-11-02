@@ -15,8 +15,8 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Chemical Biology, University of California, Berkeley"
-  - "Bachelor of Arts, Applied Mathematics, University of California, Berkeley"
+  - "B.S., Chemical Biology, University of California, Berkeley"
+  - "B.A., Applied Mathematics, University of California, Berkeley"
 publications:
   - "10.1101/2025.06.02.657515"
   - "10.1101/2023.12.15.571823"

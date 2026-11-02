@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Bioengineering, Stanford"
+  - "B.S., Bioengineering, Stanford"
 publications:
   - "10.1016/j.sbi.2023.102602"
   - "10.1016/j.cels.2023.01.003"

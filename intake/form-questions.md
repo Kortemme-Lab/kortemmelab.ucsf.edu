@@ -19,7 +19,7 @@ collects emails) is ignored.
 | 6 | **Co-mentors** | Short answer | No | If you're co-mentored, who by. Separate names with commas. |
 | 7 | **Research summary** (one sentence) | Paragraph | Yes | What you work on, in plain language. Shown under your name. |
 | 8 | **Longer bio** | Paragraph | No | Anything else you'd like on your profile. |
-| 9 | **Education** | Paragraph | No | One degree per line, written out: "Bachelor of Science, Chemical Engineering, Northwestern University". |
+| 9 | **Education** | Paragraph | No | One degree per line: "B.S., Chemical Engineering, Northwestern University". Degrees as B.S., B.A., M.S., M.Sc., Ph.D. |
 | 10 | **Headshot photo** | File upload (1 file, images only, 10 MB) | No | A clear, recent headshot, at least 400 × 400 pixels. JPG or PNG; iPhone HEIC photos need converting first. |
 | 11 | **Lab email address** | Short answer (email) | No | Usually your @ucsf.edu address. |
 | 12 | **Show my email on the website** | Multiple choice: Yes / No | Yes | If No, your email isn't stored at all. |

@@ -14,8 +14,8 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Microbiology, Penn State University"
-  - "PhD, Cellular & Molecular Biology, University of Michigan"
+  - "B.S., Microbiology, Penn State University"
+  - "Ph.D., Cellular & Molecular Biology, University of Michigan"
 publications:
   - "10.7554/elife.67478"
   - "10.1007/s00232-020-00158-7"

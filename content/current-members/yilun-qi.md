@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, College of Life Sciences, Nankai University"
+  - "B.S., College of Life Sciences, Nankai University"
   - "Ph.D., Institutes of Biomedical Sciences, Fudan University"
 publications:
   - "10.1038/s41422-018-0029-3"

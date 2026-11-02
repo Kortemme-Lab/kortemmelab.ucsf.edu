@@ -14,8 +14,8 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Chemistry, University of Turin"
-  - "Master of Science, Physical Chemistry, University of Turin"
+  - "B.S., Chemistry, University of Turin"
+  - "M.S., Physical Chemistry, University of Turin"
   - "Ph.D., Chemistry, Weizmann Institute of Science"
 publications:
   - "10.1128/mbio.00306-22"

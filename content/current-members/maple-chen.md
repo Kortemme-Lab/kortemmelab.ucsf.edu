@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biomedical Engineering, Cornell University"
+  - "B.S., Biomedical Engineering, Cornell University"
 publications:
   - "10.1016/j.mec.2022.e00195"
   - "10.3390/insects12050467"

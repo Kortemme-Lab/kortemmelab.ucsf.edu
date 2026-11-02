@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Computer Science and Honors Biology, Touro University"
+  - "B.S., Computer Science and Honors Biology, Touro University"
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---rochel-munitz.html"

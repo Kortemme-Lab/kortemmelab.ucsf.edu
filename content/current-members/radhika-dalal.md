@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Cell Biology & Biochemistry, University of Washington"
+  - "B.S., Cell Biology & Biochemistry, University of Washington"
 publications:
   - "10.1038/s41563-023-01683-1"
 # Where this profile came from: the old Weebly site.

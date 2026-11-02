@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Arts, Biological Sciences, Northwestern University"
+  - "B.A., Biological Sciences, Northwestern University"
 publications:
   - "10.1101/2024.12.18.629072"
   - "10.1101/2025.11.11.687847"

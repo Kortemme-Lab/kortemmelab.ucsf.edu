@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Chemistry, Peking University, Beijing, China"
+  - "B.S., Chemistry, Peking University, Beijing, China"
   - "Ph.D., Biochemistry, Boston College"
 publications:
   - "10.1038/s41586-021-03982-6"

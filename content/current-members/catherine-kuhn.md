@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Arts, Biochemistry, Washington University in St. Louis"
+  - "B.A., Biochemistry, Washington University in St. Louis"
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---catherine-kuhn.html"

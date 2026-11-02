@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Chemical Engineering, University of California, Irvine"
+  - "B.S., Chemical Engineering, University of California, Irvine"
   - "Ph.D., Chemical and Biological Engineering, Northwestern University"
 publications:
   - "10.1021/acschembio.3c00051"

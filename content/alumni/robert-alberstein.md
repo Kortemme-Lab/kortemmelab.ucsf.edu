@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biological Sciences - Neuroscience Track, Carnegie Mellon University"
+  - "B.S., Biological Sciences - Neuroscience Track, Carnegie Mellon University"
   - "Ph.D., Chemistry, University of California, San Diego"
 publications:
   - "10.1016/j.sbi.2021.08.004"

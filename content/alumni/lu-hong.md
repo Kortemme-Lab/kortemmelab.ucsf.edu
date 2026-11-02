@@ -16,7 +16,7 @@ links:
   github: ""
   ucsf_profile: "https://profiles.ucsf.edu/lu.hong"
 education:
-  - "Bachelor of Arts, Mathematics, Wabash College"
+  - "B.A., Mathematics, Wabash College"
   - "Ph.D., Biophysics, University of Chicago"
 publications:
   - "10.15252/msb.20199355"

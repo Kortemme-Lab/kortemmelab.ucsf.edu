@@ -15,9 +15,9 @@ links:
   github: ""
   ucsf_profile: "http://profiles.ucsf.edu/tanja.kortemme"
 education:
-  - "Vordiplom (BS) Chemistry / Physical Chemistry, University of Hannover, Germany"
-  - "Diplom (MSc) Biophysics, Stanford University / University of Hannover"
-  - "Dr.rer.nat (Ph.D.) Biochemistry, EMBL Heidelberg / University of Hannover"
+  - "Vordiplom (B.S.), Chemistry / Physical Chemistry, University of Hannover, Germany"
+  - "Diplom (M.Sc.), Biophysics, Stanford University / University of Hannover"
+  - "Dr. rer. nat. (Ph.D.), Biochemistry, EMBL Heidelberg / University of Hannover"
   - "Postdoctoral work: Computational and structural biology at EMBL Heidelberg and the Howard Hughes Medical Institute, University of Washington, Seattle."
 publications:
   - "10.1038/s41586-021-03982-6"

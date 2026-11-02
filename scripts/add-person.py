@@ -221,6 +221,58 @@ def profile(p):
     return "\n".join(lines) + "\n---\n\n" + (p["bio"].strip() + "\n" if p["bio"].strip() else "")
 
 
+# --- education: one style for degrees ---------------------------------------------------------
+# Every entry reads "Degree, Subject, Institution", with the degree abbreviated
+# the same way throughout: B.S., B.A., M.S., M.A., M.Sc., Ph.D. German degrees
+# keep their name, with the equivalent in brackets: "Dr. rer. nat. (Ph.D.)".
+DEGREE_WORDS = [
+    (r"bachelors?\s+of\s+science", "B.S."), (r"bachelors?\s+of\s+arts", "B.A."),
+    (r"masters?\s+of\s+science", "M.S."), (r"masters?\s+of\s+arts", "M.A."),
+    (r"doctor\s+of\s+philosophy", "Ph.D."),
+]
+DEGREE_SHORT = [                              # bare abbreviations, however punctuated
+    (r"b\.?\s?s\.?", "B.S."), (r"b\.?\s?a\.?", "B.A."), (r"m\.?\s?sc\.?", "M.Sc."),
+    (r"m\.?\s?s\.?", "M.S."), (r"m\.?\s?a\.?", "M.A."), (r"ph\.?\s?d\.?", "Ph.D."),
+]
+DEGREE = r"(?:B\.S\.|B\.A\.|M\.Sc\.|M\.S\.|M\.A\.|Ph\.D\.|(?:Vordiplom|Diplom|Dr\. rer\. nat\.)(?: \([^)]*\))?)"
+
+
+def tidy_degree(entry):
+    """One education entry in the site's style; anything unrecognised is left as it is."""
+    s = re.sub(r"\s+", " ", entry).strip()
+    if re.match(r"(?i)postdoctoral work:", s):
+        return s
+    for words, short in DEGREE_WORDS:
+        s = re.sub(rf"(?i)^{words}\b", short, s)
+    s = re.sub(r"(?i)^dr\.?\s?rer\.?\s?nat\.?", "Dr. rer. nat.", s)
+    for pat, short in DEGREE_SHORT:          # the degree itself, and one in brackets after it
+        s = re.sub(rf"(?i)^{pat}(?=[\s,(]|$)", short, s)
+        s = re.sub(rf"(?i)\({pat}\)", f"({short})", s)
+    m = re.match(rf"^({DEGREE})\s*\(([^)]+)\),\s*(.+)$", s)
+    if m and not re.match(r"^(B\.S\.|B\.A\.|M\.Sc\.|M\.S\.|M\.A\.|Ph\.D\.)$", m.group(2)):
+        s = f"{m.group(1)}, {m.group(2)}, {m.group(3)}"   # "M.S. (Biochemistry), X" -> "M.S., Biochemistry, X"
+    m = re.match(rf"^({DEGREE}),?\s+(.+)$", s)
+    if m:
+        s = f"{m.group(1)}, {m.group(2)}"                  # a comma after the degree
+    return s
+
+
+def tidy_education(text):
+    """A profile with its education entries in the site's style (nothing else changed)."""
+    head, sep, body = text[4:].partition("\n---\n")
+    out, inside = [], False
+    for ln in head.split("\n"):
+        if re.match(r"^education:", ln):
+            inside = True
+        elif inside and not ln.startswith((" ", "\t")):
+            inside = False
+        m = re.match(r"^(\s+-\s+)(.+)$", ln) if inside else None
+        if m:
+            ln = m.group(1) + json.dumps(tidy_degree(bib._scalar(m.group(2))), ensure_ascii=False)
+        out.append(ln)
+    return text[:4] + "\n".join(out) + sep + body
+
+
 # --- a .zip from the profile form ----------------------------------------------------------
 def read_zip(path):
     """What's in a form .zip: the profile, its photo, and what kind of submission it is.
@@ -468,7 +520,7 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
         if problem:
             skip(entry, problem)
             continue
-        slug, text, notes, kind = got["slug"], got["text"], entry["notes"], got["kind"]
+        slug, text, notes, kind = got["slug"], tidy_education(got["text"]), entry["notes"], got["kind"]
         name = bib.header_value(text, "name")
         entry.update(kind=kind, slug=slug, name=name or "", role=bib.header_value(text, "role") or "")
         if not text.startswith("---\n") or not name:
@@ -759,7 +811,7 @@ def main():
             "years": f"{year.group(0)}-present" if year else "",
             "co_mentors": [m for m in split_lines(get(r, "co_mentors"), r",|\band\b|;") if m],
             "summary": re.sub(r"\s+", " ", get(r, "summary")), "bio": get(r, "bio"),
-            "education": split_lines(get(r, "education")),
+            "education": [tidy_degree(e) for e in split_lines(get(r, "education"))],
             "photo": photo_rel,
             "email": get(r, "email") if yes(get(r, "show_email")) else "",
             "orcid_url": f"https://orcid.org/{oid}" if oid else "",

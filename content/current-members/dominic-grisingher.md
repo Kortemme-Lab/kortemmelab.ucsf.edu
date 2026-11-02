@@ -14,8 +14,8 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biochemistry, Arizona State University"
-  - "Masters of Science, Biochemistry, Arizona State University"
+  - "B.S., Biochemistry, Arizona State University"
+  - "M.S., Biochemistry, Arizona State University"
 publications:
   - "10.1039/d0ob00793e"
 # Where this profile came from: the old Weebly site.

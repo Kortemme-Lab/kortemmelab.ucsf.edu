@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biochemistry, Western Washington University"
+  - "B.S., Biochemistry, Western Washington University"
 publications:
   - "10.1002/adma.202500872"
   - "10.1182/blood.2023020181"

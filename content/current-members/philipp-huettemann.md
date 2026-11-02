@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biochemistry, University of Michigan, Ann Arbor"
+  - "B.S., Biochemistry, University of Michigan, Ann Arbor"
 publications:
   - "10.1371/journal.pbio.3002650"
   - "10.26508/lsa.201900486"

@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Arts, Chemistry, New College of Florida"
+  - "B.A., Chemistry, New College of Florida"
 publications:
   - "10.1107/s2053230x18009834"
   - "10.1016/j.dib.2017.11.013"

@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Biochemistry, Tufts University"
+  - "B.S., Biochemistry, Tufts University"
 publications:
   - "10.1101/2025.06.02.657515"
 # Where this profile came from: the old Weebly site.

@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelors of Arts, Biochemistry, Claremont Mckenna College"
+  - "B.A., Biochemistry, Claremont Mckenna College"
 publications:
   - "10.1101/2025.04.23.645810"
   - "10.1016/j.immuni.2024.10.013"

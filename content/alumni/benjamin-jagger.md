@@ -15,8 +15,8 @@ links:
   website: ""
   github: ""
 education:
-  - "Bachelor of Science, Chemistry, Duquesne University"
-  - "Ph.D. Chemistry, University of California, San Diego"
+  - "B.S., Chemistry, Duquesne University"
+  - "Ph.D., Chemistry, University of California, San Diego"
 publications:
   - "10.1021/acs.jctc.0c00495"
   - "10.1021/acs.jcim.9b00968"
