@@ -134,18 +134,19 @@ kortemmelab.ucsf.edu/
 │   └── archive/           old pages kept but not in use (18), see below
 ├── theme/                 the look: layout.html, site.css, carousel.js, fonts/
 ├── scripts/               build-site.py, render-publications.py, bibliography.py,
-│                          add-person.py and new-member-issue.py run the site;
+│                          add-person.py and profile-issue.py run the site;
 │                          the rest made the copy of the old site (see Regenerating)
 ├── intake/                adding new lab members (see below)
 │   ├── profile-form.html  the form new members fill in; saves a .zip
-│   ├── github-issue-route.md  how submitting through an issue works, and its setup
+│   ├── github-issue-route.md  joining, updating and leaving through issues; setup
 │   ├── form-questions.md  the questions, for a Google or Microsoft form instead
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
-├── .github/               on GitHub: the New lab member issue form, and workflows
-│                          that rebuild docs/ after each push (build-site.yml) and
-│                          turn new-member issues into pull requests (new-member.yml)
+├── .github/               on GitHub: the New lab member and Update my profile issue
+│                          forms, and workflows that rebuild docs/ after each push
+│                          (build-site.yml) and turn those issues into pull requests
+│                          (profile-submission.yml)
 └── archive/               the old site and how it was copied; for reference only
     ├── site/              the old website; this folder is its web root
     │   ├── *.html         100 pages, same filenames as the live site
@@ -327,8 +328,9 @@ the person is still filling it in. To add or replace a headshot later:
 python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --photo ~/Downloads/jane.jpg
 ```
 
-Someone already in `content/` is skipped, never overwritten; edit their file
-directly. Email addresses are stored only for people who agreed to show them.
+Someone already in `content/` is skipped, never overwritten: changes to an
+existing profile come through *Update my profile* (below), or by editing the
+file directly. Email addresses are stored only for people who agreed to show them.
 `intake/example-responses.csv` holds two fictional responses for trying the
 CSV route with `--dry-run`. One uses ORCID's own test researcher, Josiah
 Carberry, whose iD (0000-0002-1825-0097) also works in the profile form.
@@ -336,10 +338,37 @@ Carberry, whose iD (0000-0002-1825-0097) also works in the profile form.
 Then rebuild the site (`python3 scripts/build-site.py`) and push, or just
 push: GitHub rebuilds it (below).
 
-**When someone graduates**, change `years_in_lab` from `"2026-present"` to
-the end year (`"2026-2031"`), add `current_position` (and
-`position_after_lab`, once they've moved on from their first job), move their
-file to `content/alumni/`, and rebuild.
+### Updating a profile, and leaving the lab
+
+Current members and alumni open an **Update my profile** issue. To add new
+papers, they just type their name and the DOIs. For anything else, they load
+their current profile into the profile form (in its *Update my profile*
+mode), change it, and attach the `.zip`. The form's **I've left the lab, or
+I'm leaving it** option takes the year and what they're doing next, and the
+pull request moves them to Lab Alumni. A workflow opens the pull request;
+you merge it. How it works, the identity check, and setup are in
+`intake/github-issue-route.md`.
+
+The same can be done by hand:
+
+```bash
+python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile-update.zip
+```
+
+```bash
+python3 scripts/add-person.py --add-papers "Jane Doe" --dois "10.1126/science.abc0881 arXiv:2204.13048"
+```
+
+An update replaces only the fields the form edits and keeps everything else
+in the file. Or edit the file yourself: to graduate someone, change
+`years_in_lab` from `"2026-present"` to `"2026-2031"`, add `current_position`
+(and `position_after_lab`, once they've moved on from their first job), move
+their file to `content/alumni/`, and rebuild.
+
+**Planned, once the repository moves to a GitHub organization:** Read-only
+access for members, publishing on GitHub Pages, and a "Find me" list in the
+profile form instead of downloading your profile file. See the end of
+`intake/github-issue-route.md`.
 
 ## Profiles
 

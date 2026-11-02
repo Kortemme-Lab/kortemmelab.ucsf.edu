@@ -73,6 +73,15 @@
            padding: 1px 6px; border-radius: 9px; background: #eef3f5; color: #557; margin-left: 4px; }
   .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; font-size: 14px; }
 
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mode { display: flex; gap: 10px; align-items: flex-start; border: 1px solid #d8d8d8; border-radius: 4px;
+          padding: 12px 14px; cursor: pointer; font-weight: 500; color: var(--text); margin: 0; }
+  .mode:has(input:checked) { border-color: var(--link); background: #f2f8fa; }
+  .mode input { margin-top: 5px; }
+  .mode strong { color: var(--heading); }
+  #update-box { margin-top: 18px; }
+  .sub { border-left: 3px solid #e3eef1; padding: 4px 0 2px 16px; margin: 4px 0 16px; }
+
   .photo-box { display: flex; gap: 20px; align-items: flex-start; }
   .photo-preview { width: 150px; height: 150px; flex: none; background: #eef3f5 center/cover no-repeat;
                    display: flex; align-items: center; justify-content: center; color: #9bb6bf; font-weight: 700; font-size: 13px; }
@@ -94,7 +103,7 @@
 
   @media (max-width: 640px) {
     fieldset { padding: 18px 16px 20px; }
-    .row { grid-template-columns: 1fr; }
+    .row, .modes { grid-template-columns: 1fr; }
     .photo-box, .preview { grid-template-columns: 1fr; display: grid; }
     .inline { flex-direction: column; } .inline input { width: 100%; }
   }
@@ -107,13 +116,33 @@
 </header>
 <main>
 <p class="intro">Fill this in, check the preview at the bottom, and click <strong>Save</strong>.
-  You'll get one <code>.zip</code> file: attach it to a
-  <a class="issue-link" href="#" target="_blank" rel="noopener">New lab member issue on GitHub</a>,
+  You'll get one <code>.zip</code> file: attach it to the
+  <a class="issue-link" href="#" target="_blank" rel="noopener"><span class="issue-name">New lab member</span> issue on GitHub</a>,
   or send it to the lab's website manager.
   Nothing you type is sent anywhere; only your ORCID iD and DOIs are looked up online.
   Your answers are kept in this browser until you save, so you can come back later.</p>
 
 <form id="form" novalidate>
+<fieldset>
+  <legend>Start here</legend>
+  <div class="modes">
+    <label class="mode"><input type="radio" name="mode" id="mode-new" value="new" checked>
+      <span><strong>I'm new to the lab</strong><br><span class="hint">Make your profile from scratch.</span></span></label>
+    <label class="mode"><input type="radio" name="mode" id="mode-update" value="update">
+      <span><strong>Update my profile</strong><br><span class="hint">Change the profile already on the website. Alumni too.</span></span></label>
+  </div>
+  <div id="update-box" hidden>
+    <label for="existing" class="req">Your current profile</label>
+    <input type="file" id="existing" accept=".md,text/markdown,text/plain">
+    <p class="hint">First download it: find your name among the
+      <a class="repo-link" data-path="tree/main/content/current-members" target="_blank" rel="noopener">current members</a> or
+      <a class="repo-link" data-path="tree/main/content/alumni" target="_blank" rel="noopener">alumni</a>
+      (e.g. <code>jane-doe.md</code>), open it, and click the download button (↓, top right). Then choose it here:
+      everything below fills in from it, ready to change.</p>
+    <p class="status" id="existing-status"></p>
+  </div>
+</fieldset>
+
 <fieldset>
   <legend>About you</legend>
   <div class="row">
@@ -144,6 +173,19 @@
       <input type="text" id="co_mentors" placeholder="e.g. Mike Keiser">
       <p class="hint">If you're co-mentored. Separate several names with commas.</p></div>
   </div>
+  <label class="check"><input type="checkbox" id="left"> I've left the lab, or I'm leaving it</label>
+  <div id="leaving" class="sub" hidden>
+    <div class="row">
+      <div class="field"><label for="end_year" class="req">Year you left (or are leaving)</label>
+        <input type="number" id="end_year" min="1990" max="2100" inputmode="numeric"></div>
+      <div class="field"><label for="current_position">What you're doing now, or next</label>
+        <input type="text" id="current_position" placeholder="e.g. Assistant Professor, Example University"></div>
+    </div>
+    <div class="field"><label for="position_after_lab">Your first position after the lab</label>
+      <input type="text" id="position_after_lab" placeholder="e.g. Postdoctoral Fellow, Stanford University">
+      <p class="hint">Only if you've moved on from it since; otherwise leave this empty. Both are shown on the Lab Alumni page,
+        and your profile moves there once it's published.</p></div>
+  </div>
 </fieldset>
 
 <fieldset>
@@ -167,6 +209,7 @@
       <label for="photo">A clear, recent photo</label>
       <input type="file" id="photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif">
       <p class="hint">JPG or PNG, ideally at least 400 × 400 pixels. It's shown square, cropped to the middle.</p>
+      <p class="hint" id="photo-keep" hidden><strong>Updating?</strong> Leave this empty to keep the photo already on your profile.</p>
       <p class="status" id="photo-status"></p>
       <button type="button" id="photo-remove" hidden>Remove photo</button>
     </div>
@@ -198,6 +241,11 @@
 
 <fieldset>
   <legend>Publications</legend>
+  <div class="field" id="current-box" hidden>
+    <span class="label">On your profile now</span>
+    <p class="hint">Untick any you'd like taken off your profile.</p>
+    <ul class="papers" id="current-list"></ul>
+  </div>
   <div class="field">
     <span class="label">From your ORCID record</span>
     <div class="inline"><button type="button" id="orcid-fetch">Find my papers on ORCID</button></div>
@@ -243,13 +291,19 @@
                      "review", "working-paper", "report"];
   var MIN_PIXELS = 400, MAX_SIDE = 1000;          // photos are scaled down to this
   var DRAFT_KEY = "kortemmelab-profile-draft";
-  // Where saved .zip files go: a "New lab member" issue (.github/ISSUE_TEMPLATE/new-member.yml).
-  var ISSUE_URL = "https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml";
+  // The repository, and the issue each kind of .zip goes to (.github/ISSUE_TEMPLATE/).
+  var REPO = "https://github.com/blonn25/kortemmelab.ucsf.edu";
+  var ISSUES = {
+    "new": { url: REPO + "/issues/new?template=new-member.yml", name: "New lab member" },
+    "update": { url: REPO + "/issues/new?template=update-profile.yml", name: "Update my profile" }
+  };
   var FIELDS = ["name", "pronouns", "role", "role-other", "program", "year", "co_mentors", "summary",
-                "bio", "education", "email", "show_email", "orcid", "scholar", "website", "github", "dois"];
+                "bio", "education", "email", "show_email", "orcid", "scholar", "website", "github", "dois",
+                "left", "end_year", "current_position", "position_after_lab"];
 
   var $ = function (id) { return document.getElementById(id); };
-  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null };
+  // mode: "new" or "update"; slug and current: the profile being updated, and its papers
+  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null, mode: "new", slug: "", current: [] };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -423,6 +477,113 @@
     })).then(function (rs) { preview(); return { results: rs, bad: t.bad }; });
   }
 
+  // ---- updating: the profile already on the website -----------------------------------------
+  function scalar(v) {                        // a value in a profile's header
+    v = v.trim();
+    if (!v) return "";
+    if (v[0] === '"') { var m = v.match(/^"(?:[^"\\]|\\.)*"/); try { return JSON.parse(m[0]); } catch (e) { return v.replace(/^"|"$/g, ""); } }
+    if (v[0] === "[") { try { return JSON.parse(v); } catch (e) { return []; } }
+    return v.replace(/\s+#.*$/, "");
+  }
+  function parseProfile(text) {               // the same simple YAML the site's files use
+    text = text.replace(/\r\n?/g, "\n");
+    var end = text.indexOf("\n---\n", 4);
+    if (text.slice(0, 4) !== "---\n" || end < 0) return null;
+    var meta = {}, key = null;
+    text.slice(4, end).split("\n").forEach(function (ln) {
+      var m;
+      if (!ln.trim() || /^\s*#/.test(ln)) return;
+      if ((m = ln.match(/^\s+-\s*(.*)$/)) && key) {
+        if (!Array.isArray(meta[key])) meta[key] = [];
+        meta[key].push(scalar(m[1]));
+      } else if ((m = ln.match(/^\s+([\w-]+):\s*(.*)$/)) && key) {
+        if (!meta[key] || typeof meta[key] !== "object" || Array.isArray(meta[key])) meta[key] = {};
+        meta[key][m[1]] = scalar(m[2]);
+      } else if ((m = ln.match(/^([\w-]+):\s*(.*)$/))) {
+        key = m[1]; meta[key] = scalar(m[2]);
+      }
+    });
+    var bio = text.slice(end + 5).split(/^## Publications\s*$/m)[0].trim();
+    return meta.name ? { meta: meta, bio: bio } : null;
+  }
+  function setVal(id, v) { var e = $(id); if (e.type === "checkbox") e.checked = !!v; else e.value = v == null ? "" : v; }
+
+  function loadExisting(file) {
+    var st = $("existing-status");
+    return file.text().then(function (text) {
+      var got = parseProfile(text), m = got && got.meta;
+      var slug = (file.name.toLowerCase().match(/^([a-z0-9]+(?:-[a-z0-9]+)*)/) || [])[1];
+      if (!got || !slug) {
+        st.className = "status bad";
+        st.textContent = "That doesn't look like a profile from the website. It should be a file like jane-doe.md, downloaded as above.";
+        return;
+      }
+      state.slug = slug;
+      ["name", "pronouns", "program", "summary", "current_position", "position_after_lab"].forEach(function (f) { setVal(f, m[f]); });
+      var known = Array.prototype.some.call($("role").options, function (o) { return o.value && o.value !== "other" && o.text === m.role; });
+      setVal("role", m.role ? (known ? m.role : "other") : ""); setVal("role-other", known ? "" : m.role);
+      $("role-other").hidden = val("role") !== "other";
+      var years = String(m.years_in_lab || "").match(/^\s*(\d{4})?\s*(?:[-–]\s*(\d{4}|present))?/i) || [];
+      setVal("year", years[1] || ""); setVal("end_year", /^\d{4}$/.test(years[2] || "") ? years[2] : "");
+      setVal("left", /^\d{4}$/.test(years[2] || "") || !!m.current_position);
+      setVal("co_mentors", (m.co_mentors || []).join(", "));
+      setVal("bio", got.bio); setVal("education", (m.education || []).join("\n"));
+      setVal("email", m.email); setVal("show_email", !!m.email);
+      var links = m.links || {};
+      setVal("orcid", (String(links.orcid || "").match(/\d{4}-\d{4}-\d{4}-\d{3}[\dX]/i) || [""])[0]);
+      setVal("scholar", links.scholar); setVal("website", links.website); setVal("github", links.github);
+      state.current = (m.publications || []).map(function (d) { return cleanDoi(d); });
+      state.current.forEach(function (d) { state.picked[d] = true; });
+      drawCurrent(); showLeaving(); save(); preview();
+      st.className = "status good";
+      st.textContent = "Loaded " + m.name + "'s profile (" + file.name + "), with " + state.current.length +
+                       " paper" + (state.current.length === 1 ? "" : "s") + ". Change anything below, then save.";
+      titlesFor(state.current);
+    }).catch(function (e) {
+      st.className = "status bad"; st.textContent = "Couldn't read that file (" + e.message + ").";
+    });
+  }
+
+  function titlesFor(dois) {                  // a few at a time, so doi.org isn't flooded
+    var queue = dois.filter(function (d) { return !state.lookups[d]; });
+    function next() {
+      var d = queue.shift();
+      if (!d) return Promise.resolve();
+      return lookUp(d).then(function () { drawCurrent(); return next(); });
+    }
+    return Promise.all([next(), next(), next(), next()]);
+  }
+
+  function drawCurrent() {
+    var ul = $("current-list");
+    ul.innerHTML = "";
+    state.current.forEach(function (d, n) {
+      var r = state.lookups[d], id = "cur-" + n, li = document.createElement("li");
+      li.innerHTML = '<input type="checkbox" id="' + id + '"><label for="' + id + '" style="font-weight:500;margin:0">' +
+        '<span class="title">' + esc(r ? r.title : d) + "</span><br>" +
+        '<span class="meta">' + esc(r ? [r.journal, r.year].filter(Boolean).join(" · ") + " · " : "") +
+        '<a href="https://doi.org/' + esc(d) + '" target="_blank" rel="noopener">' + esc(d) + "</a></span></label>";
+      var box = li.querySelector("input");
+      box.checked = !!state.picked[d];
+      box.addEventListener("change", function () { state.picked[d] = box.checked; save(); preview(); });
+      ul.appendChild(li);
+    });
+  }
+
+  function setMode(mode) {
+    state.mode = mode;
+    $("mode-" + mode).checked = true;
+    $("update-box").hidden = mode !== "update";
+    $("photo-keep").hidden = mode !== "update";
+    $("current-box").hidden = mode !== "update" || !state.current.length;
+    Array.prototype.forEach.call(document.querySelectorAll(".issue-link"), function (a) { a.href = ISSUES[mode].url; });
+    Array.prototype.forEach.call(document.querySelectorAll(".issue-name"), function (s) { s.textContent = ISSUES[mode].name; });
+  }
+  function showLeaving() {
+    $("leaving").hidden = !val("left");
+    $("current-box").hidden = state.mode !== "update" || !state.current.length;
+  }
+
   // ---- the photo ------------------------------------------------------------------------
   function loadPhoto(file) {
     var st = $("photo-status");
@@ -469,18 +630,24 @@
 
   // ---- the profile file ---------------------------------------------------------------------
   function chosenDois() {
+    var kept = state.mode === "update" ? state.current.filter(function (d) { return state.picked[d]; }) : [];
     var fromOrcid = state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).map(function (w) { return w.doi; });
     var typed = typedDois().dois.filter(function (d) { return !state.failed[d]; });   // checked again on saving
-    var all = fromOrcid.concat(typed);
+    var all = kept.concat(fromOrcid, typed);
     return all.filter(function (d, i) { return all.indexOf(d) === i; });
   }
 
   function person() {
-    var name = val("name"), slug = slugify(name), oid = orcidId(val("orcid"));
+    // An update keeps its file name, even if the name in it changes, so the page's address stays the same.
+    var name = val("name"), oid = orcidId(val("orcid"));
+    var slug = state.mode === "update" && state.slug ? state.slug : slugify(name);
     var year = (val("year").match(/\b(19|20)\d{2}\b/) || [])[0];
+    var left = val("left"), end = (val("end_year").match(/\b(19|20)\d{2}\b/) || [])[0];
     return {
       name: name, slug: slug, pronouns: val("pronouns"), role: role(), program: val("program"),
-      years: year ? year + "-present" : "",
+      years: year ? year + "-" + (left && end ? end : "present") : "",
+      left: left, current_position: left ? val("current_position") : "",
+      position_after_lab: left ? val("position_after_lab") : "",
       co_mentors: lines(val("co_mentors"), /,|;|\band\b/),
       summary: val("summary").replace(/\s+/g, " "), bio: val("bio"),
       education: lines(val("education"), /\n+/),
@@ -497,11 +664,12 @@
   function markdown(p) {                      // the same layout add-person.py writes
     var out = ["---",
       "name: " + q(p.name), "pronouns: " + q(p.pronouns), "role: " + q(p.role),
-      "program: " + q(p.program), "years_in_lab: " + q(p.years),
+      "program: " + q(p.program), "years_in_lab: " + q(p.years)].concat(
+      p.left ? ["current_position: " + q(p.current_position), "position_after_lab: " + q(p.position_after_lab)] : [], [
       "co_mentors: " + JSON.stringify(p.co_mentors).replace(/","/g, '", "'),
       "summary: " + q(p.summary), "photo: " + q(p.photo), "email: " + q(p.email),
       "links:", "  orcid: " + q(p.orcid_url), "  scholar: " + q(p.scholar),
-      "  website: " + q(p.website), "  github: " + q(p.github)];
+      "  website: " + q(p.website), "  github: " + q(p.github)]);
     out = out.concat(p.education.length ? ["education:"].concat(p.education.map(function (e) { return "  - " + q(e); })) : ["education: []"]);
     out = out.concat(p.publications.length ? ["publications:"].concat(p.publications.map(function (d) { return "  - " + q(d); })) : ["publications: []"]);
     return out.join("\n") + "\n---\n\n" + (p.bio ? p.bio + "\n" : "");
@@ -543,7 +711,10 @@
   }
 
   function buildZip(p) {
-    var files = [{ name: "content/current-members/" + p.slug + ".md", data: new TextEncoder().encode(markdown(p)) }];
+    var enc = new TextEncoder();
+    var files = [{ name: "content/" + (p.left ? "alumni" : "current-members") + "/" + p.slug + ".md", data: enc.encode(markdown(p)) }];
+    if (state.mode === "update")              // tells add-person.py this changes an existing profile
+      files.push({ name: "submission.json", data: enc.encode(JSON.stringify({ kind: "update", slug: p.slug }) + "\n") });
     if (!state.photo) return Promise.resolve(zip(files));
     return state.photo.blob.arrayBuffer().then(function (buf) {
       files.push({ name: "content/" + p.photo, data: new Uint8Array(buf) });
@@ -555,6 +726,8 @@
   function preview() {
     var p = person(), facts = [];
     if (p.years) facts.push("In the lab: " + p.years.replace("-", "–"));
+    if (p.position_after_lab) facts.push("After the lab: " + p.position_after_lab);
+    if (p.current_position) facts.push("Now: " + p.current_position);
     if (p.co_mentors.length) facts.push((p.co_mentors.length > 1 ? "Co-mentors: " : "Co-mentor: ") + p.co_mentors.join(", "));
     var links = [];
     if (p.email) links.push('<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + "</a>");
@@ -578,10 +751,13 @@
 
   function problems() {
     var out = [], p = person();
+    if (state.mode === "update" && !state.slug) out.push(["existing", "Choose your current profile first, under Start here, so this updates it."]);
     if (!p.name) out.push(["name", "Your full name is needed."]);
     else if (!p.slug) out.push(["name", "Your name needs at least one letter A–Z for the file name."]);
     if (!p.role) out.push(["role", "Choose your role in the lab."]);
     if (!/^(19|20)\d{2}$/.test(val("year"))) out.push(["year", "Give the year you joined the lab, e.g. " + new Date().getFullYear() + "."]);
+    if (p.left && !/^(19|20)\d{2}$/.test(val("end_year"))) out.push(["end_year", "Give the year you left the lab, or are leaving it."]);
+    else if (p.left && Number(val("end_year")) < Number(val("year"))) out.push(["end_year", "The year you left is before the year you joined."]);
     if (!p.summary) out.push(["summary", "A short research summary is needed."]);
     if (val("show_email") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("email"))) out.push(["email", "That email address doesn't look complete."]);
     if (val("orcid") && !orcidId(val("orcid"))) out.push(["orcid", "That ORCID iD doesn't look right: its last digit doesn't match."]);
@@ -626,17 +802,20 @@
       var notes = [];
       r.bad.forEach(function (b) { notes.push("Left out, not a DOI or arXiv ID: " + esc(b)); });
       r.results.filter(function (x) { return !x.ok; }).forEach(function (x) { notes.push("Left out, " + esc(x.error) + ": " + esc(x.doi)); });
-      if (!state.photo) notes.push("No headshot added. You can send one to the website manager later.");
-      var p = person(), filename = p.slug + "-profile.zip";
+      if (!state.photo && state.mode === "new") notes.push("No headshot added. You can send one to the website manager later.");
+      var p = person(), issue = ISSUES[state.mode];
+      var filename = p.slug + (state.mode === "update" ? "-profile-update.zip" : "-profile.zip");
       return buildZip(p).then(function (blob) { return saveFile(blob, filename); }).then(function (saved) {
         if (!saved) { showMessages(notes, "warn"); return; }
         showMessages(notes, "warn");
         $("done").hidden = false;
         $("done").innerHTML = "<strong>Saved " + esc(filename) + ".</strong> " +
           (window.showSaveFilePicker ? "" : "It's in your Downloads folder, unless your browser asked where to put it. ") +
-          "<br><br>Next: <a href=\"" + ISSUE_URL + "\" target=\"_blank\" rel=\"noopener\"><strong>open a New lab member issue on GitHub</strong></a>, " +
+          "<br><br>Next: <a href=\"" + issue.url + "\" target=\"_blank\" rel=\"noopener\"><strong>open " +
+          (state.mode === "update" ? "an " : "a ") + issue.name + " issue on GitHub</strong></a>, " +
           "put your name in the title, and drag this file into the box. A check replies on the issue within a couple of minutes, " +
-          "and a website manager publishes your profile from there. No GitHub account? Email the file to the lab's website manager instead." +
+          "and a website manager publishes " + (state.mode === "update" ? "the changes" : "your profile") +
+          " from there. No GitHub account? Email the file to the lab's website manager instead." +
           "<br><br>If you change anything later, save again and attach the new file to the same issue.";
       });
     }).catch(function (err) {
@@ -647,7 +826,7 @@
   // ---- keeping a draft in this browser ---------------------------------------------------------
   function save() {
     try {
-      var d = { picked: state.picked, works: state.works };
+      var d = { picked: state.picked, works: state.works, mode: state.mode, slug: state.slug, current: state.current };
       FIELDS.forEach(function (f) { d[f] = $(f).type === "checkbox" ? $(f).checked : $(f).value; });
       localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
     } catch (e) { /* private window or storage off: the form still works */ }
@@ -658,22 +837,31 @@
       if (!d) return;
       FIELDS.forEach(function (f) { if (f in d) { if ($(f).type === "checkbox") $(f).checked = d[f]; else $(f).value = d[f]; } });
       state.picked = d.picked || {}; state.works = d.works || [];
+      state.mode = d.mode === "update" ? "update" : "new"; state.slug = d.slug || ""; state.current = d.current || [];
       if (state.works.length) drawWorks();
+      if (state.current.length) { drawCurrent(); titlesFor(state.current); }
+      if (state.slug) $("existing-status").textContent = "Updating " + state.slug + ".md (kept from last time). Choose the file again to start over from it.";
     } catch (e) { /* ignore a damaged or missing draft */ }
   }
   function startOver() {
     if (!confirm("Clear everything on this form?")) return;
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     $("form").reset(); state.works = []; state.picked = {}; state.lookups = {}; state.failed = {};
+    state.slug = ""; state.current = []; drawCurrent(); $("existing-status").textContent = ""; setMode("new"); showLeaving();
     removePhoto(); drawWorks(); $("doi-list").innerHTML = ""; $("orcid-status").textContent = "";
     $("messages").innerHTML = ""; $("done").hidden = true; $("role-other").hidden = true;
     $("year").value = new Date().getFullYear(); preview();
   }
 
   // ---- wiring -----------------------------------------------------------------------------------
-  Array.prototype.forEach.call(document.querySelectorAll(".issue-link"), function (a) { a.href = ISSUE_URL; });
+  Array.prototype.forEach.call(document.querySelectorAll(".repo-link"), function (a) { a.href = REPO + "/" + a.getAttribute("data-path"); });
   $("year").value = new Date().getFullYear();
   restore();
+  setMode(state.mode); showLeaving();
+  $("mode-new").addEventListener("change", function () { setMode("new"); save(); preview(); });
+  $("mode-update").addEventListener("change", function () { setMode("update"); save(); preview(); });
+  $("existing").addEventListener("change", function () { if (this.files[0]) loadExisting(this.files[0]); });
+  $("left").addEventListener("change", showLeaving);
   $("role-other").hidden = val("role") !== "other";
   $("role").addEventListener("change", function () { $("role-other").hidden = val("role") !== "other"; if (val("role") === "other") $("role-other").focus(); });
   $("form").addEventListener("input", function () { save(); preview(); });
@@ -689,7 +877,8 @@
   preview();
 
   // for scripts/tests: the profile and the .zip this form would save, without a download
-  window.profileForm = { person: person, markdown: markdown, buildZip: buildZip, loadPhoto: loadPhoto, checkDois: checkDois };
+  window.profileForm = { person: person, markdown: markdown, buildZip: buildZip, loadPhoto: loadPhoto, checkDois: checkDois,
+                         loadExisting: loadExisting, parseProfile: parseProfile, setMode: setMode };
 })();
 </script>
 </body>

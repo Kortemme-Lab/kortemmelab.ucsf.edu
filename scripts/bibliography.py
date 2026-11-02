@@ -304,18 +304,18 @@ def set_list(path, key, values):
     """Replace (or add) a YAML list field in a content file's header."""
     text = open(path, encoding="utf-8").read()
     head, sep, rest = text[4:].partition("\n---\n")
-    out, skip = [], False
+    out, skip, at = [], False, None
     for ln in head.split("\n"):
         if re.match(rf"^{key}:", ln):
-            skip = True
+            skip, at = True, len(out)               # the list goes back where it was
             continue
         if skip and ln.startswith((" ", "\t")):
             continue
         skip = False
         out.append(ln)
     if values:
-        out.append(f"{key}:")
-        out += [f'  - "{v}"' for v in values]
+        at = len(out) if at is None else at
+        out[at:at] = [f"{key}:"] + [f'  - "{v}"' for v in values]
     with open(path, "w", encoding="utf-8") as fh:
         fh.write("---\n" + "\n".join(out) + sep + rest)
 

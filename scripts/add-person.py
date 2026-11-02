@@ -5,10 +5,14 @@
     python3 scripts/add-person.py --csv intake/responses.csv --dry-run
     python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --photo ~/jane.jpg
     python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip
+    python3 scripts/add-person.py --add-papers "Jane Doe" --dois "10.1126/science.abc0881"
 
-Two ways in. --zip takes the file saved by the new-member form
-(intake/profile-form.html, also at docs/profile-form.html): the profile and
-headshot are already in shape, so they're checked and filed. --csv takes the
+Three ways in. --zip takes the file saved by the profile form
+(intake/profile-form.html, also at docs/profile-form.html): a new profile is
+checked and filed, and an update (made in the form's "Update my profile"
+mode) is merged into the existing profile, keeping anything the form doesn't
+edit; someone whose update gives an end year moves to content/alumni/.
+--add-papers adds DOIs to an existing profile, found by name. --csv takes the
 responses exported from a Google or Microsoft form instead, as below.
 
 For each response (the questions are in intake/form-questions.md) this writes
@@ -55,7 +59,8 @@ ORCID_TYPES = {"journal-article", "preprint", "conference-paper", "book-chapter"
 IMAGE_EXT = {".jpg": ".jpg", ".jpeg": ".jpg", ".png": ".png", ".webp": ".webp"}
 MIN_PIXELS = 400
 # What a form .zip may hold: the profile, and a headshot with the same name.
-ZIP_PROFILE = re.compile(r"^content/current-members/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+ZIP_PROFILE = re.compile(r"^content/(current-members|alumni)/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+ZIP_MANIFEST = "submission.json"         # {"kind": "update", "slug": ...} from the form's update mode
 ZIP_PHOTO = re.compile(r"^content/images/people/([a-z0-9]+(?:-[a-z0-9]+)*)\.(jpg|png|webp)$")
 ZIP_IGNORED = re.compile(r"(^|/)(__MACOSX/|\.DS_Store$)")
 ZIP_MAX_BYTES = {"profile": 200_000, "photo": 15_000_000}
@@ -216,18 +221,18 @@ def profile(p):
     return "\n".join(lines) + "\n---\n\n" + (p["bio"].strip() + "\n" if p["bio"].strip() else "")
 
 
-# --- a .zip from the new-member form -----------------------------------------------------
+# --- a .zip from the profile form ----------------------------------------------------------
 def read_zip(path):
-    """The profile text, its name, and the photo (name, bytes) in a form .zip.
+    """What's in a form .zip: the profile, its photo, and what kind of submission it is.
 
-    Anything else in the file, or a path outside those two places, stops it:
+    Anything else in the file, or a path outside the expected places, stops it:
     the .zip came from outside the lab, so nothing in it is trusted blindly.
     """
     try:
         z = zipfile.ZipFile(path)
     except (zipfile.BadZipFile, OSError) as e:
         return None, f"not a readable .zip ({e})"
-    profile_name, photo, problems = None, None, []
+    profile_name, photo, manifest, problems = None, None, None, []
     with z:
         for info in z.infolist():
             name = info.filename
@@ -242,118 +247,28 @@ def read_zip(path):
                 if info.file_size > ZIP_MAX_BYTES["photo"]:
                     problems.append(f"{name} is over 15 MB")
                 photo = name
+            elif name == ZIP_MANIFEST and manifest is None and info.file_size < 10_000:
+                manifest = name
             else:
                 problems.append(f"unexpected file in the .zip: {name}")
         if not profile_name:
             problems.append("no profile (content/current-members/<name>.md) in the .zip")
-        if photo and profile_name and ZIP_PHOTO.match(photo).group(1) != ZIP_PROFILE.match(profile_name).group(1):
+        slug = ZIP_PROFILE.match(profile_name).group(2) if profile_name else None
+        if photo and slug and ZIP_PHOTO.match(photo).group(1) != slug:
             problems.append(f"the photo's name ({photo}) doesn't match the profile's ({profile_name})")
+        kind = "new"
+        if manifest:
+            try:
+                info = json.loads(z.read(manifest).decode("utf-8"))
+                kind = info.get("kind", "new")
+                if kind not in ("new", "update") or (kind == "update" and info.get("slug") != slug):
+                    problems.append(f"{ZIP_MANIFEST} doesn't match the profile in the .zip")
+            except ValueError:
+                problems.append(f"{ZIP_MANIFEST} isn't readable")
         if problems:
             return None, "; ".join(problems)
-        text = z.read(profile_name).decode("utf-8")
-        return {"slug": ZIP_PROFILE.match(profile_name).group(1), "text": text,
+        return {"slug": slug, "kind": kind, "text": z.read(profile_name).decode("utf-8"),
                 "photo": (photo, z.read(photo)) if photo else None}, None
-
-
-def add_from_zips(paths, dry_run, no_render, report_path=None):
-    E, existing = bib.load(), content_index()
-    added_people, bib_added, report = [], 0, []
-
-    def skip(entry, why):
-        print(f"   skipped: {why}")
-        entry.update(status="skipped", problem=why)
-
-    for path in paths:
-        print(f"\n== {os.path.basename(path)}")
-        entry = {"file": os.path.basename(path), "status": "ok", "problem": "", "notes": []}
-        report.append(entry)
-        got, problem = read_zip(os.path.expanduser(path))
-        if problem:
-            skip(entry, problem)
-            continue
-        slug, text, notes = got["slug"], got["text"], entry["notes"]
-        name = bib.header_value(text, "name")
-        entry.update(slug=slug, name=name or "", role=bib.header_value(text, "role") or "")
-        if not text.startswith("---\n") or not name:
-            skip(entry, "the profile has no header with a name; was it made by the profile form?")
-            continue
-        print(f"   {name} -> content/current-members/{slug}.md")
-        if f"{slug}.md" in existing:
-            skip(entry, f"someone called {name} is already on the website ({existing[f'{slug}.md'][0]}); "
-                        "a website manager needs to update that profile instead")
-            continue
-
-        # publications: every DOI is checked, as for --csv
-        good = []
-        for d in dict.fromkeys(bib.clean_doi(d) for d in (bib.header_list(text, "publications") or [])):
-            if d in E:
-                good.append(d)
-                continue
-            rec = bib.fetch(d)
-            if rec:
-                E[rec["id"]] = rec
-                good.append(rec["id"])
-                bib_added += 1
-            else:
-                notes.append(f"DOI didn't resolve, left out: {d}")
-        print(f"   publications: {len(good)}")
-        entry["publications"] = len(good)
-
-        # photo
-        photo_bytes = None
-        if got["photo"]:
-            zname, photo_bytes = got["photo"]
-            with tempfile.NamedTemporaryFile(suffix=os.path.splitext(zname)[1]) as tmp:
-                tmp.write(photo_bytes)
-                tmp.flush()
-                stop, warn = check_photo(tmp.name)
-            if stop:
-                notes.append(stop)
-                photo_bytes = None
-            elif warn:
-                notes.append(warn)
-            if photo_bytes is not None and not looks_like_image(zname, photo_bytes):
-                notes.append(f"{os.path.basename(zname)} isn't a readable JPG or PNG, left out")
-                photo_bytes = None
-        entry["photo"] = os.path.basename(got["photo"][0]) if photo_bytes is not None else ""
-        if photo_bytes is None:
-            notes.append(f"no headshot -- later, save one as content/images/people/{slug}.jpg"
-                         f' and set photo: "images/people/{slug}.jpg" in their file')
-
-        if not dry_run:
-            dest = os.path.join(PEOPLE_DIR, slug + ".md")
-            with open(dest, "w", encoding="utf-8") as fh:
-                fh.write(text)
-            bib.set_list(dest, "publications", good)
-            if photo_bytes is not None:
-                os.makedirs(PHOTO_DIR, exist_ok=True)
-                with open(os.path.join(PHOTO_DIR, os.path.basename(got["photo"][0])), "wb") as fh:
-                    fh.write(photo_bytes)
-            else:
-                t = open(dest, encoding="utf-8").read()
-                with open(dest, "w", encoding="utf-8") as fh:
-                    fh.write(re.sub(r'(?m)^photo: .*$', 'photo: ""', t, count=1))
-            added_people.append(slug)
-            print(f"   wrote content/current-members/{slug}.md"
-                  + (f" and content/images/people/{os.path.basename(got['photo'][0])}" if photo_bytes is not None else ""))
-        for n in notes:
-            print(f"   note: {n}")
-
-    if report_path:                         # for .github/workflows/new-member.yml
-        with open(report_path, "w", encoding="utf-8") as fh:
-            json.dump(report, fh, indent=2, ensure_ascii=False)
-    if dry_run:
-        print("\nDry run: nothing was written.")
-        return
-    if bib_added:
-        bib.save(E)
-    print(f"\nadded {len(added_people)} people; {bib_added} new papers in the bibliography")
-    if added_people and not no_render:
-        print("drawing their publication lists...")
-        subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "render-publications.py")],
-                       check=False)
-    if added_people:
-        print("\nNext: python3 scripts/build-site.py, look at their page, then commit and push.")
 
 
 def looks_like_image(name, data):
@@ -363,21 +278,326 @@ def looks_like_image(name, data):
     return data.startswith(magic.get(ext, b"\0\0\0\0"))
 
 
+def checked_photo(got, notes):
+    """The .zip's photo as (file name, bytes) if it can be used, else None."""
+    if not got["photo"]:
+        return None
+    zname, data = got["photo"]
+    with tempfile.NamedTemporaryFile(suffix=os.path.splitext(zname)[1]) as tmp:
+        tmp.write(data)
+        tmp.flush()
+        stop, warn = check_photo(tmp.name)
+    if stop:
+        notes.append(stop)
+        return None
+    if warn:
+        notes.append(warn)
+    if not looks_like_image(zname, data):
+        notes.append(f"{os.path.basename(zname)} isn't a readable JPG or PNG, left out")
+        return None
+    return os.path.basename(zname), data
+
+
+def checked_dois(dois, E, notes):
+    """The DOIs that resolve (looked up and added to E if new), and how many were new to E."""
+    good, added = [], 0
+    for d in dict.fromkeys(bib.clean_doi(d) for d in dois):
+        if d in E:
+            good.append(d)
+            continue
+        rec = bib.fetch(d)
+        if rec:
+            E[rec["id"]] = rec
+            good.append(rec["id"])
+            added += 1
+        else:
+            notes.append(f"DOI didn't resolve, left out: {d}")
+    return good, added
+
+
+# --- merging an update into an existing profile -----------------------------------------------
+# The fields the profile form edits. Anything else in a profile's header (an
+# extra link, where it came from, profile_page: false, comments) is kept.
+MANAGED = ["name", "pronouns", "role", "program", "years_in_lab", "current_position",
+           "position_after_lab", "co_mentors", "summary", "photo", "email", "links",
+           "education", "publications"]
+FORM_LINKS = ["orcid", "scholar", "website", "github"]
+ALUMNI_ONLY = ("current_position", "position_after_lab")     # not removed if the form leaves them out
+LABELS = {"years_in_lab": "years in the lab", "current_position": "current position",
+          "position_after_lab": "position after the lab", "co_mentors": "co-mentors",
+          "summary": "research summary", "photo": "photo", "email": "email"}
+
+
+def split_profile(text):
+    head, _, body = text[4:].partition("\n---\n")
+    return head, body
+
+
+def blocks(head):
+    """The header as [key, comment lines, field lines], in order."""
+    out, comments = [], []
+    for ln in head.split("\n"):
+        m = re.match(r"^([\w-]+):", ln)
+        if m:
+            out.append([m.group(1), comments, [ln]])
+            comments = []
+        elif ln.startswith((" ", "\t")) and out and not comments:
+            out[-1][2].append(ln)
+        else:
+            comments.append(ln)
+    if comments:
+        out.append([None, comments, []])
+    return out
+
+
+def merge_links(old_lines, new_lines):
+    """links: the form's four from the update, any others (ucsf_profile...) as they were."""
+    sub = lambda lines: {re.match(r"^\s+([\w-]+):", l).group(1): l for l in lines[1:]
+                         if re.match(r"^\s+([\w-]+):", l)}
+    old, new = sub(old_lines), sub(new_lines)
+    keys = list(old) + [k for k in new if k not in old]
+    return ["links:"] + [new[k] if k in FORM_LINKS and k in new else old[k] if k in old else new[k]
+                         for k in keys]
+
+
+def merge_profile(old_text, new_text, keep_photo):
+    """The existing profile with the form's fields replaced; and what changed."""
+    oh, ob = split_profile(old_text)
+    nh, nb = split_profile(new_text)
+    new = {k: lines for k, _, lines in blocks(nh) if k}
+    out, done, changes = [], set(), []
+    for key, comments, lines in blocks(oh):
+        if key in MANAGED and key in new and not (key == "photo" and keep_photo):
+            repl = merge_links(lines, new[key]) if key == "links" else new[key]
+            if repl != lines and key not in ("publications", "photo"):
+                changes.append(LABELS.get(key, key.replace("_", " ")))
+            lines = repl
+        done.add(key)
+        out += comments + lines
+    for key in MANAGED:                       # fields the old file didn't have yet
+        if key in new and key not in done and not (key == "photo" and keep_photo):
+            at = next((i for i, l in enumerate(out) if l.startswith("publications:")), len(out))
+            out[at:at] = new[key]
+            changes.append(LABELS.get(key, key.replace("_", " ")))
+    intro, sep, pubs = ob.partition("## Publications")
+    bio = nb.strip()
+    if bio != intro.strip():
+        changes.append("bio")
+    body = "\n" + (bio + "\n\n" if bio else "") + (sep + pubs if sep else "")
+    return "---\n" + "\n".join(out) + "\n---\n" + body.rstrip("\n") + "\n", changes
+
+
+# --- adding or updating from a .zip --------------------------------------------------------------
+def link_value(text, key):
+    """One of the profile's links (they sit indented under `links:`)."""
+    head = split_profile(text)[0]
+    m = re.search(rf"(?m)^\s+{re.escape(key)}:[ \t]*(.+)$", head)
+    return bib._scalar(m.group(1)) if m else ""
+
+
+def left_lab(text):
+    return bool(re.search(r"\d{4}\s*-\s*\d{4}", bib.header_value(text, "years_in_lab") or ""))
+
+
+def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
+    E, existing = bib.load(), content_index()
+    changed, bib_added, report = [], 0, []
+
+    def skip(entry, why):
+        print(f"   skipped: {why}")
+        entry.update(status="skipped", problem=why)
+
+    for path in paths:
+        print(f"\n== {os.path.basename(path)}")
+        entry = {"file": os.path.basename(path), "status": "ok", "problem": "", "notes": [], "changes": []}
+        report.append(entry)
+        got, problem = read_zip(os.path.expanduser(path))
+        if problem:
+            skip(entry, problem)
+            continue
+        slug, text, notes, kind = got["slug"], got["text"], entry["notes"], got["kind"]
+        name = bib.header_value(text, "name")
+        entry.update(kind=kind, slug=slug, name=name or "", role=bib.header_value(text, "role") or "")
+        if not text.startswith("---\n") or not name:
+            skip(entry, "the profile has no header with a name; was it made by the profile form?")
+            continue
+        if expect and kind != expect:
+            skip(entry, "this .zip is an update to an existing profile; attach it to an *Update my profile* issue"
+                 if kind == "update" else
+                 "this .zip is a new profile, not an update; in the profile form, choose *Update my profile* "
+                 "and load your current profile first")
+            continue
+        here = [p for p in existing.get(f"{slug}.md", []) if "/archive/" not in p]
+        if kind == "new" and existing.get(f"{slug}.md"):
+            skip(entry, f"someone called {name} is already on the website ({existing[f'{slug}.md'][0]}); "
+                        "to change that profile, use *Update my profile* instead")
+            continue
+        if kind == "update" and not here:
+            skip(entry, f"there's no profile called {slug}.md on the website to update")
+            continue
+
+        good, n = checked_dois(bib.header_list(text, "publications") or [], E, notes)
+        bib_added += n
+        photo = checked_photo(got, notes)
+        entry["photo"] = photo[0] if photo else ""
+        if photo:
+            text = re.sub(r'(?m)^photo: .*$', f'photo: "images/people/{photo[0]}"', text, count=1)
+
+        if kind == "new":
+            dest = f"content/{'alumni' if left_lab(text) else 'current-members'}/{slug}.md"
+            final = text
+            entry["changes"] = ["new profile"]
+            if not photo:
+                final = re.sub(r'(?m)^photo: .*$', 'photo: ""', final, count=1)
+                notes.append(f"no headshot -- later, save one as content/images/people/{slug}.jpg"
+                             f' and set photo: "images/people/{slug}.jpg" in their file')
+        else:
+            src = here[0]
+            old = open(os.path.join(ROOT, src), encoding="utf-8").read()
+            old_photo = bib.header_value(old, "photo") or ""
+            old_pubs = [d.lower() for d in bib.header_list(old, "publications") or []]
+            final, entry["changes"] = merge_profile(old, text, keep_photo=not photo)
+            plus, minus = len(set(good) - set(old_pubs)), len(set(old_pubs) - set(good))
+            if plus or minus:
+                entry["changes"].append(" and ".join(x for x in (f"{plus} paper{'s' * (plus != 1)} added" if plus else "",
+                                                                 f"{minus} removed" if minus else "") if x))
+            if photo:
+                entry["changes"].append("new photo")
+            dest = src
+            if src.startswith("content/current-members/") and left_lab(final):
+                dest = f"content/alumni/{slug}.md"
+                entry["changes"].append("moved to Lab Alumni")
+            if re.search(r"(?m)^profile_page:\s*false", split_profile(old)[0]):
+                notes.append("this alumnus is on the roster only, with no page of their own "
+                             "(profile_page: false); delete that line to give them a profile page")
+            if not entry["changes"]:
+                skip(entry, "nothing in this .zip differs from the profile already on the website")
+                continue
+            entry["old_photo"] = old_photo
+        # For the identity check: the GitHub account already on the profile, not
+        # the one in the submission (which anyone could set to their own).
+        entry.update(path=dest, publications=len(good),
+                     github=link_value(old if kind == "update" else final, "github"))
+        print(f"   {name}: {', '.join(entry['changes'])} -> {dest}")
+
+        if not dry_run:
+            if kind == "update" and dest != src:
+                os.remove(os.path.join(ROOT, src))
+            full = os.path.join(ROOT, dest)
+            os.makedirs(os.path.dirname(full), exist_ok=True)
+            with open(full, "w", encoding="utf-8") as fh:
+                fh.write(final)
+            if [d.lower() for d in bib.header_list(final, "publications") or []] != good:
+                bib.set_list(full, "publications", good)      # leaves out DOIs that didn't resolve
+            if photo:
+                os.makedirs(PHOTO_DIR, exist_ok=True)
+                with open(os.path.join(PHOTO_DIR, photo[0]), "wb") as fh:
+                    fh.write(photo[1])
+                stale = entry.get("old_photo", "")
+                if stale and stale != f"images/people/{photo[0]}" and stale.startswith("images/people/") \
+                        and os.path.isfile(os.path.join(ROOT, "content", stale)):
+                    os.remove(os.path.join(ROOT, "content", stale))    # the photo it replaces
+            changed.append(slug)
+            print(f"   wrote {dest}" + (f" and content/images/people/{photo[0]}" if photo else ""))
+        for n in notes:
+            print(f"   note: {n}")
+    finish(report, report_path, dry_run, no_render, changed, bib_added, E)
+
+
+def finish(report, report_path, dry_run, no_render, changed, bib_added, E):
+    if report_path:                         # for .github/workflows/profile-submission.yml
+        with open(report_path, "w", encoding="utf-8") as fh:
+            json.dump(report, fh, indent=2, ensure_ascii=False)
+    if dry_run:
+        print("\nDry run: nothing was written.")
+        return
+    if bib_added:
+        bib.save(E)
+    print(f"\n{len(changed)} profiles added or updated; {bib_added} new papers in the bibliography")
+    if changed and not no_render:
+        print("drawing their publication lists...")
+        subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "render-publications.py")],
+                       check=False)
+    if changed:
+        print("\nNext: python3 scripts/build-site.py, look at their page, then commit and push.")
+
+
+# --- the quick lane: new papers for an existing profile ----------------------------------------------
+def name_key(s):
+    return slugify(s).replace("-", "")
+
+
+def find_profile(name):
+    """The one profile (current or alumni) whose name or file name matches, or a reason why not."""
+    want, hits = name_key(name), []
+    for folder in ("current-members", "alumni"):
+        d = os.path.join(ROOT, "content", folder)
+        for fn in sorted(os.listdir(d)):
+            if fn.endswith(".md"):
+                text = open(os.path.join(d, fn), encoding="utf-8").read()
+                if want and want in (name_key(bib.header_value(text, "name") or ""), name_key(fn[:-3])):
+                    hits.append(f"content/{folder}/{fn}")
+    if len(hits) == 1:
+        return hits[0], None
+    if hits:
+        return None, f"more than one profile matches \"{name}\": {', '.join(hits)}"
+    return None, (f"no profile on the website is called \"{name}\"; use your name exactly as it appears "
+                  "on the People page")
+
+
+def add_papers(name, dois_text, dry_run, no_render, report_path=None):
+    E, notes = bib.load(), []
+    entry = {"kind": "papers", "status": "ok", "problem": "", "notes": notes, "changes": [], "name": name}
+    report = [entry]
+    path, problem = find_profile(name)
+    typed = [d for d in (bib.find_doi(x) for x in split_lines(dois_text, r"[\s,;]+")) if d]
+    unreadable = [x for x in split_lines(dois_text, r"[\s,;]+") if not bib.find_doi(x)]
+    if unreadable:
+        notes.append(f"not a DOI or arXiv ID, ignored: {', '.join(unreadable)}")
+    if problem or not typed:
+        entry.update(status="skipped", problem=problem or "no DOIs or arXiv IDs to add")
+        print(f"   skipped: {entry['problem']}")
+        return finish(report, report_path, True, no_render, [], 0, E)
+    text = open(os.path.join(ROOT, path), encoding="utf-8").read()
+    have = [d.lower() for d in bib.header_list(text, "publications") or []]
+    good, added = checked_dois([d for d in typed if d not in have], E, notes)
+    already = [d for d in typed if d in have]
+    if already:
+        notes.append(f"already on the profile: {', '.join(already)}")
+    entry.update(slug=os.path.basename(path)[:-3], name=bib.header_value(text, "name") or name, path=path,
+                 role=bib.header_value(text, "role") or "", publications=len(have) + len(good),
+                 github=link_value(text, "github"), photo="",
+                 papers=[{"doi": d, "title": bib.plain(E[d].get("title", ""))} for d in good])
+    if not good:
+        entry.update(status="skipped", problem="none of these papers can be added (see the notes)")
+        return finish(report, report_path, True, no_render, [], 0, E)
+    entry["changes"] = [f"{len(good)} paper{'s' * (len(good) != 1)} added"]
+    print(f"   {entry['name']}: {entry['changes'][0]} -> {path}")
+    if not dry_run:
+        bib.set_list(os.path.join(ROOT, path), "publications", have + good)
+    finish(report, report_path, dry_run, no_render, [] if dry_run else [entry["slug"]], added, E)
+
+
 # --- main ------------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Add new lab members from intake form responses.")
     src = ap.add_mutually_exclusive_group(required=True)
     src.add_argument("--zip", nargs="+", metavar="FILE", help="profile .zip file(s) saved by intake/profile-form.html")
     src.add_argument("--csv", help="the responses exported from a Google or Microsoft form")
+    src.add_argument("--add-papers", metavar="NAME", help="add the papers in --dois to this person's profile")
     ap.add_argument("--photos", default=DEFAULT_PHOTOS, help="folder of downloaded headshots")
     ap.add_argument("--only", help="add just this person (part of their name)")
     ap.add_argument("--photo", help="this person's headshot (use with --only)")
     ap.add_argument("--dry-run", action="store_true", help="check and preview; write nothing")
     ap.add_argument("--no-render", action="store_true", help="don't redraw publication lists afterwards")
-    ap.add_argument("--report", metavar="FILE", help="with --zip: also write what was found as JSON")
+    ap.add_argument("--dois", default="", help="with --add-papers: DOIs or arXiv IDs, separated by spaces or lines")
+    ap.add_argument("--expect", choices=["new", "update"], help="with --zip: refuse other kinds of .zip")
+    ap.add_argument("--report", metavar="FILE", help="with --zip or --add-papers: also write what was found as JSON")
     args = ap.parse_args()
     if args.zip:
-        return add_from_zips(args.zip, args.dry_run, args.no_render, args.report)
+        return add_from_zips(args.zip, args.dry_run, args.no_render, args.report, args.expect)
+    if args.add_papers:
+        return add_papers(args.add_papers, args.dois, args.dry_run, args.no_render, args.report)
 
     if os.path.basename(args.csv).lower().startswith("example") and not args.dry_run:
         sys.exit("That's the example file -- try it with --dry-run.")

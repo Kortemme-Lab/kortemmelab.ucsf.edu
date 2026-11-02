@@ -6,6 +6,8 @@ body:
   - type: markdown
     attributes:
       value: |
+        **Already on the website** (as a current member or alumnus)? Use **Update my profile** instead.
+
         ## 1. Make your profile
 
         **[Get the profile form](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**:
