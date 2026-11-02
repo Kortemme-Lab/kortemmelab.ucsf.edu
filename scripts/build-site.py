@@ -15,6 +15,7 @@ What goes where:
   content/rotation-students.csv     the "Past rotation students" list
   content/bibliography.json         the papers on Home and Publications
   theme/layout.html, theme/site.css the look of every page
+  theme/carousel.js                 the Gallery's carousel (`carousel: true`)
 
 The rosters (Current Members, Lab Alumni) are generated from the people's
 files, so content/current-members.md and content/lab-alumni.md are not used.
@@ -403,6 +404,8 @@ class Site:
             body = self.featured(meta, body)
         fix = self.url_fixer("")
         content = markdown(body, fix)
+        if meta.get("carousel"):              # theme/carousel.js turns these into a carousel
+            content = content.replace('<div class="gallery">', '<div class="gallery carousel">')
         if slug != "index":
             # The title goes in an <h1>; drop a first heading that only repeats it.
             m = re.match(r"\s*<h2>(.*?)</h2>\n?", content)
@@ -595,7 +598,8 @@ class Site:
     # --- files the pages use -------------------------------------------------------------
     def copy_assets(self):
         os.makedirs(os.path.join(OUT, "assets", "fonts"), exist_ok=True)
-        shutil.copyfile(os.path.join(THEME, "site.css"), os.path.join(OUT, "assets", "site.css"))
+        for name in ("site.css", "carousel.js"):
+            shutil.copyfile(os.path.join(THEME, name), os.path.join(OUT, "assets", name))
         for w in ("regular", "medium", "semibold", "bold"):
             shutil.copyfile(os.path.join(SITE, "assets", "fonts", f"raleway-{w}.woff2"),
                             os.path.join(OUT, "assets", "fonts", f"raleway-{w}.woff2"))
@@ -607,7 +611,7 @@ class Site:
             page = open(os.path.join(OUT, rel), encoding="utf-8").read()
             for ref in re.findall(r'(?:src|href)="([^"]+)"', page):
                 ref = html.unescape(ref)
-                if re.match(r"^(?:[a-z][a-z0-9+.-]*:|#|//)", ref, re.I) or ref.endswith((".html", ".css")):
+                if re.match(r"^(?:[a-z][a-z0-9+.-]*:|#|//)", ref, re.I) or ref.endswith((".html", ".css", ".js")):
                     continue
                 target = os.path.normpath(os.path.join(os.path.dirname(rel), ref.split("#")[0]))
                 if target in copied or os.path.exists(os.path.join(OUT, target)):

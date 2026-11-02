@@ -56,6 +56,8 @@ images:
   - site/images/127585.jpg
   - site/images/273214.jpg
   - site/images/3036752.jpg
+# Show the photos as a carousel (theme/carousel.js), as on the old site.
+carousel: true
 ---
 
 ## Gallery (50 images)

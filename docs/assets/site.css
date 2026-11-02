@@ -117,6 +117,46 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 
 /* home: the centered statement, section titles between rules, and the
    highlight picture beside its links */
+/* the Gallery's carousel (theme/carousel.js), as on the old site: the photo
+   fitted into a fixed-height stage, caption across its foot, thumbnails below */
+/* the stage is 16:9 at the page's full width, the shape of most of the photos */
+.carousel-view { --stage: min(567px, calc((100vw - 52px) * .5625)); margin: 0 0 1.5em; outline: none; }
+.carousel-stage { position: relative; overflow: hidden; overflow: clip; }   /* clip: can't be scrolled sideways */
+.carousel-track { display: flex; transition: transform .45s ease; }
+.carousel-slide {
+  flex: 0 0 100%; margin: 0; height: var(--stage);
+  display: flex; align-items: center; justify-content: center;
+}
+.carousel-frame { position: relative; display: inline-block; }
+.carousel-frame img { display: block; height: var(--stage); width: auto; max-width: 100%; object-fit: contain; }
+.carousel-frame figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 10px 12px;
+  background: rgba(0, 0, 0, .55); color: #fff; font-size: 14px; line-height: 1.4;
+}
+.carousel-prev, .carousel-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 64px; border: 0; cursor: pointer;
+  background: rgba(0, 0, 0, .35); color: #fff; font: 40px/1 Arial, sans-serif;
+  opacity: .7; transition: opacity .2s;
+}
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+.carousel-view:hover .carousel-prev, .carousel-view:hover .carousel-next,
+.carousel-prev:focus-visible, .carousel-next:focus-visible { opacity: 1; }
+.carousel-count { text-align: center; font-size: 13px; color: var(--muted); margin: 10px 0 14px; }
+.carousel-thumbs {
+  display: flex; gap: 5px; overflow-x: auto; padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.carousel-thumb {
+  flex: 0 0 70px; height: 70px; padding: 0; border: 0; cursor: pointer;
+  background: none; opacity: .6; transition: opacity .2s;
+}
+.carousel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-thumb:hover, .carousel-thumb.active { opacity: 1; }
+.carousel-thumb.active { outline: 2px solid var(--link); outline-offset: -2px; }
+@media (prefers-reduced-motion: reduce) { .carousel-track { transition: none; } }
+
 .page-home .page > figure:first-child img { width: 100%; }
 .page-home .page > p:nth-of-type(1) { text-align: center; font-size: 17px; margin: 32px 0; }
 .page-home h2 {
@@ -236,6 +276,14 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
   .alumni .position:empty { display: none; }
   .alumni li.alumni-head { display: none; }
   .rotations { columns: 1; }
+  /* carousel: the caption goes under the photo rather than over it */
+  .carousel-view { --stage: calc((100vw - 32px) * .5625); }
+  .carousel-slide { height: auto; align-items: flex-start; }
+  .carousel-frame { width: 100%; }
+  .carousel-frame img { margin: 0 auto; }
+  .carousel-frame figcaption { position: static; background: none; color: var(--muted); padding: 8px 2px 0; font-size: 13px; }
+  .carousel-prev, .carousel-next { top: calc(var(--stage) / 2); width: 32px; height: 48px; font-size: 30px; }
+  .carousel-thumb { flex-basis: 56px; height: 56px; }
   .page-news .page li { padding-left: 0; }
   .page-news .page li > strong:first-child { position: static; display: block; width: auto; }
 }

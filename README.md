@@ -62,6 +62,14 @@ a line break), `-` and `1.` lists, `---` rules, links, images, `**bold**` and
 grid. A line of raw HTML passes through as it is, which is how the map and
 calendar are embedded.
 
+The Gallery shows its photos as a carousel, as the old site did: one large
+photo with its caption, arrows (or the arrow keys, or a swipe on a phone) to
+move through them, and a strip of thumbnails below. It's switched on by
+`carousel: true` in `content/gallery.md`'s header and drawn by
+`theme/carousel.js` from the page's photo grid, so to add a photo, add it to
+`content/gallery.md` like the others. Without JavaScript the grid shows
+instead.
+
 ### Publishing on GitHub Pages
 
 In the repository's Settings > Pages, choose "Deploy from a branch", branch
