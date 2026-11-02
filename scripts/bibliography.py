@@ -148,12 +148,41 @@ def pubmed_pages(doi):
     return full_range(pages) if pages else None
 
 
-def published_versions(doi):
-    """DOIs a preprint's own record names as its published version."""
+def _related(doi, kind):
     rec = _get("https://doi.org/" + urllib.parse.quote(doi, safe="/:()"),
                "application/vnd.citationstyles.csl+json") or {}
-    return [r["id"].lower() for r in (rec.get("relation") or {}).get("is-preprint-of", [])
+    return [r["id"].lower() for r in (rec.get("relation") or {}).get(kind, [])
             if r.get("id-type", "doi") == "doi" and r.get("id")]
+
+
+def published_versions(doi):
+    """DOIs a preprint's own record names as its published version."""
+    return _related(doi, "is-preprint-of")
+
+
+def preprints_of(doi):
+    """DOIs a published paper's own record names as its preprints."""
+    return _related(doi, "has-preprint")
+
+
+def link_preprint(E, preprint, published):
+    """Record that `published` replaces `preprint` everywhere on the site."""
+    e = E[preprint]
+    e["relation"] = {"is-preprint-of": [published] + [d for d in published_by(e) if d != published]}
+    if published in (e.get("keep-preprint") or []):
+        e["keep-preprint"] = [d for d in e["keep-preprint"] if d != published] or None
+        if not e["keep-preprint"]:
+            e.pop("keep-preprint")
+
+
+def keep_preprint(E, preprint, published):
+    """Record that `preprint` stays listed alongside `published`: someone said so."""
+    e = E[preprint]
+    e["keep-preprint"] = sorted(set((e.get("keep-preprint") or []) + [published]))
+
+
+def published_by(e):
+    return list((e.get("relation") or {}).get("is-preprint-of") or [])
 
 
 def trim(rec):
@@ -348,8 +377,15 @@ def is_preprint(e):
 
 
 def published_version(e):
-    """The DOI of a preprint's published paper, if its record names one."""
-    pubs = (e.get("relation") or {}).get("is-preprint-of") or []
+    """The DOI of the paper that replaces this preprint, if one does.
+
+    Its `relation` says which paper is its published version: from doi.org,
+    confirmed by a lab member in the profile form or the Add papers issue, or
+    added by hand. A published version listed under `keep-preprint` doesn't
+    replace it: someone asked for both to stay listed.
+    """
+    keep = set(e.get("keep-preprint") or [])
+    pubs = [d for d in published_by(e) if d not in keep]
     return pubs[0] if pubs and is_preprint(e) else None
 
 

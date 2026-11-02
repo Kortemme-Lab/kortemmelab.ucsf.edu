@@ -28,6 +28,17 @@ body:
         https://doi.org/10.1101/2025.06.02.657515
     validations:
       required: true
+  - type: checkboxes
+    id: replace
+    attributes:
+      label: Replacing preprints
+      description: >-
+        Is one of these the published version of a preprint already on the website? Tick this
+        to show only the published paper, everywhere it's listed. If you don't, both are listed,
+        and the reply on this issue says which preprint it found.
+      options:
+        - label: Yes, replace the preprint with its published version
+          required: false
   - type: textarea
     id: notes
     attributes:

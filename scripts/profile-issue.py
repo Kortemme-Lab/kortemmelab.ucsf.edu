@@ -51,6 +51,7 @@ ATTACHMENT = re.compile(r"https://github\.com/(?:user-attachments/files/\d+|[\w.
 # The issue forms' field labels (.github/ISSUE_TEMPLATE/*.yml), which head each answer
 NAME_FIELD = "Your name as it appears on the website"
 DOIS_FIELD = "Papers to add (DOIs)"
+REPLACE_FIELD = "Replacing preprints"          # a tick box: "- [X] Yes, replace ..."
 
 
 # --- shared state, outputs, the GitHub API -------------------------------------------
@@ -157,7 +158,8 @@ def fetch():
     if KIND == "papers":
         name, dois = answers.get(NAME_FIELD, ""), answers.get(DOIS_FIELD, "")
         if name and dois:
-            remember(stage="fetched", lane="papers", name=name, dois=dois)
+            replace = bool(re.search(r"^\s*-\s*\[[xX]\]", answers.get(REPLACE_FIELD, ""), re.M))
+            remember(stage="fetched", lane="papers", name=name, dois=dois, replace=replace)
             return output(lane="papers")
         remember(stage="fetch", problem="papers_missing")
         return output(lane="")
@@ -189,6 +191,8 @@ def add_person(dry_run):
     cmd = [sys.executable, os.path.join(ROOT, "scripts", "add-person.py"), "--report", REPORT]
     if s.get("lane") == "papers":
         cmd += ["--add-papers", s["name"], "--dois", s["dois"]]
+        if s.get("replace"):
+            cmd.append("--replace-preprints")
     else:
         cmd += ["--zip", ZIP, "--expect", KIND]
     run = subprocess.run(cmd + (["--dry-run"] if dry_run else []), capture_output=True, text=True)
@@ -240,6 +244,8 @@ def pr_body(e):
             "update": f"Updates **{e['name']}**'s profile", "papers": f"Adds papers to **{e['name']}**'s profile"}[kind]
     changes = "".join(f"\n- {c}" for c in e.get("changes") or [])
     papers = "".join(f"\n- {p['title'] or p['doi']} (`{p['doi']}`)" for p in e.get("papers") or [])
+    replaced = "".join(f"\n- the preprint \"{r['title']}\" (`{r['preprint']}`) by `{r['published']}`"
+                       for r in e.get("replaces") or [])
     notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
     who = {"match": f"✓ Opened by `{AUTHOR}`, the GitHub account on this profile.",
            "mismatch": f"⚠ Opened by `{AUTHOR}`, but this profile's GitHub link is {e.get('github')}. "
@@ -251,6 +257,8 @@ def pr_body(e):
             f"- File: `{e.get('path')}`\n- Publications listed: {e.get('publications', 0)}\n"
             + (f"\n**What changes:**{changes}\n" if changes and kind != "new" else "")
             + (f"\n**Papers added:**{papers}\n" if papers else "")
+            + (f"\n**Preprints replaced** (confirmed by the member; gone from every page once this is merged):"
+               f"{replaced}\n" if replaced else "")
             + (f"\n**Worth a look:**{notes}\n" if notes else "")
             + f"\n{who}\n\n"
             "**To publish:** check the changes under *Files changed*, then merge. The website rebuilds by "

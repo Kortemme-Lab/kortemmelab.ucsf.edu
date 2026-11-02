@@ -79,8 +79,12 @@ parts and `scripts/add-person.py` for the rest:
    links, the old-site records and anything added by hand are kept, and so is
    the photo unless a new one was sent. A replaced photo's old file is
    removed. A profile given an end year moves to `content/alumni/`. Its file
-   name, and so its web address, never changes. Papers are checked at doi.org,
-   and the publication lists are redrawn. Then the whole site is built, to be
+   name, and so its web address, never changes. Papers are checked at doi.org.
+   When the member confirms that a published paper replaces a preprint (in
+   the profile form's question, or with the *Replacing preprints* box on Add
+   papers), the preprint is linked to it in `content/bibliography.json`, but
+   only if the published paper's DOI record names that preprint. The
+   preprint then disappears from every page. Then the publication lists are redrawn. Then the whole site is built, to be
    sure it still works. Only `content/` is committed; `docs/` is rebuilt
    after merging, so two pull requests can't collide in the generated pages.
 4. **Open the pull request:** "Add Jane Doe to the website", "Update Jane

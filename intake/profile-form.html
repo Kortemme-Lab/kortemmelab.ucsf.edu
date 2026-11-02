@@ -265,6 +265,17 @@
     <div class="inline"><button type="button" id="dois-check">Look these up</button></div>
     <ul class="papers" id="doi-list"></ul>
   </div>
+  <div class="field" id="pairs-box" hidden style="margin-top:22px">
+    <span class="label req">Published versions of preprints</span>
+    <p class="hint">These papers were first posted as preprints. For each, choose whether the website should show
+      only the published paper (the preprint is then removed wherever it's listed on the website, including
+      co-authors' pages), or keep both.</p>
+    <ul class="papers" id="pairs-list"></ul>
+    <div class="toolbar">
+      <button type="button" id="pairs-replace">Show only the published paper, for all</button>
+      <button type="button" id="pairs-keep">Keep both, for all</button>
+    </div>
+  </div>
 </fieldset>
 
 <fieldset>
@@ -303,7 +314,8 @@
 
   var $ = function (id) { return document.getElementById(id); };
   // mode: "new" or "update"; slug and current: the profile being updated, and its papers
-  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null, mode: "new", slug: "", current: [] };
+  // pairs: "published|preprint" -> "replace" or "keep", the member's answer about each
+  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null, mode: "new", slug: "", current: [], pairs: {} };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -393,6 +405,7 @@
           (withDoi < works.length ? "; " + (works.length - withDoi) + " have no DOI there, so they can't be added (add their DOI below if you know it)." : ".")
         : "Your ORCID record has no public publications. Add DOIs below instead, or make your works public on orcid.org.";
       drawWorks(); save(); preview();
+      titlesFor(works.filter(function (w) { return w.doi; }).map(function (w) { return w.doi; }));
     }).catch(function (e) {
       st.className = "status bad";
       st.textContent = "Couldn't reach ORCID (" + e.message + "). Check the iD and your connection, then try again.";
@@ -414,7 +427,7 @@
         "</span></label>";
       var box = li.querySelector("input");
       box.checked = !!(w.doi && state.picked[w.doi]);
-      box.addEventListener("change", function () { state.picked[w.doi] = box.checked; countWorks(); save(); preview(); });
+      box.addEventListener("change", function () { state.picked[w.doi] = box.checked; countWorks(); drawPairs(); save(); preview(); });
       ul.appendChild(li);
     });
     $("orcid-tools").hidden = !state.works.length;
@@ -426,7 +439,7 @@
   }
   function pickAll(on) {
     state.works.forEach(function (w) { if (w.doi) state.picked[w.doi] = on; });
-    drawWorks(); save(); preview();
+    drawWorks(); drawPairs(); save(); preview();
   }
 
   function typedDois() {
@@ -443,7 +456,10 @@
         var j = Array.isArray(r["container-title"]) ? r["container-title"][0] : r["container-title"];
         var y = ((r.issued || {})["date-parts"] || [[]])[0][0];
         delete state.failed[doi];
-        return (state.lookups[doi] = { ok: true, title: (t || "(untitled)").replace(/<[^>]+>/g, ""), journal: j || r.publisher || "", year: y || "" });
+        var pre = (((r.relation || {})["has-preprint"]) || []).filter(function (x) { return x.id && (x["id-type"] || "doi") === "doi"; })
+                                                              .map(function (x) { return cleanDoi(x.id); });
+        return (state.lookups[doi] = { ok: true, title: (t || "(untitled)").replace(/<[^>]+>/g, ""), journal: j || r.publisher || "",
+                                       year: y || "", preprints: pre });
       })
       .catch(function (e) {
         var why = e.message === "not found" ? "this DOI doesn't exist" : "couldn't check it (" + e.message + ")";
@@ -474,7 +490,7 @@
             '</span><br><span class="meta">' + esc(r.error) + "</span></span>";
         return { doi: d, ok: r.ok, error: r.error };
       });
-    })).then(function (rs) { preview(); return { results: rs, bad: t.bad }; });
+    })).then(function (rs) { drawPairs(); preview(); return { results: rs, bad: t.bad }; });
   }
 
   // ---- updating: the profile already on the website -----------------------------------------
@@ -549,7 +565,7 @@
     function next() {
       var d = queue.shift();
       if (!d) return Promise.resolve();
-      return lookUp(d).then(function () { drawCurrent(); return next(); });
+      return lookUp(d).then(function () { drawCurrent(); drawPairs(); return next(); });
     }
     return Promise.all([next(), next(), next(), next()]);
   }
@@ -565,9 +581,57 @@
         '<a href="https://doi.org/' + esc(d) + '" target="_blank" rel="noopener">' + esc(d) + "</a></span></label>";
       var box = li.querySelector("input");
       box.checked = !!state.picked[d];
-      box.addEventListener("change", function () { state.picked[d] = box.checked; save(); preview(); });
+      box.addEventListener("change", function () { state.picked[d] = box.checked; drawPairs(); save(); preview(); });
       ul.appendChild(li);
     });
+  }
+
+  // ---- preprints and their published versions -------------------------------------------------
+  // A published paper's DOI record usually names the preprint it came from. The member
+  // says whether the published paper replaces it; add-person.py checks the record again.
+  function selected() {                       // every paper chosen, before any preprint is dropped
+    var kept = state.mode === "update" ? state.current.filter(function (d) { return state.picked[d]; }) : [];
+    var fromOrcid = state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).map(function (w) { return w.doi; });
+    var typed = typedDois().dois.filter(function (d) { return !state.failed[d]; });
+    var all = kept.concat(fromOrcid, typed);
+    return all.filter(function (d, i) { return all.indexOf(d) === i; });
+  }
+  function pairs() {                          // [{published, preprint, key}] among the chosen papers
+    var out = [];
+    selected().forEach(function (j) {
+      var r = state.lookups[j];
+      (r && r.preprints || []).forEach(function (p) { if (p !== j) out.push({ published: j, preprint: p, key: j + "|" + p }); });
+    });
+    return out;
+  }
+  function unanswered() { return pairs().filter(function (x) { return !state.pairs[x.key]; }); }
+
+  function drawPairs() {
+    var list = pairs(), ul = $("pairs-list");
+    $("pairs-box").hidden = !list.length;
+    ul.innerHTML = "";
+    list.forEach(function (x, n) {
+      var j = state.lookups[x.published] || {}, p = state.lookups[x.preprint];
+      var li = document.createElement("li");
+      li.style.display = "block";
+      li.innerHTML = '<span class="title">' + esc(j.title || x.published) + "</span> " +
+        '<span class="meta">(' + esc([j.journal, j.year].filter(Boolean).join(", ")) + ")</span><br>" +
+        '<span class="meta">was first posted as the preprint ' + (p && p.ok ? "<em>" + esc(p.title) + "</em> " : "") +
+        '(<a href="https://doi.org/' + esc(x.preprint) + '" target="_blank" rel="noopener">' + esc(x.preprint) + "</a>)</span>" +
+        '<div class="toolbar" style="margin-top:6px">' +
+        '<label class="check"><input type="radio" name="pair-' + n + '" value="replace"> Show only the published paper</label>' +
+        '<label class="check"><input type="radio" name="pair-' + n + '" value="keep"> Keep both</label></div>';
+      Array.prototype.forEach.call(li.querySelectorAll("input"), function (r) {
+        r.checked = state.pairs[x.key] === r.value;
+        r.addEventListener("change", function () { state.pairs[x.key] = r.value; save(); preview(); });
+      });
+      ul.appendChild(li);
+      if (!p && !state.failed[x.preprint]) lookUp(x.preprint).then(drawPairs);   // for the preprint's title
+    });
+  }
+  function answerAll(value) {
+    pairs().forEach(function (x) { state.pairs[x.key] = value; });
+    drawPairs(); save(); preview();
   }
 
   function setMode(mode) {
@@ -629,12 +693,9 @@
   }
 
   // ---- the profile file ---------------------------------------------------------------------
-  function chosenDois() {
-    var kept = state.mode === "update" ? state.current.filter(function (d) { return state.picked[d]; }) : [];
-    var fromOrcid = state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).map(function (w) { return w.doi; });
-    var typed = typedDois().dois.filter(function (d) { return !state.failed[d]; });   // checked again on saving
-    var all = kept.concat(fromOrcid, typed);
-    return all.filter(function (d, i) { return all.indexOf(d) === i; });
+  function chosenDois() {                     // what's saved: replaced preprints left out
+    var gone = pairs().filter(function (x) { return state.pairs[x.key] === "replace"; }).map(function (x) { return x.preprint; });
+    return selected().filter(function (d) { return gone.indexOf(d) < 0; });
   }
 
   function person() {
@@ -713,8 +774,14 @@
   function buildZip(p) {
     var enc = new TextEncoder();
     var files = [{ name: "content/" + (p.left ? "alumni" : "current-members") + "/" + p.slug + ".md", data: enc.encode(markdown(p)) }];
-    if (state.mode === "update")              // tells add-person.py this changes an existing profile
-      files.push({ name: "submission.json", data: enc.encode(JSON.stringify({ kind: "update", slug: p.slug }) + "\n") });
+    // submission.json: whether this updates an existing profile, and the answers about preprints
+    var chosen = selected(), answers = function (v) {
+      return pairs().filter(function (x) { return state.pairs[x.key] === v && chosen.indexOf(x.published) >= 0; })
+                    .map(function (x) { return [x.published, x.preprint]; });
+    };
+    var manifest = { kind: state.mode, slug: p.slug, replaces: answers("replace"), keeps: answers("keep") };
+    if (state.mode === "update" || manifest.replaces.length || manifest.keeps.length)
+      files.push({ name: "submission.json", data: enc.encode(JSON.stringify(manifest) + "\n") });
     if (!state.photo) return Promise.resolve(zip(files));
     return state.photo.blob.arrayBuffer().then(function (buf) {
       files.push({ name: "content/" + p.photo, data: new Uint8Array(buf) });
@@ -743,9 +810,10 @@
       (p.summary ? "<p><strong>" + esc(p.summary) + "</strong></p>" : "") +
       (links.length ? '<p class="links">' + links.join("") + "</p>" : "") +
       (p.education.length ? "<p>" + p.education.map(esc).join("<br>") + "</p>" : "") + "</div>";
-    var n = p.publications.length;
-    $("preview-pubs").textContent = n ? n + " publication" + (n > 1 ? "s" : "") + " will be listed on your profile, formatted like the others on the site."
-                                      : "No publications selected yet.";
+    var n = p.publications.length, r = pairs().filter(function (x) { return state.pairs[x.key] === "replace"; }).length;
+    $("preview-pubs").textContent = (n ? n + " publication" + (n > 1 ? "s" : "") + " will be listed on your profile, formatted like the others on the site."
+                                       : "No publications selected yet.") +
+      (r ? " " + r + " preprint" + (r > 1 ? "s" : "") + " will be replaced by " + (r > 1 ? "their" : "its") + " published version." : "");
     $("summary-count").textContent = val("summary").length ? "(" + val("summary").length + "/600 characters)" : "";
   }
 
@@ -797,8 +865,16 @@
       return;
     }
     $("save").disabled = true;
-    showMessages(["Checking your DOIs…"], "");
+    showMessages(["Checking your papers…"], "");
     checkDois().then(function (r) {
+      return titlesFor(selected()).then(function () { drawPairs(); return r; });
+    }).then(function (r) {
+      if (unanswered().length) {
+        showMessages(["Some of your papers are published versions of preprints. Under <strong>Published versions of " +
+                      "preprints</strong>, choose for each whether to show only the published paper or keep both."]);
+        $("pairs-box").scrollIntoView({ block: "center" });
+        return;
+      }
       var notes = [];
       r.bad.forEach(function (b) { notes.push("Left out, not a DOI or arXiv ID: " + esc(b)); });
       r.results.filter(function (x) { return !x.ok; }).forEach(function (x) { notes.push("Left out, " + esc(x.error) + ": " + esc(x.doi)); });
@@ -819,14 +895,14 @@
           "<br><br>If you change anything later, save again and attach the new file to the same issue.";
       });
     }).catch(function (err) {
-      showMessages(["Something went wrong while saving: " + esc(err.message || err)]);
+      showMessages(["Something went wrong while saving: " + esc(err && err.message || err)]);
     }).then(function () { $("save").disabled = false; });
   }
 
   // ---- keeping a draft in this browser ---------------------------------------------------------
   function save() {
     try {
-      var d = { picked: state.picked, works: state.works, mode: state.mode, slug: state.slug, current: state.current };
+      var d = { picked: state.picked, works: state.works, mode: state.mode, slug: state.slug, current: state.current, pairs: state.pairs };
       FIELDS.forEach(function (f) { d[f] = $(f).type === "checkbox" ? $(f).checked : $(f).value; });
       localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
     } catch (e) { /* private window or storage off: the form still works */ }
@@ -838,6 +914,7 @@
       FIELDS.forEach(function (f) { if (f in d) { if ($(f).type === "checkbox") $(f).checked = d[f]; else $(f).value = d[f]; } });
       state.picked = d.picked || {}; state.works = d.works || [];
       state.mode = d.mode === "update" ? "update" : "new"; state.slug = d.slug || ""; state.current = d.current || [];
+      state.pairs = d.pairs || {};
       if (state.works.length) drawWorks();
       if (state.current.length) { drawCurrent(); titlesFor(state.current); }
       if (state.slug) $("existing-status").textContent = "Updating " + state.slug + ".md (kept from last time). Choose the file again to start over from it.";
@@ -847,7 +924,7 @@
     if (!confirm("Clear everything on this form?")) return;
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     $("form").reset(); state.works = []; state.picked = {}; state.lookups = {}; state.failed = {};
-    state.slug = ""; state.current = []; drawCurrent(); $("existing-status").textContent = ""; setMode("new"); showLeaving();
+    state.slug = ""; state.current = []; state.pairs = {}; drawCurrent(); drawPairs(); $("existing-status").textContent = ""; setMode("new"); showLeaving();
     removePhoto(); drawWorks(); $("doi-list").innerHTML = ""; $("orcid-status").textContent = "";
     $("messages").innerHTML = ""; $("done").hidden = true; $("role-other").hidden = true;
     $("year").value = new Date().getFullYear(); preview();
@@ -862,6 +939,9 @@
   $("mode-update").addEventListener("change", function () { setMode("update"); save(); preview(); });
   $("existing").addEventListener("change", function () { if (this.files[0]) loadExisting(this.files[0]); });
   $("left").addEventListener("change", showLeaving);
+  $("pairs-replace").addEventListener("click", function () { answerAll("replace"); });
+  $("pairs-keep").addEventListener("click", function () { answerAll("keep"); });
+  if (state.works.length) titlesFor(state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).map(function (w) { return w.doi; }));
   $("role-other").hidden = val("role") !== "other";
   $("role").addEventListener("change", function () { $("role-other").hidden = val("role") !== "other"; if (val("role") === "other") $("role-other").focus(); });
   $("form").addEventListener("input", function () { save(); preview(); });
@@ -878,7 +958,8 @@
 
   // for scripts/tests: the profile and the .zip this form would save, without a download
   window.profileForm = { person: person, markdown: markdown, buildZip: buildZip, loadPhoto: loadPhoto, checkDois: checkDois,
-                         loadExisting: loadExisting, parseProfile: parseProfile, setMode: setMode };
+                         loadExisting: loadExisting, parseProfile: parseProfile, setMode: setMode,
+                         pairs: pairs, answerAll: answerAll };
 })();
 </script>
 </body>

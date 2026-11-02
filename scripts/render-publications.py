@@ -116,13 +116,13 @@ def main():
     folks = people()
 
     if args.check_preprints:
+        # Only ever adds links: one confirmed by a lab member, or added by
+        # hand, stays even if doi.org doesn't know about it.
         for i, e in E.items():
             if bib.is_preprint(e):
-                pubs = bib.published_versions(i)
-                if pubs:
-                    e["relation"] = {"is-preprint-of": pubs}
-                else:
-                    e.pop("relation", None)
+                for pub in bib.published_versions(i):
+                    if pub not in bib.published_by(e):
+                        e["relation"] = {"is-preprint-of": bib.published_by(e) + [pub]}
         bib.save(E)
 
     # papers named in someone's list but not yet in the bibliography

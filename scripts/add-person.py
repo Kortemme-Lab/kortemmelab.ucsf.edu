@@ -256,7 +256,7 @@ def read_zip(path):
         slug = ZIP_PROFILE.match(profile_name).group(2) if profile_name else None
         if photo and slug and ZIP_PHOTO.match(photo).group(1) != slug:
             problems.append(f"the photo's name ({photo}) doesn't match the profile's ({profile_name})")
-        kind = "new"
+        kind, info = "new", {}
         if manifest:
             try:
                 info = json.loads(z.read(manifest).decode("utf-8"))
@@ -267,8 +267,14 @@ def read_zip(path):
                 problems.append(f"{ZIP_MANIFEST} isn't readable")
         if problems:
             return None, "; ".join(problems)
+        def pairs(key):                      # [[published, preprint], ...]
+            got = info.get(key) or []
+            got = got.items() if isinstance(got, dict) else got
+            return [(bib.clean_doi(str(x[0])), bib.clean_doi(str(x[1]))) for x in got
+                    if isinstance(x, (list, tuple)) and len(x) == 2]
         return {"slug": slug, "kind": kind, "text": z.read(profile_name).decode("utf-8"),
-                "photo": (photo, z.read(photo)) if photo else None}, None
+                "photo": (photo, z.read(photo)) if photo else None,
+                "replaces": pairs("replaces"), "keeps": pairs("keeps")}, None
 
 
 def looks_like_image(name, data):
@@ -313,6 +319,53 @@ def checked_dois(dois, E, notes):
         else:
             notes.append(f"DOI didn't resolve, left out: {d}")
     return good, added
+
+
+# --- preprints and their published versions ------------------------------------------------------
+def preprint_choices(E, added, replaces, keeps, entry, how_to_replace):
+    """Apply the member's answers about preprints; flag pairs nobody answered for.
+
+    replaces / keeps: (published DOI, preprint DOI) pairs the member confirmed
+    or declined. A replacement is only made if the published paper's own DOI
+    record names that preprint, so no one can retire an unrelated paper.
+    Returns the preprints now replaced, and whether the bibliography changed.
+    """
+    named, gone, changed = {}, set(), False
+    def preprints(j):
+        if j not in named:
+            named[j] = bib.preprints_of(j)
+        return named[j]
+    answered = set(replaces) | set(keeps)
+    for j, p in replaces:
+        if j not in added:
+            continue
+        if p not in E:
+            continue                                  # not on the website: nothing to replace
+        if p not in preprints(j):
+            entry["notes"].append(f"not replaced: {j}'s DOI record doesn't name {p} as its preprint "
+                                  "(a website manager can link them by hand)")
+            continue
+        bib.link_preprint(E, p, j)
+        gone.add(p)
+        changed = True
+        entry.setdefault("replaces", []).append({"published": j, "preprint": p,
+                                                 "title": bib.plain(E[p].get("title", ""))})
+    for j, p in keeps:
+        if j in added and p in E:
+            bib.keep_preprint(E, p, j)
+            changed = True
+            entry["notes"].append(f"kept both, as asked: the preprint {p} and its published version {j}")
+    for j in added:                                   # pairs the member wasn't asked about
+        for p in preprints(j):
+            if p in E and (j, p) not in answered and bib.published_version(E[p]) != j:
+                entry["notes"].append(f"{j} is the published version of the preprint "
+                                      f"\"{bib.plain(E[p].get('title', ''))}\" ({p}), which stays listed. "
+                                      + how_to_replace)
+    if gone:
+        n = len(gone)
+        entry["changes"].append(f"{n} preprint{'s' * (n != 1)} replaced by {'their' if n != 1 else 'its'} "
+                                "published version")
+    return gone, changed
 
 
 # --- merging an update into an existing profile -----------------------------------------------
@@ -401,7 +454,7 @@ def left_lab(text):
 
 def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
     E, existing = bib.load(), content_index()
-    changed, bib_added, report = [], 0, []
+    changed, bib_added, report, bib_dirty = [], 0, [], False
 
     def skip(entry, why):
         print(f"   skipped: {why}")
@@ -438,6 +491,13 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
 
         good, n = checked_dois(bib.header_list(text, "publications") or [], E, notes)
         bib_added += n
+        here_text = open(os.path.join(ROOT, here[0]), encoding="utf-8").read() if kind == "update" else ""
+        before = [d.lower() for d in bib.header_list(here_text, "publications") or []] if here_text else []
+        gone, relinked = preprint_choices(
+            E, [d for d in good if d not in before], got["replaces"], got["keeps"], entry,
+            "To show only the published paper, answer the profile form's question about it and attach the new .zip.")
+        bib_dirty = bib_dirty or relinked
+        good = [d for d in good if d not in gone]     # this person's list loses them too
         photo = checked_photo(got, notes)
         entry["photo"] = photo[0] if photo else ""
         if photo:
@@ -446,7 +506,7 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
         if kind == "new":
             dest = f"content/{'alumni' if left_lab(text) else 'current-members'}/{slug}.md"
             final = text
-            entry["changes"] = ["new profile"]
+            entry["changes"] = ["new profile"] + entry["changes"]
             if not photo:
                 final = re.sub(r'(?m)^photo: .*$', 'photo: ""', final, count=1)
                 notes.append(f"no headshot -- later, save one as content/images/people/{slug}.jpg"
@@ -456,8 +516,9 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
             old = open(os.path.join(ROOT, src), encoding="utf-8").read()
             old_photo = bib.header_value(old, "photo") or ""
             old_pubs = [d.lower() for d in bib.header_list(old, "publications") or []]
-            final, entry["changes"] = merge_profile(old, text, keep_photo=not photo)
-            plus, minus = len(set(good) - set(old_pubs)), len(set(old_pubs) - set(good))
+            final, merged = merge_profile(old, text, keep_photo=not photo)
+            entry["changes"] = merged + entry["changes"]
+            plus, minus = len(set(good) - set(old_pubs)), len(set(old_pubs) - set(good) - gone)
             if plus or minus:
                 entry["changes"].append(" and ".join(x for x in (f"{plus} paper{'s' * (plus != 1)} added" if plus else "",
                                                                  f"{minus} removed" if minus else "") if x))
@@ -501,17 +562,17 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
             print(f"   wrote {dest}" + (f" and content/images/people/{photo[0]}" if photo else ""))
         for n in notes:
             print(f"   note: {n}")
-    finish(report, report_path, dry_run, no_render, changed, bib_added, E)
+    finish(report, report_path, dry_run, no_render, changed, bib_added, E, bib_dirty)
 
 
-def finish(report, report_path, dry_run, no_render, changed, bib_added, E):
+def finish(report, report_path, dry_run, no_render, changed, bib_added, E, bib_dirty=False):
     if report_path:                         # for .github/workflows/profile-submission.yml
         with open(report_path, "w", encoding="utf-8") as fh:
             json.dump(report, fh, indent=2, ensure_ascii=False)
     if dry_run:
         print("\nDry run: nothing was written.")
         return
-    if bib_added:
+    if bib_added or bib_dirty:
         bib.save(E)
     print(f"\n{len(changed)} profiles added or updated; {bib_added} new papers in the bibliography")
     if changed and not no_render:
@@ -545,7 +606,7 @@ def find_profile(name):
                   "on the People page")
 
 
-def add_papers(name, dois_text, dry_run, no_render, report_path=None):
+def add_papers(name, dois_text, dry_run, no_render, report_path=None, replace_preprints=False):
     E, notes = bib.load(), []
     entry = {"kind": "papers", "status": "ok", "problem": "", "notes": notes, "changes": [], "name": name}
     report = [entry]
@@ -564,6 +625,10 @@ def add_papers(name, dois_text, dry_run, no_render, report_path=None):
     already = [d for d in typed if d in have]
     if already:
         notes.append(f"already on the profile: {', '.join(already)}")
+    pairs = [(j, p) for j in good for p in bib.preprints_of(j) if p in E] if replace_preprints else []
+    gone, relinked = preprint_choices(E, good, pairs, [], entry,
+                                      "To show only the published paper, edit this issue and tick the "
+                                      "*Replacing preprints* box.")
     entry.update(slug=os.path.basename(path)[:-3], name=bib.header_value(text, "name") or name, path=path,
                  role=bib.header_value(text, "role") or "", publications=len(have) + len(good),
                  github=link_value(text, "github"), photo="",
@@ -571,11 +636,11 @@ def add_papers(name, dois_text, dry_run, no_render, report_path=None):
     if not good:
         entry.update(status="skipped", problem="none of these papers can be added (see the notes)")
         return finish(report, report_path, True, no_render, [], 0, E)
-    entry["changes"] = [f"{len(good)} paper{'s' * (len(good) != 1)} added"]
-    print(f"   {entry['name']}: {entry['changes'][0]} -> {path}")
+    entry["changes"] = [f"{len(good)} paper{'s' * (len(good) != 1)} added"] + entry["changes"]
+    print(f"   {entry['name']}: {', '.join(entry['changes'])} -> {path}")
     if not dry_run:
-        bib.set_list(os.path.join(ROOT, path), "publications", have + good)
-    finish(report, report_path, dry_run, no_render, [] if dry_run else [entry["slug"]], added, E)
+        bib.set_list(os.path.join(ROOT, path), "publications", [d for d in have + good if d not in gone])
+    finish(report, report_path, dry_run, no_render, [] if dry_run else [entry["slug"]], added, E, relinked)
 
 
 # --- main ------------------------------------------------------------------------------
@@ -591,13 +656,16 @@ def main():
     ap.add_argument("--dry-run", action="store_true", help="check and preview; write nothing")
     ap.add_argument("--no-render", action="store_true", help="don't redraw publication lists afterwards")
     ap.add_argument("--dois", default="", help="with --add-papers: DOIs or arXiv IDs, separated by spaces or lines")
+    ap.add_argument("--replace-preprints", action="store_true",
+                    help="with --add-papers: a paper whose DOI record names a preprint on the site replaces it")
     ap.add_argument("--expect", choices=["new", "update"], help="with --zip: refuse other kinds of .zip")
     ap.add_argument("--report", metavar="FILE", help="with --zip or --add-papers: also write what was found as JSON")
     args = ap.parse_args()
     if args.zip:
         return add_from_zips(args.zip, args.dry_run, args.no_render, args.report, args.expect)
     if args.add_papers:
-        return add_papers(args.add_papers, args.dois, args.dry_run, args.no_render, args.report)
+        return add_papers(args.add_papers, args.dois, args.dry_run, args.no_render, args.report,
+                          args.replace_preprints)
 
     if os.path.basename(args.csv).lower().startswith("example") and not args.dry_run:
         sys.exit("That's the example file -- try it with --dry-run.")

@@ -30,6 +30,7 @@ The old copy, in numbers:
   - [Adding new papers: Add papers](#adding-new-papers-add-papers)
   - [Changing your profile: Update my profile](#changing-your-profile-update-my-profile)
   - [Leaving the lab: Update my profile](#leaving-the-lab-update-my-profile)
+  - [Preprints and their published versions](#preprints-and-their-published-versions)
   - [After you submit](#after-you-submit)
   - [For website managers: reviewing and publishing](#for-website-managers-reviewing-and-publishing)
 - [The website](#the-website)
@@ -95,7 +96,10 @@ your browser until you save, so you can stop and come back.
    profile are then checked against it automatically.
 7. Under **Publications**, click **Find my papers on ORCID** and tick the ones
    to list. For anything missing from ORCID, paste its DOI or arXiv ID under
-   *Other papers* and click **Look these up**.
+   *Other papers* and click **Look these up**. If one of your papers is the
+   published version of a preprint, the form asks about it under *Published
+   versions of preprints*. See [Preprints and their published
+   versions](#preprints-and-their-published-versions).
 8. Check the **Preview**, then click **Save my profile**. You get one file,
    `your-name-profile.zip`.
 9. Open a [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) issue.
@@ -112,11 +116,10 @@ your browser until you save, so you can stop and come back.
    (`10.1126/science.abc0881`), a doi.org link, or an arXiv ID
    (`arXiv:2204.13048`). Papers already on your profile are skipped, so
    there's no harm in including them.
-4. Click **Create**.
-
-Preprints are fine. When a preprint is later published, the published paper
-replaces it on the website automatically, once a website manager runs
-`python3 scripts/render-publications.py --check-preprints`.
+4. **Is one of them the published version of a preprint already on the
+   website?** Tick *Replacing preprints* to show only the published paper.
+   See [Preprints and their published versions](#preprints-and-their-published-versions).
+5. Click **Create**.
 
 ### Changing your profile: Update my profile
 
@@ -135,7 +138,8 @@ photo, a different summary, links, or papers to take off your profile.
    - edit any text field;
    - choose a new headshot, or leave the photo field empty to keep the one you have;
    - **untick** a paper to take it off your profile;
-   - add papers from ORCID or by DOI, as when joining;
+   - add papers from ORCID or by DOI, as when joining; if one is the published
+     version of a preprint, answer the form's question about it (below);
    - untick *Show my email on my profile* to remove your email from the website.
 5. Check the **Preview**, then click **Save my profile**. You get
    `your-name-profile-update.zip`.
@@ -160,6 +164,33 @@ Follow *Changing your profile* above. At step 4, under **About you**, tick
 Once the pull request is merged, you move from Current Members to Lab Alumni,
 with your years and positions on the alumni roster. Alumni can come back the
 same way at any time to update their current position.
+
+### Preprints and their published versions
+
+Preprints are welcome on the website. When one of yours is published, add
+the published paper, and say whether it **replaces** the preprint:
+
+- **In the profile form** (joining, or *Update my profile*), you're asked
+  for each paper whose DOI record names a preprint: under *Published
+  versions of preprints*, choose **Show only the published paper** or **Keep
+  both**. You can't save until each is answered; there are buttons to answer
+  them all at once.
+- **In an *Add papers* issue,** tick **Replacing preprints**. If you don't,
+  and a preprint is found, both stay listed, and the reply on the issue says
+  which preprint it found. Edit the issue and tick the box to replace it.
+
+"Replace" removes the preprint **everywhere it's listed** on the website:
+your page, your co-authors' pages, Tanja's page and the Publications page.
+The pull request lists every preprint it replaces, so a website manager sees
+it before anything changes. "Keep both" is remembered, so the pair isn't
+merged later either.
+
+The website only recognises a pair when the published paper's DOI record
+names its preprint. bioRxiv preprints are almost always linked this way;
+arXiv ones, and papers whose preprint was posted elsewhere, often aren't. **If
+your preprint is still listed after the published paper is on the website,**
+say so in a new *Add papers* issue's *Anything else* box, giving both DOIs. A
+website manager then links them by hand (see below).
 
 ### After you submit
 
@@ -206,6 +237,32 @@ To ask for changes, comment on the issue (not the pull request), so the
 member sees it. When they edit the issue, the pull request updates. To turn
 a submission down, close the pull request without merging, then close the
 issue with a comment.
+
+**Linking a preprint to its published version by hand,** when the website
+doesn't recognise the pair (see [Preprints and their published
+versions](#preprints-and-their-published-versions)):
+
+1. In `content/bibliography.json`, find the **preprint's** entry (search for
+   its DOI, e.g. `"id": "10.1101/2024.06.21.600123"`), and add a line to it:
+
+   ```json
+   "relation": {"is-preprint-of": ["10.1002/adma.202500872"]},
+   ```
+
+   with the published paper's DOI, in lower case. If the entry already has
+   a `"relation"` line, add the DOI to its list instead.
+2. Commit and push. The rebuild workflow redraws every list: the preprint is
+   replaced by the published paper on every page it was on, and the
+   published paper is looked up at doi.org if it isn't on the website yet.
+   Locally, run `python3 scripts/render-publications.py` then
+   `python3 scripts/build-site.py`.
+
+To undo a replacement, or to keep a pair listed separately when doi.org links
+it, add `"keep-preprint": ["10.1002/adma.202500872"]` to the preprint's entry
+(the published DOIs that should *not* replace it). Now and then, run
+`python3 scripts/render-publications.py --check-preprints`: it asks doi.org
+whether any preprint has since been published, and adds those links. It
+never removes a link, so confirmed and hand-made ones are safe.
 
 **One-time setup:** Settings > Actions > General > *Workflow permissions* >
 tick **Allow GitHub Actions to create and approve pull requests**. Add each
