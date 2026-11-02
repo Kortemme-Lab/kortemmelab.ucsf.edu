@@ -17,8 +17,8 @@ links:
   ucsf_profile: "https://profiles.ucsf.edu/simon.kretschmer"
 education:
   - "B.S., Chemistry and Biochemistry, Ludwig Maximilian University of Munich"
-  - "M.S., Biochemistry, Ludwig Maximilian University of Munich"
-  - "Dr. rer. nat. (Ph.D.), Biochemistry, Max-Planck-Institute of Biochemistry / Ludwig Maximilian University of Munich"
+  - "M.Sc., Biochemistry, Ludwig Maximilian University of Munich"
+  - "Dr. rer. nat. (Ph.D.), Biochemistry, Max Planck Institute of Biochemistry / Ludwig Maximilian University of Munich"
 publications:
   - "10.1021/acssynbio.3c00080"
   - "10.1109/jproc.2022.3157898"

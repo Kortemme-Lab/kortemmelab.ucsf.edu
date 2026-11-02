@@ -223,8 +223,10 @@ def profile(p):
 
 # --- education: one style for degrees ---------------------------------------------------------
 # Every entry reads "Degree, Subject, Institution", with the degree abbreviated
-# the same way throughout: B.S., B.A., M.S., M.A., M.Sc., Ph.D. German degrees
-# keep their name, with the equivalent in brackets: "Dr. rer. nat. (Ph.D.)".
+# the same way throughout: B.S., B.A., M.S., M.A., M.Sc., Ph.D. (M.Sc. for
+# European master's degrees: "Master of Science" becomes M.S., so set those by
+# hand.) German degrees keep their name, with the equivalent in brackets:
+# "Dr. rer. nat. (Ph.D.)". Institutions are written out in full.
 DEGREE_WORDS = [
     (r"bachelors?\s+of\s+science", "B.S."), (r"bachelors?\s+of\s+arts", "B.A."),
     (r"masters?\s+of\s+science", "M.S."), (r"masters?\s+of\s+arts", "M.A."),
@@ -235,6 +237,33 @@ DEGREE_SHORT = [                              # bare abbreviations, however punc
     (r"m\.?\s?s\.?", "M.S."), (r"m\.?\s?a\.?", "M.A."), (r"ph\.?\s?d\.?", "Ph.D."),
 ]
 DEGREE = r"(?:B\.S\.|B\.A\.|M\.Sc\.|M\.S\.|M\.A\.|Ph\.D\.|(?:Vordiplom|Diplom|Dr\. rer\. nat\.)(?: \([^)]*\))?)"
+
+
+# Institutions by their full names. Applied to whole words only, so "UC Berkeley"
+# becomes "University of California, Berkeley" but a subject is never touched.
+UC_CAMPUSES = ["Berkeley", "Davis", "Irvine", "Los Angeles", "Merced", "Riverside", "San Diego",
+               "San Francisco", "Santa Barbara", "Santa Cruz"]
+INSTITUTIONS = [(rf"\bUC {c}\b", f"University of California, {c}") for c in UC_CAMPUSES] + [
+    (r"\bUCLA\b", "University of California, Los Angeles"),
+    (r"\bUCSF\b", "University of California, San Francisco"),
+    (r"\bUCSD\b", "University of California, San Diego"),
+    (r"\bStanford\b(?! University)", "Stanford University"),
+    (r"\bPenn State(?: University)?\b", "Pennsylvania State University"),
+    (r"\bMIT\b", "Massachusetts Institute of Technology"),
+    (r"\bCaltech\b", "California Institute of Technology"),
+    (r"\bCambridge University\b", "University of Cambridge"),
+    (r"\bOxford University\b", "University of Oxford"),
+    (r"\bZagreb University\b", "University of Zagreb"),
+    (r"\bClaremont Mckenna\b", "Claremont McKenna"),
+    (r"\bMax-Planck-Institute?\b", "Max Planck Institute"),
+    (r"\bRuprecht[- ]Karls?[- ]Universit(?:y|ät)(?: of)? Heidelberg\b", "Heidelberg University"),
+]
+
+
+def tidy_institutions(s):
+    for pat, full in INSTITUTIONS:
+        s = re.sub(pat, full, s)
+    return s
 
 
 def tidy_degree(entry):
@@ -254,7 +283,7 @@ def tidy_degree(entry):
     m = re.match(rf"^({DEGREE}),?\s+(.+)$", s)
     if m:
         s = f"{m.group(1)}, {m.group(2)}"                  # a comma after the degree
-    return s
+    return tidy_institutions(s)
 
 
 def tidy_education(text):

@@ -15,7 +15,7 @@ links:
   website: ""
   github: ""
 education:
-  - "B.S., Bioengineering and Chemistry/Materials Science, UCLA"
+  - "B.S., Bioengineering and Chemistry/Materials Science, University of California, Los Angeles"
 publications:
   - "10.1016/j.sbi.2021.08.004"
   - "10.1101/2025.08.03.668353"

@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "B.S., Chemistry, Ruprecht Karl University Heidelberg"
+  - "B.S., Chemistry, Heidelberg University"
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---tobias-dorer.html"

@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "M.S., Biochemistry, Heidelberg University"
+  - "M.Sc., Biochemistry, Heidelberg University"
 publications:
   - "10.1039/d4sc04723k"
   - "10.1126/science.ade2676"

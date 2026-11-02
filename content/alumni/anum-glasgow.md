@@ -17,7 +17,7 @@ links:
   ucsf_profile: "http://profiles.ucsf.edu/anum.azam"
 education:
   - "B.S., Biomedical Engineering, Johns Hopkins University"
-  - "Ph.D., Bioengineering, UC Berkeley"
+  - "Ph.D., Bioengineering, University of California, Berkeley"
 publications:
   - "10.1016/j.str.2023.01.009"
   - "10.1038/s41467-023-36798-1"

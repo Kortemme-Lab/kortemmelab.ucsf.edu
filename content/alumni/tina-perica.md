@@ -16,8 +16,8 @@ links:
   github: ""
   ucsf_profile: "http://profiles.ucsf.edu/tina.perica"
 education:
-  - "B.S., Molecular Biology, Zagreb University, Croatia"
-  - "Ph.D., Molecular Biology, Cambridge University, UK"
+  - "B.S., Molecular Biology, University of Zagreb, Croatia"
+  - "Ph.D., Molecular Biology, University of Cambridge, UK"
 publications:
   - "10.1016/j.cels.2023.01.003"
   - "10.1038/s41586-021-03982-6"
