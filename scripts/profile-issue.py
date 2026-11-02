@@ -22,7 +22,7 @@ share what they learn through a small JSON file in $RUNNER_TEMP.
 Run outside GitHub Actions (no GITHUB_REPOSITORY), `comment` and `pr` print
 what they would send instead of sending it, for trying them out.
 """
-import json, os, re, subprocess, sys, urllib.error, urllib.parse, urllib.request
+import datetime, json, os, re, subprocess, sys, urllib.error, urllib.parse, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP = os.environ.get("RUNNER_TEMP") or "/tmp"
@@ -139,15 +139,20 @@ def fetch():
         remember(stage="fetch", problem="no_zip")
         return output(lane="")
     url, tried = urls[-1], []                # the newest attachment, if there are several
+    print(f"attachment: {url}")
     for name in ("GH_TOKEN", "INTAKE_TOKEN"):
         token = os.environ.get(name)
         if not token:
+            print(f"{name}: not set")              # INTAKE_TOKEN: no repository secret by that name
+            tried.append(f"{name}: not set")
             continue
         try:
             data = download(url, token)
         except (urllib.error.URLError, ValueError, OSError) as e:
+            print(f"{name}: refused ({getattr(e, 'code', '') or e})")
             tried.append(f"{name}: {getattr(e, 'code', '') or e}")
             continue
+        print(f"{name}: downloaded {len(data)} bytes")
         with open(ZIP, "wb") as fh:
             fh.write(data)
         remember(stage="fetched", lane="zip", url=url)
@@ -275,10 +280,14 @@ def message():
         return ("I found your .zip but couldn't download it, so nothing has happened yet. This is a "
                 "setting on the website's side, not something you did.\n\n"
                 "**For the website manager:** GitHub didn't let this workflow read the issue's attachment "
-                f"({'; '.join(s.get('tried') or ['no token'])}). Add a fine-grained personal access token "
-                "with read access to this repository's contents as the repository secret `INTAKE_TOKEN` "
-                "(Settings > Secrets and variables > Actions), then re-run this workflow: "
-                f"{run}")
+                f"({'; '.join(s.get('tried') or ['no token'])}). "
+                + ("A token saved as `INTAKE_TOKEN` was refused too, so GitHub doesn't let tokens read "
+                   "attachments in this repository; see `intake/github-issue-route.md`."
+                   if any(x.startswith("INTAKE_TOKEN:") and "not set" not in x for x in s.get("tried") or [])
+                   else "Add a fine-grained personal access token with read access to this repository's "
+                        "contents as the repository secret `INTAKE_TOKEN` (Settings > Secrets and variables > "
+                        "Actions > Repository secrets), then edit this issue (any small change) to check again.")
+                + f" Run: {run}")
     if stage == "checked" and e.get("status") != "ok":
         notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
         return (f"That couldn't be used: **{e.get('problem')}**" + (f"\n{notes}" if notes else "")
@@ -293,7 +302,10 @@ def message():
 
 
 def comment():
-    body = f"{message()}\n\n{MARKER}"
+    when = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
+    body = f"{message()}\n\n<sub>Checked {when}" + (f", attempt {attempt}" if attempt != "1" else "") + \
+           f".</sub>\n\n{MARKER}"
     if not REPO:
         print(body)
         return
