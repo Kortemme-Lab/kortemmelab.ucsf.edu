@@ -27,8 +27,7 @@ The old copy, in numbers:
 
 - [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
   - [Joining the lab: New lab member](#joining-the-lab-new-lab-member)
-  - [Adding new papers: Add papers](#adding-new-papers-add-papers)
-  - [Changing your profile: Update my profile](#changing-your-profile-update-my-profile)
+  - [Changing your profile, or adding papers: Update my profile](#changing-your-profile-or-adding-papers-update-my-profile)
   - [Leaving the lab: Update my profile](#leaving-the-lab-update-my-profile)
   - [Preprints and their published versions](#preprints-and-their-published-versions)
   - [After you submit](#after-you-submit)
@@ -51,18 +50,17 @@ The old copy, in numbers:
 
 ## Joining, updating and leaving the lab
 
-Lab members manage their own profiles through three GitHub issue forms. Each
+Lab members manage their own profiles through two GitHub issue forms. Each
 one ends in a pull request that a website manager reviews and merges, and
 the website then rebuilds by itself.
 
 | To… | Open this issue | You'll need |
 |---|---|---|
 | put yourself on the website when you join | [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form (step-by-step below) |
-| add new papers to your profile | [**Add papers**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-papers.yml) | just the papers' DOIs |
-| change anything else on your profile, current members and alumni alike | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
+| add new papers to your profile, or change anything else on it, current members and alumni alike | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
 | tell us you're leaving the lab | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
 
-All three are also under the repository's **Issues** tab > **New issue**.
+Both are also under the repository's **Issues** tab > **New issue**.
 
 **Before you start:** you need a GitHub account, and a website manager must
 have added you to this repository (Settings > Collaborators). The issue forms
@@ -106,25 +104,11 @@ your browser until you save, so you can stop and come back.
    Put your name in the title (`New lab member: Jane Doe`), drag the `.zip`
    into *Your profile .zip*, tick the publishing box, and click **Create**.
 
-### Adding new papers: Add papers
+### Changing your profile, or adding papers: Update my profile
 
-1. Open an [**Add papers**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-papers.yml) issue, and
-   put your name in the title (`Add papers: Jane Doe`).
-2. Under *Your name as it appears on the website*, type your name exactly as
-   it is on the People page.
-3. Under *Papers to add (DOIs)*, paste one per line: a DOI
-   (`10.1126/science.abc0881`), a doi.org link, or an arXiv ID
-   (`arXiv:2204.13048`). Papers already on your profile are skipped, so
-   there's no harm in including them.
-4. **Is one of them the published version of a preprint already on the
-   website?** Tick *Replacing preprints* to show only the published paper.
-   See [Preprints and their published versions](#preprints-and-their-published-versions).
-5. Click **Create**.
-
-### Changing your profile: Update my profile
-
-This works for current members and alumni alike: a new position, a new
-photo, a different summary, links, or papers to take off your profile.
+This works for current members and alumni alike: new papers, a new
+position, a new photo, a different summary, links, or papers to take off
+your profile.
 
 1. **Download your current profile.** On GitHub, open
    [current members](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/current-members) or
@@ -138,8 +122,10 @@ photo, a different summary, links, or papers to take off your profile.
    - edit any text field;
    - choose a new headshot, or leave the photo field empty to keep the one you have;
    - **untick** a paper to take it off your profile;
-   - add papers from ORCID or by DOI, as when joining; if one is the published
-     version of a preprint, answer the form's question about it (below);
+   - **add new papers:** click *Find my papers on ORCID* and tick the new ones,
+     or paste their DOIs under *Other papers* and click *Look these up*; if one
+     is the published version of a preprint, answer the form's question about
+     it (see [Preprints and their published versions](#preprints-and-their-published-versions));
    - untick *Show my email on my profile* to remove your email from the website.
 5. Check the **Preview**, then click **Save my profile**. You get
    `your-name-profile-update.zip`.
@@ -167,17 +153,12 @@ same way at any time to update their current position.
 
 ### Preprints and their published versions
 
-Preprints are welcome on the website. When one of yours is published, add
-the published paper, and say whether it **replaces** the preprint:
-
-- **In the profile form** (joining, or *Update my profile*), you're asked
-  for each paper whose DOI record names a preprint: under *Published
-  versions of preprints*, choose **Show only the published paper** or **Keep
-  both**. You can't save until each is answered; there are buttons to answer
-  them all at once.
-- **In an *Add papers* issue,** tick **Replacing preprints**. If you don't,
-  and a preprint is found, both stay listed, and the reply on the issue says
-  which preprint it found. Edit the issue and tick the box to replace it.
+Preprints are welcome on the website. When one of yours is published,
+add the published paper with *Update my profile*. The profile form asks
+about each paper whose DOI record names a preprint: under *Published
+versions of preprints*, choose **Show only the published paper** or **Keep
+both**. You can't save until each is answered; there are buttons to answer
+them all at once.
 
 "Replace" removes the preprint **everywhere it's listed** on the website:
 your page, your co-authors' pages, Tanja's page and the Publications page.
@@ -189,8 +170,9 @@ The website only recognises a pair when the published paper's DOI record
 names its preprint. bioRxiv preprints are almost always linked this way;
 arXiv ones, and papers whose preprint was posted elsewhere, often aren't. **If
 your preprint is still listed after the published paper is on the website,**
-say so in a new *Add papers* issue's *Anything else* box, giving both DOIs. A
-website manager then links them by hand (see below).
+say so in the *Anything else* box of an *Update my profile* issue, giving
+both DOIs. (You can untick the preprint in the form too, but that only takes
+it off your own page.) A website manager then links them by hand (see below).
 
 ### After you submit
 
@@ -406,8 +388,8 @@ kortemmelab.ucsf.edu/
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
-├── .github/               on GitHub: the New lab member, Add papers and Update my
-│                          profile issue forms, and workflows that rebuild docs/ after each push
+├── .github/               on GitHub: the New lab member and Update my profile
+│                          issue forms, and workflows that rebuild docs/ after each push
 │                          (build-site.yml) and turn those issues into pull requests
 │                          (profile-submission.yml)
 └── archive/               the old site and how it was copied; for reference only
@@ -593,8 +575,7 @@ push: GitHub rebuilds it (see [Automatic rebuilds](#automatic-rebuilds)).
 
 ### Updating profiles by hand
 
-Current members and alumni use the **Add papers** and **Update my profile**
-issues: see [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
+Current members and alumni use the **Update my profile** issue: see [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
 for the steps.
 
 The same can be done by hand:
@@ -606,6 +587,9 @@ python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile-update.zip
 ```bash
 python3 scripts/add-person.py --add-papers "Jane Doe" --dois "10.1126/science.abc0881 arXiv:2204.13048"
 ```
+
+Add `--replace-preprints` if one of the papers is the published version of a
+preprint on the website, so the preprint is replaced everywhere it's listed.
 
 An update replaces only the fields the form edits and keeps everything else
 in the file. Or edit the file yourself: to graduate someone, change

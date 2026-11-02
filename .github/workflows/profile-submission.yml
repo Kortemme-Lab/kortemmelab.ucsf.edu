@@ -1,8 +1,8 @@
 name: Profile submission
 
-# Handles "New lab member", "Update my profile" and "Add papers" issues. When
-# one is opened (or edited), this reads what it holds -- the .zip from the
-# profile form, or for Add papers a name and some DOIs -- checks it, makes the change
+# Handles "New lab member" and "Update my profile" issues. When one is opened
+# (or edited), this reads the .zip from the profile form attached to it,
+# checks it, makes the change
 # on a branch of its own, and opens a pull request. A website manager merges
 # it to publish; build-site.yml then rebuilds the website. The outcome (the
 # pull request, or what to fix) is posted as a comment on the issue, and
@@ -28,10 +28,8 @@ jobs:
       github.event.issue.state == 'open' &&
       (contains(github.event.issue.labels.*.name, 'new-member') ||
        contains(github.event.issue.labels.*.name, 'profile-update') ||
-       contains(github.event.issue.labels.*.name, 'add-papers') ||
        startsWith(github.event.issue.title, 'New lab member') ||
-       startsWith(github.event.issue.title, 'Profile update') ||
-       startsWith(github.event.issue.title, 'Add papers')) &&
+       startsWith(github.event.issue.title, 'Profile update')) &&
       contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association)
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -42,8 +40,8 @@ jobs:
     env:
       ISSUE_NUMBER: ${{ github.event.issue.number }}
       ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
-      # "papers" for an Add papers issue, "update" for Update my profile, otherwise "new"
-      SUBMISSION_KIND: ${{ (contains(github.event.issue.labels.*.name, 'add-papers') || startsWith(github.event.issue.title, 'Add papers')) && 'papers' || ((contains(github.event.issue.labels.*.name, 'profile-update') || startsWith(github.event.issue.title, 'Profile update')) && 'update' || 'new') }}
+      # "update" for an Update my profile issue, otherwise "new"
+      SUBMISSION_KIND: ${{ (contains(github.event.issue.labels.*.name, 'profile-update') || startsWith(github.event.issue.title, 'Profile update')) && 'update' || 'new' }}
       BASE_BRANCH: ${{ github.event.repository.default_branch }}
       GH_TOKEN: ${{ github.token }}
       # Only needed if GitHub won't let the workflow's own token read issue
@@ -56,7 +54,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Read the issue
+      - name: Get the .zip from the issue
         id: fetch
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}

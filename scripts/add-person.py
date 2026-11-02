@@ -627,8 +627,7 @@ def add_papers(name, dois_text, dry_run, no_render, report_path=None, replace_pr
         notes.append(f"already on the profile: {', '.join(already)}")
     pairs = [(j, p) for j in good for p in bib.preprints_of(j) if p in E] if replace_preprints else []
     gone, relinked = preprint_choices(E, good, pairs, [], entry,
-                                      "To show only the published paper, edit this issue and tick the "
-                                      "*Replacing preprints* box.")
+                                      "To show only the published paper, run this again with --replace-preprints.")
     entry.update(slug=os.path.basename(path)[:-3], name=bib.header_value(text, "name") or name, path=path,
                  role=bib.header_value(text, "role") or "", publications=len(have) + len(good),
                  github=link_value(text, "github"), photo="",

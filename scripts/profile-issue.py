@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
-"""The GitHub side of profile submissions: "New lab member", "Update my profile" and "Add papers" issues.
+"""The GitHub side of profile submissions: "New lab member" and "Update my profile" issues.
 
 Run by .github/workflows/profile-submission.yml, one step at a time:
 
-    fetch     read the issue: find its profile .zip and download it, or (for
-              Add papers) the name and DOIs typed into it
+    fetch     find the profile .zip attached to the issue and download it
     check     check the submission, as add-person.py --dry-run does
     apply     make the change for real, on the branch the workflow has checked out
     pr        open, or update, the pull request for that branch
     comment   report back on the issue: the pull request, or what to fix
 
-There are three kinds of submission, one per issue form, all reviewed the same way:
+There are two kinds of submission, one per issue form, reviewed the same way:
   - new: a .zip from the profile form, on a New lab member issue
   - update: a .zip from the form's "Update my profile" mode, on an Update my
     profile issue, merged into the existing profile (which moves to Lab
     Alumni if it gives an end year)
-  - papers: a name and some DOIs typed into an Add papers issue
 
 Everything from the issue reaches this script through environment variables
 and is only ever parsed here, never placed in a shell command. The steps
@@ -36,22 +34,17 @@ SERVER = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
 ISSUE = os.environ.get("ISSUE_NUMBER", "")
 AUTHOR = os.environ.get("ISSUE_AUTHOR", "")
-KIND = os.environ.get("SUBMISSION_KIND") if os.environ.get("SUBMISSION_KIND") in ("update", "papers") else "new"
+KIND = "update" if os.environ.get("SUBMISSION_KIND") == "update" else "new"
 BASE = os.environ.get("BASE_BRANCH", "main")
 BRANCH = f"profile/issue-{ISSUE}"
 LABELS = {"new": ("new-member", "A new lab member's profile"),
-          "update": ("profile-update", "A change to a lab member's profile"),
-          "papers": ("add-papers", "New papers for a lab member's profile")}
+          "update": ("profile-update", "A change to a lab member's profile")}
 MARKER = "<!-- profile-submission-bot -->"       # finds this workflow's own comment again
 MAX_BYTES = 20_000_000
 # An attachment dragged into an issue: user-attachments/files/<id>/<name>.zip,
 # or the older <owner>/<repo>/files/<id>/<name>.zip
 ATTACHMENT = re.compile(r"https://github\.com/(?:user-attachments/files/\d+|[\w.-]+/[\w.-]+/files/\d+)"
                         r"/[^\s)\]\"'<>]+?\.zip", re.I)
-# The issue forms' field labels (.github/ISSUE_TEMPLATE/*.yml), which head each answer
-NAME_FIELD = "Your name as it appears on the website"
-DOIS_FIELD = "Papers to add (DOIs)"
-REPLACE_FIELD = "Replacing preprints"          # a tick box: "- [X] Yes, replace ..."
 
 
 # --- shared state, outputs, the GitHub API -------------------------------------------
@@ -99,19 +92,6 @@ def api_error(e):
         return str(e)
 
 
-def fields(body):
-    """An issue form's answers, by field label ("_No response_" counts as empty)."""
-    out, label = {}, None
-    for ln in (body or "").replace("\r\n", "\n").split("\n"):
-        m = re.match(r"^###\s+(.+?)\s*$", ln)
-        if m:
-            label = m.group(1)
-            out[label] = []
-        elif label:
-            out[label].append(ln)
-    return {k: ("" if "\n".join(v).strip() == "_No response_" else "\n".join(v).strip()) for k, v in out.items()}
-
-
 # --- fetch -------------------------------------------------------------------------------
 class NoAuthElsewhere(urllib.request.HTTPRedirectHandler):
     """Attachments redirect to a signed storage URL, which rejects a second credential."""
@@ -153,16 +133,7 @@ def fetch():
     if REPO:
         ensure_label()
     body = os.environ.get("ISSUE_BODY", "")
-    answers = fields(body)
     remember(kind=KIND)
-    if KIND == "papers":
-        name, dois = answers.get(NAME_FIELD, ""), answers.get(DOIS_FIELD, "")
-        if name and dois:
-            replace = bool(re.search(r"^\s*-\s*\[[xX]\]", answers.get(REPLACE_FIELD, ""), re.M))
-            remember(stage="fetched", lane="papers", name=name, dois=dois, replace=replace)
-            return output(lane="papers")
-        remember(stage="fetch", problem="papers_missing")
-        return output(lane="")
     urls = ATTACHMENT.findall(body)
     if not urls:
         remember(stage="fetch", problem="no_zip")
@@ -187,14 +158,8 @@ def fetch():
 
 # --- check and apply -------------------------------------------------------------------------
 def add_person(dry_run):
-    s = state()
-    cmd = [sys.executable, os.path.join(ROOT, "scripts", "add-person.py"), "--report", REPORT]
-    if s.get("lane") == "papers":
-        cmd += ["--add-papers", s["name"], "--dois", s["dois"]]
-        if s.get("replace"):
-            cmd.append("--replace-preprints")
-    else:
-        cmd += ["--zip", ZIP, "--expect", KIND]
+    cmd = [sys.executable, os.path.join(ROOT, "scripts", "add-person.py"), "--report", REPORT,
+           "--zip", ZIP, "--expect", KIND]
     run = subprocess.run(cmd + (["--dry-run"] if dry_run else []), capture_output=True, text=True)
     print(run.stdout, run.stderr)
     try:
@@ -232,8 +197,7 @@ def apply():
 # --- the pull request ------------------------------------------------------------------------
 def pr_title(e):
     name = e.get("name") or "a lab member"
-    return {"new": f"Add {name} to the website", "update": f"Update {name}'s profile",
-            "papers": f"Add papers to {name}'s profile"}[e.get("kind", "new")]
+    return {"new": f"Add {name} to the website", "update": f"Update {name}'s profile"}[e.get("kind", "new")]
 
 
 def pr_body(e):
@@ -241,9 +205,8 @@ def pr_body(e):
     photo = (f"\n\n<img src=\"{SERVER}/{REPO}/blob/{BRANCH}/content/images/people/{e['photo']}?raw=true\" "
              f"width=\"180\" alt=\"{e['name']}'s headshot\">") if e.get("photo") else ""
     what = {"new": f"Adds **{e['name']}** ({e.get('role') or 'no role given'}) to the website",
-            "update": f"Updates **{e['name']}**'s profile", "papers": f"Adds papers to **{e['name']}**'s profile"}[kind]
+            "update": f"Updates **{e['name']}**'s profile"}[kind]
     changes = "".join(f"\n- {c}" for c in e.get("changes") or [])
-    papers = "".join(f"\n- {p['title'] or p['doi']} (`{p['doi']}`)" for p in e.get("papers") or [])
     replaced = "".join(f"\n- the preprint \"{r['title']}\" (`{r['preprint']}`) by `{r['published']}`"
                        for r in e.get("replaces") or [])
     notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
@@ -256,7 +219,6 @@ def pr_body(e):
     return (f"{what}, from #{ISSUE}.{photo}\n\n"
             f"- File: `{e.get('path')}`\n- Publications listed: {e.get('publications', 0)}\n"
             + (f"\n**What changes:**{changes}\n" if changes and kind != "new" else "")
-            + (f"\n**Papers added:**{papers}\n" if papers else "")
             + (f"\n**Preprints replaced** (confirmed by the member; gone from every page once this is merged):"
                f"{replaced}\n" if replaced else "")
             + (f"\n**Worth a look:**{notes}\n" if notes else "")
@@ -292,28 +254,23 @@ def pr():
 def message():
     s, run = state(), f"{SERVER}/{REPO}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
     e, stage = s.get("report", {}), s.get("stage")
-    fix = ("Fix it in the profile form, save again, then **edit this issue** and drag the new .zip into its box."
-           if s.get("lane") != "papers" else "**Edit this issue** to correct it.") + \
-          " This check runs again by itself."
+    fix = ("Fix it in the profile form, save again, then **edit this issue** and drag the new .zip into its box. "
+           "This check runs again by itself.")
     if stage == "pr" and s.get("pr_url"):
         notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
-        done = {"new": "Your profile passed its checks, and", "update": "Your changes passed their checks, and",
-                "papers": "Your papers were found, and"}[e.get("kind", "new")]
+        done = {"new": "Your profile passed its checks, and",
+                "update": "Your changes passed their checks, and"}[e.get("kind", "new")]
         return (f"Thanks, {e.get('name', '')}! {done} pull request #{s['pr_number']} makes the change: "
                 f"{', '.join(e.get('changes') or [])}. A website manager will look it over and publish it."
                 + (f"\n\nA few things they may want to check:{notes}" if notes else "") +
-                "\n\nTo change anything before then, edit this issue ("
-                + ("different DOIs" if e.get("kind") == "papers" else "attach a new .zip")
-                + "); the pull request updates by itself.")
+                "\n\nTo change anything before then, save a new .zip from the profile form and attach it "
+                "by editing this issue; the pull request updates by itself.")
     if stage == "fetch" and s.get("problem") == "no_zip":
         box, file = (("Your updated profile .zip", "…-profile-update.zip") if KIND == "update"
                      else ("Your profile .zip", "…-profile.zip"))
         return ("I couldn't find a profile .zip in this issue. **Edit this issue** and drag your "
                 f"`{file}` (from the profile form) into the *{box}* box. Once it's there, this check "
                 "runs again by itself.")
-    if stage == "fetch" and s.get("problem") == "papers_missing":
-        return ("I need both your name, as it appears on the website, and at least one DOI. **Edit this "
-                "issue** to fill them in, and this check runs again by itself.")
     if stage == "fetch" and s.get("problem") == "download":
         return ("I found your .zip but couldn't download it, so nothing has happened yet. This is a "
                 "setting on the website's side, not something you did.\n\n"

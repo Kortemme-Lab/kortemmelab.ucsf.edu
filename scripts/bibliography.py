@@ -380,7 +380,8 @@ def published_version(e):
     """The DOI of the paper that replaces this preprint, if one does.
 
     Its `relation` says which paper is its published version: from doi.org,
-    confirmed by a lab member in the profile form or the Add papers issue, or
+    confirmed by a lab member in the profile form (or by add-person.py
+    --add-papers --replace-preprints), or
     added by hand. A published version listed under `keep-preprint` doesn't
     replace it: someone asked for both to stay listed.
     """

@@ -2,14 +2,13 @@
 
 Lab members add or change their own profiles by opening a GitHub issue. A
 workflow checks what they sent and turns it into a pull request; a website
-manager merges it, and the website rebuilds itself. There are three issue
+manager merges it, and the website rebuilds itself. There are two issue
 forms (Issues > New issue):
 
 | Issue | For | What it takes |
 |---|---|---|
 | **New lab member** | someone joining | the `.zip` saved by the profile form |
-| **Add papers** | current members and alumni with new papers | their name and the DOIs; no form needed |
-| **Update my profile** | current members and alumni: any other change, or leaving the lab | the `.zip` from the form's *Update my profile* mode |
+| **Update my profile** | current members and alumni: new papers, any other change, or leaving the lab | the `.zip` from the form's *Update my profile* mode |
 
 ## What the member does
 
@@ -19,27 +18,25 @@ browser, fill it in, and click Save. They put their name in the issue's title,
 drag in the `.zip`, tick that they're happy for it to be published, and click
 Create.
 
-**Adding new papers:** they open *Add papers*, fill in their name as it
-appears on the website, paste the DOIs (or arXiv IDs), and click Create. No
-form, no download.
-
-**Changing anything else** (position, summary, photo, links, removing a
-paper):
+**Adding papers, or changing anything else** (position, summary, photo,
+links, removing a paper):
 1. They open *Update my profile*, which links to their profile file. They
    find their name among the current members or alumni and download it.
 2. In the profile form they choose **Update my profile** and pick that file.
    Every field fills in, with their papers listed and ticked.
-3. They change what they like and save. The `.zip` is named
+3. They change what they like, adding new papers from ORCID or by DOI, and
+   save. If a new paper is the published version of a preprint, the form asks
+   whether it replaces the preprint. The `.zip` is named
    `their-name-profile-update.zip`. They drag it into the issue.
 
-**Leaving the lab:** the same as changing anything else, but in the form they
+**Leaving the lab:** the same, but in the form they
 tick **I've left the lab, or I'm leaving it** and give the year and what
 they're doing next. The pull request moves their profile to Lab Alumni.
 
 Either way, a reply appears on the issue within a minute or two. It either
 links to the pull request and sums up what changes, or says what to fix. To
-fix something, they edit the issue (a new `.zip`, different DOIs). The check
-runs again, and the pull request updates itself.
+fix something, they edit the issue and attach a new `.zip`. The check runs
+again, and the pull request updates itself.
 
 ## What the website manager does
 
@@ -63,12 +60,11 @@ so putting your own account into someone else's `.zip` doesn't get past it.
 
 ## What happens in between
 
-`.github/workflows/profile-submission.yml` runs when any of the three is
-opened, edited or reopened. It uses `scripts/profile-issue.py` for the GitHub
+`.github/workflows/profile-submission.yml` runs when either is opened,
+edited or reopened. It uses `scripts/profile-issue.py` for the GitHub
 parts and `scripts/add-person.py` for the rest:
 
-1. **Read the issue.** It finds the newest `.zip` attached and downloads it.
-   For Add papers, it reads the name and DOIs instead.
+1. **Get the .zip.** It finds the newest `.zip` attached and downloads it.
 2. **Check the submission,** as `add-person.py --dry-run` would. A new
    profile mustn't exist yet. An update must match a profile that does exist,
    and must actually change something. A `.zip` from the wrong mode is turned
@@ -80,15 +76,15 @@ parts and `scripts/add-person.py` for the rest:
    the photo unless a new one was sent. A replaced photo's old file is
    removed. A profile given an end year moves to `content/alumni/`. Its file
    name, and so its web address, never changes. Papers are checked at doi.org.
-   When the member confirms that a published paper replaces a preprint (in
-   the profile form's question, or with the *Replacing preprints* box on Add
-   papers), the preprint is linked to it in `content/bibliography.json`, but
-   only if the published paper's DOI record names that preprint. The
-   preprint then disappears from every page. Then the publication lists are redrawn. Then the whole site is built, to be
-   sure it still works. Only `content/` is committed; `docs/` is rebuilt
+   When the member confirms, in the profile form's question, that a published
+   paper replaces a preprint, the preprint is linked to it in
+   `content/bibliography.json`, but only if the published paper's DOI record
+   names that preprint. The preprint then disappears from every page. Then
+   the publication lists are redrawn, and the whole site is built, to be sure
+   it still works. Only `content/` is committed; `docs/` is rebuilt
    after merging, so two pull requests can't collide in the generated pages.
-4. **Open the pull request:** "Add Jane Doe to the website", "Update Jane
-   Doe's profile" or "Add papers to Jane Doe's profile". It shows what changes,
+4. **Open the pull request:** "Add Jane Doe to the website" or "Update Jane
+   Doe's profile". It shows what changes, any preprints it replaces,
    the photo, the identity check, anything worth a look, and "Closes #N".
 5. **Comment on the issue** with the result. It's always one comment, updated
    each time.
@@ -108,7 +104,7 @@ parts and `scripts/add-person.py` for the rest:
    the repository to a GitHub **organization** (free) fixes this: there,
    members can be given **Read** access, which is enough to open issues but
    not to push. See *Next steps* below.
-3. **Try it once** yourself, with each of the three issues. To make a test `.zip`
+3. **Try it once** yourself, with each of the two issues. To make a test `.zip`
    in the form, use ORCID's test researcher, Josiah Carberry
    (0000-0002-1825-0097), or load and change your own profile. Then close the
    pull requests without merging and delete their branches.
@@ -162,8 +158,10 @@ The `.zip` and the issue text come from outside, so:
   workflow has already built the site with the change, and `build-site.yml`
   runs after the merge.
 - **Without a GitHub account,** members can still email the `.zip` to a
-  website manager, who runs `python3 scripts/add-person.py --zip …`. Papers can
-  be added with `python3 scripts/add-person.py --add-papers "Jane Doe" --dois "10.…"`.
+  website manager, who runs `python3 scripts/add-person.py --zip …`. A manager
+  can also add papers by hand, with `python3 scripts/add-person.py --add-papers
+  "Jane Doe" --dois "10.…"` (add `--replace-preprints` if one replaces a
+  preprint on the website).
 - **Cost:** GitHub's free plan includes 2,000 Actions minutes a month for
   private repositories. A submission takes about two minutes, a rebuild about
   one.
