@@ -17,7 +17,7 @@ collects emails) is ignored.
 | 4 | **Graduate program or department** | Short answer | No | e.g. "Biophysics", "Bioengineering", "Tetrad". |
 | 5 | **Year you joined the lab** | Short answer (number, 2000–2100) | Yes | e.g. 2026 |
 | 6 | **Co-mentors** | Short answer | No | If you're co-mentored, who by. Separate names with commas. |
-| 7 | **Research summary** (1–3 sentences) | Paragraph | Yes | What you work on, in plain language. Shown under your name. |
+| 7 | **Research summary** (one sentence) | Paragraph | Yes | What you work on, in plain language. Shown under your name. |
 | 8 | **Longer bio** | Paragraph | No | Anything else you'd like on your profile. |
 | 9 | **Education** | Paragraph | No | One degree per line, written out: "Bachelor of Science, Chemical Engineering, Northwestern University". |
 | 10 | **Headshot photo** | File upload (1 file, images only, 10 MB) | No | A clear, recent headshot, at least 400 × 400 pixels. JPG or PNG; iPhone HEIC photos need converting first. |

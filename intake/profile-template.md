@@ -17,7 +17,7 @@ years_in_lab: "2026-present"
 # current_position: "Assistant Professor, Example University"
 # e.g. ["Mike Keiser"]
 co_mentors: []
-summary: "One to three sentences on what Jane works on."
+summary: "One sentence on what Jane works on."
 # Relative to content/. add-person.py copies the headshot here.
 photo: "images/people/jane-q-doe.jpg"
 # Only if they agreed to show it.

@@ -83,7 +83,7 @@ your browser until you save, so you can stop and come back.
 3. Fill in **About you**: your name as it should appear on the website, your
    pronouns if you'd like them shown, your role, your program, the year you
    joined, and any co-mentors.
-4. Write a **research summary** (one to three sentences, shown under your name),
+4. Write a **research summary** (one sentence on what you work on, shown under your name),
    and optionally a longer bio. Then list your **education**, one degree per
    line, written out: `Bachelor of Science, Chemical Engineering, Northwestern University`.
 5. Add a **headshot**: a clear, recent JPG or PNG, ideally at least 400 × 400
