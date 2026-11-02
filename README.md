@@ -143,8 +143,8 @@ kortemmelab.ucsf.edu/
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
-├── .github/               on GitHub: the New lab member and Update my profile issue
-│                          forms, and workflows that rebuild docs/ after each push
+├── .github/               on GitHub: the New lab member, Add papers and Update my
+│                          profile issue forms, and workflows that rebuild docs/ after each push
 │                          (build-site.yml) and turn those issues into pull requests
 │                          (profile-submission.yml)
 └── archive/               the old site and how it was copied; for reference only
@@ -340,10 +340,10 @@ push: GitHub rebuilds it (below).
 
 ### Updating a profile, and leaving the lab
 
-Current members and alumni open an **Update my profile** issue. To add new
-papers, they just type their name and the DOIs. For anything else, they load
-their current profile into the profile form (in its *Update my profile*
-mode), change it, and attach the `.zip`. The form's **I've left the lab, or
+Current members and alumni add new papers with an **Add papers** issue: just
+their name and the DOIs. For anything else they open **Update my profile**:
+they load their current profile into the profile form (in its *Update my
+profile* mode), change it, and attach the `.zip`. The form's **I've left the lab, or
 I'm leaving it** option takes the year and what they're doing next, and the
 pull request moves them to Lab Alumni. A workflow opens the pull request;
 you merge it. How it works, the identity check, and setup are in

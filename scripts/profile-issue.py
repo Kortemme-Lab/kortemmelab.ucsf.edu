@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
-"""The GitHub side of profile submissions: "New lab member" and "Update my profile" issues.
+"""The GitHub side of profile submissions: "New lab member", "Update my profile" and "Add papers" issues.
 
 Run by .github/workflows/profile-submission.yml, one step at a time:
 
-    fetch     read the issue: find its profile .zip and download it, or (for an
-              update) its list of new papers
+    fetch     read the issue: find its profile .zip and download it, or (for
+              Add papers) the name and DOIs typed into it
     check     check the submission, as add-person.py --dry-run does
     apply     make the change for real, on the branch the workflow has checked out
     pr        open, or update, the pull request for that branch
     comment   report back on the issue: the pull request, or what to fix
 
-There are three kinds of submission, all reviewed the same way:
-  - a new profile: a .zip from the profile form, on a New lab member issue
-  - an update: a .zip from the form's "Update my profile" mode, merged into
-    the existing profile (which moves to Lab Alumni if it gives an end year)
-  - new papers only: a name and some DOIs typed into an Update my profile issue
+There are three kinds of submission, one per issue form, all reviewed the same way:
+  - new: a .zip from the profile form, on a New lab member issue
+  - update: a .zip from the form's "Update my profile" mode, on an Update my
+    profile issue, merged into the existing profile (which moves to Lab
+    Alumni if it gives an end year)
+  - papers: a name and some DOIs typed into an Add papers issue
 
 Everything from the issue reaches this script through environment variables
 and is only ever parsed here, never placed in a shell command. The steps
@@ -35,11 +36,12 @@ SERVER = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
 ISSUE = os.environ.get("ISSUE_NUMBER", "")
 AUTHOR = os.environ.get("ISSUE_AUTHOR", "")
-KIND = "update" if os.environ.get("SUBMISSION_KIND") == "update" else "new"
+KIND = os.environ.get("SUBMISSION_KIND") if os.environ.get("SUBMISSION_KIND") in ("update", "papers") else "new"
 BASE = os.environ.get("BASE_BRANCH", "main")
 BRANCH = f"profile/issue-{ISSUE}"
 LABELS = {"new": ("new-member", "A new lab member's profile"),
-          "update": ("profile-update", "A change to a lab member's profile")}
+          "update": ("profile-update", "A change to a lab member's profile"),
+          "papers": ("add-papers", "New papers for a lab member's profile")}
 MARKER = "<!-- profile-submission-bot -->"       # finds this workflow's own comment again
 MAX_BYTES = 20_000_000
 # An attachment dragged into an issue: user-attachments/files/<id>/<name>.zip,
@@ -48,7 +50,7 @@ ATTACHMENT = re.compile(r"https://github\.com/(?:user-attachments/files/\d+|[\w.
                         r"/[^\s)\]\"'<>]+?\.zip", re.I)
 # The issue forms' field labels (.github/ISSUE_TEMPLATE/*.yml), which head each answer
 NAME_FIELD = "Your name as it appears on the website"
-DOIS_FIELD = "New papers (DOIs)"
+DOIS_FIELD = "Papers to add (DOIs)"
 
 
 # --- shared state, outputs, the GitHub API -------------------------------------------
@@ -152,13 +154,16 @@ def fetch():
     body = os.environ.get("ISSUE_BODY", "")
     answers = fields(body)
     remember(kind=KIND)
-    urls = ATTACHMENT.findall(body)
-    if not urls:
+    if KIND == "papers":
         name, dois = answers.get(NAME_FIELD, ""), answers.get(DOIS_FIELD, "")
-        if KIND == "update" and name and dois:
+        if name and dois:
             remember(stage="fetched", lane="papers", name=name, dois=dois)
             return output(lane="papers")
-        remember(stage="fetch", problem="nothing" if KIND == "update" else "no_zip")
+        remember(stage="fetch", problem="papers_missing")
+        return output(lane="")
+    urls = ATTACHMENT.findall(body)
+    if not urls:
+        remember(stage="fetch", problem="no_zip")
         return output(lane="")
     url, tried = urls[-1], []                # the newest attachment, if there are several
     for name in ("GH_TOKEN", "INTAKE_TOKEN"):
@@ -289,16 +294,18 @@ def message():
         return (f"Thanks, {e.get('name', '')}! {done} pull request #{s['pr_number']} makes the change: "
                 f"{', '.join(e.get('changes') or [])}. A website manager will look it over and publish it."
                 + (f"\n\nA few things they may want to check:{notes}" if notes else "") +
-                "\n\nTo change anything before then, edit this issue (with a new .zip, or different DOIs); "
-                "the pull request updates by itself.")
+                "\n\nTo change anything before then, edit this issue ("
+                + ("different DOIs" if e.get("kind") == "papers" else "attach a new .zip")
+                + "); the pull request updates by itself.")
     if stage == "fetch" and s.get("problem") == "no_zip":
+        box, file = (("Your updated profile .zip", "…-profile-update.zip") if KIND == "update"
+                     else ("Your profile .zip", "…-profile.zip"))
         return ("I couldn't find a profile .zip in this issue. **Edit this issue** and drag your "
-                "`…-profile.zip` (from the profile form) into the *Your profile .zip* box. Once it's "
-                "there, this check runs again by itself.")
-    if stage == "fetch" and s.get("problem") == "nothing":
-        return ("I couldn't find anything to change yet. **Edit this issue** and either fill in your name "
-                "and some DOIs (to add papers), or drag in the `.zip` from the profile form's *Update my "
-                "profile* mode (to change anything else). This check runs again by itself.")
+                f"`{file}` (from the profile form) into the *{box}* box. Once it's there, this check "
+                "runs again by itself.")
+    if stage == "fetch" and s.get("problem") == "papers_missing":
+        return ("I need both your name, as it appears on the website, and at least one DOI. **Edit this "
+                "issue** to fill them in, and this check runs again by itself.")
     if stage == "fetch" and s.get("problem") == "download":
         return ("I found your .zip but couldn't download it, so nothing has happened yet. This is a "
                 "setting on the website's side, not something you did.\n\n"

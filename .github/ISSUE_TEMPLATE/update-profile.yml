@@ -1,18 +1,14 @@
 name: Update my profile
-description: Change your profile on the lab website, add new papers, or tell us you're leaving the lab. Alumni too.
+description: Change your profile on the lab website, or tell us you're leaving the lab. Current members and alumni.
 title: "Profile update: "
 labels: ["profile-update"]
 body:
   - type: markdown
     attributes:
       value: |
-        Put your name in the title above, then do **one** of these.
+        **Just adding new papers?** Use **Add papers** instead. It only needs your name and the DOIs.
 
-        ## Just adding new papers?
-
-        Fill in your name and the papers' DOIs below and click **Create**. You don't need the profile form.
-
-        ## Changing anything else, or leaving the lab?
+        ## 1. Make your changes
 
         1. **Download your current profile:** find your name among the
            [current members](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/current-members)
@@ -21,40 +17,29 @@ body:
         2. **Get the [profile form](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**
            the same way, and open the downloaded `profile-form.html` in your browser.
         3. In the form, choose **Update my profile** and pick the profile file you downloaded. Everything fills in.
-           Change what you like: your position, summary, photo, papers. If you're leaving the lab, tick
-           **I've left the lab, or I'm leaving it** and give the year and what you're doing next.
-        4. Click **Save my profile**, and drag the `.zip` it gives you into the box below.
+           Change what you like: your position, summary, photo, links, papers. If you're leaving the lab,
+           tick **I've left the lab, or I'm leaving it** and give the year and what you're doing next.
+        4. Click **Save my profile**. You'll get one file, `your-name-profile-update.zip`.
 
-        A check runs straight away and replies on this issue, usually within two minutes. A website manager
-        then reviews the change and publishes it.
-  - type: input
-    id: name
-    attributes:
-      label: Your name as it appears on the website
-      placeholder: Jane Q. Doe
-    validations:
-      required: true
-  - type: textarea
-    id: dois
-    attributes:
-      label: New papers (DOIs)
-      description: Just adding papers? One per line. A DOI (`10.1126/science.abc0881`), a doi.org link, or an arXiv ID (`arXiv:2204.13048`).
-    validations:
-      required: false
+        ## 2. Attach it here
+
+        Put your name in the title above, drag the `.zip` into the box below, and click **Create**.
+        A check runs straight away and replies on this issue, usually within two minutes. A website
+        manager then reviews the change and publishes it.
   - type: textarea
     id: profile
     attributes:
       label: Your updated profile .zip
-      description: Changing anything else? Drag the `.zip` from the profile form into this box.
+      description: Drag `your-name-profile-update.zip` into this box, or click here and then the paperclip to attach it.
       placeholder: Drop your .zip here
     validations:
-      required: false
+      required: true
   - type: checkboxes
     id: consent
     attributes:
       label: Publishing
       options:
-        - label: I'm happy for my updated profile to be published on the lab website.
+        - label: I'm happy for my updated profile, including my photo, to be published on the lab website.
           required: true
   - type: textarea
     id: notes

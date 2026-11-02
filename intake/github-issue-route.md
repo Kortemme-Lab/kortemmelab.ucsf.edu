@@ -2,13 +2,14 @@
 
 Lab members add or change their own profiles by opening a GitHub issue. A
 workflow checks what they sent and turns it into a pull request; a website
-manager merges it, and the website rebuilds itself. There are two issue forms
-(Issues > New issue):
+manager merges it, and the website rebuilds itself. There are three issue
+forms (Issues > New issue):
 
-| Issue | For | What they attach |
+| Issue | For | What it takes |
 |---|---|---|
 | **New lab member** | someone joining | the `.zip` saved by the profile form |
-| **Update my profile** | current members *and* alumni: any change, new papers, or leaving the lab | either just their name and some DOIs, or the `.zip` from the form's *Update my profile* mode |
+| **Add papers** | current members and alumni with new papers | their name and the DOIs; no form needed |
+| **Update my profile** | current members and alumni: any other change, or leaving the lab | the `.zip` from the form's *Update my profile* mode |
 
 ## What the member does
 
@@ -18,8 +19,8 @@ browser, fill it in, and click Save. They put their name in the issue's title,
 drag in the `.zip`, tick that they're happy for it to be published, and click
 Create.
 
-**Adding new papers:** they open *Update my profile*, fill in their name as
-it appears on the website, paste the DOIs (or arXiv IDs), and click Create. No
+**Adding new papers:** they open *Add papers*, fill in their name as it
+appears on the website, paste the DOIs (or arXiv IDs), and click Create. No
 form, no download.
 
 **Changing anything else** (position, summary, photo, links, removing a
@@ -62,12 +63,12 @@ so putting your own account into someone else's `.zip` doesn't get past it.
 
 ## What happens in between
 
-`.github/workflows/profile-submission.yml` runs when either kind of issue is
+`.github/workflows/profile-submission.yml` runs when any of the three is
 opened, edited or reopened. It uses `scripts/profile-issue.py` for the GitHub
 parts and `scripts/add-person.py` for the rest:
 
 1. **Read the issue.** It finds the newest `.zip` attached and downloads it.
-   For an update with no `.zip`, it reads the name and DOIs instead.
+   For Add papers, it reads the name and DOIs instead.
 2. **Check the submission,** as `add-person.py --dry-run` would. A new
    profile mustn't exist yet. An update must match a profile that does exist,
    and must actually change something. A `.zip` from the wrong mode is turned
@@ -103,7 +104,7 @@ parts and `scripts/add-person.py` for the rest:
    the repository to a GitHub **organization** (free) fixes this: there,
    members can be given **Read** access, which is enough to open issues but
    not to push. See *Next steps* below.
-3. **Try it once** yourself, with each kind of issue. To make a test `.zip`
+3. **Try it once** yourself, with each of the three issues. To make a test `.zip`
    in the form, use ORCID's test researcher, Josiah Carberry
    (0000-0002-1825-0097), or load and change your own profile. Then close the
    pull requests without merging and delete their branches.
