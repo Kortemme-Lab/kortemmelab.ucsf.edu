@@ -2,11 +2,11 @@
 title: "Robotics-inspired Loop Reconstruction - KORTEMME LAB @ UCSF"
 slug: robotics-inspired-loop-reconstruction
 source_url: https://kortemmelab.ucsf.edu/robotics-inspired-loop-reconstruction.html
-mirror_file: site/robotics-inspired-loop-reconstruction.html
+mirror_file: archive/site/robotics-inspired-loop-reconstruction.html
 word_count: 318
 reachable_from_home: false
 images:
-  - site/images/4611761.png
+  - archive/site/images/4611761.png
 external_links:
   - http://dx.doi.org/10.1038/nmeth0809-551
 ---

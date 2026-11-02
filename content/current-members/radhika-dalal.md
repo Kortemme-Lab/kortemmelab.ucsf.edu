@@ -19,7 +19,7 @@ publications:
   - "10.1038/s41563-023-01683-1"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---radhika-dalal.html"
-mirror_file: "site/current---radhika-dalal.html"
+mirror_file: "archive/site/current---radhika-dalal.html"
 ---
 
 ## Publications

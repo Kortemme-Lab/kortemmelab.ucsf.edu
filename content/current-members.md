@@ -2,31 +2,31 @@
 title: "Current Members - KORTEMME LAB @ UCSF"
 slug: current-members
 source_url: https://kortemmelab.ucsf.edu/current-members.html
-mirror_file: site/current-members.html
+mirror_file: archive/site/current-members.html
 word_count: 945
 reachable_from_home: true
 images:
-  - site/images/1465620080.png
-  - site/images/crilly-01_orig.png
-  - site/images/img-2227.jpeg
-  - site/images/yilun.jpg
-  - site/images/kosuke.jpg
-  - site/images/meytal.jpg
-  - site/images/dom.jpg
-  - site/images/profile-pic-cropped_orig.jpeg
-  - site/images/img-0039.png
-  - site/images/img-9851.jpg
-  - site/images/img-2629.jpg
-  - site/images/20221022-144959-original-cp.jpeg
-  - site/images/293203951-984801102214879-1510324211296992793-n.jpg
-  - site/images/dru.jpg
-  - site/images/kevin.jpg
-  - site/images/slice-1.jpg
-  - site/images/yg-photo_orig.jpeg
-  - site/images/screen-shot-2024-09-13-at-1-03-04-pm.png
-  - site/images/dorer-tobias-2024-ibg-08.png
-  - site/images/camila_orig.jpg
-  - site/images/cv-photo-4_orig.jpg
+  - archive/site/images/1465620080.png
+  - archive/site/images/crilly-01_orig.png
+  - archive/site/images/img-2227.jpeg
+  - archive/site/images/yilun.jpg
+  - archive/site/images/kosuke.jpg
+  - archive/site/images/meytal.jpg
+  - archive/site/images/dom.jpg
+  - archive/site/images/profile-pic-cropped_orig.jpeg
+  - archive/site/images/img-0039.png
+  - archive/site/images/img-9851.jpg
+  - archive/site/images/img-2629.jpg
+  - archive/site/images/20221022-144959-original-cp.jpeg
+  - archive/site/images/293203951-984801102214879-1510324211296992793-n.jpg
+  - archive/site/images/dru.jpg
+  - archive/site/images/kevin.jpg
+  - archive/site/images/slice-1.jpg
+  - archive/site/images/yg-photo_orig.jpeg
+  - archive/site/images/screen-shot-2024-09-13-at-1-03-04-pm.png
+  - archive/site/images/dorer-tobias-2024-ibg-08.png
+  - archive/site/images/camila_orig.jpg
+  - archive/site/images/cv-photo-4_orig.jpg
 external_links:
   - http://profiles.ucsf.edu/tanja.kortemme
   - https://profiles.ucsf.edu/stephanie.crilly

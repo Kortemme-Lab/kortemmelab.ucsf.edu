@@ -2,7 +2,7 @@
 title: "Research - KORTEMME LAB @ UCSF"
 slug: research
 source_url: https://kortemmelab.ucsf.edu/research.html
-mirror_file: site/research.html
+mirror_file: archive/site/research.html
 word_count: 265
 reachable_from_home: false
 ---

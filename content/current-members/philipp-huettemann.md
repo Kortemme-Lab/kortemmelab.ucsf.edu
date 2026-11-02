@@ -21,7 +21,7 @@ publications:
   - "10.1016/j.bpj.2019.07.028"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---philipp-huettemann.html"
-mirror_file: "site/current---philipp-huettemann.html"
+mirror_file: "archive/site/current---philipp-huettemann.html"
 ---
 
 ## Publications

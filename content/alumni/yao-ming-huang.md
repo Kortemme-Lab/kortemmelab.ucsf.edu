@@ -19,7 +19,7 @@ publications:
   - "10.1126/science.aax8780"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---yao-ming-huang.html"
-mirror_file: "site/alumni---yao-ming-huang.html"
+mirror_file: "archive/site/alumni---yao-ming-huang.html"
 ---
 
 ## Publications

@@ -2,11 +2,11 @@
 title: "Reprogramming an ATPase into Light-gated Nanocage - KORTEMME LAB @ UCSF"
 slug: reprogramming-an-atpase-into-light-gated-nanocage
 source_url: https://kortemmelab.ucsf.edu/reprogramming-an-atpase-into-light-gated-nanocage.html
-mirror_file: site/reprogramming-an-atpase-into-light-gated-nanocage.html
+mirror_file: archive/site/reprogramming-an-atpase-into-light-gated-nanocage.html
 word_count: 314
 reachable_from_home: false
 images:
-  - site/images/9132292.jpg
+  - archive/site/images/9132292.jpg
 external_links:
   - http://dx.doi.org/10.1038/nnano.2013.242
 ---

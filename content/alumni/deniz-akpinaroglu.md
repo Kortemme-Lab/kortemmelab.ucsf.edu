@@ -24,7 +24,7 @@ publications:
   - "10.1101/2023.12.15.571823"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---deniz-akpinaroglu.html"
-mirror_file: "site/alumni---deniz-akpinaroglu.html"
+mirror_file: "archive/site/alumni---deniz-akpinaroglu.html"
 ---
 *NSF GRFP Fellow*
 

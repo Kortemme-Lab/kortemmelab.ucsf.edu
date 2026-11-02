@@ -2,12 +2,12 @@
 title: "KORTEMME LAB @ UCSF - Home"
 slug: index
 source_url: https://kortemmelab.ucsf.edu/index.html
-mirror_file: site/index.html
+mirror_file: archive/site/index.html
 word_count: 463
 reachable_from_home: true
 images:
-  - site/images/img-9647-2.png
-  - site/images/website-img_orig.jpg
+  - archive/site/images/img-9647-2.png
+  - archive/site/images/website-img_orig.jpg
 external_links:
   - https://doi.org/10.1016/j.cels.2023.01.003
   - https://doi.org/10.1016/j.cell.2023.12.028

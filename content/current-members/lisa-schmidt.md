@@ -23,7 +23,7 @@ publications:
   - "10.1016/j.jmb.2021.167387"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---lisa-schmidt.html"
-mirror_file: "site/current---lisa-schmidt.html"
+mirror_file: "archive/site/current---lisa-schmidt.html"
 ---
 Max Planck Institute for Multidisciplinary Sciences, Göttingen
 

@@ -26,7 +26,7 @@ publications:
   - "10.1038/s41422-019-0255-3"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---yilun-qi.html"
-mirror_file: "site/current---yilun-qi.html"
+mirror_file: "archive/site/current---yilun-qi.html"
 ---
 
 ## Publications

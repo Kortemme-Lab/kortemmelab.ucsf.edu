@@ -19,7 +19,7 @@ publications:
   - "10.1073/pnas.1410624111"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---joel-karpiak.html"
-mirror_file: "site/alumni---joel-karpiak.html"
+mirror_file: "archive/site/alumni---joel-karpiak.html"
 ---
 
 ## Publications

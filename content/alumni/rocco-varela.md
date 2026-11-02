@@ -19,7 +19,7 @@ publications:
   - "10.1371/journal.pcbi.1002639"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---rocco-varela.html"
-mirror_file: "site/alumni---rocco-varela.html"
+mirror_file: "archive/site/alumni---rocco-varela.html"
 ---
 
 ## Publications

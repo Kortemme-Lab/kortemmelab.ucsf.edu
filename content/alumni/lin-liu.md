@@ -20,7 +20,7 @@ publications:
   - "10.1126/science.abc0881"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---lin-liu.html"
-mirror_file: "site/alumni---lin-liu.html"
+mirror_file: "archive/site/alumni---lin-liu.html"
 ---
 
 ## Publications

@@ -24,7 +24,7 @@ publications:
   - "10.1073/pnas.0608127103"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---greg-friedland.html"
-mirror_file: "site/alumni---greg-friedland.html"
+mirror_file: "archive/site/alumni---greg-friedland.html"
 ---
 
 ## Publications

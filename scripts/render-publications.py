@@ -12,34 +12,29 @@
   and on the Publications page. Pass --check-preprints to ask doi.org again
   whether any listed preprint has since been published.
 
-Everything is in Nature reference style, and is written both into the page in
-site/ and into its Markdown in content/, between `publications:start` and
-`publications:end` markers -- so a list is redrawn without touching anything
-else on the page.
+Everything is in Nature reference style, and is written into each Markdown
+file in content/, between `publications:start` and `publications:end`
+markers -- so a list is redrawn without touching anything else in the file.
+Then run build-site.py to put the lists on the website.
 
 To add a paper, add its DOI to the `publications:` list of each lab member who
 wrote it and run this; DOIs not yet in the bibliography are looked up
 automatically. Papers with Tanja as an author appear on the Publications page
 by themselves.
 
-Also writes structure/papers.csv. Idempotent.
+Idempotent.
 """
-import argparse, csv, os, re, sys
+import argparse, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
-from extract import ROOT
 
-SITE = os.path.join(ROOT, "site")
-CONTENT = os.path.join(ROOT, "content")
+CONTENT = os.path.join(bib.ROOT, "content")
 PI = ("Kortemme", "T")
-PI_PAGE = "site/current---tanja-kortemme.html"
+PI_ROLE = "Principal Investigator"   # whose list is kept complete
 CO_FIRST_NOTE = "* Co-first authors"
 PUBS_AUTHORS = 5          # the Publications page lists this many, then "et al."
 MARKERS = re.compile(r"<!--\s*publications:start.*?<!--\s*publications:end\s*-->", re.S)
-HTML_START = ("<!-- publications:start (generated from content/bibliography.json "
-              "by scripts/render-publications.py) -->")
-HTML_END = "<!-- publications:end -->"
 MD_NOTE = ("<!-- Generated from content/bibliography.json by scripts/render-publications.py. "
            "To change this list, edit `publications:` in this file's header. -->")
 PUBS_NOTE = ("<!-- Generated from content/bibliography.json by scripts/render-publications.py: "
@@ -48,7 +43,7 @@ PUBS_NOTE = ("<!-- Generated from content/bibliography.json by scripts/render-pu
 
 # --- what to draw -----------------------------------------------------------
 def people():
-    """Content files that carry a publications list: (path, ids, site page)."""
+    """Content files that carry a publications list: (path, ids, is the PI's)."""
     found = []
     for dirpath, _, files in os.walk(CONTENT):
         for fn in sorted(files):
@@ -58,7 +53,7 @@ def people():
             text = open(path, encoding="utf-8").read()
             ids = bib.header_list(text, "publications")
             if ids is not None:
-                found.append((path, [i.lower() for i in ids], bib.header_value(text, "mirror_file")))
+                found.append((path, [i.lower() for i in ids], bib.header_value(text, "role") == PI_ROLE))
     return found
 
 
@@ -77,19 +72,15 @@ def sections_for_pi(E, superseded):
 
 
 # --- drawing ----------------------------------------------------------------
-def html_list(ids, E, limit=None):
-    return "<ol>" + "".join(f"<li>{bib.to_html(bib.nature(E[i], limit))}</li>" for i in ids) + "</ol>"
-
-
 def md_list(ids, E, limit=None):
     return "\n".join(f"{n}. {bib.to_markdown(bib.nature(E[i], limit))}" for n, i in enumerate(ids, 1))
 
 
-def with_note(ids, E, html, md, limit=None):
+def with_note(ids, E, md, limit=None):
     """Add the co-first legend under a list where a * actually shows."""
     if any(re.search(r"\.\*", bib.authors(E[i], limit)) for i in ids):
-        return html + f"<br>{CO_FIRST_NOTE}", md + "\n\n" + bib.md_escape(CO_FIRST_NOTE)
-    return html, md
+        return md + "\n\n" + bib.md_escape(CO_FIRST_NOTE)
+    return md
 
 
 # --- writing ------------------------------------------------------------------
@@ -100,42 +91,6 @@ def write_if_changed(path, new):
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(new)
     return "updated"
-
-
-def put_html(path, inner, whole_publications_page=False):
-    """Put a generated block where the page's papers are."""
-    raw = open(path, encoding="utf-8").read()
-    block = HTML_START + inner + HTML_END
-    if MARKERS.search(raw):
-        return write_if_changed(path, MARKERS.sub(lambda m: block, raw, count=1))
-
-    spans, kind = bib.citation_spans(raw)        # first time: find the old list
-    if not spans:
-        # No papers on the page yet. Some profiles still have Weebly's empty
-        # "Publications" heading: the list goes under it, as on the others.
-        i, j = raw.find('id="wsite-content"'), raw.find('id="footer"')
-        for m in re.finditer(r'<div class="paragraph"[^>]*>(.*?)</div>', raw[i:j], re.S):
-            if re.sub(r"<[^>]+>|&#8203;|\u200b|\s", "", m.group(1)) == "Publications":
-                at = i + m.end(1)
-                return write_if_changed(path, raw[:at] + "<br><br>" + block + raw[at:])
-        return "no list found"
-    start, end = spans[0][0], spans[-1][1]
-    if kind == "list":
-        start = max(raw.rfind("<ol", 0, start), raw.rfind("<ul", 0, start))
-        close = re.compile(r"\s*</li>\s*</(?:ol|ul)>").match(raw, end)
-        end = close.end() if close else end
-        if whole_publications_page:
-            # take in the "Pre-prints" heading that introduces the first list
-            h = re.search(r"<strong>[^<]*</strong>\s*$", raw[:start])
-            if h:
-                start = h.start()
-    else:
-        # don't cut through a heading whose closing tags trail into the first
-        # citation, as on Yulia Gutierrez's profile
-        lead = re.match(r"(?:\s*</[^>]+>)+", raw[start:end])
-        if lead:
-            start += lead.end()
-    return write_if_changed(path, raw[:start] + block + raw[end:])
 
 
 def put_md(path, body, note):
@@ -199,58 +154,40 @@ def main():
         bib.save(E)
 
     tab = {i for i, e in E.items() if bib.has_author(e, *PI) and i not in superseded}
-    for n, (path, ids, page) in enumerate(folks):
+    for n, (path, ids, is_pi) in enumerate(folks):
         new = list(dict.fromkeys(superseded.get(i, i) for i in ids))
-        if page == PI_PAGE:
+        if is_pi:
             new += sorted(tab - set(new))                     # Tanja's list: complete
         if new != ids:
             swapped += [(os.path.relpath(path, CONTENT)[:-3], i, superseded[i]) for i in ids if i in superseded]
-            if page == PI_PAGE and tab - set(ids):
+            if is_pi and tab - set(ids):
                 print(f"Tanja Kortemme's list: added {len(tab - set(ids))} papers")
             bib.set_list(path, "publications", new)
-            folks[n] = (path, new, page)
+            folks[n] = (path, new, is_pi)
 
     counts = {}
     def tally(kind, result):
         counts.setdefault(kind, {}).setdefault(result, 0)
         counts[kind][result] += 1
 
-    needs_markers, listed_on = [], {}
-    for path, ids, page in folks:
+    needs_markers = []
+    for path, ids, _ in folks:
         if not ids and not MARKERS.search(open(path, encoding="utf-8").read()):
             continue                             # no papers yet: no empty section
         ids = newest_first(list(dict.fromkeys(ids)), E)
-        rel = os.path.relpath(path, CONTENT)[:-3]
-        for i in ids:
-            listed_on.setdefault(i, []).append(rel)
-        html, md = with_note(ids, E, html_list(ids, E), md_list(ids, E))
-        if page and os.path.exists(os.path.join(ROOT, page)):
-            tally("site pages", put_html(os.path.join(ROOT, page), html))
-        r = put_md(path, md, MD_NOTE)
+        r = put_md(path, with_note(ids, E, md_list(ids, E)), MD_NOTE)
         tally("Markdown files", r)
         if r == "needs markers":
-            needs_markers.append(os.path.basename(page or "")[:-5])
+            needs_markers.append(os.path.relpath(path, CONTENT))
 
     pubs, sections = sections_for_pi(E, superseded)
     all_ids = [i for _, ids in sections for i in ids]
     L = PUBS_AUTHORS
-    html, md = with_note(all_ids, E,
-                         "<br>".join(f"<strong>{h}</strong>{html_list(ids, E, L)}" for h, ids in sections),
-                         "\n\n".join(f"### {h}\n\n{md_list(ids, E, L)}" for h, ids in sections), L)
-    tally("site pages", put_html(os.path.join(SITE, "publications.html"), html, whole_publications_page=True))
+    md = with_note(all_ids, E, "\n\n".join(f"### {h}\n\n{md_list(ids, E, L)}" for h, ids in sections), L)
     r = put_md(os.path.join(CONTENT, "publications.md"), md, PUBS_NOTE)
     tally("Markdown files", r)
     if r == "needs markers":
-        needs_markers.append("publications")
-
-    os.makedirs(os.path.join(ROOT, "structure"), exist_ok=True)
-    with open(os.path.join(ROOT, "structure", "papers.csv"), "w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
-        w.writerow(["id", "year", "type", "tanja_kortemme_author", "listed_on", "citation"])
-        for i in newest_first(list(E), E):
-            w.writerow([i, bib.year(E[i]) or "", E[i].get("type", ""),
-                        "yes" if i in pubs else "no", "; ".join(listed_on.get(i, [])),
-                        bib.to_text(bib.nature(E[i]))])
+        needs_markers.append("publications.md")
 
     print(f"bibliography: {len(E)} papers ({added} newly looked up)")
     for who, pre, pub in swapped:
@@ -264,8 +201,10 @@ def main():
         for j in unabbreviated:
             print("  ", j)
     if needs_markers:
-        print("\nThese Markdown files still hold their old list. Run once, then run this again:")
-        print("  python3 scripts/extract.py --refresh " + " ".join(sorted(needs_markers)))
+        print("\nThese files in content/ hold a hand-written list of papers. Move those papers' DOIs")
+        print("into the file's `publications:` header, delete the old list, and run this again:")
+        for f in sorted(needs_markers):
+            print("  ", f)
 
 
 if __name__ == "__main__":

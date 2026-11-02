@@ -29,7 +29,7 @@ publications:
   - "ollikainen-2009-sat-based-protein-design"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---noah-ollikainen.html"
-mirror_file: "site/alumni---noah-ollikainen.html"
+mirror_file: "archive/site/alumni---noah-ollikainen.html"
 ---
 
 ## Publications

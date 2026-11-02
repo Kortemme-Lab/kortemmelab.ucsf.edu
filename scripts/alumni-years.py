@@ -2,7 +2,7 @@
 """Copy each alumnus's years in the lab from the roster into their own file.
 
 The live site keeps those years only on the Lab Alumni roster
-(site/lab-alumni.html), not on anyone's profile. This adds them to each
+(archive/site/lab-alumni.html), not on anyone's profile. This adds them to each
 alumnus's Markdown as a `years_in_lab` frontmatter field, so the information
 travels with the person's file.
 
@@ -18,7 +18,7 @@ import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract import ROOT, content_index, content_path
 
-ROSTER = os.path.join(ROOT, "site", "lab-alumni.html")
+ROSTER = os.path.join(ROOT, "archive", "site", "lab-alumni.html")
 FIELD = "years_in_lab"
 YEARS_RE = re.compile(r"^\d{4}(?:\s*[-–—]\s*(?:\d{4}|present|now))?$", re.I)
 PROFILE_RE = re.compile(r'href="(alumni-+[^"]+)\.html"')

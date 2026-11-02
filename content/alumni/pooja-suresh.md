@@ -19,7 +19,7 @@ publications:
   - "10.1021/acs.jpcb.7b11367"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---pooja-suresh.html"
-mirror_file: "site/alumni---pooja-suresh.html"
+mirror_file: "archive/site/alumni---pooja-suresh.html"
 ---
 
 ## Publications

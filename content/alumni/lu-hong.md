@@ -26,7 +26,7 @@ publications:
   - "10.1063/1.4967274"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---lu-hong.html"
-mirror_file: "site/alumni---lu-hong.html"
+mirror_file: "archive/site/alumni---lu-hong.html"
 ---
 
 ## Publications

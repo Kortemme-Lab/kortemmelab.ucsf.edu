@@ -22,7 +22,7 @@ publications:
   - "10.1371/journal.pone.0130433"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---kale-kundert.html"
-mirror_file: "site/alumni---kale-kundert.html"
+mirror_file: "archive/site/alumni---kale-kundert.html"
 ---
 
 ## Publications

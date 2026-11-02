@@ -26,7 +26,7 @@ publications:
   - "10.1038/nmeth0809-551"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---dan-mandell.html"
-mirror_file: "site/alumni---dan-mandell.html"
+mirror_file: "archive/site/alumni---dan-mandell.html"
 ---
 
 ## Publications

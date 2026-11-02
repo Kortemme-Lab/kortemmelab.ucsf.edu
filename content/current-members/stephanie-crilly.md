@@ -27,7 +27,7 @@ publications:
   - "10.1101/2025.06.02.657515"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---stephanie-crilly.html"
-mirror_file: "site/current---stephanie-crilly.html"
+mirror_file: "archive/site/current---stephanie-crilly.html"
 ---
 
 ## Publications

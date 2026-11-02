@@ -24,7 +24,7 @@ publications:
   - "10.1002/pro.2669"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---james-lucas.html"
-mirror_file: "site/alumni---james-lucas.html"
+mirror_file: "archive/site/alumni---james-lucas.html"
 ---
 
 ## Publications

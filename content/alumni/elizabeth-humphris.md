@@ -23,7 +23,7 @@ publications:
   - "10.1371/journal.pcbi.0030164"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---elizabeth-humphris.html"
-mirror_file: "site/alumni---elizabeth-humphris.html"
+mirror_file: "archive/site/alumni---elizabeth-humphris.html"
 ---
 
 ## Publications

@@ -22,7 +22,7 @@ publications:
   - "10.1016/b978-0-12-394292-0.00006-0"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---roland-pache.html"
-mirror_file: "site/alumni---roland-pache.html"
+mirror_file: "archive/site/alumni---roland-pache.html"
 ---
 
 ## Publications

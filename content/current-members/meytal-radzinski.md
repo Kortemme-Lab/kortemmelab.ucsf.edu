@@ -27,7 +27,7 @@ publications:
   - "10.7554/elife.37623"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---meytal-radzinski.html"
-mirror_file: "site/current---meytal-radzinski.html"
+mirror_file: "archive/site/current---meytal-radzinski.html"
 ---
 *Rothschild Fellow*
 

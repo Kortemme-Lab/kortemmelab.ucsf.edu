@@ -22,7 +22,7 @@ publications:
   - "10.1016/j.biologicals.2017.09.005"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---connor-galvin.html"
-mirror_file: "site/alumni---connor-galvin.html"
+mirror_file: "archive/site/alumni---connor-galvin.html"
 ---
 
 ## Publications

@@ -2,13 +2,13 @@
 title: "Directions - KORTEMME LAB @ UCSF"
 slug: directions
 source_url: https://kortemmelab.ucsf.edu/directions.html
-mirror_file: site/directions.html
+mirror_file: archive/site/directions.html
 word_count: 431
 reachable_from_home: true
 images:
-  - site/images/1262696.png
-  - site/images/761266380.jpg
-  - site/images/622962923.jpg
+  - archive/site/images/1262696.png
+  - archive/site/images/761266380.jpg
+  - archive/site/images/622962923.jpg
 external_links:
   - http://campuslifeservices.ucsf.edu/transportation/services/shuttles/routes_timetables
   - https://www.google.com/maps/dir/San+Francisco+Airport,+San+Francisco,+CA/1700+4th+Street,+San+Francisco,+CA/@37.6923133,-122.4950598,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x808f778c55555555:0xa4f25c571acded3f!2m2!1d-122.3789554!2d37.6213129!1m5!1m1!1s0x808f7fcf444da87f:0x1760faed340b1c4a!2m2!1d-122.3914712!2d37.767294!3e3?hl=en

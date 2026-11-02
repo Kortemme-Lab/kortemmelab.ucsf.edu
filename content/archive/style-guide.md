@@ -2,13 +2,13 @@
 title: "Style Guide - KORTEMME LAB @ UCSF"
 slug: style-guide
 source_url: https://kortemmelab.ucsf.edu/style-guide.html
-mirror_file: site/style-guide.html
+mirror_file: archive/site/style-guide.html
 word_count: 53
 reachable_from_home: false
 images:
-  - site/images/3656292.jpg
-  - site/images/9336749.jpg
-  - site/images/5051441.png
+  - archive/site/images/3656292.jpg
+  - archive/site/images/9336749.jpg
+  - archive/site/images/5051441.png
 ---
 
 ## Gallery (3 images)

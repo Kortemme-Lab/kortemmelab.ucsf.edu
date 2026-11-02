@@ -2,13 +2,13 @@
 title: "Incomplete - Evolution of Structure, Function, and Network Interactions - KORTEMME LAB @ UCSF"
 slug: incomplete---evolution-of-structure-function-and-network-interactions
 source_url: https://kortemmelab.ucsf.edu/incomplete---evolution-of-structure-function-and-network-interactions.html
-mirror_file: site/incomplete---evolution-of-structure-function-and-network-interactions.html
+mirror_file: archive/site/incomplete---evolution-of-structure-function-and-network-interactions.html
 word_count: 692
 reachable_from_home: false
 images:
-  - site/images/9303810_1_orig.jpg
-  - site/images/8832895_1_orig.jpg
-  - site/images/3017990_1_orig.jpg
+  - archive/site/images/9303810_1_orig.jpg
+  - archive/site/images/8832895_1_orig.jpg
+  - archive/site/images/3017990_1_orig.jpg
 external_links:
   - http://dx.doi.org/10.1126/science.1219083
   - http://www.nature.com/msb/journal/v5/n1/full/msb20099.html

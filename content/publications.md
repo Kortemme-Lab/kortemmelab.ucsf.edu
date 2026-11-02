@@ -2,7 +2,7 @@
 title: "Publications - KORTEMME LAB @ UCSF"
 slug: publications
 source_url: https://kortemmelab.ucsf.edu/publications.html
-mirror_file: site/publications.html
+mirror_file: archive/site/publications.html
 word_count: 2940
 reachable_from_home: true
 external_links:

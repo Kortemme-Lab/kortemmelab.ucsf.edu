@@ -18,7 +18,7 @@ already had. Delete the files separately if you want them actually gone.
 import json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 
 # Top-level menu entries to drop, matched on visible label or href.
 HIDE = [

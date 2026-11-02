@@ -20,7 +20,7 @@ publications:
   - "10.1002/prot.22293"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---mariana-babor.html"
-mirror_file: "site/alumni---mariana-babor.html"
+mirror_file: "archive/site/alumni---mariana-babor.html"
 ---
 
 ## Publications

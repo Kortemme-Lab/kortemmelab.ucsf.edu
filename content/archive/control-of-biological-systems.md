@@ -2,13 +2,13 @@
 title: "Control of Biological Systems - KORTEMME LAB @ UCSF"
 slug: control-of-biological-systems
 source_url: https://kortemmelab.ucsf.edu/control-of-biological-systems.html
-mirror_file: site/control-of-biological-systems.html
+mirror_file: archive/site/control-of-biological-systems.html
 word_count: 1002
 reachable_from_home: false
 images:
-  - site/images/423345_orig.jpg
-  - site/images/186837_orig.jpg
-  - site/images/1256437_orig.jpg
+  - archive/site/images/423345_orig.jpg
+  - archive/site/images/186837_orig.jpg
+  - archive/site/images/1256437_orig.jpg
 external_links:
   - http://dx.doi.org/10.1038/nnano.2013.242
   - http://pubs.acs.org/doi/abs/10.1021/ja404992r

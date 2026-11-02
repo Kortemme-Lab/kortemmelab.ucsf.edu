@@ -2,7 +2,7 @@
 title: "Meetings - KORTEMME LAB @ UCSF"
 slug: meetings
 source_url: https://kortemmelab.ucsf.edu/meetings.html
-mirror_file: site/meetings.html
+mirror_file: archive/site/meetings.html
 word_count: 17
 reachable_from_home: true
 ---

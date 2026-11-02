@@ -11,7 +11,7 @@ Run after tidy-site.py: the strings match its formatting. Idempotent.
 import os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 
 FIXES = [
     {

@@ -18,5 +18,5 @@ education:
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---catherine-kuhn.html"
-mirror_file: "site/current---catherine-kuhn.html"
+mirror_file: "archive/site/current---catherine-kuhn.html"
 ---

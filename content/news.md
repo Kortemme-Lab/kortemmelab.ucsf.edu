@@ -2,7 +2,7 @@
 title: "News - KORTEMME LAB @ UCSF"
 slug: news
 source_url: https://kortemmelab.ucsf.edu/news.html
-mirror_file: site/news.html
+mirror_file: archive/site/news.html
 word_count: 1453
 reachable_from_home: true
 external_links:

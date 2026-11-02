@@ -139,7 +139,7 @@ publications:
   - "10.1371/journal.pcbi.1011953"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---tanja-kortemme.html"
-mirror_file: "site/current---tanja-kortemme.html"
+mirror_file: "archive/site/current---tanja-kortemme.html"
 ---
 
 ## Publications

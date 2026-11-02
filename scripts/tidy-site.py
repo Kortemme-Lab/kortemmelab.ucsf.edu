@@ -9,7 +9,7 @@ Weebly's account-sharded upload path (`uploads/7/2/7/7/72776173/published/`),
 and every page carrying the whole Weebly platform -- analytics, MathJax, a
 login system, cookie banners. This turns that into:
 
-    site/
+    archive/site/
       *.html               the pages, same filenames, so URLs match the live site
       images/              every content photo, flat
       images/backgrounds/  page background images
@@ -300,7 +300,7 @@ SAME_SITE_URL_RE = re.compile(
 
 def upstream_404s():
     """Site paths the capture saw return 404, read from the wget log."""
-    for log in (os.path.join(ROOT, "capture", "wget-mirror.log"),
+    for log in (os.path.join(ROOT, "archive", "capture", "wget-mirror.log"),
                 os.path.join(ROOT, "wget-mirror.log")):
         if os.path.exists(log):
             missing, url = set(), None
@@ -566,8 +566,8 @@ def tidy_head(html):
 def main():
     global SITE
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--site", default=os.path.join(ROOT, "site"))
-    ap.add_argument("--map", default=os.path.join(ROOT, "capture", "asset-map.csv"),
+    ap.add_argument("--site", default=os.path.join(ROOT, "archive", "site"))
+    ap.add_argument("--map", default=os.path.join(ROOT, "archive", "capture", "asset-map.csv"),
                     help="where to record old -> new paths")
     args = ap.parse_args()
     SITE = os.path.abspath(args.site)

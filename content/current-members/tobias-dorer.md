@@ -18,7 +18,7 @@ education:
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---tobias-dorer.html"
-mirror_file: "site/current---tobias-dorer.html"
+mirror_file: "archive/site/current---tobias-dorer.html"
 ---
 visiting from the Max-Planck Institute, Göttingen
 

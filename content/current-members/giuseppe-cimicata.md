@@ -26,7 +26,7 @@ publications:
   - "10.3390/antibiotics5030024"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---giuseppe-cimicata.html"
-mirror_file: "site/current---giuseppe-cimicata.html"
+mirror_file: "archive/site/current---giuseppe-cimicata.html"
 ---
 
 ## Publications

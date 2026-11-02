@@ -20,7 +20,7 @@ publications:
   - "10.1101/2025.06.02.657515"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---benjamin-orr.html"
-mirror_file: "site/alumni---benjamin-orr.html"
+mirror_file: "archive/site/alumni---benjamin-orr.html"
 ---
 
 ## Publications

@@ -2,7 +2,7 @@
 title: "Cost-benefit Tradeoffs in Engineered Lac Operons - KORTEMME LAB @ UCSF"
 slug: cost-benefit-tradeoffs-in-engineered-lac-operons
 source_url: https://kortemmelab.ucsf.edu/cost-benefit-tradeoffs-in-engineered-lac-operons.html
-mirror_file: site/cost-benefit-tradeoffs-in-engineered-lac-operons.html
+mirror_file: archive/site/cost-benefit-tradeoffs-in-engineered-lac-operons.html
 word_count: 539
 reachable_from_home: false
 external_links:

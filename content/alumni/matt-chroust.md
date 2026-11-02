@@ -19,7 +19,7 @@ publications:
   - "10.1016/j.str.2012.10.007"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---matt-chroust.html"
-mirror_file: "site/alumni---matt-chroust.html"
+mirror_file: "archive/site/alumni---matt-chroust.html"
 ---
 
 ## Publications

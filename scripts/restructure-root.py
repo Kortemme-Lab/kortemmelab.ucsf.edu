@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Flatten the wget host-directory layout into a single deployable web root.
 
-wget produces site/<host>/... per host, so index.html sits one level down and
+wget produces archive/site/<host>/... per host, so index.html sits one level down and
 reaches its Weebly CDN assets via `../cdn11.editmysite.com/...`. That renders
 over file:// but 404s the moment the site is served from a single web root
 (a local server, GitHub Pages, any static host).
 
-After this script, site/ IS the web root: the 101 pages sit at the top level
-and third-party assets live under site/_cdn/<host>/. Every reference is
+After this script, archive/site/ IS the web root: the 101 pages sit at the top level
+and third-party assets live under archive/site/_cdn/<host>/. Every reference is
 recomputed relative to the file that holds it, so nesting depth doesn't matter.
 
 Idempotent: running it again is a no-op.
@@ -15,7 +15,7 @@ Idempotent: running it again is a no-op.
 import os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 MAIN_HOST = "kortemmelab.ucsf.edu"
 CDN_HOSTS = ["cdn11.editmysite.com", "cdn2.editmysite.com", "cdn.mathjax.org"]
 CDN_DIR = "_cdn"
@@ -30,10 +30,10 @@ def main():
     cdn_root = os.path.join(SITE, CDN_DIR)
 
     if not os.path.isdir(main_dir):
-        print("already restructured (site/ is the web root)")
+        print("already restructured (archive/site/ is the web root)")
         return
 
-    # 1. third-party hosts -> site/_cdn/<host>/  (kept as siblings, so the
+    # 1. third-party hosts -> archive/site/_cdn/<host>/  (kept as siblings, so the
     #    few intra-CDN `../<other-cdn>/` refs stay correct untouched)
     os.makedirs(cdn_root, exist_ok=True)
     for host in CDN_HOSTS:
@@ -41,7 +41,7 @@ def main():
         if os.path.isdir(src):
             shutil.move(src, os.path.join(cdn_root, host))
 
-    # 2. main host contents -> site/ root
+    # 2. main host contents -> archive/site/ root
     for entry in os.listdir(main_dir):
         shutil.move(os.path.join(main_dir, entry), os.path.join(SITE, entry))
     os.rmdir(main_dir)
@@ -70,7 +70,7 @@ def main():
                     fh.write(new_text)
                 edited += 1
 
-    print(f"site/ is now the web root; rewrote CDN refs in {edited} files")
+    print(f"archive/site/ is now the web root; rewrote CDN refs in {edited} files")
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ publications:
   - "10.1002/cphc.201500838"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---benjamin-jagger.html"
-mirror_file: "site/alumni---benjamin-jagger.html"
+mirror_file: "archive/site/alumni---benjamin-jagger.html"
 ---
 
 ## Publications

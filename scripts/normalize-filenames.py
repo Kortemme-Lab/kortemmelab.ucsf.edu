@@ -10,13 +10,13 @@ in the mirrored .html/.css/.js files to match. Where several cache-busted
 variants share a base name, byte-identical ones collapse into a single file and
 genuinely different ones get a `~2`, `~3` suffix.
 
-Idempotent: running it again is a no-op. Writes capture/filename-map.csv.
+Idempotent: running it again is a no-op. Writes archive/capture/filename-map.csv.
 """
 import csv, hashlib, os, re, sys
 from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MIRROR = os.path.join(ROOT, "site")
+MIRROR = os.path.join(ROOT, "archive", "site")
 TEXT_EXT = {".html", ".htm", ".css", ".js"}
 
 
@@ -114,8 +114,8 @@ def main():
             moved += 1
             rows.append({"old": rel_old, "new": rel_new, "action": "renamed"})
 
-    os.makedirs(os.path.join(ROOT, "capture"), exist_ok=True)
-    with open(os.path.join(ROOT, "capture", "filename-map.csv"),
+    os.makedirs(os.path.join(ROOT, "archive", "capture"), exist_ok=True)
+    with open(os.path.join(ROOT, "archive", "capture", "filename-map.csv"),
               "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=["old", "new", "action"])
         w.writeheader()

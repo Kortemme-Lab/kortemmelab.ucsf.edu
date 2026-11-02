@@ -6,9 +6,11 @@ copy of the old Weebly site it came from.
 - **`docs/`** is the new website, generated from `content/` by
   `scripts/build-site.py`. Open `docs/index.html` to view it. See
   [The website](#the-website) below.
-- **`site/`** is a local copy of the old <https://kortemmelab.ucsf.edu/>,
-  captured **2026-09-03** and cleaned up. It's kept for reference and as the
-  source of the old photos; nothing in it needs editing any more.
+- **`content/`, `theme/`, `scripts/` and `intake/`** are what the website is
+  made from (see [Layout](#layout)).
+- **`archive/`** holds the copy of the old <https://kortemmelab.ucsf.edu/>,
+  captured **2026-09-03**, with the records of how it was made. The new site
+  doesn't use anything in it; it's kept for reference.
 
 The old copy, in numbers:
 
@@ -78,7 +80,7 @@ to know first:
 
 - **Pages on a private repository needs a paid GitHub plan** (Pro, Team or
   Enterprise). On a free plan the repository would have to be public, and
-  `site/` and `structure/emails.csv` hold lab members' email addresses.
+  `archive/site/` and `archive/structure/emails.csv` hold lab members' email addresses.
 - **A published site is public**, even from a private repository. That
   includes the email addresses on profiles, which the old site also showed.
 
@@ -88,11 +90,11 @@ UCSF's DNS.
 
 ### Viewing the old site
 
-Open `site/index.html` in a browser. Or serve it, which is closer to how a host
+Open `archive/site/index.html` in a browser. Or serve it, which is closer to how a host
 would serve it:
 
 ```bash
-cd site && python3 -m http.server 8899
+cd archive/site && python3 -m http.server 8899
 ```
 
 Then visit <http://localhost:8899/>. Everything is local except two live
@@ -104,44 +106,42 @@ Google Maps embed, since the old one went through Weebly.)
 
 ```
 kortemmelab.ucsf.edu/
-├── docs/                  the new website, generated: don't edit, rebuild
-├── theme/                 its look: layout.html and site.css
-├── site/                  the old website; this folder is the web root
-│   ├── *.html             100 pages, same filenames as the live site
-│   ├── images/            every photo, flat
-│   │   └── backgrounds/   page background images
-│   └── assets/
-│       ├── css/           weebly.css (platform base), theme.css (the site's
-│       │                  own theme), Raleway, slideshow, social icons
-│       ├── js/            jQuery 1.8.3, the Weebly runtime, slideshow, theme
-│       ├── fonts/         Raleway in six weights, and the social-icon font
-│       └── img/           theme and interface images
-├── content/               one Markdown file per page: the text, for a rebuild
-│   ├── bibliography.json  every paper cited on the site, keyed by DOI (see below)
-│   ├── journal-abbreviations.json   Nature-style journal abbreviations
+├── content/               everything the site says
 │   ├── *.md               the 10 pages on the site's menu
 │   ├── current-members/   one file per current lab member (20)
 │   ├── alumni/            one file per alumnus (52, plus 17 roster-only)
+│   ├── images/            every photo the pages use
+│   │   └── people/        every profile's headshot
+│   ├── bibliography.json  every paper cited on the site, keyed by DOI (see below)
+│   ├── journal-abbreviations.json   Nature-style journal abbreviations
 │   ├── rotation-students.csv   past rotation students, for Lab Alumni
-│   ├── images/people/     every profile's headshot
-│   └── archive/           pages kept but not in use (18), see below
-├── structure/             inventories for a rebuild
-│   ├── site-structure.json   navigation tree and per-page metadata
-│   ├── pages.csv             one row per page: title, word count, reachability
-│   ├── images.csv            every image a page uses, with its local path
-│   ├── papers.csv            every paper, with the pages that list it
-│   └── emails.csv            contact addresses, per page
+│   └── archive/           old pages kept but not in use (18), see below
+├── theme/                 the look: layout.html, site.css, carousel.js, fonts/
+├── scripts/               build-site.py, render-publications.py, bibliography.py
+│                          and add-person.py run the site; the rest made the
+│                          copy of the old site (see Regenerating)
 ├── intake/                adding new lab members (see below)
 │   ├── form-questions.md  the questions for the intake form
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
-├── scripts/               the pipeline that produced all of the above
-└── capture/               provenance: what was fetched, every file moved,
-                           and every original citation
+├── docs/                  the website itself, generated: don't edit, rebuild
+└── archive/               the old site and how it was copied; for reference only
+    ├── site/              the old website; this folder is its web root
+    │   ├── *.html         100 pages, same filenames as the live site
+    │   ├── images/        every photo, flat
+    │   └── assets/        Weebly's CSS and JavaScript, Raleway, theme images
+    ├── structure/         inventories of the old site
+    │   ├── site-structure.json   navigation tree and per-page metadata
+    │   ├── pages.csv             one row per page: title, word count, reachability
+    │   ├── images.csv            every image a page uses, with its local path
+    │   ├── papers.csv            every paper, with the pages that listed it
+    │   └── emails.csv            contact addresses, per page
+    └── capture/           what was fetched, every file moved, and every
+                           original citation
 ```
 
 Each content file has YAML frontmatter with the page title, its live URL, its
-file in `site/`, word count, whether it's reachable from the homepage, and the
+file in `archive/site/`, word count, whether it's reachable from the homepage, and the
 images and external links it uses.
 
 **People are filed by status.** The folder a person's file sits in *is* their
@@ -151,8 +151,7 @@ status, so when someone graduates, move their file:
 mv content/current-members/kosuke-seki.md content/alumni/
 ```
 
-Any file in `content/` stays wherever you put it, and `structure/pages.csv`
-follows it. The live site's `current---`/`alumni---` prefixes only decide where
+Any file in `content/` stays wherever you put it. The live site's `current---`/`alumni---` prefixes only decide where
 a person goes the first time their file is created. `content/current-members.md`
 and `content/lab-alumni.md` are the old roster pages' text, kept for reference;
 the new site generates both rosters from the two folders instead.
@@ -169,7 +168,7 @@ quarter they rotated rather than their years in the lab.
 
 **`content/` is safe to edit by hand.** `extract.py` never overwrites an
 existing content file unless you pass `--refresh`, which regenerates files from
-`site/` and discards your edits: all of them, or only the pages you name, as
+`archive/site/` and discards your edits: all of them, or only the pages you name, as
 in `--refresh lab-alumni`.
 
 ## Publications
@@ -209,7 +208,7 @@ python3 scripts/render-publications.py
 
 It looks the DOI up, adds the paper to the bibliography, and redraws those
 people's lists, and Tanja's list and the Publications tab if she's an author,
-in both `site/` and `content/`. Lists sit between `publications:start` and
+in `content/`; then rebuild the site. Lists sit between `publications:start` and
 `publications:end` markers; nothing outside them is touched, and anything
 edited inside them is overwritten. If a new paper's journal isn't in the
 abbreviation table, the script says so.
@@ -237,9 +236,10 @@ Worth knowing:
   2009). Its entry was made by hand from the lab's own citation.
 - **Titles appear as each publisher registered them**, so some are in Title
   Case.
-- `capture/citation-migration.csv` records every original citation, the page it
-  was on, and the entry it became. `structure/papers.csv` lists every paper and
-  the pages that list it.
+- `archive/capture/citation-migration.csv` records every original citation, the page it
+  was on, and the entry it became. `archive/structure/papers.csv` lists every paper and
+  the pages that listed it when the site moved off Weebly (it isn't kept up
+  to date).
 
 ## Adding a new lab member
 
@@ -307,7 +307,7 @@ converted by `scripts/convert-profiles.py`
 from three sources: the text of each person's old page, its email link, and
 the alumni roster. The roster supplied photos, roles and current positions
 for the 38 older alumni whose own pages held only a publication list.
-`capture/profile-conversion.csv` lists, for each person, what was found and
+`archive/capture/profile-conversion.csv` lists, for each person, what was found and
 anything that needs a look. In short:
 
 - **20 current members have no start year.** The old site never recorded
@@ -320,7 +320,7 @@ anything that needs a look. In short:
   Dorer's address and Yulia Gutierrez's to Dru Myerscough's; both pages were
   evidently copied from a colleague's. Their profiles now have their own
   addresses, and `scripts/fix-links.py` corrects the email links on their
-  pages in `site/` too.
+  pages in `archive/site/` too.
 - **Names come from each person's own page** where it differs from the old
   page title: Jon Zhang, Anum Azam Glasgow, Yang (Sunny) Zhang.
 - **9 have no photo**: five early undergraduates and four rotation students.
@@ -333,7 +333,7 @@ anything that needs a look. In short:
 1. **The menu is trimmed.** Research (and its three sub-items), Rosetta and Our
    Wiki are gone, leaving Home / People / Publications / News / Gallery /
    Contact. That's driven by the `HIDE` list in `scripts/customize-nav.py`. The
-   pages themselves are still in `site/`, just unlinked. To delete them:
+   pages themselves are still in `archive/site/`, just unlinked. To delete them:
 
    ```bash
    cd site && rm research.html rosetta.html computational-protein-design-and-modeling.html control-of-biological-systems.html evolution-of-structure-function-and-network-interactions.html
@@ -361,7 +361,7 @@ anything that needs a look. In short:
    Weebly's account-sharded `uploads/7/2/7/7/72776173/published/`. Weebly
    platform files are now pruned to the ones some page actually uses (136 files
    removed), fonts are trimmed to `.woff2`, the format every current browser
-   uses, and byte-identical duplicate photos are merged. `capture/asset-map.csv`
+   uses, and byte-identical duplicate photos are merged. `archive/capture/asset-map.csv`
    records where every file went.
 
 5. **The HTML is reformatted** with consistent two-space indentation, one tag
@@ -372,7 +372,7 @@ anything that needs a look. In short:
 
 6. **Email addresses are readable.** Cloudflare had scrambled 54 `mailto:` links
    into dead `/cdn-cgi/…` URLs. They're decoded back to plain addresses, and
-   `structure/emails.csv` lists the 32 unique ones, mostly lab members'
+   `archive/structure/emails.csv` lists the 32 unique ones, mostly lab members'
    personal addresses. They were public on the live site only behind
    Cloudflare's anti-scraper obfuscation, so **re-apply equivalent protection
    if you republish them**, and keep any repository holding this folder private.
@@ -436,7 +436,7 @@ stylesheet resolves.
 ## Pages no visitor can reach
 
 **21 of the 100 pages can't be reached by clicking from the homepage.** The
-`reachable_from_home` column in `structure/pages.csv` flags them. Weebly keeps
+`reachable_from_home` column in `archive/structure/pages.csv` flags them. Weebly keeps
 publishing a page after it's unlinked, so the sitemap lists pages no visitor
 can find. Most are now in the archive. The ones that matter are people:
 `current---lisa-schmidt.html` is a *current* member whose page is missing
@@ -464,14 +464,16 @@ members, 52 alumni), which is worth knowing before choosing a template.
 
 ## Regenerating
 
-Re-capture the live site into an empty `site/` folder:
+This is how `archive/` was made. The website doesn't need it: it's only for
+re-copying the old Weebly site, should that ever be wanted. Re-capture the
+live site into an empty `archive/site/` folder:
 
 ```bash
-curl -s https://kortemmelab.ucsf.edu/sitemap.xml | grep -oE '<loc>[^<]+' | sed 's|<loc>http://|https://|' > capture/sitemap-urls.txt
+curl -s https://kortemmelab.ucsf.edu/sitemap.xml | grep -oE '<loc>[^<]+' | sed 's|<loc>http://|https://|' > archive/capture/sitemap-urls.txt
 ```
 
 ```bash
-wget --mirror --page-requisites --convert-links --adjust-extension --span-hosts --domains=kortemmelab.ucsf.edu,cdn11.editmysite.com,cdn2.editmysite.com,cdn.mathjax.org --execute robots=off --wait=0.3 --random-wait --tries=3 --timeout=30 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --directory-prefix=site --input-file=capture/sitemap-urls.txt --output-file=capture/wget-mirror.log https://kortemmelab.ucsf.edu/
+wget --mirror --page-requisites --convert-links --adjust-extension --span-hosts --domains=kortemmelab.ucsf.edu,cdn11.editmysite.com,cdn2.editmysite.com,cdn.mathjax.org --execute robots=off --wait=0.3 --random-wait --tries=3 --timeout=30 --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" --directory-prefix=archive/site --input-file=archive/capture/sitemap-urls.txt --output-file=archive/capture/wget-mirror.log https://kortemmelab.ucsf.edu/
 ```
 
 wget exits with status 4 because of the upstream 404s above. That's expected.
@@ -491,7 +493,7 @@ for s in normalize-filenames restructure-root fix-mailto fetch-gallery-images cu
 | `customize-nav.py` | Removes the menu items in its `HIDE` list |
 | `tidy-site.py` | Reorganizes files, removes dead code, reformats HTML |
 | `fix-links.py` | Fixes the broken links described above |
-| `extract.py` | Rebuilds `structure/`; creates any missing `content/` files (`--refresh` rewrites them, but never a profile) |
+| `extract.py` | Rebuilds `archive/structure/`; creates any missing `content/` files (`--refresh` rewrites them, but never a profile) |
 | `alumni-years.py` | Adds `years_in_lab` to alumni files that don't have it |
 | `build-bibliography.py` | Creates `content/bibliography.json` from the original citations. Runs once; never overwrites it |
 | `co-first-authors.py` | Marks co-first authors from the asterisks in the original citations |

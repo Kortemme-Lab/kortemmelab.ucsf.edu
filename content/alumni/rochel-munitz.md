@@ -19,6 +19,6 @@ education:
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---rochel-munitz.html"
-mirror_file: "site/alumni---rochel-munitz.html"
+mirror_file: "archive/site/alumni---rochel-munitz.html"
 ---
 *NSF Rosetta Commons RaMP Research Fellow*

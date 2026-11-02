@@ -22,7 +22,7 @@ publications:
   - "10.1016/j.str.2007.09.010"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---matt-eames.html"
-mirror_file: "site/alumni---matt-eames.html"
+mirror_file: "archive/site/alumni---matt-eames.html"
 ---
 
 ## Publications

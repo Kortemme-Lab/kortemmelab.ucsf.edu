@@ -2,14 +2,14 @@
 title: "Incomplete - Computational Protein Design and Modeling - KORTEMME LAB @ UCSF"
 slug: incomplete---computational-protein-design-and-modeling
 source_url: https://kortemmelab.ucsf.edu/incomplete---computational-protein-design-and-modeling.html
-mirror_file: site/incomplete---computational-protein-design-and-modeling.html
+mirror_file: archive/site/incomplete---computational-protein-design-and-modeling.html
 word_count: 802
 reachable_from_home: false
 images:
-  - site/images/6601347_1_orig.png
-  - site/images/4887843_1_orig.png
-  - site/images/_4611762.png
-  - site/images/_9428503.jpg
+  - archive/site/images/6601347_1_orig.png
+  - archive/site/images/4887843_1_orig.png
+  - archive/site/images/_4611762.png
+  - archive/site/images/_9428503.jpg
 external_links:
   - http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004335
   - http://dx.doi.org/10.1038/nmeth0809-551

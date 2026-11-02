@@ -2,12 +2,12 @@
 title: "Computational Protein Design and Modeling - KORTEMME LAB @ UCSF"
 slug: computational-protein-design-and-modeling
 source_url: https://kortemmelab.ucsf.edu/computational-protein-design-and-modeling.html
-mirror_file: site/computational-protein-design-and-modeling.html
+mirror_file: archive/site/computational-protein-design-and-modeling.html
 word_count: 766
 reachable_from_home: false
 images:
-  - site/images/_4611761.png
-  - site/images/_9428502.jpg
+  - archive/site/images/_4611761.png
+  - archive/site/images/_9428502.jpg
 external_links:
   - http://dx.doi.org/10.1038/nmeth0809-551
   - http://dx.doi.org/10.1016/j.jmb.2008.05.023

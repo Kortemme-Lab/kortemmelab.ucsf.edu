@@ -33,7 +33,7 @@ publications:
   - "10.1074/jbc.m803219200"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---tina-perica.html"
-mirror_file: "site/alumni---tina-perica.html"
+mirror_file: "archive/site/alumni---tina-perica.html"
 ---
 *Sir Henry Wellcome Postdoctoral Fellow*
 

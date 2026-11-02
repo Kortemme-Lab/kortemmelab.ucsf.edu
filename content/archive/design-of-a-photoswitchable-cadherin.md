@@ -2,11 +2,11 @@
 title: "Design of a Photoswitchable Cadherin - KORTEMME LAB @ UCSF"
 slug: design-of-a-photoswitchable-cadherin
 source_url: https://kortemmelab.ucsf.edu/design-of-a-photoswitchable-cadherin.html
-mirror_file: site/design-of-a-photoswitchable-cadherin.html
+mirror_file: archive/site/design-of-a-photoswitchable-cadherin.html
 word_count: 24
 reachable_from_home: false
 images:
-  - site/images/9536868.jpg
+  - archive/site/images/9536868.jpg
 external_links:
   - http://pubs.acs.org/doi/abs/10.1021/ja404992r
 ---

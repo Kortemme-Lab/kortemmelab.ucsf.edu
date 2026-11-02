@@ -14,7 +14,9 @@ What goes where:
                                     Current Members or Lab Alumni roster
   content/rotation-students.csv     the "Past rotation students" list
   content/bibliography.json         the papers on Home and Publications
+  content/images/                   every photo the pages use
   theme/layout.html, theme/site.css the look of every page
+  theme/fonts/                      Raleway, the site's typeface
   theme/carousel.js                 the Gallery's carousel (`carousel: true`)
 
 The rosters (Current Members, Lab Alumni) are generated from the people's
@@ -36,7 +38,6 @@ import bibliography as bib
 
 ROOT = bib.ROOT
 CONTENT = os.path.join(ROOT, "content")
-SITE = os.path.join(ROOT, "site")             # the old site: images not yet moved to content/
 THEME = os.path.join(ROOT, "theme")
 OUT = os.path.join(ROOT, "docs")
 OLD_HOST = re.compile(r"^https?://(?:www\.)?kortemmelab\.ucsf\.edu/", re.I)
@@ -600,12 +601,11 @@ class Site:
         os.makedirs(os.path.join(OUT, "assets", "fonts"), exist_ok=True)
         for name in ("site.css", "carousel.js"):
             shutil.copyfile(os.path.join(THEME, name), os.path.join(OUT, "assets", name))
-        for w in ("regular", "medium", "semibold", "bold"):
-            shutil.copyfile(os.path.join(SITE, "assets", "fonts", f"raleway-{w}.woff2"),
-                            os.path.join(OUT, "assets", "fonts", f"raleway-{w}.woff2"))
+        for name in os.listdir(os.path.join(THEME, "fonts")):
+            shutil.copyfile(os.path.join(THEME, "fonts", name), os.path.join(OUT, "assets", "fonts", name))
 
     def copy_images(self):
-        """Every image a page refers to, from content/ or else the old site/."""
+        """Every image a page refers to, from content/."""
         copied, missing = set(), []
         for rel in self.written:
             page = open(os.path.join(OUT, rel), encoding="utf-8").read()
@@ -616,9 +616,8 @@ class Site:
                 target = os.path.normpath(os.path.join(os.path.dirname(rel), ref.split("#")[0]))
                 if target in copied or os.path.exists(os.path.join(OUT, target)):
                     continue
-                src = next((os.path.join(d, target) for d in (CONTENT, SITE)
-                            if os.path.isfile(os.path.join(d, target))), None)
-                if not src:
+                src = os.path.join(CONTENT, target)
+                if not os.path.isfile(src):
                     missing.append(f"{rel}: {ref}")
                     continue
                 os.makedirs(os.path.dirname(os.path.join(OUT, target)), exist_ok=True)

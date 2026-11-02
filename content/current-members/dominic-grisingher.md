@@ -20,7 +20,7 @@ publications:
   - "10.1039/d0ob00793e"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---dominic-grisingher.html"
-mirror_file: "site/current---dominic-grisingher.html"
+mirror_file: "archive/site/current---dominic-grisingher.html"
 ---
 
 ## Publications

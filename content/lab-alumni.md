@@ -2,55 +2,55 @@
 title: "Lab Alumni - KORTEMME LAB @ UCSF"
 slug: lab-alumni
 source_url: https://kortemmelab.ucsf.edu/lab-alumni.html
-mirror_file: site/lab-alumni.html
+mirror_file: archive/site/lab-alumni.html
 word_count: 983
 reachable_from_home: true
 images:
-  - site/images/connor-galvin-headshot-jpg.jpeg
-  - site/images/dsc-0190-orig.jpg
-  - site/images/bio-orr-orig.jpg
-  - site/images/amy-guo-orig.jpg
-  - site/images/codykrivacic-1_1.jpeg
-  - site/images/mathy-headshot.jpeg
-  - site/images/3133730.jpg
-  - site/images/samuel-thompson.jpg
-  - site/images/james-lucas.jpg
-  - site/images/amanda-loshbaugh_4.jpg
-  - site/images/kale-kundert.jpg
-  - site/images/pradeep-bandaru_3.jpg
-  - site/images/kyle-barlow_1.jpg
-  - site/images/_____2929496.jpg
-  - site/images/9392571.jpg
-  - site/images/2244116.jpg
-  - site/images/1919120.jpg
-  - site/images/1356499.jpg
-  - site/images/6825431.jpg
-  - site/images/5631085.jpg
-  - site/images/3210383.jpg
-  - site/images/8663226.jpg
-  - site/images/8048921.jpg
-  - site/images/simon.png
-  - site/images/lu-hong-orig.jpeg
-  - site/images/robert-alberstein-orig.jpeg
-  - site/images/benjamin-jagger-orig.jpeg
-  - site/images/1465948436_3.png
-  - site/images/1466296194_2.png
-  - site/images/____7664107.jpg
-  - site/images/1425202_2.png
-  - site/images/8849867_2.jpg
-  - site/images/8416894.png
-  - site/images/4336500.jpg
-  - site/images/6374887.jpg
-  - site/images/3648017.jpg
-  - site/images/1120015.jpg
-  - site/images/2696519.jpg
-  - site/images/fullsizerender.jpg
-  - site/images/shane-oconnor_5.jpg
-  - site/images/6668297.jpg
-  - site/images/8265893_orig.jpg
-  - site/images/6199365.jpg
-  - site/images/5872683.jpg
-  - site/images/muziyue-wu_1.jpg
+  - archive/site/images/connor-galvin-headshot-jpg.jpeg
+  - archive/site/images/dsc-0190-orig.jpg
+  - archive/site/images/bio-orr-orig.jpg
+  - archive/site/images/amy-guo-orig.jpg
+  - archive/site/images/codykrivacic-1_1.jpeg
+  - archive/site/images/mathy-headshot.jpeg
+  - archive/site/images/3133730.jpg
+  - archive/site/images/samuel-thompson.jpg
+  - archive/site/images/james-lucas.jpg
+  - archive/site/images/amanda-loshbaugh_4.jpg
+  - archive/site/images/kale-kundert.jpg
+  - archive/site/images/pradeep-bandaru_3.jpg
+  - archive/site/images/kyle-barlow_1.jpg
+  - archive/site/images/_____2929496.jpg
+  - archive/site/images/9392571.jpg
+  - archive/site/images/2244116.jpg
+  - archive/site/images/1919120.jpg
+  - archive/site/images/1356499.jpg
+  - archive/site/images/6825431.jpg
+  - archive/site/images/5631085.jpg
+  - archive/site/images/3210383.jpg
+  - archive/site/images/8663226.jpg
+  - archive/site/images/8048921.jpg
+  - archive/site/images/simon.png
+  - archive/site/images/lu-hong-orig.jpeg
+  - archive/site/images/robert-alberstein-orig.jpeg
+  - archive/site/images/benjamin-jagger-orig.jpeg
+  - archive/site/images/1465948436_3.png
+  - archive/site/images/1466296194_2.png
+  - archive/site/images/____7664107.jpg
+  - archive/site/images/1425202_2.png
+  - archive/site/images/8849867_2.jpg
+  - archive/site/images/8416894.png
+  - archive/site/images/4336500.jpg
+  - archive/site/images/6374887.jpg
+  - archive/site/images/3648017.jpg
+  - archive/site/images/1120015.jpg
+  - archive/site/images/2696519.jpg
+  - archive/site/images/fullsizerender.jpg
+  - archive/site/images/shane-oconnor_5.jpg
+  - archive/site/images/6668297.jpg
+  - archive/site/images/8265893_orig.jpg
+  - archive/site/images/6199365.jpg
+  - archive/site/images/5872683.jpg
+  - archive/site/images/muziyue-wu_1.jpg
 external_links:
   - http://smithlab.research.wesleyan.edu/
   - https://www.grobio.com/

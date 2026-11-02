@@ -21,7 +21,7 @@ publications:
   - "10.3390/molecules26196034"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---kevin-alexander-estrada-alamo.html"
-mirror_file: "site/current---kevin-alexander-estrada-alamo.html"
+mirror_file: "archive/site/current---kevin-alexander-estrada-alamo.html"
 ---
 *ARCS Foundation Fellow
 IMSD Fellow*

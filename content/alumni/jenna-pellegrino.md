@@ -19,7 +19,7 @@ publications:
   - "10.1126/science.aax8780"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---jenna-pellegrino.html"
-mirror_file: "site/alumni---jenna-pellegrino.html"
+mirror_file: "archive/site/alumni---jenna-pellegrino.html"
 ---
 
 ## Publications

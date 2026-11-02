@@ -2,7 +2,7 @@
 title: "Contact - KORTEMME LAB @ UCSF"
 slug: contact
 source_url: https://kortemmelab.ucsf.edu/contact.html
-mirror_file: site/contact.html
+mirror_file: archive/site/contact.html
 word_count: 86
 reachable_from_home: true
 external_links:

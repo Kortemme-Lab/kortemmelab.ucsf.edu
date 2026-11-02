@@ -19,7 +19,7 @@ publications:
   - "10.1016/j.jmb.2008.05.006"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---anthony-linares.html"
-mirror_file: "site/alumni---anthony-linares.html"
+mirror_file: "archive/site/alumni---anthony-linares.html"
 ---
 
 ## Publications

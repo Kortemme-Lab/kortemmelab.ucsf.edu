@@ -2,11 +2,11 @@
 title: "Evolution of Structure, Function, and Network Interactions - KORTEMME LAB @ UCSF"
 slug: evolution-of-structure-function-and-network-interactions
 source_url: https://kortemmelab.ucsf.edu/evolution-of-structure-function-and-network-interactions.html
-mirror_file: site/evolution-of-structure-function-and-network-interactions.html
+mirror_file: archive/site/evolution-of-structure-function-and-network-interactions.html
 word_count: 655
 reachable_from_home: false
 images:
-  - site/images/9303810_orig.jpg
+  - archive/site/images/9303810_orig.jpg
 external_links:
   - http://dx.doi.org/10.1126/science.1219083
 ---

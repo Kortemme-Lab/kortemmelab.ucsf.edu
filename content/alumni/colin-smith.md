@@ -27,7 +27,7 @@ publications:
   - "10.1016/j.jmb.2008.05.023"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---colin-smith.html"
-mirror_file: "site/alumni---colin-smith.html"
+mirror_file: "archive/site/alumni---colin-smith.html"
 ---
 
 ## Publications

@@ -20,7 +20,7 @@ publications:
   - "10.1101/2025.11.11.687847"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---yulia-gutierrez.html"
-mirror_file: "site/current---yulia-gutierrez.html"
+mirror_file: "archive/site/current---yulia-gutierrez.html"
 ---
 *Shurl and Kay Curci Foundation Ph.D. Scholarship*
 

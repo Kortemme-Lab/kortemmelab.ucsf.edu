@@ -2,14 +2,14 @@
 title: "Internal - KORTEMME LAB @ UCSF"
 slug: internal
 source_url: https://kortemmelab.ucsf.edu/internal.html
-mirror_file: site/internal.html
+mirror_file: archive/site/internal.html
 word_count: 41
 reachable_from_home: false
 images:
-  - site/images/_5179339_orig.png
-  - site/images/_1825069_orig.png
-  - site/images/_3983226_orig.png
-  - site/images/_8752334.jpg
+  - archive/site/images/_5179339_orig.png
+  - archive/site/images/_1825069_orig.png
+  - archive/site/images/_3983226_orig.png
+  - archive/site/images/_8752334.jpg
 external_links:
   - https://www.rosettacommons.org/
   - http://rosie.rosettacommons.org/

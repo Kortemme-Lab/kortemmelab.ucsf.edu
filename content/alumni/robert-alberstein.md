@@ -28,7 +28,7 @@ publications:
   - "10.1073/pnas.1513771112"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---robert-alberstein.html"
-mirror_file: "site/alumni---robert-alberstein.html"
+mirror_file: "archive/site/alumni---robert-alberstein.html"
 ---
 I am interested in the construction of biomolecular machines, motors, and switches, which carry out their functions through structural changes coupled to thermodynamic driving forces (e.g. chemical gradients, nucleotide hydrolysis). My research is focused on understanding and developing methods for the design of conformationally pliable systems that can be switched/driven between states via energy input from chemical fuel or light.
 

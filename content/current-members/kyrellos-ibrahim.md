@@ -20,7 +20,7 @@ publications:
   - "10.1016/j.immuni.2024.10.013"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---kyrellos-ibrahim.html"
-mirror_file: "site/current---kyrellos-ibrahim.html"
+mirror_file: "archive/site/current---kyrellos-ibrahim.html"
 ---
 
 ## Publications

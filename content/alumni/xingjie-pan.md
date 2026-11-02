@@ -24,7 +24,7 @@ publications:
   - "10.7554/elife.54031"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---xingjie-pan.html"
-mirror_file: "site/alumni---xingjie-pan.html"
+mirror_file: "archive/site/alumni---xingjie-pan.html"
 ---
 
 ## Publications

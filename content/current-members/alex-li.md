@@ -21,7 +21,7 @@ publications:
   - "10.1101/2025.10.18.683228"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---alex-li.html"
-mirror_file: "site/current---alex-li.html"
+mirror_file: "archive/site/current---alex-li.html"
 ---
 *NSF GRFP Fellow*
 

@@ -20,7 +20,7 @@ publications:
   - "10.1038/nature10719"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---eyal-akiva.html"
-mirror_file: "site/alumni---eyal-akiva.html"
+mirror_file: "archive/site/alumni---eyal-akiva.html"
 ---
 
 ## Publications

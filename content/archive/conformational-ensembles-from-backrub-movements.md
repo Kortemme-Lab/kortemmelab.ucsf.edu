@@ -2,11 +2,11 @@
 title: "Conformational Ensembles from \"Backrub\" Movements - KORTEMME LAB @ UCSF"
 slug: conformational-ensembles-from-backrub-movements
 source_url: https://kortemmelab.ucsf.edu/conformational-ensembles-from-backrub-movements.html
-mirror_file: site/conformational-ensembles-from-backrub-movements.html
+mirror_file: archive/site/conformational-ensembles-from-backrub-movements.html
 word_count: 298
 reachable_from_home: false
 images:
-  - site/images/9428502.jpg
+  - archive/site/images/9428502.jpg
 external_links:
   - http://dx.doi.org/10.1016/j.jmb.2008.05.023
 ---

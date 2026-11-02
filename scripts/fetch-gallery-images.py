@@ -12,7 +12,7 @@ Idempotent: files already present are skipped.
 import json, os, re, sys, time, urllib.error, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 BASE = "https://kortemmelab.ucsf.edu/uploads/"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
@@ -44,7 +44,7 @@ def fetch(url, dest):
 
 def main():
     if not os.path.isdir(os.path.join(SITE, "uploads")):
-        print("site is already tidied -- gallery photos live in site/images/; nothing to fetch")
+        print("site is already tidied -- gallery photos live in archive/site/images/; nothing to fetch")
         return
     wanted = []
     for _, u in slideshow_images(SITE):

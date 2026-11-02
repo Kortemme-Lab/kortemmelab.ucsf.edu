@@ -3,7 +3,7 @@
 
 DOI records don't say who contributed equally, but the lab's original
 citations did, with an asterisk: "Glasgow A*, Glasgow J*, Limonta D...". This
-reads those citations (capture/citation-migration.csv), works out which author
+reads those citations (archive/capture/citation-migration.csv), works out which author
 each asterisk belongs to, and sets `"co-first": true` on that author in
 content/bibliography.json. The renderer then marks them with *.
 
@@ -21,7 +21,7 @@ import csv, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
 
-MIGRATION = os.path.join(bib.ROOT, "capture", "citation-migration.csv")
+MIGRATION = os.path.join(bib.ROOT, "archive", "capture", "citation-migration.csv")
 # between a surname and its asterisk: initials only, if anything, with any
 # punctuation -- "Glasgow A*", "Kapp, GT*", "Filipiak, DJ,*", "Ó Conchúir*, S"
 GAP_RE = re.compile(r"^[\s,.]*((?:[A-Z]\.?\s*){0,4})[\s,.]*$")

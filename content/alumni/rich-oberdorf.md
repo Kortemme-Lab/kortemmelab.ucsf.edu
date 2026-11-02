@@ -20,7 +20,7 @@ publications:
   - "10.1038/msb.2009.9"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---rich-oberdorf.html"
-mirror_file: "site/alumni---rich-oberdorf.html"
+mirror_file: "archive/site/alumni---rich-oberdorf.html"
 ---
 
 ## Publications

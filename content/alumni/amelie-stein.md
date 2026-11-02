@@ -23,7 +23,7 @@ publications:
   - "10.1073/pnas.1114487109"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---amelie-stein.html"
-mirror_file: "site/alumni---amelie-stein.html"
+mirror_file: "archive/site/alumni---amelie-stein.html"
 ---
 
 ## Publications

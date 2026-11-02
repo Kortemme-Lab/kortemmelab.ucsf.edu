@@ -8,14 +8,14 @@ rebuilt site. It reads three sources:
 
   - the profile's text: name, role, co-mentors, research summary, bio,
     education, and links written into the page
-  - the profile's page in site/: the email behind its email icon
-  - the alumni roster (site/lab-alumni.html): each alumnus's photo and
+  - the profile's page in archive/site/: the email behind its email icon
+  - the alumni roster (archive/site/lab-alumni.html): each alumnus's photo and
     current position, the only record of either for most older alumni
 
 Headshots are copied to content/images/people/. Publication lists, years in
 the lab, and where each profile came from (source_url, mirror_file) carry
 over unchanged. Anything that couldn't be filled in, or that looked unusual,
-is listed in capture/profile-conversion.csv for review.
+is listed in archive/capture/profile-conversion.csv for review.
 
 Profiles already in the new format (they have a `name:` field) are skipped.
 Pass --out DIR to write everything under DIR instead, for a preview.
@@ -334,7 +334,7 @@ def main():
     args = ap.parse_args()
     dest_root = os.path.abspath(args.out) if args.out else ROOT
     global EVERYONE
-    site = os.path.join(ROOT, "site")
+    site = os.path.join(ROOT, "archive", "site")
     alumni_roster = roster(site)
     EVERYONE = []                                   # every member's name, for the email check
     for folder in ("current-members", "alumni"):
@@ -362,7 +362,7 @@ def main():
                     os.makedirs(os.path.join(dest_root, "content", "images", "people"), exist_ok=True)
                     shutil.copyfile(from_path, os.path.join(dest_root, "content", photo_rel))
                 else:
-                    notes.append(f"photo file missing: site/{p['photo_src']}")
+                    notes.append(f"photo file missing: archive/site/{p['photo_src']}")
                     photo_rel = ""
             out_path = os.path.join(dest_root, "content", folder, fn)
             os.makedirs(os.path.dirname(out_path), exist_ok=True)
@@ -375,14 +375,14 @@ def main():
                            "education": len(p["education"]), "papers": len(p["publications"]),
                            "summary": p["summary"][:80], "notes": "; ".join(notes)})
 
-    os.makedirs(os.path.join(dest_root, "capture"), exist_ok=True)
-    rep = os.path.join(dest_root, "capture", "profile-conversion.csv")
+    os.makedirs(os.path.join(dest_root, "archive", "capture"), exist_ok=True)
+    rep = os.path.join(dest_root, "archive", "capture", "profile-conversion.csv")
     with open(rep, "w", newline="", encoding="utf-8") as fh:
         if report:
             w = csv.DictWriter(fh, fieldnames=list(report[0]))
             w.writeheader()
             w.writerows(report)
-    print(f"converted {done} profiles; report: {os.path.relpath(rep, dest_root) if args.out else 'capture/profile-conversion.csv'}")
+    print(f"converted {done} profiles; report: {os.path.relpath(rep, dest_root) if args.out else 'archive/capture/profile-conversion.csv'}")
 
 
 if __name__ == "__main__":

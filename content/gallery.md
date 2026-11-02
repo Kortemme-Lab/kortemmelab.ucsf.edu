@@ -2,60 +2,60 @@
 title: "Gallery - KORTEMME LAB @ UCSF"
 slug: gallery
 source_url: https://kortemmelab.ucsf.edu/gallery.html
-mirror_file: site/gallery.html
+mirror_file: archive/site/gallery.html
 word_count: 315
 reachable_from_home: true
 images:
-  - site/images/img-0890.jpg
-  - site/images/img-0889.jpg
-  - site/images/dsc-2078.jpeg
-  - site/images/dsc-2082.jpeg
-  - site/images/dsc-2080.jpeg
-  - site/images/img-2375.jpeg
-  - site/images/img-9649.jpg
-  - site/images/img-2389.jpeg
-  - site/images/img-2385.jpeg
-  - site/images/image-from-ios-2.jpg
-  - site/images/lab-pic-cropped.jpg
-  - site/images/img-2726.jpg
-  - site/images/img-6321.jpg
-  - site/images/img-9717.jpg
-  - site/images/img-7655.jpg
-  - site/images/img-0008.jpg
-  - site/images/img-0111.jpg
-  - site/images/img-1724.jpg
-  - site/images/img-1939.jpg
-  - site/images/img-1041.jpg
-  - site/images/img-1773.jpg
-  - site/images/presidio-2018.png
-  - site/images/img-8531.jpg
-  - site/images/img-8532.jpg
-  - site/images/2442712.jpg
-  - site/images/samuels-cool-award.jpeg
-  - site/images/kyle-grad-2.jpg
-  - site/images/kyle-grad-1.jpg
-  - site/images/kyle-wedding.jpg
-  - site/images/chris-quals-whiteboard.jpg
-  - site/images/asilomar2017-2.jpg
-  - site/images/asilomar2017-3.jpg
-  - site/images/asilomar2017-1.jpg
-  - site/images/groupphoto2017.jpg
-  - site/images/3701069.jpg
-  - site/images/chris-shipment.jpg
-  - site/images/samuel-shipment.jpg
-  - site/images/asilomar-1.jpg
-  - site/images/asilomar-2.jpg
-  - site/images/ski-trip-2018-1.jpg
-  - site/images/under-construction.jpg
-  - site/images/5178762.jpg
-  - site/images/3870051.jpg
-  - site/images/img-1061.jpg
-  - site/images/1511553.jpg
-  - site/images/5825597.jpg
-  - site/images/49757.jpg
-  - site/images/127585.jpg
-  - site/images/273214.jpg
-  - site/images/3036752.jpg
+  - archive/site/images/img-0890.jpg
+  - archive/site/images/img-0889.jpg
+  - archive/site/images/dsc-2078.jpeg
+  - archive/site/images/dsc-2082.jpeg
+  - archive/site/images/dsc-2080.jpeg
+  - archive/site/images/img-2375.jpeg
+  - archive/site/images/img-9649.jpg
+  - archive/site/images/img-2389.jpeg
+  - archive/site/images/img-2385.jpeg
+  - archive/site/images/image-from-ios-2.jpg
+  - archive/site/images/lab-pic-cropped.jpg
+  - archive/site/images/img-2726.jpg
+  - archive/site/images/img-6321.jpg
+  - archive/site/images/img-9717.jpg
+  - archive/site/images/img-7655.jpg
+  - archive/site/images/img-0008.jpg
+  - archive/site/images/img-0111.jpg
+  - archive/site/images/img-1724.jpg
+  - archive/site/images/img-1939.jpg
+  - archive/site/images/img-1041.jpg
+  - archive/site/images/img-1773.jpg
+  - archive/site/images/presidio-2018.png
+  - archive/site/images/img-8531.jpg
+  - archive/site/images/img-8532.jpg
+  - archive/site/images/2442712.jpg
+  - archive/site/images/samuels-cool-award.jpeg
+  - archive/site/images/kyle-grad-2.jpg
+  - archive/site/images/kyle-grad-1.jpg
+  - archive/site/images/kyle-wedding.jpg
+  - archive/site/images/chris-quals-whiteboard.jpg
+  - archive/site/images/asilomar2017-2.jpg
+  - archive/site/images/asilomar2017-3.jpg
+  - archive/site/images/asilomar2017-1.jpg
+  - archive/site/images/groupphoto2017.jpg
+  - archive/site/images/3701069.jpg
+  - archive/site/images/chris-shipment.jpg
+  - archive/site/images/samuel-shipment.jpg
+  - archive/site/images/asilomar-1.jpg
+  - archive/site/images/asilomar-2.jpg
+  - archive/site/images/ski-trip-2018-1.jpg
+  - archive/site/images/under-construction.jpg
+  - archive/site/images/5178762.jpg
+  - archive/site/images/3870051.jpg
+  - archive/site/images/img-1061.jpg
+  - archive/site/images/1511553.jpg
+  - archive/site/images/5825597.jpg
+  - archive/site/images/49757.jpg
+  - archive/site/images/127585.jpg
+  - archive/site/images/273214.jpg
+  - archive/site/images/3036752.jpg
 # Show the photos as a carousel (theme/carousel.js), as on the old site.
 carousel: true
 ---

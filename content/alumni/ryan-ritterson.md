@@ -22,7 +22,7 @@ publications:
   - "10.1021/ja404992r"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---ryan-ritterson.html"
-mirror_file: "site/alumni---ryan-ritterson.html"
+mirror_file: "archive/site/alumni---ryan-ritterson.html"
 ---
 
 ## Publications

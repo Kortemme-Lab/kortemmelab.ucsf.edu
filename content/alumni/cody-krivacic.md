@@ -25,7 +25,7 @@ publications:
   - "10.1021/bi301284f"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---cody-krivacic.html"
-mirror_file: "site/alumni---cody-krivacic.html"
+mirror_file: "archive/site/alumni---cody-krivacic.html"
 ---
 I am interested in understanding how best to apply our computational tools to protein engineering challenges. I am currently working on a computational method that re-positions amino acids of interest by manipulating the protein backbone and testing my designs experimentally. The ability to precisely define side-chain positions in protein binding sites will enable the engineering of proteins with altered specificity.
 

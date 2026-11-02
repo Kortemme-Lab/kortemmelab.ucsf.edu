@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Extract clean content + site structure from the wget mirror of kortemmelab.ucsf.edu.
 
-Reads:  site/*.html                        (the site's web root)
+Reads:  archive/site/*.html                        (the site's web root)
 Writes: content/<slug>.md                  (one markdown file per page, w/ frontmatter)
         content/current-members/<name>.md  (people pages, filed by status --
         content/alumni/<name>.md            see content_path)
-        structure/site-structure.json      (nav tree + per-page metadata)
-        structure/pages.csv                (flat index)
-        structure/images.csv               (every image used, w/ local path)
+        archive/structure/site-structure.json      (nav tree + per-page metadata)
+        archive/structure/pages.csv                (flat index)
+        archive/structure/images.csv               (every image used, w/ local path)
 
 content/ is meant to be edited -- and its files moved -- by hand, so a
 page's existing file is never overwritten or relocated; pass --refresh to
-regenerate files from site/. structure/ is always rebuilt.
+regenerate files from archive/site/. archive/structure/ is always rebuilt.
 
 Stdlib only (html.parser) -- no third-party dependencies.
 """
@@ -19,9 +19,9 @@ import argparse, csv, html, json, os, re, sys
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MIRROR = os.path.join(ROOT, "site")
+MIRROR = os.path.join(ROOT, "archive", "site")
 CONTENT = os.path.join(ROOT, "content")
-STRUCT = os.path.join(ROOT, "structure")
+STRUCT = os.path.join(ROOT, "archive", "structure")
 SITE = "https://kortemmelab.ucsf.edu"
 
 SKIP_TAGS = {"script", "style", "noscript"}
@@ -481,9 +481,9 @@ def content_path(slug, index):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Regenerate structure/ and fill in content/.")
+    ap = argparse.ArgumentParser(description="Regenerate archive/structure/ and fill in content/.")
     ap.add_argument("--refresh", nargs="*", metavar="SLUG",
-                    help="overwrite existing content/ files from site/, discarding "
+                    help="overwrite existing content/ files from archive/site/, discarding "
                          "hand edits: all of them, or only the pages named "
                          "(by site slug, e.g. lab-alumni current---yulia-gutierrez)")
     refresh = ap.parse_args().refresh          # None, [] (= all) or [slugs]
@@ -498,7 +498,7 @@ def main():
     if refresh:
         unknown = sorted(set(refresh) - {f[:-5] for f in files})
         if unknown:
-            sys.exit(f"--refresh: no such page in site/: {', '.join(unknown)}")
+            sys.exit(f"--refresh: no such page in archive/site/: {', '.join(unknown)}")
     reachable = reachable_from_home(MIRROR, files)
     pages, all_images, nav = [], [], None
 
@@ -535,8 +535,8 @@ def main():
         for src in dict.fromkeys(conv.images):
             # every page sits at the mirror root, so both the relative srcs
             # wget rewrote and the absolute ones in slideshow payloads
-            # resolve under site/
-            local = "site/" + src.lstrip("/")
+            # resolve under archive/site/
+            local = "archive/site/" + src.lstrip("/")
             imgs.append(local)
             all_images.append({"page": slug, "src": src, "local_path": local})
 
@@ -545,7 +545,7 @@ def main():
 
         fm = ["---", f"title: {json.dumps(title)}", f"slug: {slug}",
               f"source_url: {SITE}/{fn}",
-              f"mirror_file: site/{fn}",
+              f"mirror_file: archive/site/{fn}",
               f"word_count: {len(md.split())}",
               f"reachable_from_home: {str(fn in reachable).lower()}"]
         if imgs:
@@ -574,7 +574,7 @@ def main():
 
         pages.append({"slug": slug, "title": title,
                       "source_url": f"{SITE}/{fn}",
-                      "mirror_file": f"site/{fn}",
+                      "mirror_file": f"archive/site/{fn}",
                       "content_file": rel,
                       "word_count": len(md.split()),
                       "reachable_from_home": fn in reachable,

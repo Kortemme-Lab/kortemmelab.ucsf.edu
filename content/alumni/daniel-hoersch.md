@@ -21,7 +21,7 @@ publications:
   - "10.1038/nnano.2013.242"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---daniel-hoersch.html"
-mirror_file: "site/alumni---daniel-hoersch.html"
+mirror_file: "archive/site/alumni---daniel-hoersch.html"
 ---
 
 ## Publications

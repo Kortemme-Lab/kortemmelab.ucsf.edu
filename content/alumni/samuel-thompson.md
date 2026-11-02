@@ -21,7 +21,7 @@ publications:
   - "10.7554/elife.15802"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---samuel-thompson.html"
-mirror_file: "site/alumni---samuel-thompson.html"
+mirror_file: "archive/site/alumni---samuel-thompson.html"
 ---
 
 ## Publications

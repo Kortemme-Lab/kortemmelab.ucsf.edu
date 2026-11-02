@@ -22,7 +22,7 @@ publications:
   - "10.1101/2023.12.15.571823"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---eleanor-zhu.html"
-mirror_file: "site/alumni---eleanor-zhu.html"
+mirror_file: "archive/site/alumni---eleanor-zhu.html"
 ---
 
 ## Publications

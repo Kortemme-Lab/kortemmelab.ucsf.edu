@@ -38,7 +38,7 @@ publications:
   - "10.1186/1746-4811-10-17"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---simon-kretschmer.html"
-mirror_file: "site/alumni---simon-kretschmer.html"
+mirror_file: "archive/site/alumni---simon-kretschmer.html"
 ---
 *PBBR Postdoctoral Independent Research Grant
 Li Foundation Fellow*

@@ -25,7 +25,7 @@ publications:
   - "10.1038/s41586-020-2286-9"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---chris-mathy.html"
-mirror_file: "site/alumni---chris-mathy.html"
+mirror_file: "archive/site/alumni---chris-mathy.html"
 ---
 
 ## Publications

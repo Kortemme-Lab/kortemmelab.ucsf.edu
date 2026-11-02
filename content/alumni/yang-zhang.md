@@ -40,7 +40,7 @@ publications:
   - "10.1016/s0021-9258(19)57303-3"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---yang-zhang.html"
-mirror_file: "site/alumni---yang-zhang.html"
+mirror_file: "archive/site/alumni---yang-zhang.html"
 ---
 
 ## Publications

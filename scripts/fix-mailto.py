@@ -11,7 +11,7 @@ Idempotent: running it again is a no-op.
 import os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract import CF_EMAIL_RE, decode_cf_email
 

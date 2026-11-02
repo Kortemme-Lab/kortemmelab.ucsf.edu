@@ -2,7 +2,7 @@
 """Create content/bibliography.json from the papers listed across the site.
 
 Run once. It reads every citation on the Publications page and on each
-person's profile in site/, finds each paper's DOI -- in the citation's text or
+person's profile in archive/site/, finds each paper's DOI -- in the citation's text or
 links, or failing that by a Crossref title search that only accepts a
 candidate whose full title appears in the citation -- and stores the
 publisher's record for it. Each person's content file gets a `publications:`
@@ -13,7 +13,7 @@ render-publications.py draws every list from them. So this refuses to
 overwrite an existing bibliography; pass --force to rebuild from scratch,
 discarding any hand edits to it.
 
-Writes capture/citation-migration.csv: every original citation, where it was,
+Writes archive/capture/citation-migration.csv: every original citation, where it was,
 and which entry it became.
 """
 import argparse, concurrent.futures as cf, csv, html, os, re, sys
@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
 from extract import ROOT, content_index, content_path
 
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 PEOPLE_RE = re.compile(r"^(?:current|alumni)-{2,}.+\.html$")
 plain, doi_in = bib.plain, bib.doi_in
 
@@ -104,7 +104,7 @@ def main():
     ap = argparse.ArgumentParser(description="Create content/bibliography.json from the site's citations.")
     ap.add_argument("--force", action="store_true", help="rebuild even if the bibliography exists")
     ap.add_argument("--site", default=SITE,
-                    help="where to read the original pages (default: site/, as first captured)")
+                    help="where to read the original pages (default: archive/site/, as first captured)")
     args = ap.parse_args()
     site = os.path.abspath(args.site)
     if os.path.exists(bib.BIB_PATH) and not args.force:
@@ -203,8 +203,8 @@ def main():
             entries[doi]["volume"], entries[doi]["note"] = vol, SERIES_NOTE
 
     bib.save(entries)
-    os.makedirs(os.path.join(ROOT, "capture"), exist_ok=True)
-    with open(os.path.join(ROOT, "capture", "citation-migration.csv"), "w", newline="",
+    os.makedirs(os.path.join(ROOT, "archive", "capture"), exist_ok=True)
+    with open(os.path.join(ROOT, "archive", "capture", "citation-migration.csv"), "w", newline="",
               encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader()

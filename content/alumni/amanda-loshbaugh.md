@@ -22,7 +22,7 @@ publications:
   - "10.1002/prot.25790"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---amanda-loshbaugh.html"
-mirror_file: "site/alumni---amanda-loshbaugh.html"
+mirror_file: "archive/site/alumni---amanda-loshbaugh.html"
 ---
 
 ## Publications

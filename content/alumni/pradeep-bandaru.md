@@ -20,7 +20,7 @@ publications:
   - "10.7554/elife.27810"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---pradeep-bandaru.html"
-mirror_file: "site/alumni---pradeep-bandaru.html"
+mirror_file: "archive/site/alumni---pradeep-bandaru.html"
 ---
 
 ## Publications

@@ -2,7 +2,7 @@
 title: "Join the Lab - KORTEMME LAB @ UCSF"
 slug: join-the-lab
 source_url: https://kortemmelab.ucsf.edu/join-the-lab.html
-mirror_file: site/join-the-lab.html
+mirror_file: archive/site/join-the-lab.html
 word_count: 249
 reachable_from_home: true
 external_links:

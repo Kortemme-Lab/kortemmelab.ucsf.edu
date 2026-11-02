@@ -19,7 +19,7 @@ publications:
   - "10.1073/pnas.1114487109"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---sen-liu.html"
-mirror_file: "site/alumni---sen-liu.html"
+mirror_file: "archive/site/alumni---sen-liu.html"
 ---
 
 ## Publications

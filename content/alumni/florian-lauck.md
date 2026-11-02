@@ -19,7 +19,7 @@ publications:
   - "10.1093/nar/gkq369"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---florian-lauck.html"
-mirror_file: "site/alumni---florian-lauck.html"
+mirror_file: "archive/site/alumni---florian-lauck.html"
 ---
 
 ## Publications

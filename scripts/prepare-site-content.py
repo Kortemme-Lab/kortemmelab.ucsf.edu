@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
 
 ROOT = bib.ROOT
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(ROOT, "archive", "site")
 CONTENT = os.path.join(ROOT, "content")
 ZW = "​﻿"
 SECTIONS = {"Graduate Students": "Graduate Student", "Postdoctoral Fellows": "Postdoctoral Scholar",

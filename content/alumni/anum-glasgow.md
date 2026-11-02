@@ -36,7 +36,7 @@ publications:
   - "10.1371/journal.pone.0004451"
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/alumni---anum-glasgow.html"
-mirror_file: "site/alumni---anum-glasgow.html"
+mirror_file: "archive/site/alumni---anum-glasgow.html"
 ---
 *NIH NIGMS K99/R00 Postdoctoral Fellow
 UCSF IRACDA Postdoctoral Fellow*
