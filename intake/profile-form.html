@@ -27,6 +27,7 @@
     --rule: #dcdcdc; --page: #f9f9f9; --panel: #fff; --good: #2f7d4f; --bad: #b3261e; --warn: #8a5a00;
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }      /* even where a rule below sets display */
   body { margin: 0; background: var(--page); color: var(--text);
          font: 500 16px/1.55 "Raleway", "Helvetica Neue", Arial, sans-serif; }
   a { color: var(--link); }
@@ -83,7 +84,15 @@
   .sub { border-left: 3px solid #e3eef1; padding: 4px 0 2px 16px; margin: 4px 0 16px; }
 
   .photo-box { display: flex; gap: 20px; align-items: flex-start; }
-  .photo-preview { width: 150px; height: 150px; flex: none; background: #eef3f5 center/cover no-repeat;
+  .cropper { flex: none; width: 240px; }
+  .crop-frame { position: relative; width: 240px; height: 240px; background: #eef3f5; overflow: hidden;
+                touch-action: none; cursor: grab; outline-offset: 2px; }
+  .crop-frame:active { cursor: grabbing; }
+  .crop-frame canvas { display: block; width: 240px; height: 240px; }
+  .crop-controls { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 14px; }
+  .crop-controls input[type=range] { flex: 1; accent-color: var(--link); }
+  .crop-controls button { padding: 4px 10px; font-size: 13px; }
+  .photo-preview { width: 240px; height: 240px; flex: none; background: #eef3f5 center/cover no-repeat;
                    display: flex; align-items: center; justify-content: center; color: #9bb6bf; font-weight: 700; font-size: 13px; }
 
   .preview { display: grid; grid-template-columns: 150px 1fr; gap: 22px; }
@@ -105,6 +114,9 @@
     fieldset { padding: 18px 16px 20px; }
     .row, .modes { grid-template-columns: 1fr; }
     .photo-box, .preview { grid-template-columns: 1fr; display: grid; }
+    .cropper, .crop-frame, .crop-frame canvas, .photo-preview { width: min(240px, 100%); }
+    .crop-frame, .photo-preview { height: auto; aspect-ratio: 1; }
+    .crop-frame canvas { height: auto; aspect-ratio: 1; }
     .inline { flex-direction: column; } .inline input { width: 100%; }
   }
 </style>
@@ -204,11 +216,25 @@
 <fieldset>
   <legend>Headshot</legend>
   <div class="photo-box">
-    <div class="photo-preview" id="photo-preview">No photo</div>
+    <div class="cropper">
+      <div class="photo-preview" id="photo-preview">No photo</div>
+      <!-- the crop: drag the photo inside the square; the square is what's saved -->
+      <div class="crop-frame" id="crop-frame" tabindex="0" hidden role="img"
+           aria-label="Your photo as it will appear. Drag it, or use the arrow keys, to move it; plus and minus zoom.">
+        <canvas id="crop-canvas" width="240" height="240"></canvas>
+      </div>
+      <div class="crop-controls" id="crop-controls" hidden>
+        <label for="crop-zoom" style="margin:0">Zoom</label>
+        <input type="range" id="crop-zoom" min="1" max="4" step="0.01" value="1">
+        <button type="button" id="crop-reset">Reset</button>
+      </div>
+    </div>
     <div>
       <label for="photo">A clear, recent photo</label>
       <input type="file" id="photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif">
-      <p class="hint">JPG or PNG, ideally at least 400 × 400 pixels. It's shown square, cropped to the middle.</p>
+      <p class="hint">JPG or PNG, ideally at least 400 × 400 pixels. The website shows it square:
+        once it's loaded, <strong>drag the photo</strong> to choose what's in the square, and use
+        <strong>Zoom</strong> to frame it closer. What you see in the square is exactly what's saved.</p>
       <p class="hint" id="photo-keep" hidden><strong>Updating?</strong> Leave this empty to keep the photo already on your profile.</p>
       <p class="status" id="photo-status"></p>
       <button type="button" id="photo-remove" hidden>Remove photo</button>
@@ -448,7 +474,11 @@
     return { dois: out.filter(function (d, i) { return out.indexOf(d) === i; }), bad: bad };
   }
 
-  function lookUp(doi) {                       // the DOI's own record, from doi.org
+  // The DOI's own record, from doi.org. Only a definite "not found" means the DOI
+  // is wrong: anything else (a busy server, a dropped connection) is tried once
+  // more, and if it still fails the paper is kept, to be checked again when the
+  // profile is added (add-person.py looks up every DOI itself).
+  function lookUp(doi, retried) {
     if (state.lookups[doi]) return Promise.resolve(state.lookups[doi]);
     return fetchJson("https://doi.org/" + encodeURI(doi), "application/vnd.citationstyles.csl+json")
       .then(function (r) {
@@ -462,9 +492,12 @@
                                        year: y || "", preprints: pre });
       })
       .catch(function (e) {
-        var why = e.message === "not found" ? "this DOI doesn't exist" : "couldn't check it (" + e.message + ")";
-        state.failed[doi] = why;
-        return { ok: false, error: why };
+        if (e.message === "not found") {
+          state.failed[doi] = "this DOI doesn't exist";
+          return { ok: false, error: state.failed[doi] };
+        }
+        if (!retried) return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return lookUp(doi, true); });
+        return { ok: false, unchecked: true, error: "couldn't check it just now; it's kept, and will be checked again when your profile is added" };
       });
   }
 
@@ -486,9 +519,9 @@
           ? '<span class="status good" style="margin:0">✓</span><span><span class="title">' + esc(r.title) + "</span><br>" +
             '<span class="meta">' + esc([r.journal, r.year].filter(Boolean).join(" · ")) + ' · <a href="https://doi.org/' + esc(d) +
             '" target="_blank" rel="noopener">' + esc(d) + "</a></span></span>"
-          : '<span class="status bad" style="margin:0">✗</span><span><span class="title">' + esc(d) +
-            '</span><br><span class="meta">' + esc(r.error) + "</span></span>";
-        return { doi: d, ok: r.ok, error: r.error };
+          : '<span class="status ' + (r.unchecked ? "warn" : "bad") + '" style="margin:0">' + (r.unchecked ? "?" : "✗") +
+            '</span><span><span class="title">' + esc(d) + '</span><br><span class="meta">' + esc(r.error) + "</span></span>";
+        return { doi: d, ok: r.ok, unchecked: r.unchecked, error: r.error };
       });
     })).then(function (rs) { drawPairs(); preview(); return { results: rs, bad: t.bad }; });
   }
@@ -649,32 +682,69 @@
   }
 
   // ---- the photo ------------------------------------------------------------------------
+  // The photo is kept whole; ph.cx, ph.cy (the crop's centre) and ph.zoom say which
+  // square of it is used. Only that square, at most MAX_SIDE pixels, is saved.
+  var VIEW = 240;                             // the crop frame on screen, in CSS pixels
+
+  function cropSide(ph) { return Math.min(ph.width, ph.height) / ph.zoom; }
+  function clampCrop(ph) {
+    var half = cropSide(ph) / 2;
+    ph.cx = Math.min(Math.max(ph.cx, half), ph.width - half);
+    ph.cy = Math.min(Math.max(ph.cy, half), ph.height - half);
+  }
+  function startCrop(ph) {                    // the whole short side, centred; tall photos show their top
+    ph.zoom = 1; ph.cx = ph.width / 2;
+    ph.cy = ph.height > ph.width * 1.15 ? ph.height * 0.38 : ph.height / 2;
+    clampCrop(ph);
+    $("crop-zoom").value = 1;
+  }
+  function drawCrop() {
+    var ph = state.photo, c = $("crop-canvas");
+    if (!ph) return;
+    var dpr = window.devicePixelRatio || 1, s = cropSide(ph), g = c.getContext("2d");
+    c.width = c.height = Math.round(VIEW * dpr);
+    g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height);       // PNG transparency -> white
+    g.drawImage(ph.img, ph.cx - s / 2, ph.cy - s / 2, s, s, 0, 0, c.width, c.height);
+  }
+  var cropTimer = null;
+  function cropChanged() {                    // after a drag or zoom: the preview, and a size check
+    drawCrop();
+    clearTimeout(cropTimer);
+    cropTimer = setTimeout(function () {
+      var ph = state.photo;
+      if (!ph) return;
+      ph.url = $("crop-canvas").toDataURL("image/jpeg", 0.85);
+      var side = Math.round(cropSide(ph)), st = $("photo-status");
+      st.className = "status " + (side < MIN_PIXELS ? "warn" : "good");
+      st.textContent = side < MIN_PIXELS
+        ? "Zoomed in this far, the square is only " + side + " × " + side + " pixels of the original, so it may look blurry. " +
+          (ph.zoom > 1 ? "Zooming out a little would help." : "A larger photo would be better, if you have it.")
+        : "Photo ready: drag it and use Zoom until the square looks right.";
+      preview();
+    }, 120);
+  }
+  function croppedBlob() {                    // the square, as a JPEG, for the .zip
+    var ph = state.photo, s = cropSide(ph), out = Math.min(MAX_SIDE, Math.round(s));
+    var c = document.createElement("canvas"), g = c.getContext("2d");
+    c.width = c.height = out;
+    g.fillStyle = "#fff"; g.fillRect(0, 0, out, out);
+    g.drawImage(ph.img, ph.cx - s / 2, ph.cy - s / 2, s, s, 0, 0, out, out);
+    return new Promise(function (ok) { c.toBlob(ok, "image/jpeg", 0.9); });
+  }
+
   function loadPhoto(file) {
     var st = $("photo-status");
     st.className = "status"; st.textContent = "Reading the photo…";
     var src = URL.createObjectURL(file), img = new Image();
     img.src = src;
     return img.decode().then(function () {
-      var w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, MAX_SIDE / Math.max(w, h));
-      var c = document.createElement("canvas");
-      c.width = Math.round(w * k); c.height = Math.round(h * k);
-      var g = c.getContext("2d");
-      g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height);         // PNG transparency -> white
-      g.drawImage(img, 0, 0, c.width, c.height);
-      return new Promise(function (ok) { c.toBlob(ok, "image/jpeg", 0.9); }).then(function (blob) {
-        URL.revokeObjectURL(src);
-        if (state.photo) URL.revokeObjectURL(state.photo.url);
-        state.photo = { blob: blob, width: w, height: h, url: URL.createObjectURL(blob) };
-        $("photo-preview").style.backgroundImage = "url('" + state.photo.url + "')";
-        $("photo-preview").textContent = "";
-        $("photo-remove").hidden = false;
-        var small = Math.min(w, h) < MIN_PIXELS;
-        st.className = "status " + (small ? "warn" : "good");
-        st.textContent = small
-          ? "This photo is only " + w + " × " + h + " pixels, so it may look blurry. A larger one would be better, if you have it."
-          : "Photo ready (" + w + " × " + h + " pixels" + (k < 1 ? ", saved at " + c.width + " × " + c.height : "") + ").";
-        preview();
-      });
+      if (state.photo) URL.revokeObjectURL(state.photo.src);
+      state.photo = { img: img, src: src, width: img.naturalWidth, height: img.naturalHeight };
+      startCrop(state.photo);
+      $("photo-preview").hidden = true;
+      $("crop-frame").hidden = false; $("crop-controls").hidden = false;
+      $("photo-remove").hidden = false;
+      cropChanged();
     }).catch(function () {
       URL.revokeObjectURL(src);
       st.className = "status bad";
@@ -684,13 +754,55 @@
     });
   }
   function removePhoto() {
-    if (state.photo) URL.revokeObjectURL(state.photo.url);
+    if (state.photo) URL.revokeObjectURL(state.photo.src);
     state.photo = null;
     $("photo").value = "";
-    $("photo-preview").style.backgroundImage = ""; $("photo-preview").textContent = "No photo";
+    $("photo-preview").hidden = false;
+    $("crop-frame").hidden = true; $("crop-controls").hidden = true;
     $("photo-remove").hidden = true; $("photo-status").textContent = "";
     preview();
   }
+
+  // dragging (mouse, touch or pen), the zoom slider, and the keyboard
+  (function () {
+    var frame = $("crop-frame"), drag = null;
+    frame.addEventListener("pointerdown", function (e) {
+      if (!state.photo) return;
+      drag = { x: e.clientX, y: e.clientY, cx: state.photo.cx, cy: state.photo.cy };
+      frame.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    frame.addEventListener("pointermove", function (e) {
+      if (!drag) return;
+      var ph = state.photo, k = cropSide(ph) / (frame.clientWidth || VIEW);   // photo pixels per screen pixel
+      ph.cx = drag.cx - (e.clientX - drag.x) * k;
+      ph.cy = drag.cy - (e.clientY - drag.y) * k;
+      clampCrop(ph); drawCrop();
+    });
+    function end() { if (drag) { drag = null; cropChanged(); } }
+    frame.addEventListener("pointerup", end);
+    frame.addEventListener("pointercancel", end);
+    frame.addEventListener("keydown", function (e) {
+      var ph = state.photo, step = cropSide(ph || { width: 0, height: 0, zoom: 1 }) * 0.04;
+      if (!ph) return;
+      var moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+      if (moves[e.key]) { ph.cx += moves[e.key][0]; ph.cy += moves[e.key][1]; }
+      else if (e.key === "+" || e.key === "=") ph.zoom = Math.min(4, ph.zoom + 0.1);
+      else if (e.key === "-" || e.key === "_") ph.zoom = Math.max(1, ph.zoom - 0.1);
+      else return;
+      e.preventDefault();
+      $("crop-zoom").value = ph.zoom;
+      clampCrop(ph); cropChanged();
+    });
+    $("crop-zoom").addEventListener("input", function () {
+      if (!state.photo) return;
+      state.photo.zoom = Number(this.value);
+      clampCrop(state.photo); cropChanged();
+    });
+    $("crop-reset").addEventListener("click", function () {
+      if (state.photo) { startCrop(state.photo); cropChanged(); }
+    });
+  })();
 
   // ---- the profile file ---------------------------------------------------------------------
   function chosenDois() {                     // what's saved: replaced preprints left out
@@ -783,7 +895,7 @@
     if (state.mode === "update" || manifest.replaces.length || manifest.keeps.length)
       files.push({ name: "submission.json", data: enc.encode(JSON.stringify(manifest) + "\n") });
     if (!state.photo) return Promise.resolve(zip(files));
-    return state.photo.blob.arrayBuffer().then(function (buf) {
+    return croppedBlob().then(function (blob) { return blob.arrayBuffer(); }).then(function (buf) {
       files.push({ name: "content/" + p.photo, data: new Uint8Array(buf) });
       return zip(files);
     });
@@ -802,7 +914,7 @@
       if (p[l[0]]) links.push('<a href="' + esc(p[l[0]]) + '" target="_blank" rel="noopener">' + l[1] + "</a>");
     });
     $("preview").innerHTML =
-      '<div class="pic" style="' + (state.photo ? "background-image:url('" + state.photo.url + "')" : "") + '"></div><div>' +
+      '<div class="pic" style="' + (state.photo && state.photo.url ? "background-image:url('" + state.photo.url + "')" : "") + '"></div><div>' +
       '<p class="name">' + (esc(p.name) || '<span style="color:#bbb">Your name</span>') +
       (p.pronouns ? ' <span class="pron">(' + esc(p.pronouns) + ")</span>" : "") + "</p>" +
       '<p class="role">' + esc([p.role, p.program].filter(Boolean).join(" · ")) + "</p>" +
@@ -877,7 +989,8 @@
       }
       var notes = [];
       r.bad.forEach(function (b) { notes.push("Left out, not a DOI or arXiv ID: " + esc(b)); });
-      r.results.filter(function (x) { return !x.ok; }).forEach(function (x) { notes.push("Left out, " + esc(x.error) + ": " + esc(x.doi)); });
+      r.results.filter(function (x) { return !x.ok && !x.unchecked; }).forEach(function (x) { notes.push("Left out, " + esc(x.error) + ": " + esc(x.doi)); });
+      r.results.filter(function (x) { return x.unchecked; }).forEach(function (x) { notes.push("Couldn't check " + esc(x.doi) + " just now. It's kept, and will be checked again when your profile is added."); });
       if (!state.photo && state.mode === "new") notes.push("No headshot added. You can send one to the website manager later.");
       var p = person(), issue = ISSUES[state.mode];
       var filename = p.slug + (state.mode === "update" ? "-profile-update.zip" : "-profile.zip");

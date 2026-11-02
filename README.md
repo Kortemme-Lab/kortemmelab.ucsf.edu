@@ -86,8 +86,10 @@ your browser until you save, so you can stop and come back.
    and optionally a longer bio. Then list your **education**, one degree per
    line, written out: `Bachelor of Science, Chemical Engineering, Northwestern University`.
 5. Add a **headshot**: a clear, recent JPG or PNG, ideally at least 400 × 400
-   pixels. It's shown square, cropped to the middle. iPhone HEIC photos need
-   converting first; the form says how.
+   pixels. The website shows it square, so once it's loaded, **drag the photo**
+   inside the square to choose what's shown, and use **Zoom** to frame it
+   closer (*Reset* starts over). What's in the square is exactly what's saved.
+   iPhone HEIC photos need converting first; the form says how.
 6. Under **Contact and links**, add your email (it's only saved if you tick
    *Show my email on my profile*), your ORCID iD, and any Google Scholar,
    website or GitHub links. Add your GitHub link: later updates to your
@@ -120,7 +122,8 @@ your profile.
    and your papers appear under *On your profile now*, all ticked.
 4. Change whatever you like:
    - edit any text field;
-   - choose a new headshot, or leave the photo field empty to keep the one you have;
+   - choose a new headshot (and crop it, as above), or leave the photo field empty
+     to keep the one you have;
    - **untick** a paper to take it off your profile;
    - **add new papers:** click *Find my papers on ORCID* and tick the new ones,
      or paste their DOIs under *Other papers* and click *Look these up*; if one
