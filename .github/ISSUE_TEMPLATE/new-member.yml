@@ -1,0 +1,47 @@
+name: New lab member
+description: Add yourself to the lab website, using the .zip saved by the profile form.
+title: "New lab member: "
+labels: ["new-member"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 1. Make your profile
+
+        **[Get the profile form](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**:
+        on that page, click the **download** button (↓, top right of the file) and open the
+        downloaded `profile-form.html` in your web browser.
+
+        Fill it in: your details, a headshot, and your papers (it can find them from your ORCID iD).
+        Then click **Save my profile**. You'll get one file, `your-name-profile.zip`.
+
+        Nothing you type in the form is sent anywhere. Only your ORCID iD and DOIs are looked up online.
+
+        ## 2. Attach it here
+
+        Put your name in the title above, drag your `.zip` into the box below, and click **Create**.
+        A check runs straight away and replies on this issue, usually within two minutes.
+        If something needs fixing, it says what. Once your profile passes, a website manager
+        reviews it and publishes it.
+  - type: textarea
+    id: profile
+    attributes:
+      label: Your profile .zip
+      description: Drag `your-name-profile.zip` into this box, or click here and then the paperclip to attach it.
+      placeholder: Drop your .zip here
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Publishing
+      options:
+        - label: I'm happy for everything in my profile, including my photo, to be published on the lab website.
+          required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else for the website manager?
+      description: Optional.
+    validations:
+      required: false

@@ -133,17 +133,19 @@ kortemmelab.ucsf.edu/
 │   ├── rotation-students.csv   past rotation students, for Lab Alumni
 │   └── archive/           old pages kept but not in use (18), see below
 ├── theme/                 the look: layout.html, site.css, carousel.js, fonts/
-├── scripts/               build-site.py, render-publications.py, bibliography.py
-│                          and add-person.py run the site; the rest made the
-│                          copy of the old site (see Regenerating)
+├── scripts/               build-site.py, render-publications.py, bibliography.py,
+│                          add-person.py and new-member-issue.py run the site;
+│                          the rest made the copy of the old site (see Regenerating)
 ├── intake/                adding new lab members (see below)
 │   ├── profile-form.html  the form new members fill in; saves a .zip
-│   ├── issue-form-plan.md the planned GitHub-issue route, not built yet
+│   ├── github-issue-route.md  how submitting through an issue works, and its setup
 │   ├── form-questions.md  the questions, for a Google or Microsoft form instead
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
-├── .github/workflows/     build-site.yml: rebuilds docs/ on GitHub after each push
+├── .github/               on GitHub: the New lab member issue form, and workflows
+│                          that rebuild docs/ after each push (build-site.yml) and
+│                          turn new-member issues into pull requests (new-member.yml)
 └── archive/               the old site and how it was copied; for reference only
     ├── site/              the old website; this folder is its web root
     │   ├── *.html         100 pages, same filenames as the live site
@@ -262,20 +264,25 @@ Worth knowing:
 
 ## Adding a new lab member
 
-**The usual way: the profile form.** Send new members
-`intake/profile-form.html` (attach the file, or link to `profile-form.html` on
-the website once it's published; it's on no menu). It opens in any browser
-and needs nothing installed. They fill in their details, pick their papers
+**The usual way: the profile form and a GitHub issue.** New members open
+Issues > New issue > **New lab member**. That issue form links to the profile
+form (`intake/profile-form.html`, also published as `profile-form.html` on
+the website, on no menu). The profile form opens in any browser and needs
+nothing installed. They fill in their details, pick their papers
 from their ORCID record or type DOIs (each is looked up as they go), add a
 headshot, check the preview, and click Save. That gives them one file,
-`<first-last>-profile.zip`, which they send to you.
+`<first-last>-profile.zip`, which they attach to the issue. A workflow checks
+it, replies on the issue, and opens a pull request adding them; you merge it,
+and the site rebuilds. Setup (two settings) and the details are in
+`intake/github-issue-route.md`.
 
 Nothing they type leaves their computer except the ORCID iD and DOIs, which
 the page looks up at orcid.org and doi.org. Their answers are kept in their
 browser until they save, so they can stop and come back. Photos are scaled
 down to at most 1000 pixels, so the `.zip` stays small.
 
-Then add them:
+Anyone without a GitHub account can email you the `.zip` instead. Add them
+yourself with:
 
 ```bash
 python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip --dry-run
@@ -290,10 +297,6 @@ This files their profile in `content/current-members/` and their headshot in
 left out and reported), and draws their publication list. The `.zip` is
 treated with suspicion: anything in it besides one profile and one matching
 photo stops it. Several `.zip` files can go in one command.
-
-**A GitHub issue instead of email** is planned, not built: members would
-attach the `.zip` to an issue, a workflow would check it and open a pull
-request, and merging it would publish them. See `intake/issue-form-plan.md`.
 
 **Or a Google or Microsoft form**, if you'd rather collect responses in one
 place. Set one up with the questions in `intake/form-questions.md`, keeping

@@ -255,24 +255,32 @@ def read_zip(path):
                 "photo": (photo, z.read(photo)) if photo else None}, None
 
 
-def add_from_zips(paths, dry_run, no_render):
+def add_from_zips(paths, dry_run, no_render, report_path=None):
     E, existing = bib.load(), content_index()
-    added_people, bib_added = [], 0
+    added_people, bib_added, report = [], 0, []
+
+    def skip(entry, why):
+        print(f"   skipped: {why}")
+        entry.update(status="skipped", problem=why)
+
     for path in paths:
         print(f"\n== {os.path.basename(path)}")
+        entry = {"file": os.path.basename(path), "status": "ok", "problem": "", "notes": []}
+        report.append(entry)
         got, problem = read_zip(os.path.expanduser(path))
         if problem:
-            print(f"   skipped: {problem}")
+            skip(entry, problem)
             continue
-        slug, text, notes = got["slug"], got["text"], []
+        slug, text, notes = got["slug"], got["text"], entry["notes"]
         name = bib.header_value(text, "name")
+        entry.update(slug=slug, name=name or "", role=bib.header_value(text, "role") or "")
         if not text.startswith("---\n") or not name:
-            print("   skipped: the profile has no header with a name; was it made by the form?")
+            skip(entry, "the profile has no header with a name; was it made by the profile form?")
             continue
         print(f"   {name} -> content/current-members/{slug}.md")
         if f"{slug}.md" in existing:
-            print(f"   skipped: already in content/ ({existing[f'{slug}.md'][0]}); edit that file instead,"
-                  " or delete it first to replace it")
+            skip(entry, f"someone called {name} is already on the website ({existing[f'{slug}.md'][0]}); "
+                        "a website manager needs to update that profile instead")
             continue
 
         # publications: every DOI is checked, as for --csv
@@ -289,6 +297,7 @@ def add_from_zips(paths, dry_run, no_render):
             else:
                 notes.append(f"DOI didn't resolve, left out: {d}")
         print(f"   publications: {len(good)}")
+        entry["publications"] = len(good)
 
         # photo
         photo_bytes = None
@@ -306,6 +315,7 @@ def add_from_zips(paths, dry_run, no_render):
             if photo_bytes is not None and not looks_like_image(zname, photo_bytes):
                 notes.append(f"{os.path.basename(zname)} isn't a readable JPG or PNG, left out")
                 photo_bytes = None
+        entry["photo"] = os.path.basename(got["photo"][0]) if photo_bytes is not None else ""
         if photo_bytes is None:
             notes.append(f"no headshot -- later, save one as content/images/people/{slug}.jpg"
                          f' and set photo: "images/people/{slug}.jpg" in their file')
@@ -329,6 +339,9 @@ def add_from_zips(paths, dry_run, no_render):
         for n in notes:
             print(f"   note: {n}")
 
+    if report_path:                         # for .github/workflows/new-member.yml
+        with open(report_path, "w", encoding="utf-8") as fh:
+            json.dump(report, fh, indent=2, ensure_ascii=False)
     if dry_run:
         print("\nDry run: nothing was written.")
         return
@@ -361,9 +374,10 @@ def main():
     ap.add_argument("--photo", help="this person's headshot (use with --only)")
     ap.add_argument("--dry-run", action="store_true", help="check and preview; write nothing")
     ap.add_argument("--no-render", action="store_true", help="don't redraw publication lists afterwards")
+    ap.add_argument("--report", metavar="FILE", help="with --zip: also write what was found as JSON")
     args = ap.parse_args()
     if args.zip:
-        return add_from_zips(args.zip, args.dry_run, args.no_render)
+        return add_from_zips(args.zip, args.dry_run, args.no_render, args.report)
 
     if os.path.basename(args.csv).lower().startswith("example") and not args.dry_run:
         sys.exit("That's the example file -- try it with --dry-run.")

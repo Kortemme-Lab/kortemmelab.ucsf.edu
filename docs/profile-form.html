@@ -107,7 +107,9 @@
 </header>
 <main>
 <p class="intro">Fill this in, check the preview at the bottom, and click <strong>Save</strong>.
-  You'll get one <code>.zip</code> file: send it to the lab's website manager.
+  You'll get one <code>.zip</code> file: attach it to a
+  <a class="issue-link" href="#" target="_blank" rel="noopener">New lab member issue on GitHub</a>,
+  or send it to the lab's website manager.
   Nothing you type is sent anywhere; only your ORCID iD and DOIs are looked up online.
   Your answers are kept in this browser until you save, so you can come back later.</p>
 
@@ -241,6 +243,8 @@
                      "review", "working-paper", "report"];
   var MIN_PIXELS = 400, MAX_SIDE = 1000;          // photos are scaled down to this
   var DRAFT_KEY = "kortemmelab-profile-draft";
+  // Where saved .zip files go: a "New lab member" issue (.github/ISSUE_TEMPLATE/new-member.yml).
+  var ISSUE_URL = "https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml";
   var FIELDS = ["name", "pronouns", "role", "role-other", "program", "year", "co_mentors", "summary",
                 "bio", "education", "email", "show_email", "orcid", "scholar", "website", "github", "dois"];
 
@@ -628,9 +632,12 @@
         if (!saved) { showMessages(notes, "warn"); return; }
         showMessages(notes, "warn");
         $("done").hidden = false;
-        $("done").innerHTML = "<strong>Saved " + esc(filename) + ".</strong> Send this file to the lab's website manager, " +
-          "who will add it to the website. If you change anything, save again and send the new file." +
-          (window.showSaveFilePicker ? "" : " (It's in your Downloads folder, unless your browser asked where to put it.)");
+        $("done").innerHTML = "<strong>Saved " + esc(filename) + ".</strong> " +
+          (window.showSaveFilePicker ? "" : "It's in your Downloads folder, unless your browser asked where to put it. ") +
+          "<br><br>Next: <a href=\"" + ISSUE_URL + "\" target=\"_blank\" rel=\"noopener\"><strong>open a New lab member issue on GitHub</strong></a>, " +
+          "put your name in the title, and drag this file into the box. A check replies on the issue within a couple of minutes, " +
+          "and a website manager publishes your profile from there. No GitHub account? Email the file to the lab's website manager instead." +
+          "<br><br>If you change anything later, save again and attach the new file to the same issue.";
       });
     }).catch(function (err) {
       showMessages(["Something went wrong while saving: " + esc(err.message || err)]);
@@ -664,6 +671,7 @@
   }
 
   // ---- wiring -----------------------------------------------------------------------------------
+  Array.prototype.forEach.call(document.querySelectorAll(".issue-link"), function (a) { a.href = ISSUE_URL; });
   $("year").value = new Date().getFullYear();
   restore();
   $("role-other").hidden = val("role") !== "other";
