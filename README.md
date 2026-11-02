@@ -8,6 +8,8 @@ copy of the old Weebly site it came from.
   [The website](#the-website) below.
 - **`content/`, `theme/`, `scripts/` and `intake/`** are what the website is
   made from (see [Layout](#layout)).
+- **Lab members:** to join, add papers, update your profile or leave the lab,
+  see [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab).
 - **`archive/`** holds the copy of the old <https://kortemmelab.ucsf.edu/>,
   captured **2026-09-03**, with the records of how it was made. The new site
   doesn't use anything in it; it's kept for reference.
@@ -20,6 +22,185 @@ The old copy, in numbers:
 | Body text | ~32,500 words |
 | Photos | 237 (182 referenced from page text, the rest gallery and click-to-enlarge originals) |
 | Size | 50 MB, of which 46 MB is photos |
+
+## Joining, updating and leaving the lab
+
+Lab members manage their own profiles through three GitHub issue forms. Each
+one ends in a pull request that a website manager reviews and merges, and
+the website then rebuilds by itself.
+
+| To… | Open this issue | You'll need |
+|---|---|---|
+| put yourself on the website when you join | [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form (step-by-step below) |
+| add new papers to your profile | [**Add papers**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-papers.yml) | just the papers' DOIs |
+| change anything else on your profile, current members and alumni alike | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
+| tell us you're leaving the lab | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
+
+All three are also under the repository's **Issues** tab > **New issue**.
+
+**Before you start:** you need a GitHub account, and a website manager must
+have added you to this repository (Settings > Collaborators). The issue forms
+aren't visible to anyone else. No GitHub account? Make your `.zip` with the
+profile form anyway and email it to a website manager.
+
+**The profile form** is one file, `intake/profile-form.html`. Open
+[it on GitHub](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html), click the
+**download** button (↓, the *Download raw file* icon at the top right of the
+file), and open the downloaded file in your web browser. It needs nothing
+installed. Nothing you type leaves your computer, except your ORCID iD and
+DOIs, which are looked up at orcid.org and doi.org. Your answers are kept in
+your browser until you save, so you can stop and come back.
+
+### Joining the lab: New lab member
+
+1. Download and open the profile form (above).
+2. Under **Start here**, choose **I'm new to the lab**.
+3. Fill in **About you**: your name as it should appear on the website, your
+   pronouns if you'd like them shown, your role, your program, the year you
+   joined, and any co-mentors.
+4. Write a **research summary** (one to three sentences, shown under your name),
+   and optionally a longer bio. Then list your **education**, one degree per
+   line, written out: `Bachelor of Science, Chemical Engineering, Northwestern University`.
+5. Add a **headshot**: a clear, recent JPG or PNG, ideally at least 400 × 400
+   pixels. It's shown square, cropped to the middle. iPhone HEIC photos need
+   converting first; the form says how.
+6. Under **Contact and links**, add your email (it's only saved if you tick
+   *Show my email on my profile*), your ORCID iD, and any Google Scholar,
+   website or GitHub links. Add your GitHub link: later updates to your
+   profile are then checked against it automatically.
+7. Under **Publications**, click **Find my papers on ORCID** and tick the ones
+   to list. For anything missing from ORCID, paste its DOI or arXiv ID under
+   *Other papers* and click **Look these up**.
+8. Check the **Preview**, then click **Save my profile**. You get one file,
+   `your-name-profile.zip`.
+9. Open a [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) issue.
+   Put your name in the title (`New lab member: Jane Doe`), drag the `.zip`
+   into *Your profile .zip*, tick the publishing box, and click **Create**.
+
+### Adding new papers: Add papers
+
+1. Open an [**Add papers**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-papers.yml) issue, and
+   put your name in the title (`Add papers: Jane Doe`).
+2. Under *Your name as it appears on the website*, type your name exactly as
+   it is on the People page.
+3. Under *Papers to add (DOIs)*, paste one per line: a DOI
+   (`10.1126/science.abc0881`), a doi.org link, or an arXiv ID
+   (`arXiv:2204.13048`). Papers already on your profile are skipped, so
+   there's no harm in including them.
+4. Click **Create**.
+
+Preprints are fine. When a preprint is later published, the published paper
+replaces it on the website automatically, once a website manager runs
+`python3 scripts/render-publications.py --check-preprints`.
+
+### Changing your profile: Update my profile
+
+This works for current members and alumni alike: a new position, a new
+photo, a different summary, links, or papers to take off your profile.
+
+1. **Download your current profile.** On GitHub, open
+   [current members](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/current-members) or
+   [alumni](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/alumni), click your file (e.g.
+   `jane-doe.md`), and click the **download** button (↓).
+2. Download and open the profile form (above).
+3. Under **Start here**, choose **Update my profile**, click *Choose file*,
+   and pick the profile you just downloaded. Every field fills in from it,
+   and your papers appear under *On your profile now*, all ticked.
+4. Change whatever you like:
+   - edit any text field;
+   - choose a new headshot, or leave the photo field empty to keep the one you have;
+   - **untick** a paper to take it off your profile;
+   - add papers from ORCID or by DOI, as when joining;
+   - untick *Show my email on my profile* to remove your email from the website.
+5. Check the **Preview**, then click **Save my profile**. You get
+   `your-name-profile-update.zip`.
+6. Open an [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml)
+   issue. Put your name in the title (`Profile update: Jane Doe`), drag the
+   `.zip` into *Your updated profile .zip*, tick the publishing box, and click
+   **Create**.
+
+Only what you changed is replaced. Anything else in your profile file stays
+as it is, and your page keeps its web address even if you change your name.
+
+### Leaving the lab: Update my profile
+
+Follow *Changing your profile* above. At step 4, under **About you**, tick
+**I've left the lab, or I'm leaving it**, and fill in:
+
+- **Year you left (or are leaving):** required.
+- **What you're doing now, or next:** e.g. `Assistant Professor, Example University`.
+- **Your first position after the lab:** only if you've since moved on from it;
+  otherwise leave it empty.
+
+Once the pull request is merged, you move from Current Members to Lab Alumni,
+with your years and positions on the alumni roster. Alumni can come back the
+same way at any time to update their current position.
+
+### After you submit
+
+A check runs as soon as the issue is created and replies on it, usually
+within two minutes. The reply either:
+
+- **links to a pull request** and sums up what it changes, e.g. "current
+  position, research summary, 1 paper added". Nothing more is needed from you:
+  a website manager reviews it and publishes it, and the issue closes by
+  itself once it's merged. Or
+- **says what to fix**, e.g. a profile `.zip` attached to the wrong kind of
+  issue, a name that doesn't match anyone on the People page, or a DOI that
+  doesn't exist.
+
+To fix something, or to change your mind before it's published, **edit the
+issue**: the ⋯ menu on your issue's first post > *Edit*. Attach a new `.zip`
+(save again from the form) or correct the DOIs, and click *Update comment*.
+The check runs again, and the pull request updates itself. There's no need to
+open a new issue.
+
+### For website managers: reviewing and publishing
+
+1. **Open the pull request** linked from the issue (or from the **Pull
+   requests** tab). Its description says what changes, shows the photo if
+   there's a new one, and notes anything worth a look, such as a DOI that was
+   left out because it doesn't resolve.
+2. **Check who sent it.** The description compares the GitHub account that
+   opened the issue with the GitHub link already on that profile:
+   - **✓ Opened by … the GitHub account on this profile:** it's them.
+   - **⚠ … but this profile's GitHub link is …:** someone else's account. Make
+     sure it's really them, or someone they asked, such as a co-author adding a
+     paper.
+   - **This profile has no GitHub link to compare with:** usual for now. Check
+     the change looks right for that person.
+3. **Look at *Files changed*:** the profile text, any new photo, and the
+   redrawn publication lists. A profile moving to Lab Alumni shows as a file
+   renamed from `current-members/` to `alumni/`.
+4. **Merge** it (*Merge pull request* > *Confirm merge*), and delete the
+   branch when GitHub offers. The issue closes, and the
+   `Build the website` workflow rebuilds `docs/` within a couple of minutes.
+   Then `git pull` before your own next edits.
+
+To ask for changes, comment on the issue (not the pull request), so the
+member sees it. When they edit the issue, the pull request updates. To turn
+a submission down, close the pull request without merging, then close the
+issue with a comment.
+
+**One-time setup:** Settings > Actions > General > *Workflow permissions* >
+tick **Allow GitHub Actions to create and approve pull requests**. Add each
+member under Settings > Collaborators before they submit.
+
+| If the reply on the issue says… | Do this |
+|---|---|
+| it couldn't open the pull request | the setup step just above |
+| it couldn't download the `.zip` | add an `INTAKE_TOKEN` secret, then re-run the workflow from the link in the reply; steps in `intake/github-issue-route.md` |
+| something went wrong | open the run from the link in the reply (Actions tab) and read the failed step |
+
+If merging says there's a **conflict** (two submissions at once can both
+touch `content/bibliography.json`), edit the second issue (any small change
+will do), and its pull request is rebuilt from the latest `main`.
+
+The full story, the identity check, the safety measures, and the planned
+move to a GitHub organization are in `intake/github-issue-route.md`. A note
+on access: this repository belongs to a personal account, so every
+collaborator can also push to it directly. Until the move to an
+organization, the review step relies on people using the issue forms.
 
 ## The website
 
@@ -265,25 +446,14 @@ Worth knowing:
 
 ## Adding a new lab member
 
-**The usual way: the profile form and a GitHub issue.** New members open
-Issues > New issue > **New lab member**. That issue form links to the profile
-form (`intake/profile-form.html`, also published as `profile-form.html` on
-the website, on no menu). The profile form opens in any browser and needs
-nothing installed. They fill in their details, pick their papers
-from their ORCID record or type DOIs (each is looked up as they go), add a
-headshot, check the preview, and click Save. That gives them one file,
-`<first-last>-profile.zip`, which they attach to the issue. A workflow checks
-it, replies on the issue, and opens a pull request adding them; you merge it,
-and the site rebuilds. Setup (two settings) and the details are in
-`intake/github-issue-route.md`.
+**The usual way** is the profile form and a *New lab member* issue: see
+[Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
+for the steps. The profile form (`intake/profile-form.html`) is also
+published as `profile-form.html` on the website, on no menu. Photos are
+scaled down to at most 1000 pixels, so the `.zip` stays small.
 
-Nothing they type leaves their computer except the ORCID iD and DOIs, which
-the page looks up at orcid.org and doi.org. Their answers are kept in their
-browser until they save, so they can stop and come back. Photos are scaled
-down to at most 1000 pixels, so the `.zip` stays small.
-
-Anyone without a GitHub account can email you the `.zip` instead. Add them
-yourself with:
+**By hand:** anyone without a GitHub account can email you the `.zip`
+instead. Add them yourself with:
 
 ```bash
 python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip --dry-run
@@ -340,14 +510,9 @@ push: GitHub rebuilds it (below).
 
 ### Updating a profile, and leaving the lab
 
-Current members and alumni add new papers with an **Add papers** issue: just
-their name and the DOIs. For anything else they open **Update my profile**:
-they load their current profile into the profile form (in its *Update my
-profile* mode), change it, and attach the `.zip`. The form's **I've left the lab, or
-I'm leaving it** option takes the year and what they're doing next, and the
-pull request moves them to Lab Alumni. A workflow opens the pull request;
-you merge it. How it works, the identity check, and setup are in
-`intake/github-issue-route.md`.
+Current members and alumni use the **Add papers** and **Update my profile**
+issues: see [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
+for the steps.
 
 The same can be done by hand:
 
