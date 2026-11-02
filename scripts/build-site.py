@@ -61,8 +61,8 @@ GENERATED = {"current-members", "lab-alumni"}
 
 # Roster order. Anything not listed comes after, alphabetically by role.
 CURRENT_ORDER = ["Principal Investigator", "Research Scientist", "Postdoctoral Scholar",
-                 "Visiting Scholar", "Graduate Student", "Lab Manager", "Staff", "Specialist",
-                 "Lab Technician", "Undergraduate Researcher", "High School Student"]
+                 "Graduate Student", "Lab Technician", "Lab Manager", "Staff", "Specialist",
+                 "Visiting Scholar", "Undergraduate Researcher", "High School Student"]
 ALUMNI_SECTIONS = [                           # as on the old Lab Alumni page
     ("Graduate Students", ["Graduate Student"]),
     ("Postdoctoral Scholars", ["Postdoctoral Scholar", "Research Scientist"]),
