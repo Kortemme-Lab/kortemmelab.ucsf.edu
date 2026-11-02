@@ -24,7 +24,7 @@ external_links:
 
 <div class="column-text">
 
-We are located on the on the 3rd floor of Byers Hall at the intersection of 4th St. and 16th St. on the UCSF Mission Bay campus. Byers Hall is adjacent/connected to Genentech Hall. Tanja's office is on the third floor in room 308E, and the lab is in 309.
+We are located on the 3rd floor of Byers Hall at the intersection of 4th St. and 16th St. on the UCSF Mission Bay campus. Byers Hall is adjacent/connected to Genentech Hall. Tanja's office is on the third floor in room 308E, and the lab is in 309.
 
 </div>
 </div>
