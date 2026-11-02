@@ -14,7 +14,7 @@ links:
   website: ""
   github: ""
 education:
-  - "B.S., Biochemistry, University of Washington"
+  - "B.S., Biochemistry, University of Washington, Seattle"
 publications: []
 # Where this profile came from: the old Weebly site.
 source_url: "https://kortemmelab.ucsf.edu/current---jonathan-zhang.html"
