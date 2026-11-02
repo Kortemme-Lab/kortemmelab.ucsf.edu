@@ -236,8 +236,8 @@ anything that needs a look. In short:
 - **Two wrong emails were corrected.** Lisa Schmidt's page linked to Tobias
   Dorer's address and Yulia Gutierrez's to Dru Myerscough's; both pages were
   evidently copied from a colleague's. Their profiles now have their own
-  addresses. The old pages, and so the local copy in `site/`, still have the
-  wrong links.
+  addresses, and `scripts/fix-links.py` corrects the email links on their
+  pages in `site/` too.
 - **Names come from each person's own page** where it differs from the old
   page title: Jon Zhang, Anum Azam Glasgow, Yang (Sunny) Zhang.
 - **9 have no photo**: five early undergraduates and four rotation students.
@@ -300,12 +300,15 @@ anything that needs a look. In short:
    full-resolution `_orig` files. The gallery also works when a page is opened
    straight from disk now, not just from a server.
 
-8. **Two broken links are fixed**, by `scripts/fix-links.py`. On the alumni
+8. **Broken links are fixed**, by `scripts/fix-links.py`. On the alumni
    roster, Deniz Akpinaroglu's name was split across three links, and "Deni"
    and "z" opened Cody Krivacic's profile. It's now one link, bold like every
    other name. On Yulia Gutierrez's profile, her own name linked to Deniz's
    old current-member page, which no longer exists. It's now plain text, like
    the name at the top of every other profile.
+   Lisa Schmidt's and Yulia Gutierrez's email icons went to colleagues'
+   addresses, Tobias Dorer's and Dru Myerscough's, and Lisa's name linked to
+   Tobias's profile; all three now point where they should.
 
 9. **Every publication list is regenerated** from the bibliography in one
    consistent style, replacing four different styles. The Publications
@@ -404,7 +407,7 @@ for s in normalize-filenames restructure-root fix-mailto fetch-gallery-images cu
 | `fetch-gallery-images.py` | Fetches the slideshow photos wget can't see |
 | `customize-nav.py` | Removes the menu items in its `HIDE` list |
 | `tidy-site.py` | Reorganizes files, removes dead code, reformats HTML |
-| `fix-links.py` | Fixes the two broken links described above |
+| `fix-links.py` | Fixes the broken links described above |
 | `extract.py` | Rebuilds `structure/`; creates any missing `content/` files (`--refresh` rewrites them, but never a profile) |
 | `alumni-years.py` | Adds `years_in_lab` to alumni files that don't have it |
 | `build-bibliography.py` | Creates `content/bibliography.json` from the original citations. Runs once; never overwrites it |

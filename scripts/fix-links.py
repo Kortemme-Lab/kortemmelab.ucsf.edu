@@ -33,6 +33,29 @@ FIXES = [
                'Yulia Gutierrez</a></strong>',
         "new": '<strong>Yulia Gutierrez</strong>',
     },
+    {
+        "page": "current---lisa-schmidt.html",
+        "why": "the email icon on Lisa Schmidt's profile went to Tobias Dorer's "
+               "address (her page was copied from his); her own address is "
+               "from the lab",
+        "old": 'href="mailto:Tobias.Dorer@ucsf.edu"',
+        "new": 'href="mailto:lisa.schmidt@mpinat.mpg.de"',
+    },
+    {
+        "page": "current---lisa-schmidt.html",
+        "why": "Lisa Schmidt's own name linked to Tobias Dorer's profile (copied "
+               "from his page); no other profile links the name",
+        "old": '<a href="current---tobias-dorer.html" target="_blank"><font size="4">'
+               '<strong>Lisa Schmidt<br></strong></font></a>',
+        "new": '<font size="4"><strong>Lisa Schmidt<br></strong></font>',
+    },
+    {
+        "page": "current---yulia-gutierrez.html",
+        "why": "the email icon on Yulia Gutierrez's profile went to Dru "
+               "Myerscough's address; her own address is from the lab",
+        "old": 'href="mailto:dru.myerscough@ucsf.edu"',
+        "new": 'href="mailto:Yulia.Gutierrez@ucsf.edu"',
+    },
 ]
 
 
