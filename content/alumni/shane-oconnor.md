@@ -1,7 +1,7 @@
 ---
 name: "Shane O'Connor"
 pronouns: ""
-role: ""
+role: "Staff"
 program: ""
 years_in_lab: "2011-2016"
 current_position: "Software Engineer, Kitman Labs"

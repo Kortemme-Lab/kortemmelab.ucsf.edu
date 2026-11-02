@@ -1,7 +1,7 @@
 ---
 name: "Cristina Melero"
 pronouns: ""
-role: ""
+role: "Staff"
 program: ""
 years_in_lab: "2004-2012"
 current_position: ""

@@ -229,9 +229,10 @@ anything that needs a look. In short:
 
 - **20 current members have no start year.** The old site never recorded
   one. Fill in `years_in_lab` as `"2021-present"`.
-- **4 have no role**: alumni listed under "Staff" on the roster without a
-  title (Cristina Melero, Debbie Jeon, Florian Lauck, Shane O'Connor). Roles
-  for the other five the old pages left out were filled in by hand.
+- **Every profile has a role.** The roster supplied them for older alumni;
+  the four it lists only under "Staff" (Cristina Melero, Debbie Jeon, Florian
+  Lauck, Shane O'Connor) have "Staff", and five that the old pages left out
+  were filled in by hand.
 - **Two wrong emails were corrected.** Lisa Schmidt's page linked to Tobias
   Dorer's address and Yulia Gutierrez's to Dru Myerscough's; both pages were
   evidently copied from a colleague's. Their profiles now have their own

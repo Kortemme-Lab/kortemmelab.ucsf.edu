@@ -1,7 +1,7 @@
 ---
 name: "Florian Lauck"
 pronouns: ""
-role: ""
+role: "Staff"
 program: ""
 years_in_lab: "2008-2010"
 current_position: "Software Engineer, Evotec"

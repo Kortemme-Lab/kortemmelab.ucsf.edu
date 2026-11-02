@@ -57,9 +57,9 @@ def header(text):
     return head, body
 
 
-# The alumni roster's sections, and the role each implies (None: unclear)
+# The alumni roster's sections, and the role each implies
 SECTIONS = {"Graduate Students": "Graduate Student", "Postdoctoral Fellows": "Postdoctoral Scholar",
-            "Staff": None, "Undergraduate Students": "Undergraduate Researcher",
+            "Staff": "Staff", "Undergraduate Students": "Undergraduate Researcher",
             "High school Students": "High School Student", "Past rotation students": "Rotation Student"}
 
 

@@ -1,7 +1,7 @@
 ---
 name: "Debbie Jeon"
 pronouns: ""
-role: ""
+role: "Staff"
 program: ""
 years_in_lab: "2009-2013"
 current_position: "MD Program, George Washington University"
