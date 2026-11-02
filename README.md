@@ -23,6 +23,31 @@ The old copy, in numbers:
 | Photos | 237 (182 referenced from page text, the rest gallery and click-to-enlarge originals) |
 | Size | 50 MB, of which 46 MB is photos |
 
+## Contents
+
+- [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
+  - [Joining the lab: New lab member](#joining-the-lab-new-lab-member)
+  - [Adding new papers: Add papers](#adding-new-papers-add-papers)
+  - [Changing your profile: Update my profile](#changing-your-profile-update-my-profile)
+  - [Leaving the lab: Update my profile](#leaving-the-lab-update-my-profile)
+  - [After you submit](#after-you-submit)
+  - [For website managers: reviewing and publishing](#for-website-managers-reviewing-and-publishing)
+- [The website](#the-website)
+  - [Automatic rebuilds](#automatic-rebuilds)
+  - [Publishing on GitHub Pages](#publishing-on-github-pages)
+  - [Viewing the old site](#viewing-the-old-site)
+- [Layout](#layout)
+- [Publications](#publications)
+- [Adding people by hand, or from a Google Form](#adding-people-by-hand-or-from-a-google-form)
+  - [Updating profiles by hand](#updating-profiles-by-hand)
+- [Profiles](#profiles)
+- [How it differs from the live site](#how-it-differs-from-the-live-site)
+- [How the cleanup was verified to change nothing visible](#how-the-cleanup-was-verified-to-change-nothing-visible)
+- [The archive](#the-archive)
+- [Pages no visitor can reach](#pages-no-visitor-can-reach)
+- [Known limitations](#known-limitations)
+- [Regenerating](#regenerating)
+
 ## Joining, updating and leaving the lab
 
 Lab members manage their own profiles through three GitHub issue forms. Each
@@ -444,7 +469,7 @@ Worth knowing:
   the pages that listed it when the site moved off Weebly (it isn't kept up
   to date).
 
-## Adding a new lab member
+## Adding people by hand, or from a Google Form
 
 **The usual way** is the profile form and a *New lab member* issue: see
 [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
@@ -499,16 +524,17 @@ python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --pho
 ```
 
 Someone already in `content/` is skipped, never overwritten: changes to an
-existing profile come through *Update my profile* (below), or by editing the
-file directly. Email addresses are stored only for people who agreed to show them.
+existing profile come through *Update my profile* (see
+[Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)),
+by hand (next section), or by editing the file directly. Email addresses are stored only for people who agreed to show them.
 `intake/example-responses.csv` holds two fictional responses for trying the
 CSV route with `--dry-run`. One uses ORCID's own test researcher, Josiah
 Carberry, whose iD (0000-0002-1825-0097) also works in the profile form.
 
 Then rebuild the site (`python3 scripts/build-site.py`) and push, or just
-push: GitHub rebuilds it (below).
+push: GitHub rebuilds it (see [Automatic rebuilds](#automatic-rebuilds)).
 
-### Updating a profile, and leaving the lab
+### Updating profiles by hand
 
 Current members and alumni use the **Add papers** and **Update my profile**
 issues: see [Joining, updating and leaving the lab](#joining-updating-and-leaving-the-lab)
