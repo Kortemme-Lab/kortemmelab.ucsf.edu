@@ -18,17 +18,27 @@ external_links:
 
 ## Campus map
 
-![Picture](images/1262696.png)
+<div class="columns">
+
+![Campus map](images/1262696.png)
+
+<div class="column-text">
 
 We are located on the on the 3rd floor of Byers Hall at the intersection of 4th St. and 16th St. on the UCSF Mission Bay campus. Byers Hall is adjacent/connected to Genentech Hall. Tanja's office is on the third floor in room 308E, and the lab is in 309.
+
+</div>
+</div>
 
 ## Public transport
 
 The Mission Bay campus is served by bus, light rail, and UCSF shuttles and is located close to Caltrain.
 
-![Picture](images/761266380.jpg)
+<div class="columns">
 
-Public transport
+![Public transport map](images/761266380.jpg)
+*Public transport*
+
+<div class="column-text">
 
 **Light rail (L)**
 
@@ -44,17 +54,24 @@ The 55 bus line (B) has a direct connection from 16th and Mission BART station t
 
 The [UCSF Red shuttle](http://campuslifeservices.ucsf.edu/transportation/services/shuttles/routes_timetables) can also be taken from 16th and Mission on the north-east side of the intersection (outside Burger King).
 
+</div>
+</div>
+
 ## UCSF shuttles
 
-![Picture](images/622962923.jpg)
+<div class="columns">
 
-Public transport
+![UCSF shuttles map](images/622962923.jpg)
+*Public transport*
+
+<div class="column-text">
 
 UCSF provides free shuttles between the campuses for faculty, staff, students, patients, and visitors.
 
 The routes and timetables are available [here](http://campuslifeservices.ucsf.edu/transportation/services/shuttles/routes_timetables). Some of the main campuses are marked in the map to the left (U) with Mission Bay marked as (•).
 
-​
+</div>
+</div>
 
 ## From SFO airport
 

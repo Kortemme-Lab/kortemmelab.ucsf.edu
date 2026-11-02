@@ -180,7 +180,7 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 
 /* two columns side by side, e.g. Contact: the map, then its text */
 .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
-.columns > .embed { margin: 0; }
+.columns > .embed, .columns > figure { margin: 0; }
 .columns > .embed iframe { height: 100%; min-height: 350px; }
 .columns .column-text > :first-child { margin-top: 0; }
 
