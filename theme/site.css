@@ -178,6 +178,12 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 .page-news .page li { position: relative; padding: 7px 0 7px 170px; border-bottom: 1px solid #ececec; }
 .page-news .page li > strong:first-child { position: absolute; left: 0; width: 150px; color: var(--heading); font-weight: 600; }
 
+/* two columns side by side, e.g. Contact: the map, then its text */
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
+.columns > .embed { margin: 0; }
+.columns > .embed iframe { height: 100%; min-height: 350px; }
+.columns .column-text > :first-child { margin-top: 0; }
+
 /* publication lists */
 .page ol li { margin-bottom: .7em; }
 .co-first-note { font-size: 14px; color: var(--muted); }
@@ -276,6 +282,9 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
   .alumni .position:empty { display: none; }
   .alumni li.alumni-head { display: none; }
   .rotations { columns: 1; }
+  .columns { grid-template-columns: 1fr; gap: 24px; }
+  .columns > .embed { order: 1; }       /* on phones: the text, then the map */
+  .columns > .embed iframe { height: 350px; }
   /* carousel: the caption goes under the photo rather than over it */
   .carousel-view { --stage: calc((100vw - 32px) * .5625); }
   .carousel-slide { height: auto; align-items: flex-start; }

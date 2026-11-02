@@ -18,6 +18,13 @@ external_links:
   - http://www.synberc.org/
 ---
 
+<!-- Two columns: the map on the left, the text on the right. -->
+<div class="columns contact">
+
+<div class="embed embed-map"><iframe src="https://maps.google.com/maps?q=Byers+Hall,+San+Francisco,+CA+94158&amp;z=16&amp;output=embed" title="Google map"></iframe></div>
+
+<div class="column-text">
+
 ## Location
 
 See [here](directions.html) for directions.
@@ -45,4 +52,5 @@ San Francisco, CA 94143-2530
 309 (experimental lab)
 308E (Tanja Kortemme's office)
 
-<div class="embed embed-map"><iframe src="https://maps.google.com/maps?q=1700+4th+Street,+San+Francisco,+CA+94158&amp;z=15&amp;output=embed" title="Google map" loading="lazy"></iframe></div>
+</div>
+</div>

@@ -144,7 +144,7 @@ ONLY_IMAGE = re.compile(r"^(?:!\[[^\]]*\]" + URL_IN_PARENS + r"|\[!\[[^\]]*\]" +
 CAPTION = re.compile(r"^\*([^*].*)\*$")
 HEADING = re.compile(r"^(#{1,6})\s*(.*?)\s*#*$")
 ITEM = re.compile(r"^(?:([-*+])|(\d+)\.)\s+(.*)$")
-BLOCK_HTML = re.compile(r"^<(?:div|iframe|ol|ul|table|figure|p|section|blockquote)\b", re.I)
+BLOCK_HTML = re.compile(r"^</?(?:div|iframe|ol|ul|table|figure|p|section|blockquote)\b", re.I)
 
 
 def inline(s, url):
