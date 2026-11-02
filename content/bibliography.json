@@ -1,6 +1,110 @@
 [
   {
     "type": "journal-article",
+    "DOI": "10.1038/s41594-025-01669-4",
+    "URL": "http://dx.doi.org/10.1038/s41594-025-01669-4",
+    "title": "Computational design of sequence-specific DNA-binding proteins",
+    "container-title": "Nature Structural & Molecular Biology",
+    "container-title-short": "Nat Struct Mol Biol",
+    "author": [
+      {
+        "family": "Glasscock",
+        "given": "Cameron J."
+      },
+      {
+        "family": "Pecoraro",
+        "given": "Robert J."
+      },
+      {
+        "family": "McHugh",
+        "given": "Ryan"
+      },
+      {
+        "family": "Doyle",
+        "given": "Lindsey A."
+      },
+      {
+        "family": "Chen",
+        "given": "Wei"
+      },
+      {
+        "family": "Boivin",
+        "given": "Olivier"
+      },
+      {
+        "family": "Lonnquist",
+        "given": "Beau"
+      },
+      {
+        "family": "Na",
+        "given": "Emily"
+      },
+      {
+        "family": "Politanska",
+        "given": "Yuliya"
+      },
+      {
+        "family": "Haddox",
+        "given": "Hugh K."
+      },
+      {
+        "family": "Cox",
+        "given": "David"
+      },
+      {
+        "family": "Norn",
+        "given": "Christoffer"
+      },
+      {
+        "family": "Coventry",
+        "given": "Brian"
+      },
+      {
+        "family": "Goreshnik",
+        "given": "Inna"
+      },
+      {
+        "family": "Vafeados",
+        "given": "Dionne"
+      },
+      {
+        "family": "Lee",
+        "given": "Gyu Rie"
+      },
+      {
+        "family": "Gordân",
+        "given": "Raluca"
+      },
+      {
+        "family": "Stoddard",
+        "given": "Barry L."
+      },
+      {
+        "family": "DiMaio",
+        "given": "Frank"
+      },
+      {
+        "family": "Baker",
+        "given": "David"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          9,
+          12
+        ]
+      ]
+    },
+    "volume": "32",
+    "issue": "11",
+    "page": "2252-2261",
+    "publisher": "Springer Science and Business Media LLC",
+    "id": "10.1038/s41594-025-01669-4"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1126/science.adr7094",
     "URL": "http://dx.doi.org/10.1126/science.adr7094",
     "title": "Deep learning–guided design of dynamic proteins",
