@@ -1,0 +1,76 @@
+name: Build the website
+
+# Whenever the site's content, look or build scripts change on main, this
+# redraws the publication lists and rebuilds docs/, then commits the result,
+# so docs/ always matches content/ -- even after an edit made in GitHub's web
+# editor. A push that already includes an up-to-date docs/ (built on someone's
+# own computer) leaves nothing to commit.
+#
+# On a pull request it only checks that the site builds and that every link
+# and image on it works; nothing is committed.
+#
+# It can also be run by hand: Actions tab > Build the website > Run workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "theme/**"
+      - "intake/profile-form.html"
+      - "scripts/build-site.py"
+      - "scripts/render-publications.py"
+      - "scripts/bibliography.py"
+      - ".github/workflows/build-site.yml"
+  pull_request:
+    paths:
+      - "content/**"
+      - "theme/**"
+      - "intake/profile-form.html"
+      - "scripts/build-site.py"
+      - "scripts/render-publications.py"
+      - "scripts/bibliography.py"
+      - ".github/workflows/build-site.yml"
+  workflow_dispatch:
+
+# One build at a time, so two quick pushes can't race to commit docs/.
+concurrency:
+  group: build-site-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write          # to commit the rebuilt docs/ (not used on pull requests)
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Looks up any new DOIs at doi.org and redraws every list in content/.
+      - name: Draw the publication lists
+        run: python3 scripts/render-publications.py
+
+      # Stops with a list if any internal link or image is broken.
+      - name: Build the site
+        run: python3 scripts/build-site.py
+
+      - name: Commit the rebuilt site
+        if: github.event_name != 'pull_request'
+        run: |
+          git add -A content docs
+          if git diff --cached --quiet; then
+            echo "docs/ was already up to date; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild the website" \
+                     -m "Automatic, by .github/workflows/build-site.yml after ${GITHUB_SHA::7}."
+          # someone may have pushed while this ran
+          git pull --rebase origin main
+          git push origin HEAD:main

@@ -72,6 +72,22 @@ move through them, and a strip of thumbnails below. It's switched on by
 `content/gallery.md` like the others. Without JavaScript the grid shows
 instead.
 
+### Automatic rebuilds
+
+`.github/workflows/build-site.yml` runs on GitHub whenever something in
+`content/`, `theme/` or the build scripts changes on `main`. It redraws the
+publication lists, rebuilds `docs/`, and commits the result as
+*github-actions[bot]*, so the site can't fall out of step with its content,
+even after an edit made in GitHub's web editor. If you built the site
+yourself before pushing, there's nothing left to commit and it just confirms
+the build works. On a pull request it only checks that the site builds and
+its links work.
+
+Because it can add a commit after yours, run `git pull` before starting new
+work. A failed run (a broken link, a DOI that doesn't resolve) shows as a red
+cross on the commit, and GitHub emails whoever pushed it. You can also start a
+run from the Actions tab (Build the website > Run workflow).
+
 ### Publishing on GitHub Pages
 
 In the repository's Settings > Pages, choose "Deploy from a branch", branch
@@ -121,10 +137,13 @@ kortemmelab.ucsf.edu/
 │                          and add-person.py run the site; the rest made the
 │                          copy of the old site (see Regenerating)
 ├── intake/                adding new lab members (see below)
-│   ├── form-questions.md  the questions for the intake form
+│   ├── profile-form.html  the form new members fill in; saves a .zip
+│   ├── issue-form-plan.md the planned GitHub-issue route, not built yet
+│   ├── form-questions.md  the questions, for a Google or Microsoft form instead
 │   ├── profile-template.md   the shape of a new member's profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
+├── .github/workflows/     build-site.yml: rebuilds docs/ on GitHub after each push
 └── archive/               the old site and how it was copied; for reference only
     ├── site/              the old website; this folder is its web root
     │   ├── *.html         100 pages, same filenames as the live site
@@ -243,36 +262,63 @@ Worth knowing:
 
 ## Adding a new lab member
 
-New members fill in a short form; one command turns the responses into
-profiles.
+**The usual way: the profile form.** Send new members
+`intake/profile-form.html` (attach the file, or link to `profile-form.html` on
+the website once it's published; it's on no menu). It opens in any browser
+and needs nothing installed. They fill in their details, pick their papers
+from their ORCID record or type DOIs (each is looked up as they go), add a
+headshot, check the preview, and click Save. That gives them one file,
+`<first-last>-profile.zip`, which they send to you.
 
-1. **Set up the form once**, in Google Forms or Microsoft Forms, using the
-   questions in `intake/form-questions.md`. Keep the opening words of each
-   question title; the script finds answers by them.
-2. **When people have responded**, export the responses as a CSV to
-   `intake/responses.csv`, and download the uploaded headshots into
-   `intake/photos/`.
-3. **Preview, then add:**
+Nothing they type leaves their computer except the ORCID iD and DOIs, which
+the page looks up at orcid.org and doi.org. Their answers are kept in their
+browser until they save, so they can stop and come back. Photos are scaled
+down to at most 1000 pixels, so the `.zip` stays small.
 
-   ```bash
-   python3 scripts/add-person.py --csv intake/responses.csv --dry-run
-   ```
+Then add them:
 
-   ```bash
-   python3 scripts/add-person.py --csv intake/responses.csv
-   ```
+```bash
+python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip --dry-run
+```
 
-Each new member gets `content/current-members/<first-last>.md`, following
-`intake/profile-template.md`. Their headshot is copied to
-`content/images/people/`, and their publication list is drawn. Publications
-come from their ORCID iD, from DOIs or arXiv IDs typed into the form, or both,
-so people without an ORCID can still list their papers. Every DOI is checked
-first; any that don't resolve are reported and left out.
+```bash
+python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip
+```
 
-The script reports anything that needs a person's attention: a mistyped
-ORCID iD (the check digit catches typos), a DOI that doesn't resolve, an
-iPhone HEIC photo (it prints the command to convert it), a photo under 400
-pixels, or no photo at all. To add or replace a headshot later:
+This files their profile in `content/current-members/` and their headshot in
+`content/images/people/`, checks every DOI again (any that don't resolve are
+left out and reported), and draws their publication list. The `.zip` is
+treated with suspicion: anything in it besides one profile and one matching
+photo stops it. Several `.zip` files can go in one command.
+
+**A GitHub issue instead of email** is planned, not built: members would
+attach the `.zip` to an issue, a workflow would check it and open a pull
+request, and merging it would publish them. See `intake/issue-form-plan.md`.
+
+**Or a Google or Microsoft form**, if you'd rather collect responses in one
+place. Set one up with the questions in `intake/form-questions.md`, keeping
+the opening words of each question title, since the script finds answers by
+them. Export the responses to `intake/responses.csv`, download the uploaded
+headshots into `intake/photos/`, and run:
+
+```bash
+python3 scripts/add-person.py --csv intake/responses.csv --dry-run
+```
+
+```bash
+python3 scripts/add-person.py --csv intake/responses.csv
+```
+
+Either way, each new member gets `content/current-members/<first-last>.md`,
+following `intake/profile-template.md`, and their publication list is drawn.
+Publications come from their ORCID iD, from DOIs or arXiv IDs, or both, so
+people without an ORCID can still list their papers.
+
+From a CSV, the script reports anything that needs a person's attention: a
+mistyped ORCID iD (the check digit catches typos), a DOI that doesn't resolve,
+an iPhone HEIC photo (it prints the command to convert it), a photo under 400
+pixels, or no photo at all. The profile form catches the same things while
+the person is still filling it in. To add or replace a headshot later:
 
 ```bash
 python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --photo ~/Downloads/jane.jpg
@@ -281,10 +327,11 @@ python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --pho
 Someone already in `content/` is skipped, never overwritten; edit their file
 directly. Email addresses are stored only for people who agreed to show them.
 `intake/example-responses.csv` holds two fictional responses for trying the
-script with `--dry-run`. One uses ORCID's own test researcher, Josiah
-Carberry.
+CSV route with `--dry-run`. One uses ORCID's own test researcher, Josiah
+Carberry, whose iD (0000-0002-1825-0097) also works in the profile form.
 
-Then rebuild the site (`python3 scripts/build-site.py`).
+Then rebuild the site (`python3 scripts/build-site.py`) and push, or just
+push: GitHub rebuilds it (below).
 
 **When someone graduates**, change `years_in_lab` from `"2026-present"` to
 the end year (`"2026-2031"`), add `current_position` (and

@@ -26,7 +26,8 @@ scripts/render-publications.py -- run that first if you changed `publications:`
 anywhere.
 
 Old addresses (current---kosuke-seki.html and so on) get small pages that
-forward to the new ones, so links elsewhere on the web keep working.
+forward to the new ones, so links elsewhere on the web keep working. The
+new-member form (intake/profile-form.html) is copied to docs/profile-form.html.
 
 Uses only the Python standard library. Safe to re-run: docs/ is rebuilt from
 scratch each time (a CNAME file there is kept).
@@ -63,13 +64,14 @@ GENERATED = {"current-members", "lab-alumni"}
 
 # Roster order. Anything not listed comes after, alphabetically by role.
 CURRENT_ORDER = ["Principal Investigator", "Research Scientist", "Postdoctoral Scholar",
-                 "Graduate Student", "Lab Technician", "Lab Manager", "Staff", "Specialist",
+                 "Graduate Student", "Lab Technician", "Staff Research Associate", "Lab Manager",
+                 "Staff", "Specialist",
                  "Visiting Scholar", "Undergraduate Researcher", "High School Student"]
 ALUMNI_SECTIONS = [                           # as on the old Lab Alumni page
     ("Graduate Students", ["Graduate Student"]),
     ("Postdoctoral Scholars", ["Postdoctoral Scholar", "Research Scientist"]),
     ("Visiting Scholars", ["Visiting Scholar"]),
-    ("Staff", ["Staff", "Lab Manager", "Specialist", "Lab Technician"]),
+    ("Staff", ["Staff", "Lab Manager", "Specialist", "Lab Technician", "Staff Research Associate"]),
     ("Undergraduate Researchers", ["Undergraduate Researcher"]),
     ("High School Students", ["High School Student"]),
 ]
@@ -603,6 +605,8 @@ class Site:
             shutil.copyfile(os.path.join(THEME, name), os.path.join(OUT, "assets", name))
         for name in os.listdir(os.path.join(THEME, "fonts")):
             shutil.copyfile(os.path.join(THEME, "fonts", name), os.path.join(OUT, "assets", "fonts", name))
+        # the new-member form, at an address to send people (it's on no menu)
+        shutil.copyfile(os.path.join(ROOT, "intake", "profile-form.html"), os.path.join(OUT, "profile-form.html"))
 
     def copy_images(self):
         """Every image a page refers to, from content/."""

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Your Kortemme Lab profile</title>
+<!--
+  The new-member form. It runs entirely in the browser: nothing typed here is
+  sent anywhere, except the ORCID iD and DOIs, which are looked up at
+  pub.orcid.org and doi.org. Saving produces one .zip holding the member's
+  profile (content/current-members/<first-last>.md, in the shape of
+  intake/profile-template.md) and their headshot (content/images/people/),
+  laid out as in the repository. The website manager adds it with:
+
+      python3 scripts/add-person.py --zip <first-last>-profile.zip
+
+  Open it straight from disk, or from the website (build-site.py copies it to
+  docs/profile-form.html). No libraries, no build step.
+-->
+<style>
+  @font-face { font-family: "Raleway"; font-weight: 500; src: url("assets/fonts/raleway-medium.woff2") format("woff2"); }
+  @font-face { font-family: "Raleway"; font-weight: 600; src: url("assets/fonts/raleway-semibold.woff2") format("woff2"); }
+  @font-face { font-family: "Raleway"; font-weight: 700; src: url("assets/fonts/raleway-bold.woff2") format("woff2"); }
+  :root {
+    --text: #4a4a4a; --heading: #484848; --muted: #6f6f6f; --link: #3f8494; --accent: #4caac9;
+    --rule: #dcdcdc; --page: #f9f9f9; --panel: #fff; --good: #2f7d4f; --bad: #b3261e; --warn: #8a5a00;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text);
+         font: 500 16px/1.55 "Raleway", "Helvetica Neue", Arial, sans-serif; }
+  a { color: var(--link); }
+  header { text-align: center; padding: 34px 16px 10px; }
+  header .site { font-size: 26px; letter-spacing: .02em; text-transform: uppercase; color: var(--heading); }
+  header h1 { font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: var(--heading); margin: 10px 0 0; font-weight: 600; }
+  main { max-width: 880px; margin: 0 auto; padding: 0 16px 60px; }
+  .intro { max-width: 680px; margin: 0 auto 26px; text-align: center; color: var(--muted); }
+  fieldset { border: 0; background: var(--panel); margin: 0 0 22px; padding: 24px 28px 26px;
+             box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  legend { float: left; width: 100%; padding: 0; margin: 0 0 16px; font-size: 15px; font-weight: 600;
+           letter-spacing: .06em; text-transform: uppercase; color: var(--heading); }
+  legend + * { clear: both; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; }
+  .field { margin: 0 0 16px; }
+  label, .label { display: block; font-weight: 600; font-size: 14px; color: var(--heading); margin: 0 0 5px; }
+  .req::after { content: " *"; color: var(--bad); }
+  .hint { font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+  input[type=text], input[type=email], input[type=url], input[type=number], select, textarea {
+    width: 100%; font: inherit; font-size: 15px; color: var(--text); background: #fff;
+    border: 1px solid #c9c9c9; border-radius: 3px; padding: 8px 10px; }
+  textarea { min-height: 84px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+  .check { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; font-size: 15px; color: var(--text); }
+  .check input { margin-top: 4px; }
+  button { font: inherit; font-size: 14px; font-weight: 600; letter-spacing: .03em; cursor: pointer;
+           border: 1px solid var(--link); background: #fff; color: var(--link); border-radius: 3px; padding: 8px 14px; }
+  button:hover { background: #eef6f8; }
+  button.primary { background: var(--link); color: #fff; font-size: 16px; padding: 12px 26px; }
+  button.primary:hover { background: #356f7c; }
+  button:disabled { opacity: .5; cursor: default; }
+  .inline { display: flex; gap: 10px; align-items: flex-start; }
+  .inline input { flex: 1; }
+  .status { font-size: 14px; margin: 8px 0 0; }
+  .status.good { color: var(--good); } .status.bad { color: var(--bad); } .status.warn { color: var(--warn); }
+
+  .papers { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid #eee; }
+  .papers li { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+  .papers li input { margin-top: 4px; flex: none; }
+  .papers .title { font-weight: 600; color: var(--heading); }
+  .papers .meta { color: var(--muted); font-size: 13px; }
+  .papers li.off { opacity: .55; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+           padding: 1px 6px; border-radius: 9px; background: #eef3f5; color: #557; margin-left: 4px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; font-size: 14px; }
+
+  .photo-box { display: flex; gap: 20px; align-items: flex-start; }
+  .photo-preview { width: 150px; height: 150px; flex: none; background: #eef3f5 center/cover no-repeat;
+                   display: flex; align-items: center; justify-content: center; color: #9bb6bf; font-weight: 700; font-size: 13px; }
+
+  .preview { display: grid; grid-template-columns: 150px 1fr; gap: 22px; }
+  .preview .pic { width: 150px; height: 150px; background: #eef3f5 center/cover no-repeat; }
+  .preview .name { font-size: 24px; color: var(--accent); font-weight: 600; margin: 0; }
+  .preview .pron { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .preview .role { font-size: 13px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 2px 0 10px; }
+  .preview p { margin: 0 0 8px; }
+  .preview .links { font-size: 14px; font-weight: 600; }
+  .preview .links a { margin-right: 14px; }
+
+  .save { text-align: center; padding: 10px 0 0; }
+  .messages { max-width: 680px; margin: 14px auto 0; text-align: left; font-size: 14px; }
+  .messages li { margin-bottom: 4px; }
+  .done { background: #eef7f1; border: 1px solid #b9dcc6; padding: 14px 18px; border-radius: 4px; color: #234; }
+  .small-print { text-align: center; font-size: 13px; color: var(--muted); margin-top: 26px; }
+
+  @media (max-width: 640px) {
+    fieldset { padding: 18px 16px 20px; }
+    .row { grid-template-columns: 1fr; }
+    .photo-box, .preview { grid-template-columns: 1fr; display: grid; }
+    .inline { flex-direction: column; } .inline input { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="site">Kortemme Lab @ UCSF</div>
+  <h1>Your profile for the lab website</h1>
+</header>
+<main>
+<p class="intro">Fill this in, check the preview at the bottom, and click <strong>Save</strong>.
+  You'll get one <code>.zip</code> file: send it to the lab's website manager.
+  Nothing you type is sent anywhere; only your ORCID iD and DOIs are looked up online.
+  Your answers are kept in this browser until you save, so you can come back later.</p>
+
+<form id="form" novalidate>
+<fieldset>
+  <legend>About you</legend>
+  <div class="row">
+    <div class="field"><label for="name" class="req">Full name</label>
+      <input type="text" id="name" autocomplete="name" placeholder="Jane Q. Doe">
+      <p class="hint">As it should appear on the website.</p></div>
+    <div class="field"><label for="pronouns">Pronouns</label>
+      <input type="text" id="pronouns" placeholder="e.g. she/her">
+      <p class="hint">Shown next to your name, if given.</p></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="role" class="req">Role in the lab</label>
+      <select id="role">
+        <option value="">Choose…</option>
+        <option>Graduate Student</option><option>Postdoctoral Scholar</option>
+        <option>Research Scientist</option><option>Lab Technician</option>
+        <option>Staff Research Associate</option><option>Visiting Scholar</option>
+        <option>Undergraduate Researcher</option><option value="other">Other…</option>
+      </select>
+      <input type="text" id="role-other" placeholder="Your role" hidden style="margin-top:8px"></div>
+    <div class="field"><label for="program">Graduate program or department</label>
+      <input type="text" id="program" placeholder="e.g. Biophysics, Bioengineering, Tetrad"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="year" class="req">Year you joined the lab</label>
+      <input type="number" id="year" min="1990" max="2100" inputmode="numeric"></div>
+    <div class="field"><label for="co_mentors">Co-mentors</label>
+      <input type="text" id="co_mentors" placeholder="e.g. Mike Keiser">
+      <p class="hint">If you're co-mentored. Separate several names with commas.</p></div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Your research</legend>
+  <div class="field"><label for="summary" class="req">Research summary</label>
+    <textarea id="summary" maxlength="600" placeholder="One to three sentences on what you work on, in plain language."></textarea>
+    <p class="hint">Shown under your name on the People page and on your profile. <span id="summary-count"></span></p></div>
+  <div class="field"><label for="bio">Longer bio</label>
+    <textarea id="bio" placeholder="Optional. Anything else you'd like on your profile: background, fellowships, interests."></textarea>
+    <p class="hint">Shown on your profile page. Put <code>*asterisks*</code> around text for italics, <code>**two**</code> for bold.</p></div>
+  <div class="field"><label for="education">Education</label>
+    <textarea id="education" placeholder="PhD, Biophysics, UCSF, 2025&#10;BS, Chemistry, Example University, 2019"></textarea>
+    <p class="hint">One degree per line.</p></div>
+</fieldset>
+
+<fieldset>
+  <legend>Headshot</legend>
+  <div class="photo-box">
+    <div class="photo-preview" id="photo-preview">No photo</div>
+    <div>
+      <label for="photo">A clear, recent photo</label>
+      <input type="file" id="photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif">
+      <p class="hint">JPG or PNG, ideally at least 400 × 400 pixels. It's shown square, cropped to the middle.</p>
+      <p class="status" id="photo-status"></p>
+      <button type="button" id="photo-remove" hidden>Remove photo</button>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Contact and links</legend>
+  <div class="row">
+    <div class="field"><label for="email">Lab email address</label>
+      <input type="email" id="email" autocomplete="email" placeholder="you@ucsf.edu">
+      <label class="check" style="margin-top:8px"><input type="checkbox" id="show_email"> Show my email on my profile</label>
+      <p class="hint">If this isn't ticked, your email isn't saved at all.</p></div>
+    <div class="field"><label for="orcid">ORCID iD</label>
+      <input type="text" id="orcid" placeholder="0000-0002-1825-0097">
+      <p class="hint">No ORCID? Leave it blank and list your papers' DOIs below, or get one free at <a href="https://orcid.org/register" target="_blank" rel="noopener">orcid.org</a>.</p></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="scholar">Google Scholar profile</label>
+      <input type="url" id="scholar" placeholder="https://scholar.google.com/citations?user=…"></div>
+    <div class="field"><label for="website">Personal website</label>
+      <input type="url" id="website" placeholder="https://…"></div>
+  </div>
+  <div class="row">
+    <div class="field"><label for="github">GitHub</label>
+      <input type="text" id="github" placeholder="Your username or profile link"></div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Publications</legend>
+  <div class="field">
+    <span class="label">From your ORCID record</span>
+    <div class="inline"><button type="button" id="orcid-fetch">Find my papers on ORCID</button></div>
+    <p class="hint">Uses the ORCID iD above. Tick the papers you'd like listed on your profile.</p>
+    <p class="status" id="orcid-status"></p>
+    <div class="toolbar" id="orcid-tools" hidden>
+      <button type="button" id="orcid-all">Select all</button>
+      <button type="button" id="orcid-none">Select none</button>
+      <span id="orcid-count"></span>
+    </div>
+    <ul class="papers" id="orcid-list"></ul>
+  </div>
+  <div class="field" style="margin-top:22px">
+    <label for="dois">Other papers, by DOI</label>
+    <textarea id="dois" placeholder="10.1126/science.abc0881&#10;https://doi.org/10.1101/2025.06.02.657515&#10;arXiv:2204.13048"></textarea>
+    <p class="hint">One per line: a DOI, a doi.org link or an arXiv ID. For anything missing from ORCID, such as a brand-new preprint.</p>
+    <div class="inline"><button type="button" id="dois-check">Look these up</button></div>
+    <ul class="papers" id="doi-list"></ul>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Preview</legend>
+  <div class="preview" id="preview"></div>
+  <p class="hint" id="preview-pubs" style="margin-top:14px"></p>
+</fieldset>
+
+<div class="save">
+  <button type="submit" class="primary" id="save">Save my profile</button>
+  <ul class="messages" id="messages"></ul>
+  <div class="messages done" id="done" hidden></div>
+  <p class="small-print"><button type="button" id="clear">Start over</button> clears this form and the copy kept in this browser.</p>
+</div>
+</form>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---- the shape of the output: matches scripts/add-person.py --------------------
+  var ORCID_TYPES = ["journal-article", "preprint", "conference-paper", "book-chapter", "book",
+                     "review", "working-paper", "report"];
+  var MIN_PIXELS = 400, MAX_SIDE = 1000;          // photos are scaled down to this
+  var DRAFT_KEY = "kortemmelab-profile-draft";
+  var FIELDS = ["name", "pronouns", "role", "role-other", "program", "year", "co_mentors", "summary",
+                "bio", "education", "email", "show_email", "orcid", "scholar", "website", "github", "dois"];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null };
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function val(id) { var e = $(id); return e.type === "checkbox" ? e.checked : e.value.trim(); }
+  function lines(s, sep) { return s.split(sep || /[\n;]+/).map(function (x) { return x.trim(); }).filter(Boolean); }
+
+  function slugify(name) {
+    return name.normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^\x00-\x7f]/g, "")
+               .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+  function url(s, prefix) {
+    s = (s || "").trim();
+    if (!s) return "";
+    if (/^https?:\/\//i.test(s)) return s;
+    return prefix ? prefix + s.replace(/^[@\/]+/, "") : "https://" + s;
+  }
+  function role() { return val("role") === "other" ? val("role-other") : val("role"); }
+
+  // ---- ORCID and DOIs ----------------------------------------------------------------
+  function orcidId(s) {
+    var m = (s || "").match(/(\d{4})-?(\d{4})-?(\d{4})-?(\d{3}[\dXx])/);
+    if (!m) return null;
+    var d = (m[1] + m[2] + m[3] + m[4]).toUpperCase(), total = 0;
+    for (var i = 0; i < 15; i++) total = (total + Number(d[i])) * 2;       // ISO 7064 MOD 11-2
+    var check = (12 - total % 11) % 11;
+    if (d[15] !== (check === 10 ? "X" : String(check))) return null;       // most likely a typo
+    return d.match(/.{4}/g).join("-");
+  }
+
+  function cleanDoi(s) {
+    s = decodeURIComponent(String(s)).trim()
+          .replace(/^(?:https?:\/\/(?:dx\.)?doi\.org\/|doi:\s*)/i, "")
+          .replace(/(?:\/(?:full|abstract|pdf|epdf|meta))+$/i, "")
+          .replace(/[.,;:'"]+$/, "");
+    if (/^10\.1101\//i.test(s)) s = s.replace(/v\d+$/i, "");               // bioRxiv versions
+    return s.toLowerCase();
+  }
+  function findDoi(s) {
+    var m = s.match(/10\.\d{4,9}\/[^\s"<>]+/i);
+    if (m) return cleanDoi(m[0]);
+    m = s.match(/(?:arxiv:\s*)?(\d{4}\.\d{4,5})(?:v\d+)?/i);
+    return m ? "10.48550/arxiv." + m[1] : null;                               // every arXiv ID has a DOI
+  }
+
+  function fetchJson(u, accept) {
+    return fetch(u, { headers: { Accept: accept } }).then(function (r) {
+      if (!r.ok) throw new Error(r.status === 404 ? "not found" : "HTTP " + r.status);
+      return r.json();
+    });
+  }
+
+  function findOnOrcid() {
+    var raw = val("orcid"), id = orcidId(raw), st = $("orcid-status");
+    if (!raw) { st.className = "status bad"; st.textContent = "Type your ORCID iD above first."; return; }
+    if (!id) { st.className = "status bad"; st.textContent = "That ORCID iD doesn't look right: its last digit doesn't match. Check for a typo."; return; }
+    $("orcid").value = id;
+    st.className = "status"; st.textContent = "Looking up " + id + " on ORCID…";
+    $("orcid-fetch").disabled = true;
+    fetchJson("https://pub.orcid.org/v3.0/" + id + "/works", "application/json").then(function (data) {
+      var works = [];
+      (data.group || []).forEach(function (g) {
+        var s = (g["work-summary"] || [{}])[0], type = (s.type || "").toLowerCase();
+        if (ORCID_TYPES.indexOf(type) < 0) return;                            // not datasets, talks…
+        var doi = null;
+        ((g["external-ids"] || {})["external-id"] || []).forEach(function (x) {
+          if (doi || (x["external-id-relationship"] || "self") !== "self") return;
+          if (x["external-id-type"] === "doi") doi = cleanDoi(x["external-id-value"]);
+          else if (x["external-id-type"] === "arxiv") doi = findDoi("arXiv:" + x["external-id-value"]);
+        });
+        works.push({ doi: doi, type: type,
+                     title: ((s.title || {}).title || {}).value || "(untitled)",
+                     journal: (s["journal-title"] || {}).value || "",
+                     year: (((s["publication-date"] || {}).year) || {}).value || "" });
+      });
+      var seen = {};
+      works = works.filter(function (w) { if (!w.doi) return true; if (seen[w.doi]) return false; return (seen[w.doi] = true); });
+      works.sort(function (a, b) { return (b.year || 0) - (a.year || 0); });
+      state.works = works;
+      works.forEach(function (w) { if (w.doi && !(w.doi in state.picked)) state.picked[w.doi] = true; });
+      var withDoi = works.filter(function (w) { return w.doi; }).length;
+      st.className = "status " + (works.length ? "good" : "warn");
+      st.textContent = works.length
+        ? "Found " + works.length + " publications on your ORCID record" +
+          (withDoi < works.length ? "; " + (works.length - withDoi) + " have no DOI there, so they can't be added (add their DOI below if you know it)." : ".")
+        : "Your ORCID record has no public publications. Add DOIs below instead, or make your works public on orcid.org.";
+      drawWorks(); save(); preview();
+    }).catch(function (e) {
+      st.className = "status bad";
+      st.textContent = "Couldn't reach ORCID (" + e.message + "). Check the iD and your connection, then try again.";
+    }).then(function () { $("orcid-fetch").disabled = false; });
+  }
+
+  function drawWorks() {
+    var ul = $("orcid-list");
+    ul.innerHTML = "";
+    state.works.forEach(function (w, n) {
+      var li = document.createElement("li");
+      var id = "work-" + n;
+      li.className = w.doi ? "" : "off";
+      li.innerHTML = '<input type="checkbox" id="' + id + '"' + (w.doi ? "" : " disabled") + '>' +
+        '<label for="' + id + '" style="font-weight:500;margin:0">' +
+        '<span class="title">' + esc(w.title) + '</span>' + (w.type === "preprint" ? '<span class="badge">preprint</span>' : "") +
+        '<br><span class="meta">' + esc([w.journal, w.year].filter(Boolean).join(" · ")) +
+        (w.doi ? ' · <a href="https://doi.org/' + esc(w.doi) + '" target="_blank" rel="noopener">' + esc(w.doi) + "</a>" : " · no DOI on ORCID") +
+        "</span></label>";
+      var box = li.querySelector("input");
+      box.checked = !!(w.doi && state.picked[w.doi]);
+      box.addEventListener("change", function () { state.picked[w.doi] = box.checked; countWorks(); save(); preview(); });
+      ul.appendChild(li);
+    });
+    $("orcid-tools").hidden = !state.works.length;
+    countWorks();
+  }
+  function countWorks() {
+    var n = state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).length;
+    $("orcid-count").textContent = n + " selected";
+  }
+  function pickAll(on) {
+    state.works.forEach(function (w) { if (w.doi) state.picked[w.doi] = on; });
+    drawWorks(); save(); preview();
+  }
+
+  function typedDois() {
+    var out = [], bad = [];
+    lines(val("dois"), /[\s,;]+/).forEach(function (t) { var d = findDoi(t); if (d) out.push(d); else bad.push(t); });
+    return { dois: out.filter(function (d, i) { return out.indexOf(d) === i; }), bad: bad };
+  }
+
+  function lookUp(doi) {                       // the DOI's own record, from doi.org
+    if (state.lookups[doi]) return Promise.resolve(state.lookups[doi]);
+    return fetchJson("https://doi.org/" + encodeURI(doi), "application/vnd.citationstyles.csl+json")
+      .then(function (r) {
+        var t = Array.isArray(r.title) ? r.title[0] : r.title;
+        var j = Array.isArray(r["container-title"]) ? r["container-title"][0] : r["container-title"];
+        var y = ((r.issued || {})["date-parts"] || [[]])[0][0];
+        delete state.failed[doi];
+        return (state.lookups[doi] = { ok: true, title: (t || "(untitled)").replace(/<[^>]+>/g, ""), journal: j || r.publisher || "", year: y || "" });
+      })
+      .catch(function (e) {
+        var why = e.message === "not found" ? "this DOI doesn't exist" : "couldn't check it (" + e.message + ")";
+        state.failed[doi] = why;
+        return { ok: false, error: why };
+      });
+  }
+
+  function checkDois() {
+    var t = typedDois(), ul = $("doi-list");
+    ul.innerHTML = "";
+    t.bad.forEach(function (b) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="status bad" style="margin:0">✗</span><span><span class="title">' + esc(b) +
+                     '</span><br><span class="meta">not a DOI or arXiv ID</span></span>';
+      ul.appendChild(li);
+    });
+    return Promise.all(t.dois.map(function (d) {
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="meta">…</span><span><span class="title">' + esc(d) + '</span><br><span class="meta">looking up…</span></span>';
+      ul.appendChild(li);
+      return lookUp(d).then(function (r) {
+        li.innerHTML = r.ok
+          ? '<span class="status good" style="margin:0">✓</span><span><span class="title">' + esc(r.title) + "</span><br>" +
+            '<span class="meta">' + esc([r.journal, r.year].filter(Boolean).join(" · ")) + ' · <a href="https://doi.org/' + esc(d) +
+            '" target="_blank" rel="noopener">' + esc(d) + "</a></span></span>"
+          : '<span class="status bad" style="margin:0">✗</span><span><span class="title">' + esc(d) +
+            '</span><br><span class="meta">' + esc(r.error) + "</span></span>";
+        return { doi: d, ok: r.ok, error: r.error };
+      });
+    })).then(function (rs) { preview(); return { results: rs, bad: t.bad }; });
+  }
+
+  // ---- the photo ------------------------------------------------------------------------
+  function loadPhoto(file) {
+    var st = $("photo-status");
+    st.className = "status"; st.textContent = "Reading the photo…";
+    var src = URL.createObjectURL(file), img = new Image();
+    img.src = src;
+    return img.decode().then(function () {
+      var w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, MAX_SIDE / Math.max(w, h));
+      var c = document.createElement("canvas");
+      c.width = Math.round(w * k); c.height = Math.round(h * k);
+      var g = c.getContext("2d");
+      g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height);         // PNG transparency -> white
+      g.drawImage(img, 0, 0, c.width, c.height);
+      return new Promise(function (ok) { c.toBlob(ok, "image/jpeg", 0.9); }).then(function (blob) {
+        URL.revokeObjectURL(src);
+        if (state.photo) URL.revokeObjectURL(state.photo.url);
+        state.photo = { blob: blob, width: w, height: h, url: URL.createObjectURL(blob) };
+        $("photo-preview").style.backgroundImage = "url('" + state.photo.url + "')";
+        $("photo-preview").textContent = "";
+        $("photo-remove").hidden = false;
+        var small = Math.min(w, h) < MIN_PIXELS;
+        st.className = "status " + (small ? "warn" : "good");
+        st.textContent = small
+          ? "This photo is only " + w + " × " + h + " pixels, so it may look blurry. A larger one would be better, if you have it."
+          : "Photo ready (" + w + " × " + h + " pixels" + (k < 1 ? ", saved at " + c.width + " × " + c.height : "") + ").";
+        preview();
+      });
+    }).catch(function () {
+      URL.revokeObjectURL(src);
+      st.className = "status bad";
+      st.innerHTML = /\.hei[cf]$/i.test(file.name) || /hei[cf]/i.test(file.type)
+        ? "This is an iPhone HEIC photo, which this browser can't read. Convert it to JPG first: on a Mac, open it in Preview and choose File &gt; Export… &gt; JPEG. Or open this form in Safari, which can read HEIC."
+        : "This browser couldn't read that file as an image. Try a JPG or PNG.";
+    });
+  }
+  function removePhoto() {
+    if (state.photo) URL.revokeObjectURL(state.photo.url);
+    state.photo = null;
+    $("photo").value = "";
+    $("photo-preview").style.backgroundImage = ""; $("photo-preview").textContent = "No photo";
+    $("photo-remove").hidden = true; $("photo-status").textContent = "";
+    preview();
+  }
+
+  // ---- the profile file ---------------------------------------------------------------------
+  function chosenDois() {
+    var fromOrcid = state.works.filter(function (w) { return w.doi && state.picked[w.doi]; }).map(function (w) { return w.doi; });
+    var typed = typedDois().dois.filter(function (d) { return !state.failed[d]; });   // checked again on saving
+    var all = fromOrcid.concat(typed);
+    return all.filter(function (d, i) { return all.indexOf(d) === i; });
+  }
+
+  function person() {
+    var name = val("name"), slug = slugify(name), oid = orcidId(val("orcid"));
+    var year = (val("year").match(/\b(19|20)\d{2}\b/) || [])[0];
+    return {
+      name: name, slug: slug, pronouns: val("pronouns"), role: role(), program: val("program"),
+      years: year ? year + "-present" : "",
+      co_mentors: lines(val("co_mentors"), /,|;|\band\b/),
+      summary: val("summary").replace(/\s+/g, " "), bio: val("bio"),
+      education: lines(val("education"), /\n+/),
+      photo: state.photo && slug ? "images/people/" + slug + ".jpg" : "",
+      email: val("show_email") ? val("email") : "",
+      orcid_url: oid ? "https://orcid.org/" + oid : "",
+      scholar: url(val("scholar")), website: url(val("website")),
+      github: url(val("github"), "https://github.com/"),
+      publications: chosenDois()
+    };
+  }
+
+  function q(s) { return JSON.stringify(s || ""); }
+  function markdown(p) {                      // the same layout add-person.py writes
+    var out = ["---",
+      "name: " + q(p.name), "pronouns: " + q(p.pronouns), "role: " + q(p.role),
+      "program: " + q(p.program), "years_in_lab: " + q(p.years),
+      "co_mentors: " + JSON.stringify(p.co_mentors).replace(/","/g, '", "'),
+      "summary: " + q(p.summary), "photo: " + q(p.photo), "email: " + q(p.email),
+      "links:", "  orcid: " + q(p.orcid_url), "  scholar: " + q(p.scholar),
+      "  website: " + q(p.website), "  github: " + q(p.github)];
+    out = out.concat(p.education.length ? ["education:"].concat(p.education.map(function (e) { return "  - " + q(e); })) : ["education: []"]);
+    out = out.concat(p.publications.length ? ["publications:"].concat(p.publications.map(function (d) { return "  - " + q(d); })) : ["publications: []"]);
+    return out.join("\n") + "\n---\n\n" + (p.bio ? p.bio + "\n" : "");
+  }
+
+  // ---- a .zip, written by hand (stored, not compressed: photos are compressed already) ------
+  var CRC = (function () {
+    var t = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+    return t;
+  })();
+  function crc32(b) { var c = 0xFFFFFFFF; for (var i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+
+  function zip(files) {                        // files: [{name, data: Uint8Array}]
+    var enc = new TextEncoder(), parts = [], central = [], offset = 0, now = new Date();
+    var time = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+    var date = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+    files.forEach(function (f) {
+      var name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+      var h = new DataView(new ArrayBuffer(30));
+      h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true);  // UTF-8 names
+      h.setUint16(8, 0, true); h.setUint16(10, time, true); h.setUint16(12, date, true);
+      h.setUint32(14, crc, true); h.setUint32(18, size, true); h.setUint32(22, size, true);
+      h.setUint16(26, name.length, true); h.setUint16(28, 0, true);
+      parts.push(new Uint8Array(h.buffer), name, f.data);
+      var c = new DataView(new ArrayBuffer(46));
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true);
+      c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, time, true); c.setUint16(14, date, true);
+      c.setUint32(16, crc, true); c.setUint32(20, size, true); c.setUint32(24, size, true);
+      c.setUint16(28, name.length, true); c.setUint32(42, offset, true);
+      central.push(new Uint8Array(c.buffer), name);
+      offset += 30 + name.length + size;
+    });
+    var cdSize = central.reduce(function (s, p) { return s + p.length; }, 0);
+    var e = new DataView(new ArrayBuffer(22));
+    e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true);
+    e.setUint32(12, cdSize, true); e.setUint32(16, offset, true);
+    return new Blob(parts.concat(central, [new Uint8Array(e.buffer)]), { type: "application/zip" });
+  }
+
+  function buildZip(p) {
+    var files = [{ name: "content/current-members/" + p.slug + ".md", data: new TextEncoder().encode(markdown(p)) }];
+    if (!state.photo) return Promise.resolve(zip(files));
+    return state.photo.blob.arrayBuffer().then(function (buf) {
+      files.push({ name: "content/" + p.photo, data: new Uint8Array(buf) });
+      return zip(files);
+    });
+  }
+
+  // ---- preview, checks and saving ------------------------------------------------------------
+  function preview() {
+    var p = person(), facts = [];
+    if (p.years) facts.push("In the lab: " + p.years.replace("-", "–"));
+    if (p.co_mentors.length) facts.push((p.co_mentors.length > 1 ? "Co-mentors: " : "Co-mentor: ") + p.co_mentors.join(", "));
+    var links = [];
+    if (p.email) links.push('<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + "</a>");
+    [["orcid_url", "ORCID"], ["scholar", "Google Scholar"], ["website", "Website"], ["github", "GitHub"]].forEach(function (l) {
+      if (p[l[0]]) links.push('<a href="' + esc(p[l[0]]) + '" target="_blank" rel="noopener">' + l[1] + "</a>");
+    });
+    $("preview").innerHTML =
+      '<div class="pic" style="' + (state.photo ? "background-image:url('" + state.photo.url + "')" : "") + '"></div><div>' +
+      '<p class="name">' + (esc(p.name) || '<span style="color:#bbb">Your name</span>') +
+      (p.pronouns ? ' <span class="pron">(' + esc(p.pronouns) + ")</span>" : "") + "</p>" +
+      '<p class="role">' + esc([p.role, p.program].filter(Boolean).join(" · ")) + "</p>" +
+      (facts.length ? "<p>" + facts.map(esc).join("<br>") + "</p>" : "") +
+      (p.summary ? "<p><strong>" + esc(p.summary) + "</strong></p>" : "") +
+      (links.length ? '<p class="links">' + links.join("") + "</p>" : "") +
+      (p.education.length ? "<p>" + p.education.map(esc).join("<br>") + "</p>" : "") + "</div>";
+    var n = p.publications.length;
+    $("preview-pubs").textContent = n ? n + " publication" + (n > 1 ? "s" : "") + " will be listed on your profile, formatted like the others on the site."
+                                      : "No publications selected yet.";
+    $("summary-count").textContent = val("summary").length ? "(" + val("summary").length + "/600 characters)" : "";
+  }
+
+  function problems() {
+    var out = [], p = person();
+    if (!p.name) out.push(["name", "Your full name is needed."]);
+    else if (!p.slug) out.push(["name", "Your name needs at least one letter A–Z for the file name."]);
+    if (!p.role) out.push(["role", "Choose your role in the lab."]);
+    if (!/^(19|20)\d{2}$/.test(val("year"))) out.push(["year", "Give the year you joined the lab, e.g. " + new Date().getFullYear() + "."]);
+    if (!p.summary) out.push(["summary", "A short research summary is needed."]);
+    if (val("show_email") && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("email"))) out.push(["email", "That email address doesn't look complete."]);
+    if (val("orcid") && !orcidId(val("orcid"))) out.push(["orcid", "That ORCID iD doesn't look right: its last digit doesn't match."]);
+    return out;
+  }
+
+  function showMessages(items, cls) {
+    var ul = $("messages");
+    ul.innerHTML = items.map(function (m) { return '<li class="status ' + (cls || "bad") + '">' + m + "</li>"; }).join("");
+  }
+
+  function saveFile(blob, filename) {
+    if (window.showSaveFilePicker) {           // Chrome and Edge: ask where to save
+      return window.showSaveFilePicker({ suggestedName: filename,
+          types: [{ description: "Zip file", accept: { "application/zip": [".zip"] } }] })
+        .then(function (h) { return h.createWritable().then(function (w) { return w.write(blob).then(function () { return w.close(); }); }); })
+        .then(function () { return true; })
+        .catch(function (e) { if (e.name === "AbortError") return false; return download(blob, filename); });
+    }
+    return Promise.resolve(download(blob, filename));
+  }
+  function download(blob, filename) {          // other browsers: a normal download
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 10000);
+    return true;
+  }
+
+  function submit(e) {
+    e.preventDefault();
+    $("done").hidden = true;
+    var bad = problems();
+    if (bad.length) {
+      showMessages(bad.map(function (b) { return esc(b[1]); }));
+      $(bad[0][0]).focus();
+      return;
+    }
+    $("save").disabled = true;
+    showMessages(["Checking your DOIs…"], "");
+    checkDois().then(function (r) {
+      var notes = [];
+      r.bad.forEach(function (b) { notes.push("Left out, not a DOI or arXiv ID: " + esc(b)); });
+      r.results.filter(function (x) { return !x.ok; }).forEach(function (x) { notes.push("Left out, " + esc(x.error) + ": " + esc(x.doi)); });
+      if (!state.photo) notes.push("No headshot added. You can send one to the website manager later.");
+      var p = person(), filename = p.slug + "-profile.zip";
+      return buildZip(p).then(function (blob) { return saveFile(blob, filename); }).then(function (saved) {
+        if (!saved) { showMessages(notes, "warn"); return; }
+        showMessages(notes, "warn");
+        $("done").hidden = false;
+        $("done").innerHTML = "<strong>Saved " + esc(filename) + ".</strong> Send this file to the lab's website manager, " +
+          "who will add it to the website. If you change anything, save again and send the new file." +
+          (window.showSaveFilePicker ? "" : " (It's in your Downloads folder, unless your browser asked where to put it.)");
+      });
+    }).catch(function (err) {
+      showMessages(["Something went wrong while saving: " + esc(err.message || err)]);
+    }).then(function () { $("save").disabled = false; });
+  }
+
+  // ---- keeping a draft in this browser ---------------------------------------------------------
+  function save() {
+    try {
+      var d = { picked: state.picked, works: state.works };
+      FIELDS.forEach(function (f) { d[f] = $(f).type === "checkbox" ? $(f).checked : $(f).value; });
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+    } catch (e) { /* private window or storage off: the form still works */ }
+  }
+  function restore() {
+    try {
+      var d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+      if (!d) return;
+      FIELDS.forEach(function (f) { if (f in d) { if ($(f).type === "checkbox") $(f).checked = d[f]; else $(f).value = d[f]; } });
+      state.picked = d.picked || {}; state.works = d.works || [];
+      if (state.works.length) drawWorks();
+    } catch (e) { /* ignore a damaged or missing draft */ }
+  }
+  function startOver() {
+    if (!confirm("Clear everything on this form?")) return;
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    $("form").reset(); state.works = []; state.picked = {}; state.lookups = {}; state.failed = {};
+    removePhoto(); drawWorks(); $("doi-list").innerHTML = ""; $("orcid-status").textContent = "";
+    $("messages").innerHTML = ""; $("done").hidden = true; $("role-other").hidden = true;
+    $("year").value = new Date().getFullYear(); preview();
+  }
+
+  // ---- wiring -----------------------------------------------------------------------------------
+  $("year").value = new Date().getFullYear();
+  restore();
+  $("role-other").hidden = val("role") !== "other";
+  $("role").addEventListener("change", function () { $("role-other").hidden = val("role") !== "other"; if (val("role") === "other") $("role-other").focus(); });
+  $("form").addEventListener("input", function () { save(); preview(); });
+  $("form").addEventListener("change", function () { save(); preview(); });
+  $("form").addEventListener("submit", submit);
+  $("orcid-fetch").addEventListener("click", findOnOrcid);
+  $("orcid-all").addEventListener("click", function () { pickAll(true); });
+  $("orcid-none").addEventListener("click", function () { pickAll(false); });
+  $("dois-check").addEventListener("click", checkDois);
+  $("photo").addEventListener("change", function () { if (this.files[0]) loadPhoto(this.files[0]); });
+  $("photo-remove").addEventListener("click", removePhoto);
+  $("clear").addEventListener("click", startOver);
+  preview();
+
+  // for scripts/tests: the profile and the .zip this form would save, without a download
+  window.profileForm = { person: person, markdown: markdown, buildZip: buildZip, loadPhoto: loadPhoto, checkDois: checkDois };
+})();
+</script>
+</body>
+</html>

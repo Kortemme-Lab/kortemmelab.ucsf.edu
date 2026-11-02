@@ -4,6 +4,12 @@
     python3 scripts/add-person.py --csv intake/responses.csv
     python3 scripts/add-person.py --csv intake/responses.csv --dry-run
     python3 scripts/add-person.py --csv intake/responses.csv --only "Jane Doe" --photo ~/jane.jpg
+    python3 scripts/add-person.py --zip ~/Downloads/jane-doe-profile.zip
+
+Two ways in. --zip takes the file saved by the new-member form
+(intake/profile-form.html, also at docs/profile-form.html): the profile and
+headshot are already in shape, so they're checked and filed. --csv takes the
+responses exported from a Google or Microsoft form instead, as below.
 
 For each response (the questions are in intake/form-questions.md) this writes
 content/current-members/<first-last>.md in the shape of
@@ -23,7 +29,7 @@ are reported and left out rather than breaking the page.
 Someone already in content/ -- current, alumni or archived -- is skipped,
 never overwritten. Edit their file by hand instead.
 """
-import argparse, csv, json, os, re, shutil, struct, subprocess, sys, unicodedata
+import argparse, csv, json, os, re, shutil, struct, subprocess, sys, tempfile, unicodedata, zipfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
@@ -48,6 +54,11 @@ ORCID_TYPES = {"journal-article", "preprint", "conference-paper", "book-chapter"
                "review", "working-paper", "report"}
 IMAGE_EXT = {".jpg": ".jpg", ".jpeg": ".jpg", ".png": ".png", ".webp": ".webp"}
 MIN_PIXELS = 400
+# What a form .zip may hold: the profile, and a headshot with the same name.
+ZIP_PROFILE = re.compile(r"^content/current-members/([a-z0-9]+(?:-[a-z0-9]+)*)\.md$")
+ZIP_PHOTO = re.compile(r"^content/images/people/([a-z0-9]+(?:-[a-z0-9]+)*)\.(jpg|png|webp)$")
+ZIP_IGNORED = re.compile(r"(^|/)(__MACOSX/|\.DS_Store$)")
+ZIP_MAX_BYTES = {"profile": 200_000, "photo": 15_000_000}
 
 
 # --- reading the form ----------------------------------------------------------
@@ -205,16 +216,154 @@ def profile(p):
     return "\n".join(lines) + "\n---\n\n" + (p["bio"].strip() + "\n" if p["bio"].strip() else "")
 
 
+# --- a .zip from the new-member form -----------------------------------------------------
+def read_zip(path):
+    """The profile text, its name, and the photo (name, bytes) in a form .zip.
+
+    Anything else in the file, or a path outside those two places, stops it:
+    the .zip came from outside the lab, so nothing in it is trusted blindly.
+    """
+    try:
+        z = zipfile.ZipFile(path)
+    except (zipfile.BadZipFile, OSError) as e:
+        return None, f"not a readable .zip ({e})"
+    profile_name, photo, problems = None, None, []
+    with z:
+        for info in z.infolist():
+            name = info.filename
+            if info.is_dir() or ZIP_IGNORED.search(name):
+                continue
+            m, n = ZIP_PROFILE.match(name), ZIP_PHOTO.match(name)
+            if m and not profile_name:
+                if info.file_size > ZIP_MAX_BYTES["profile"]:
+                    problems.append(f"{name} is too large for a profile")
+                profile_name = name
+            elif n and not photo:
+                if info.file_size > ZIP_MAX_BYTES["photo"]:
+                    problems.append(f"{name} is over 15 MB")
+                photo = name
+            else:
+                problems.append(f"unexpected file in the .zip: {name}")
+        if not profile_name:
+            problems.append("no profile (content/current-members/<name>.md) in the .zip")
+        if photo and profile_name and ZIP_PHOTO.match(photo).group(1) != ZIP_PROFILE.match(profile_name).group(1):
+            problems.append(f"the photo's name ({photo}) doesn't match the profile's ({profile_name})")
+        if problems:
+            return None, "; ".join(problems)
+        text = z.read(profile_name).decode("utf-8")
+        return {"slug": ZIP_PROFILE.match(profile_name).group(1), "text": text,
+                "photo": (photo, z.read(photo)) if photo else None}, None
+
+
+def add_from_zips(paths, dry_run, no_render):
+    E, existing = bib.load(), content_index()
+    added_people, bib_added = [], 0
+    for path in paths:
+        print(f"\n== {os.path.basename(path)}")
+        got, problem = read_zip(os.path.expanduser(path))
+        if problem:
+            print(f"   skipped: {problem}")
+            continue
+        slug, text, notes = got["slug"], got["text"], []
+        name = bib.header_value(text, "name")
+        if not text.startswith("---\n") or not name:
+            print("   skipped: the profile has no header with a name; was it made by the form?")
+            continue
+        print(f"   {name} -> content/current-members/{slug}.md")
+        if f"{slug}.md" in existing:
+            print(f"   skipped: already in content/ ({existing[f'{slug}.md'][0]}); edit that file instead,"
+                  " or delete it first to replace it")
+            continue
+
+        # publications: every DOI is checked, as for --csv
+        good = []
+        for d in dict.fromkeys(bib.clean_doi(d) for d in (bib.header_list(text, "publications") or [])):
+            if d in E:
+                good.append(d)
+                continue
+            rec = bib.fetch(d)
+            if rec:
+                E[rec["id"]] = rec
+                good.append(rec["id"])
+                bib_added += 1
+            else:
+                notes.append(f"DOI didn't resolve, left out: {d}")
+        print(f"   publications: {len(good)}")
+
+        # photo
+        photo_bytes = None
+        if got["photo"]:
+            zname, photo_bytes = got["photo"]
+            with tempfile.NamedTemporaryFile(suffix=os.path.splitext(zname)[1]) as tmp:
+                tmp.write(photo_bytes)
+                tmp.flush()
+                stop, warn = check_photo(tmp.name)
+            if stop:
+                notes.append(stop)
+                photo_bytes = None
+            elif warn:
+                notes.append(warn)
+            if photo_bytes is not None and not looks_like_image(zname, photo_bytes):
+                notes.append(f"{os.path.basename(zname)} isn't a readable JPG or PNG, left out")
+                photo_bytes = None
+        if photo_bytes is None:
+            notes.append(f"no headshot -- later, save one as content/images/people/{slug}.jpg"
+                         f' and set photo: "images/people/{slug}.jpg" in their file')
+
+        if not dry_run:
+            dest = os.path.join(PEOPLE_DIR, slug + ".md")
+            with open(dest, "w", encoding="utf-8") as fh:
+                fh.write(text)
+            bib.set_list(dest, "publications", good)
+            if photo_bytes is not None:
+                os.makedirs(PHOTO_DIR, exist_ok=True)
+                with open(os.path.join(PHOTO_DIR, os.path.basename(got["photo"][0])), "wb") as fh:
+                    fh.write(photo_bytes)
+            else:
+                t = open(dest, encoding="utf-8").read()
+                with open(dest, "w", encoding="utf-8") as fh:
+                    fh.write(re.sub(r'(?m)^photo: .*$', 'photo: ""', t, count=1))
+            added_people.append(slug)
+            print(f"   wrote content/current-members/{slug}.md"
+                  + (f" and content/images/people/{os.path.basename(got['photo'][0])}" if photo_bytes is not None else ""))
+        for n in notes:
+            print(f"   note: {n}")
+
+    if dry_run:
+        print("\nDry run: nothing was written.")
+        return
+    if bib_added:
+        bib.save(E)
+    print(f"\nadded {len(added_people)} people; {bib_added} new papers in the bibliography")
+    if added_people and not no_render:
+        print("drawing their publication lists...")
+        subprocess.run([sys.executable, os.path.join(os.path.dirname(__file__), "render-publications.py")],
+                       check=False)
+    if added_people:
+        print("\nNext: python3 scripts/build-site.py, look at their page, then commit and push.")
+
+
+def looks_like_image(name, data):
+    """The photo really is the kind of image its name says (it came from outside)."""
+    ext = os.path.splitext(name)[1].lower()
+    magic = {".jpg": b"\xff\xd8", ".png": b"\x89PNG", ".webp": b"RIFF"}
+    return data.startswith(magic.get(ext, b"\0\0\0\0"))
+
+
 # --- main ------------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Add new lab members from intake form responses.")
-    ap.add_argument("--csv", required=True, help="the form's exported responses")
+    src = ap.add_mutually_exclusive_group(required=True)
+    src.add_argument("--zip", nargs="+", metavar="FILE", help="profile .zip file(s) saved by intake/profile-form.html")
+    src.add_argument("--csv", help="the responses exported from a Google or Microsoft form")
     ap.add_argument("--photos", default=DEFAULT_PHOTOS, help="folder of downloaded headshots")
     ap.add_argument("--only", help="add just this person (part of their name)")
     ap.add_argument("--photo", help="this person's headshot (use with --only)")
     ap.add_argument("--dry-run", action="store_true", help="check and preview; write nothing")
     ap.add_argument("--no-render", action="store_true", help="don't redraw publication lists afterwards")
     args = ap.parse_args()
+    if args.zip:
+        return add_from_zips(args.zip, args.dry_run, args.no_render)
 
     if os.path.basename(args.csv).lower().startswith("example") and not args.dry_run:
         sys.exit("That's the example file -- try it with --dry-run.")
