@@ -28,7 +28,7 @@ forward to the new ones, so links elsewhere on the web keep working.
 Uses only the Python standard library. Safe to re-run: docs/ is rebuilt from
 scratch each time (a CNAME file there is kept).
 """
-import csv, html, os, re, shutil, string, sys
+import csv, html, json, os, re, shutil, string, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bibliography as bib
@@ -87,8 +87,11 @@ def scalar(v):
         return bib._scalar(v)                 # a JSON-style quoted string
     if v[0] == "'":
         return v[1:-1].replace("''", "'")
-    if v == "[]":
-        return []
+    if v[0] == "[" and v[-1] == "]":          # an inline list: ["Mike Keiser", ...]
+        try:
+            return [str(x) for x in json.loads(v)]
+        except ValueError:
+            return [scalar(x) for x in v[1:-1].split(",") if x.strip()]
     if v in ("true", "false"):
         return v == "true"
     return v
