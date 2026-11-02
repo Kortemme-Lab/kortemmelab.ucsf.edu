@@ -133,7 +133,7 @@ def read(path):
 URL_IN_PARENS = r"\(((?:[^()\s]|\([^()\s]*\))+)\)"   # DOIs can contain (…)
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]" + URL_IN_PARENS)
 LINK_RE = re.compile(r"\[([^\]]+)\]" + URL_IN_PARENS)
-BARE_URL = re.compile(r"https?://[^\s<>\"]+")
+BARE_URL = re.compile(r"https?://[^\s<>\"\x00]+")
 ESCAPED = re.compile(r"\\([\\`*_\[\]{}()#+\-.!<>])")
 ONLY_IMAGE = re.compile(r"^(?:!\[[^\]]*\]" + URL_IN_PARENS + r"|\[!\[[^\]]*\]" + URL_IN_PARENS
                         + r"\]" + URL_IN_PARENS + r")$")
@@ -154,15 +154,20 @@ def inline(s, url):
     s = ESCAPED.sub(lambda m: keep(html.escape(m.group(1))), s)
     s = IMAGE_RE.sub(lambda m: keep(f'<img src="{html.escape(url(m.group(2)))}" '
                                     f'alt="{html.escape(m.group(1))}" loading="lazy">'), s)
-    s = LINK_RE.sub(lambda m: keep(f'<a href="{html.escape(url(m.group(2)))}">') + m.group(1)
-                    + keep("</a>"), s)
+    # A link's text sits between \x01 and \x02 until bare URLs are found, so a
+    # URL that is itself the text of a link ("Preprint at [https://…](…)")
+    # isn't made into a second link inside the first.
+    s = LINK_RE.sub(lambda m: keep(f'<a href="{html.escape(url(m.group(2)))}">') + "\x01"
+                    + m.group(1) + "\x02" + keep("</a>"), s)
 
     def bare(m):
         u = m.group(0).rstrip(".,;:!?)")
         rest = m.group(0)[len(u):]
         return keep(f'<a href="{html.escape(u)}">{html.escape(u)}</a>') + rest
 
-    s = BARE_URL.sub(bare, s)
+    s = "".join(part if part.startswith("\x01") else BARE_URL.sub(bare, part)
+                for part in re.split(r"(\x01.*?\x02)", s, flags=re.S))
+    s = s.replace("\x01", "").replace("\x02", "")
     s = html.escape(s, quote=False)
     s = re.sub(r"\*\*(?=\S)(.+?)(?<=\S)\*\*", r"<strong>\1</strong>", s, flags=re.S)
     s = re.sub(r"(?<![*\w])\*(?=\S)(.+?)(?<=\S)\*(?![*\w])", r"<em>\1</em>", s, flags=re.S)
@@ -298,6 +303,17 @@ class Person:
         return (-(ys[-1] if ys else 0), -(ys[0] if ys else 0), self.name)
 
 
+ENVELOPE = ('<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" '
+            'stroke="currentColor" stroke-width="1.5"><rect x="3" y="5.5" width="18" height="13" rx="1"/>'
+            '<path d="M3.5 6.5 12 13l8.5-6.5"/></svg>')
+
+
+def split_education(items):
+    """Education entries, and a "Postdoctoral work: …" entry kept apart from them."""
+    postdoc = next((x for x in items if re.match(r"postdoctoral work:", x, re.I)), "")
+    return [x for x in items if x != postdoc], re.sub(r"^postdoctoral work:\s*", "", postdoc, flags=re.I)
+
+
 def plural(role):
     return role if role.endswith(("Staff", "s")) else role + "s"
 
@@ -428,6 +444,9 @@ class Site:
                     parts.append(f"<h2>{html.escape(plural(p.role))}</h2>")
                 parts.append('<ul class="roster">')
                 role = p.role
+            if p.role == "Principal Investigator":
+                parts.append(self.pi_card(p))
+                continue
             pic = self.photo(p, "")
             if p.has_page:
                 pic = f'<a href="people/{p.slug}.html" tabindex="-1">{pic}</a>'
@@ -438,6 +457,30 @@ class Site:
         parts.append("</ul>")
         self.write("current-members.html", "Current Members", "\n".join(parts), current="current-members",
                    body_class="page-people")
+
+    def pi_card(self, p):
+        """The PI across the full width, laid out as on the old roster page:
+        summary, education and postdoctoral work beside the photo."""
+        page = f"people/{p.slug}.html"
+        education, postdoc = split_education(p.meta.get("education") or [])
+        text = [f'<h2 class="name"><a href="{page}">{html.escape(p.name)}</a></h2>']
+        if p.get("summary"):
+            text.append(f'<p class="summary">{inline(p.get("summary"), self.url_fixer(""))}</p>')
+        if education:
+            text.append("<h3>Education</h3>\n<ul>\n" + "\n".join(f"<li>{html.escape(x)}</li>" for x in education)
+                        + "\n</ul>")
+        if postdoc:
+            text.append(f"<h3>Postdoctoral work</h3>\n<p>{html.escape(postdoc)}</p>")
+        text.append(f'<p class="more"><a href="{page}#publications">{html.escape(p.name.split()[0])}&rsquo;s publications</a></p>')
+        links = [f'<a href="{page}">Bio</a>']
+        if (p.meta.get("links") or {}).get("ucsf_profile"):
+            links.append(f'<a href="{html.escape(p.meta["links"]["ucsf_profile"])}">Profile</a>')
+        email = (f'<a class="email" href="mailto:{html.escape(p.get("email"))}" title="{html.escape(p.get("email"))}" '
+                 f'aria-label="Email {html.escape(p.name)}">{ENVELOPE}</a>' if p.get("email") else "<span></span>")
+        side = (f'<a href="{page}" tabindex="-1">{self.photo(p, "")}</a>\n<div class="meta">{email}'
+                f'<div><strong>{html.escape(p.role)}</strong><br>{", ".join(links)}</div></div>')
+        return (f'<li class="pi">\n<div class="pi-text">\n' + "\n".join(text)
+                + f'\n</div>\n<div class="pi-side">\n{side}\n</div>\n</li>')
 
     def lab_alumni(self):
         alumni = [p for p in self.people if p.kind == "alumni" and p.role != "Rotation Student"]
@@ -523,11 +566,14 @@ class Site:
                  f'<div class="profile-head">\n{self.photo(p, root)}\n<div>\n' + "\n".join(head) + "\n</div>\n</div>"]
         if intro.strip():
             parts.append(markdown(intro, fix))
-        if p.meta.get("education"):
+        education, postdoc = split_education(p.meta.get("education") or [])
+        if education:
             parts.append("<h2>Education</h2>\n<ul class=\"education\">\n"
-                         + "\n".join(f"<li>{html.escape(x)}</li>" for x in p.meta["education"]) + "\n</ul>")
+                         + "\n".join(f"<li>{html.escape(x)}</li>" for x in education) + "\n</ul>")
+        if postdoc:
+            parts.append(f"<h2>Postdoctoral work</h2>\n<p>{html.escape(postdoc)}</p>")
         if "<li>" in markdown(pubs, fix):
-            parts.append(markdown("## Publications" + pubs, fix))
+            parts.append('<section id="publications">\n' + markdown("## Publications" + pubs, fix) + "\n</section>")
         parts.append("</article>")
         self.write(f"people/{p.slug}.html", p.name, "\n".join(parts),
                    current=back[0], body_class="page-profile",

@@ -155,6 +155,22 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 .member .role { display: block; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
 .member .summary { font-size: 14px; margin: 8px 0 0; }
 
+/* the PI, across the full width as on the old roster */
+.roster .pi {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: 1fr 250px; gap: 48px; align-items: start;
+}
+.pi h2.name { margin: 0 0 14px; font-size: 20px; letter-spacing: 0; text-transform: none; }
+.pi h2.name a { color: var(--accent); }
+.pi h3 { font-size: 15px; margin: 22px 0 6px; }
+.pi ul { margin: 0; padding-left: 1.4em; list-style: disc; }
+.pi .more { margin-top: 18px; font-weight: 700; font-size: 15px; }
+.pi-side .photo { width: 100%; display: block; border: 1px solid #ddd; padding: 3px; background: var(--panel); }
+.pi-side .meta { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 14px; font-size: 15px; text-align: right; }
+.pi-side .meta strong { color: var(--heading); font-weight: 600; }
+.pi-side .email { color: var(--muted); padding: 2px 4px; }
+.pi-side .email:hover { color: var(--link-hover); }
+
 .no-photo {
   display: flex; align-items: center; justify-content: center;
   background: #eef3f5; color: #9bb6bf; font-weight: 700; font-size: 26px;
@@ -211,6 +227,8 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
   .site-nav .submenu a { color: var(--muted); }
   .page { padding: 10px 16px 36px; }
   .page-home .page > figure:last-of-type { float: none; }
+  .roster .pi { grid-template-columns: 1fr; gap: 18px; }
+  .pi-side { order: -1; max-width: 260px; }
   .profile-head { grid-template-columns: 1fr; gap: 18px; }
   .profile-head .photo, .profile-head .no-photo { max-width: 260px; }
   .alumni li { grid-template-columns: 52px 1fr; gap: 4px 14px; }
