@@ -29,7 +29,7 @@ links:
   website: ""
   github: ""
 education:
-  - "BS, Chemistry, Example University, 2025"
+  - "Bachelor of Science, Chemical Engineering, Northwestern University"
 # DOIs, one per line (arXiv papers too: "10.48550/arxiv.2204.13048"). The
 # list on the page is drawn from these by scripts/render-publications.py.
 publications:
