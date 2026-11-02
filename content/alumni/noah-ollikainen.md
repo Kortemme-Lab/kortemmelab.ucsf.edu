@@ -1,22 +1,20 @@
 ---
-title: "Alumni - Noah Ollikainen - KORTEMME LAB @ UCSF"
+name: "Noah Ollikainen"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2008-2015"
-slug: alumni---noah-ollikainen
-source_url: https://kortemmelab.ucsf.edu/alumni---noah-ollikainen.html
-mirror_file: site/alumni---noah-ollikainen.html
-word_count: 273
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1371/journal.pcbi.1004335
-  - https://doi.org/10.1371/journal.pone.0130433
-  - https://doi.org/10.1073/pnas.1410624111
-  - https://doi.org/10.1371/journal.pcbi.1003313
-  - https://doi.org/10.7717/peerj.211
-  - https://doi.org/10.1016/b978-0-12-394292-0.00004-7
-  - https://ieeexplore.ieee.org/document/5361301
+current_position: "Staff Scientist, National Institute on Aging"
+co_mentors: []
+summary: ""
+photo: "images/people/noah-ollikainen.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1038/s41592-020-0848-2"
   - "10.1371/journal.pcbi.1007507"
@@ -28,11 +26,12 @@ publications:
   - "10.1371/journal.pcbi.1003313"
   - "10.1016/b978-0-12-394292-0.00004-7"
   - "ollikainen-2009-sat-based-protein-design"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---noah-ollikainen.html"
+mirror_file: "site/alumni---noah-ollikainen.html"
 ---
 
-## Noah's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,21 +1,22 @@
 ---
-title: "Alumni - Benjamin Jagger - KORTEMME LAB @ UCSF"
+name: "Benjamin Jagger"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2020-2021"
-slug: alumni---benjamin-jagger
-source_url: https://kortemmelab.ucsf.edu/alumni---benjamin-jagger.html
-mirror_file: site/alumni---benjamin-jagger.html
-word_count: 303
-reachable_from_home: true
-images:
-  - site/images/benjamin-jagger_orig.jpg
-external_links:
-  - https://doi.org/10.1021/acs.jctc.0c00495
-  - https://doi.org/10.1021/acs.jcim.9b00968
-  - https://doi.org/10.1016/j.sbi.2020.01.014
-  - https://doi.org/10.1021/acs.jpclett.8b02047
-  - https://doi.org/10.1021/acs.jpcb.6b09388
-  - https://doi.org/10.1002/cphc.201600957
-  - https://doi.org/10.1002/cphc.201500838
+current_position: "Associate Principal Scientist, Merck"
+co_mentors: []
+summary: "My interests are focused on using computational modeling and simulation-based techniques to inform the design of enzymes. Specifically, I am interested in improving the therapeutic potential of Cas9 systems by designing properties such as reduced size, self-delivery ability, cell targeting specificity, and reduced immunogenicity."
+photo: "images/people/benjamin-jagger.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemistry, Duquesne University"
+  - "Ph.D. Chemistry, University of California, San Diego"
 publications:
   - "10.1021/acs.jctc.0c00495"
   - "10.1021/acs.jcim.9b00968"
@@ -24,21 +25,12 @@ publications:
   - "10.1002/cphc.201600957"
   - "10.1021/acs.jpcb.6b09388"
   - "10.1002/cphc.201500838"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---benjamin-jagger.html"
+mirror_file: "site/alumni---benjamin-jagger.html"
 ---
 
-**Benjamin Jagger**
-Postdoctoral Scholar
-
-My interests are focused on using computational modeling and simulation-based techniques to inform the design of enzymes. Specifically, I am interested in improving the therapeutic potential of Cas9 systems by designing properties such as reduced size, self-delivery ability, cell targeting specificity, and reduced immunogenicity.
-
-**Education**
-
-- Bachelor of Science, Chemistry, Duquesne University
-Ph.D. Chemistry, University of California, San Diego
-
-![Derp.](images/benjamin-jagger_orig.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

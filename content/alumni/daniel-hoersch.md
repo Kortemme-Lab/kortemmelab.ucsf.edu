@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Daniel Hoersch - KORTEMME LAB @ UCSF"
+name: "Daniel Hoersch"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2010-2015"
-slug: alumni---daniel-hoersch
-source_url: https://kortemmelab.ucsf.edu/alumni---daniel-hoersch.html
-mirror_file: site/alumni---daniel-hoersch.html
-word_count: 84
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1016/j.str.2016.02.015
-  - https://doi.org/10.1007/978-1-4939-3569-7_12
-  - https://doi.org/10.1038/nnano.2013.242
+current_position: "Fellow, Free University Berlin, Germany"
+co_mentors: []
+summary: ""
+photo: "images/people/daniel-hoersch.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1007/978-1-4939-3569-7_12"
   - "10.1016/j.str.2016.02.015"
   - "10.1038/nnano.2013.242"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---daniel-hoersch.html"
+mirror_file: "site/alumni---daniel-hoersch.html"
 ---
 
-## Daniel's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

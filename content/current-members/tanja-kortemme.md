@@ -1,114 +1,24 @@
 ---
-title: "Current - Tanja Kortemme - KORTEMME LAB @ UCSF"
-slug: current---tanja-kortemme
-source_url: https://kortemmelab.ucsf.edu/current---tanja-kortemme.html
-mirror_file: site/current---tanja-kortemme.html
-word_count: 2584
-reachable_from_home: true
-images:
-  - site/images/1465623021.png
-external_links:
-  - http://profiles.ucsf.edu/tanja.kortemme
-  - https://doi.org/10.1016/j.sbi.2021.08.004
-  - https://doi.org/10.1038/s41586-021-03982-6
-  - https://doi.org/10.1016/j.jbc.2021.100558
-  - https://doi.org/10.1126/science.abe9403
-  - https://doi.org/10.1073/pnas.2016093117
-  - https://doi.org/10.1371/journal.pcbi.1008178
-  - https://doi.org/10.1126/science.abc0881
-  - https://doi.org/10.1016/j.cell.2020.06.034
-  - https://doi.org/10.7554/elife.53476
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1038/s41586-020-2286-9
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1002/prot.25790
-  - https://doi.org/10.7554/elife.40499
-  - https://doi.org/10.1038/s41467-019-09985-2
-  - https://doi.org/10.1515/hsz-2018-0348
-  - https://doi.org/10.1242/bio.036103
-  - https://doi.org/10.1021/acs.jpcb.7b11367
-  - https://doi.org/10.1073/pnas.1705064114
-  - https://doi.org/10.7554/elife.27810
-  - https://doi.org/10.1021/acs.jctc.7b00125
-  - https://doi.org/10.7554/elife.15802
-  - https://doi.org/10.1016/j.str.2016.02.015
-  - https://doi.org/10.1007/978-1-4939-3569-7_12
-  - https://doi.org/10.1371/journal.pcbi.1004335
-  - https://doi.org/10.1371/journal.pone.0130433
-  - https://doi.org/10.1021/ct500864r
-  - https://doi.org/10.1073/pnas.1410624111
-  - https://doi.org/10.1016/j.sbi.2014.08.004
-  - https://doi.org/10.1038/nnano.2013.242
-  - https://doi.org/10.1371/journal.pcbi.1003313
-  - https://doi.org/10.7717/peerj.211
-  - https://doi.org/10.1021/ja404992r
-  - https://doi.org/10.1371/journal.pone.0063906
-  - https://doi.org/10.1371/journal.pone.0063090
-  - https://doi.org/10.1016/j.str.2012.10.007
-  - https://doi.org/10.1016/b978-0-12-394292-0.00006-0
-  - https://doi.org/10.1016/b978-0-12-394292-0.00004-7
-  - https://doi.org/10.1371/journal.pcbi.1002639
-  - https://doi.org/10.1126/science.1219083
-  - https://doi.org/10.1073/pnas.1114487109
-  - https://doi.org/10.1038/nature10719
-  - https://doi.org/10.1016/j.cell.2011.07.038
-  - https://doi.org/10.1371/journal.pone.0020451
-  - https://doi.org/10.1002/pro.632
-  - https://doi.org/10.1016/j.jmb.2010.12.019
-  - https://doi.org/10.1016/b978-0-12-381270-4.00019-6
-  - https://doi.org/10.1016/j.jmb.2010.07.032
-  - https://doi.org/10.1083/jcb.201004060
-  - https://doi.org/10.1016/j.sbi.2010.02.004
-  - https://doi.org/10.1093/nar/gkq369
-  - https://doi.org/10.1038/nchembio.251
-  - https://doi.org/10.1016/j.copbio.2009.07.006
-  - https://doi.org/10.1038/nmeth0809-551
-  - https://doi.org/10.1371/journal.pcbi.1000393
-  - https://doi.org/10.1038/msb.2009.9
-  - https://doi.org/10.1016/j.str.2008.12.014
-  - https://doi.org/10.1016/j.str.2008.11.004
-  - https://doi.org/10.1074/jbc.m806370200
-  - https://ieeexplore.ieee.org/document/5361301
-  - https://doi.org/10.1016/j.str.2008.09.012
-  - https://doi.org/10.1002/prot.22293
-  - https://doi.org/10.1016/j.jmb.2008.05.006
-  - https://doi.org/10.1016/j.jmb.2008.05.023
-  - https://doi.org/10.1016/j.jmb.2007.11.020
-  - https://doi.org/10.1016/j.str.2007.09.010
-  - https://doi.org/10.1074/jbc.m704513200
-  - https://doi.org/10.1371/journal.pcbi.0030164
-  - https://doi.org/10.1073/pnas.0608127103
-  - https://doi.org/10.1016/j.jmb.2006.05.022
-  - https://doi.org/10.1073/pnas.0600489103
-  - https://doi.org/10.1016/j.chembiol.2006.03.007
-  - https://doi.org/10.1074/jbc.m510454200
-  - https://doi.org/10.1002/prot.20347
-  - https://doi.org/10.1016/s0065-3233(05)72001-5
-  - https://doi.org/10.1093/nar/gkh785
-  - https://doi.org/10.1073/pnas.0307578101
-  - https://doi.org/10.1038/nsmb749
-  - https://doi.org/10.1021/bi034873s
-  - https://doi.org/10.1126/stke.2192004pl2
-  - https://doi.org/10.1016/j.cbpa.2003.12.008
-  - https://doi.org/10.1016/s1097-2765(03)00365-4
-  - https://doi.org/10.1002/prot.10384
-  - https://doi.org/10.1016/s0969-2126(03)00047-9
-  - https://doi.org/10.1021/jp0267555
-  - https://doi.org/10.1016/s0022-2836(03)00021-4
-  - https://doi.org/10.1073/pnas.202485799
-  - https://doi.org/10.1016/s1097-2765(02)00690-1
-  - https://doi.org/10.1016/s0022-2836(02)00706-4
-  - https://doi.org/10.1006/jmbi.2000.3618
-  - https://doi.org/10.1016/s0959-440x(99)80069-4
-  - https://doi.org/10.1016/s0968-0896(98)00215-6
-  - https://doi.org/10.1126/science.281.5374.253
-  - https://doi.org/10.1021/bi973101r
-  - https://doi.org/10.1006/jmbi.1996.0155
-  - https://doi.org/10.1021/bi9617724
-  - https://doi.org/10.1006/jmbi.1995.0592
-  - https://doi.org/10.1002/pro.5560030514
-  - https://doi.org/10.1021/bi00072a010
+name: "Tanja Kortemme"
+pronouns: ""
+role: "Principal Investigator"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "My main scientific interests range from the details of the physical interactions between atoms and molecules to the architecture and evolution of interaction networks in complex biological systems."
+photo: "images/people/tanja-kortemme.png"
+email: "kortemme@cgl.ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+  ucsf_profile: "http://profiles.ucsf.edu/tanja.kortemme"
+education:
+  - "Vordiplom (BS) Chemistry, Physical Chemistry University of Hannover, Germany"
+  - "Diplom (MSc) Biophysics Stanford University / University of Hannover"
+  - "Dr.rer.nat (Ph.D.) Biochemistry EMBL Heidelberg / University of Hannover"
+  - "Postdoctoral work: Computational and structural biology at EMBL Heidelberg and the Howard Hughes Medical Institute, University of Washington, Seattle."
 publications:
   - "10.1038/s41586-021-03982-6"
   - "10.1016/j.sbi.2021.08.004"
@@ -227,27 +137,12 @@ publications:
   - "10.1182/blood.2024025536"
   - "10.1371/journal.pcbi.1009620"
   - "10.1371/journal.pcbi.1011953"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---tanja-kortemme.html"
+mirror_file: "site/current---tanja-kortemme.html"
 ---
 
-**Tanja Kortemme
-​**Principal Investigator
-[UCSF profile](http://profiles.ucsf.edu/tanja.kortemme)
-kortemme (at) cgl.ucsf.edu
-
-My main scientific interests range from the details of the physical interactions between atoms and molecules to the architecture and evolution of interaction networks in complex biological systems.
-
-**Qualifications**
-
-- Vordiplom (BS) Chemistry, Physical Chemistry University of Hannover, Germany
-- Diplom (MSc) Biophysics Stanford University / University of Hannover
-- Dr.rer.nat (Ph.D.) Biochemistry EMBL Heidelberg / University of Hannover
-
-**Postdoctoral work**
-Computational and structural biology at EMBL Heidelberg and the Howard Hughes Medical Institute, University of Washington, Seattle.
-
-![Tanja Kortemme](images/1465623021.png)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

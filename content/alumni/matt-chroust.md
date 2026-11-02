@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Matt Chroust - KORTEMME LAB @ UCSF"
+name: "Matt Chroust"
+pronouns: ""
+role: "Undergraduate Researcher"
+program: ""
 years_in_lab: "2009"
-slug: alumni---matt-chroust
-source_url: https://kortemmelab.ucsf.edu/alumni---matt-chroust.html
-mirror_file: site/alumni---matt-chroust.html
-word_count: 33
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1016/j.str.2012.10.007
+current_position: "Dentistry Graduate Program, UCSF"
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1016/j.str.2012.10.007"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---matt-chroust.html"
+mirror_file: "site/alumni---matt-chroust.html"
 ---
 
-## Matt's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

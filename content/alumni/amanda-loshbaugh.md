@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Amanda Loshbaugh - KORTEMME LAB @ UCSF"
+name: "Amanda Loshbaugh"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2013-2019"
-slug: alumni---amanda-loshbaugh
-source_url: https://kortemmelab.ucsf.edu/alumni---amanda-loshbaugh.html
-mirror_file: site/alumni---amanda-loshbaugh.html
-word_count: 78
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1002/prot.25790
+current_position: "Senior Scientist, Systimmune"
+co_mentors: []
+summary: ""
+photo: "images/people/amanda-loshbaugh.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1371/journal.pcbi.1007507"
   - "10.1126/science.aax8780"
   - "10.1002/prot.25790"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---amanda-loshbaugh.html"
+mirror_file: "site/alumni---amanda-loshbaugh.html"
 ---
 
-## Amanda's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

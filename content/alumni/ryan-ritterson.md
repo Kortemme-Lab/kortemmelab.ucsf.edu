@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Ryan Ritterson - KORTEMME LAB @ UCSF"
+name: "Ryan Ritterson"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2007-2015"
-slug: alumni---ryan-ritterson
-source_url: https://kortemmelab.ucsf.edu/alumni---ryan-ritterson.html
-mirror_file: site/alumni---ryan-ritterson.html
-word_count: 80
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1007/978-1-4939-3569-7_12
-  - https://doi.org/10.1021/ja404992r
+current_position: "Specialist Lead, Deloitte Consulting"
+co_mentors: []
+summary: ""
+photo: "images/people/ryan-ritterson.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1126/science.aax8780"
   - "10.1007/978-1-4939-3569-7_12"
   - "10.1021/ja404992r"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---ryan-ritterson.html"
+mirror_file: "site/alumni---ryan-ritterson.html"
 ---
 
-## Ryan's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

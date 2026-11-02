@@ -1,40 +1,36 @@
 ---
-title: "Current -  Lisa Schmidt - KORTEMME LAB @ UCSF"
-slug: current---lisa-schmidt
-source_url: https://kortemmelab.ucsf.edu/current---lisa-schmidt.html
-mirror_file: site/current---lisa-schmidt.html
-word_count: 185
-reachable_from_home: false
-images:
-  - site/images/461630858_orig.jpg
-external_links:
-  - https://doi.org/10.1039/d4sc04723k
-  - https://doi.org/10.1126/science.ade2676
-  - https://doi.org/10.1021/acs.jcim.2c01127
-  - https://doi.org/10.1021/acsphyschemau.2c00045
-  - https://doi.org/10.1016/j.jmb.2021.167387
+name: "Lisa Schmidt"
+pronouns: ""
+role: ""
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "Understanding allosteric regulation in switches and design of new switching proteins."
+photo: "images/people/lisa-schmidt.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Master of Science (Biochemistry), Heidelberg University"
 publications:
   - "10.1039/d4sc04723k"
   - "10.1126/science.ade2676"
   - "10.1021/acs.jcim.2c01127"
   - "10.1021/acsphyschemau.2c00045"
   - "10.1016/j.jmb.2021.167387"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---lisa-schmidt.html"
+mirror_file: "site/current---lisa-schmidt.html"
 ---
+Max Planck Institute for Multidisciplinary Sciences, Göttingen
 
-[**Lisa Schmidt**](current---tobias-dorer.html)Max Planck Institute for Multidisciplinary Sciences, Göttingen
-
-Understanding allosteric regulation in switches and design of new switching proteins.
-​​
 *IMPRS PBCS Excellence Fellowship
 Doctorate Exchange Fellowship of the German Academic Exchange Service (DAAD)*
 
-**Education**
-
-- Master of Science (Biochemistry), Heidelberg University
-
-[![Derp.](images/461630858_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -46,5 +42,3 @@ Doctorate Exchange Fellowship of the German Academic Exchange Service (DAAD)*
 5. Martin, I. M., Aponte-Santamaría, C., Schmidt, L., Hedtfeld, M., Iusupov, A., Musacchio, A. & Gräter, F. [Phosphorylation tunes elongation propensity and cohesiveness of INCENP’s intrinsically disordered region](https://doi.org/10.1016/j.jmb.2021.167387). *J. Mol. Biol.* **434**, 167387 (2022).
 
 <!-- publications:end -->
-
-​

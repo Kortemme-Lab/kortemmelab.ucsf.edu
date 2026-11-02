@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Matt Eames - KORTEMME LAB @ UCSF"
+name: "Matt Eames"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2005-2011"
-slug: alumni---matt-eames
-source_url: https://kortemmelab.ucsf.edu/alumni---matt-eames.html
-mirror_file: site/alumni---matt-eames.html
-word_count: 81
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1126/science.1219083
-  - https://doi.org/10.1016/j.jmb.2010.12.019
-  - https://doi.org/10.1016/j.str.2007.09.010
+current_position: "Writer and Director, Consultant Cognition IP, Multimedia Producer Northeastern University"
+co_mentors: []
+summary: ""
+photo: "images/people/matt-eames.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1126/science.1219083"
   - "10.1016/j.jmb.2010.12.019"
   - "10.1016/j.str.2007.09.010"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---matt-eames.html"
+mirror_file: "site/alumni---matt-eames.html"
 ---
 
-## MAtt's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

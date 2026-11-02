@@ -1,20 +1,20 @@
 ---
-title: "Alumni - Colin Smith - KORTEMME LAB @ UCSF"
+name: "Colin Smith"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2006-2011"
-slug: alumni---colin-smith
-source_url: https://kortemmelab.ucsf.edu/alumni---colin-smith.html
-mirror_file: site/alumni---colin-smith.html
-word_count: 214
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1016/j.str.2012.10.007
-  - https://doi.org/10.1016/b978-0-12-394292-0.00004-7
-  - https://doi.org/10.1371/journal.pone.0020451
-  - https://doi.org/10.1016/b978-0-12-381270-4.00019-6
-  - https://doi.org/10.1016/j.jmb.2010.07.032
-  - https://doi.org/10.1093/nar/gkq369
-  - https://doi.org/10.1016/j.jmb.2008.05.006
-  - https://doi.org/10.1016/j.jmb.2008.05.023
+current_position: "Associate Professor, Wesleyan University"
+co_mentors: []
+summary: ""
+photo: "images/people/colin-smith.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1016/j.str.2012.10.007"
   - "10.1016/b978-0-12-394292-0.00004-7"
@@ -24,11 +24,12 @@ publications:
   - "10.1093/nar/gkq369"
   - "10.1016/j.jmb.2008.05.006"
   - "10.1016/j.jmb.2008.05.023"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---colin-smith.html"
+mirror_file: "site/alumni---colin-smith.html"
 ---
 
-## Colin's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

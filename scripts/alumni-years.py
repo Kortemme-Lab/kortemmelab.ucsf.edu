@@ -46,13 +46,22 @@ def roster_years():
     return years, unclear
 
 
+EMPTY_RE = re.compile(rf'^{FIELD}:[ \t]*(?:""|\'\')?[ \t]*$', re.M)
+
+
 def add_field(path, value):
-    """Insert the field after `title:`; False if it is already there."""
+    """Fill in the field; False if it already has a value (hand edits win)."""
     text = open(path, encoding="utf-8").read()
     head, sep, rest = text.partition("\n---\n")
+    if EMPTY_RE.search(head):                         # present but empty: fill it
+        head = EMPTY_RE.sub(f"{FIELD}: {json.dumps(value)}", head, count=1)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(head + sep + rest)
+        return True
     if re.search(rf"^{FIELD}:", head, re.M):
         return False
-    head = re.sub(r"^(title: .*)$", lambda m: f"{m.group(1)}\n{FIELD}: {json.dumps(value)}",
+    # after `title:` in an old-format file, after `name:` in a profile
+    head = re.sub(r"^((?:title|name): .*)$", lambda m: f"{m.group(1)}\n{FIELD}: {json.dumps(value)}",
                   head, count=1, flags=re.M)
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(head + sep + rest)
@@ -76,8 +85,9 @@ def main():
     alumni_dir = os.path.join(ROOT, "content", "alumni")
     without = sorted(
         fn[:-3] for fn in os.listdir(alumni_dir)
-        if fn.endswith(".md") and not re.search(
-            rf"^{FIELD}:", open(os.path.join(alumni_dir, fn), encoding="utf-8").read(), re.M))
+        if fn.endswith(".md") and (EMPTY_RE.search(open(os.path.join(alumni_dir, fn), encoding="utf-8").read())
+                                   or not re.search(rf"^{FIELD}:", open(os.path.join(alumni_dir, fn),
+                                                                        encoding="utf-8").read(), re.M)))
 
     print(f"roster: {len(years)} alumni with a profile and years")
     print(f"{FIELD}: {added} added, {kept} already present (left as-is)")

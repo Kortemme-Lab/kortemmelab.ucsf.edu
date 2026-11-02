@@ -1,32 +1,27 @@
 ---
-title: "Alumni - Benjamin Orr - KORTEMME LAB @ UCSF"
+name: "Benjamin Orr"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2020-2025"
-slug: alumni---benjamin-orr
-source_url: https://kortemmelab.ucsf.edu/alumni---benjamin-orr.html
-mirror_file: site/alumni---benjamin-orr.html
-word_count: 24
-reachable_from_home: true
-images:
-  - site/images/bio-orr_orig.jpg
-external_links:
-  - https://www.keiserlab.org/
+current_position: "Director of Computational Biology and AI, Animate Biosciences"
+co_mentors: ["Mike Keiser"]
+summary: "Protein design with deep learning."
+photo: "images/people/benjamin-orr.jpg"
+email: "benjamin.orr@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biochemistry, Tufts University"
 publications:
   - "10.1101/2025.06.02.657515"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---benjamin-orr.html"
+mirror_file: "site/alumni---benjamin-orr.html"
 ---
-
-**[​​﻿](index.html)Benjamin Orr**
-Graduate Student
-co-mentored by [Mike Keiser](https://www.keiserlab.org/)
-​
-Protein design with deep learning.
-
-**Education**
-
-- Bachelor of Science, Biochemistry, Tufts University
-
-[![Derp.](images/bio-orr_orig.jpg)](index.html)
-
-**Publications**
 
 ## Publications
 

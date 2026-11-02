@@ -1,19 +1,20 @@
 ---
-title: "Alumni - Dan Mandell - KORTEMME LAB @ UCSF"
+name: "Dan Mandell"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2005-2011"
-slug: alumni---dan-mandell
-source_url: https://kortemmelab.ucsf.edu/alumni---dan-mandell.html
-mirror_file: site/alumni---dan-mandell.html
-word_count: 162
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1016/j.cell.2011.07.038
-  - https://doi.org/10.1002/pro.632
-  - https://doi.org/10.1016/b978-0-12-381270-4.00019-6
-  - https://doi.org/10.1038/nchembio.251
-  - https://doi.org/10.1016/j.copbio.2009.07.006
-  - https://doi.org/10.1038/nmeth0809-551
+current_position: "Co-founder and CEO, GRO Biosciences"
+co_mentors: []
+summary: ""
+photo: "images/people/dan-mandell.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1126/science.aax8780"
   - "10.1016/j.cell.2011.07.038"
@@ -22,11 +23,12 @@ publications:
   - "10.1038/nchembio.251"
   - "10.1016/j.copbio.2009.07.006"
   - "10.1038/nmeth0809-551"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---dan-mandell.html"
+mirror_file: "site/alumni---dan-mandell.html"
 ---
 
-## Dan's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -44,6 +44,7 @@ kortemmelab.ucsf.edu/
 │   ├── *.md               the 10 pages on the site's menu
 │   ├── current-members/   one file per current lab member (20)
 │   ├── alumni/            one file per alumnus (53)
+│   ├── images/people/     every profile's headshot
 │   └── archive/           pages kept but not in use (18), see below
 ├── structure/             inventories for a rebuild
 │   ├── site-structure.json   navigation tree and per-page metadata
@@ -207,10 +208,42 @@ Carberry.
 **When someone graduates**, change `years_in_lab` from `"2026-present"` to
 the end year (`"2026-2031"`) and move their file to `content/alumni/`.
 
-New profiles use the template's fields (`name`, `role`, `summary`, `photo`,
-`links` and so on). The 73 profiles migrated from Weebly still carry the
-fields of the old site instead, so the rebuilt site's templates will need to
-handle both, or the old profiles converted.
+## Profiles
+
+Every profile, new or migrated, follows `intake/profile-template.md`: `name`,
+`role`, `summary`, `photo`, `links`, `education`, `publications` and so on in
+the header, and a longer bio as the text below it. Alumni also have
+`current_position`. Profiles migrated from the old site keep two more fields,
+`source_url` and `mirror_file`, recording which Weebly page they came from;
+the renderer uses `mirror_file` to keep the local copy of the old site in
+step. Profiles are edited by hand: `extract.py` never overwrites one, even
+with `--refresh`.
+
+The 73 migrated profiles were converted by `scripts/convert-profiles.py`
+from three sources: the text of each person's old page, its email link, and
+the alumni roster. The roster supplied photos, roles and current positions
+for the 38 older alumni whose own pages held only a publication list.
+`capture/profile-conversion.csv` lists, for each person, what was found and
+anything that needs a look. In short:
+
+- **20 current members have no start year.** The old site never recorded
+  one. Fill in `years_in_lab` as `"2021-present"`.
+- **9 have no role.** Lisa Schmidt and Tobias Dorer are visiting researchers
+  whose pages don't state a role; Meytal Radzinski's and Rochel Munitz's
+  pages give none; four alumni are listed under "Staff" on the roster without
+  a title (Cristina Melero, Debbie Jeon, Florian Lauck, Shane O'Connor); and
+  `lin-liu1` is the duplicate of Lin Liu's profile.
+- **Two emails were dropped as wrong.** Lisa Schmidt's page linked to Tobias
+  Dorer's address and Yulia Gutierrez's to Dru Myerscough's; both pages were
+  evidently copied from a colleague's. Their `email` is empty until you add
+  the right one. The old pages, and so the local copy in `site/`, still have
+  the wrong links.
+- **Names come from each person's own page** where it differs from the old
+  page title: Jon Zhang, Anum Azam Glasgow, Yang (Sunny) Zhang.
+- **10 have no photo**: five early undergraduates, four rotation students
+  and the `lin-liu1` duplicate. The roster had no photo for any of them.
+- **Fellowships and awards** (e.g. *NSF GRFP Fellow*) are in each bio as they
+  were written on the old page.
 
 ## How it differs from the live site
 
@@ -373,14 +406,15 @@ for s in normalize-filenames restructure-root fix-mailto fetch-gallery-images cu
 | `customize-nav.py` | Removes the menu items in its `HIDE` list |
 | `tidy-site.py` | Reorganizes files, removes dead code, reformats HTML |
 | `fix-links.py` | Fixes the two broken links described above |
-| `extract.py` | Rebuilds `structure/`; creates any missing `content/` files (`--refresh` rewrites them) |
+| `extract.py` | Rebuilds `structure/`; creates any missing `content/` files (`--refresh` rewrites them, but never a profile) |
 | `alumni-years.py` | Adds `years_in_lab` to alumni files that don't have it |
 | `build-bibliography.py` | Creates `content/bibliography.json` from the original citations. Runs once; never overwrites it |
 | `co-first-authors.py` | Marks co-first authors from the asterisks in the original citations |
 | `render-publications.py` | Draws every publication list from the bibliography; `--check-preprints` looks for newly published preprints |
 
 `bibliography.py` holds the parts those two share, including the Nature-style
-formatter. `add-person.py` isn't part of this pipeline; it's for adding new
+formatter. `convert-profiles.py` converted the migrated profiles once and has
+nothing left to do. `add-person.py` isn't part of this pipeline; it's for adding new
 lab members (above).
 
 Every script is safe to re-run; on a finished site, all but `extract.py` report

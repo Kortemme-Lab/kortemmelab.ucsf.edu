@@ -1,27 +1,25 @@
 ---
-title: "Current -  Tobias Dorer - KORTEMME LAB @ UCSF"
-slug: current---tobias-dorer
-source_url: https://kortemmelab.ucsf.edu/current---tobias-dorer.html
-mirror_file: site/current---tobias-dorer.html
-word_count: 33
-reachable_from_home: true
-images:
-  - site/images/dorer-tobias-2024-ibg-08_orig.png
+name: "Tobias Dorer"
+pronouns: ""
+role: ""
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "Computational design of dynamic proteins."
+photo: "images/people/tobias-dorer.png"
+email: "Tobias.Dorer@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemistry, Ruprecht Karl University Heidelberg"
+publications: []
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---tobias-dorer.html"
+mirror_file: "site/current---tobias-dorer.html"
 ---
-
-**Tobias Dorer**
 visiting from the Max-Planck Institute, Göttingen
 
-Computational design of dynamic proteins.
-​​
 *Max-Planck School - Matter to Life*
-
-**Education**
-
-- Bachelor of Science, Chemistry, Ruprecht Karl University Heidelberg​
-
-[![Derp.](images/dorer-tobias-2024-ibg-08_orig.png)](index.html)
-
-**Publications**​
-
-​

@@ -1,18 +1,20 @@
 ---
-title: "Alumni - XingJie Pan - KORTEMME LAB @ UCSF"
+name: "XingJie Pan"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2015-2020"
-slug: alumni---xingjie-pan
-source_url: https://kortemmelab.ucsf.edu/alumni---xingjie-pan.html
-mirror_file: site/alumni---xingjie-pan.html
-word_count: 152
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1016/j.jbc.2021.100558
-  - https://doi.org/10.1126/science.abc0881
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.7554/elife.54031
+current_position: "Postdoc, Harvard"
+co_mentors: []
+summary: ""
+photo: "images/people/xingjie-pan.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1016/j.jbc.2021.100558"
@@ -20,9 +22,12 @@ publications:
   - "10.1038/s41592-020-0848-2"
   - "10.1371/journal.pcbi.1007507"
   - "10.7554/elife.54031"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---xingjie-pan.html"
+mirror_file: "site/alumni---xingjie-pan.html"
 ---
 
-## XINGJIE's Publications in our lab
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

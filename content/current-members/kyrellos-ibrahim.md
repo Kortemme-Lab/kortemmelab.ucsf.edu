@@ -1,33 +1,29 @@
 ---
-title: "Current - Kyrellos Ibrahim - KORTEMME LAB @ UCSF"
-slug: current---kyrellos-ibrahim
-source_url: https://kortemmelab.ucsf.edu/current---kyrellos-ibrahim.html
-mirror_file: site/current---kyrellos-ibrahim.html
-word_count: 83
-reachable_from_home: true
-images:
-  - site/images/slice-1_orig.jpg
-external_links:
-  - https://doi.org/10.1101/2025.04.23.645810
-  - https://doi.org/10.1016/j.immuni.2024.10.013
+name: "Kyrellos Ibrahim"
+pronouns: ""
+role: "Graduate Student"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I'm interested in enzyme and assembly design, sustainability."
+photo: "images/people/kyrellos-ibrahim.jpg"
+email: "kyrellos.ibrahim@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelors of Arts, Biochemistry, Claremont Mckenna College"
 publications:
   - "10.1101/2025.04.23.645810"
   - "10.1016/j.immuni.2024.10.013"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---kyrellos-ibrahim.html"
+mirror_file: "site/current---kyrellos-ibrahim.html"
 ---
 
-**Kyrellos Ibrahim**
-
-Graduate Student
-
-I'm interested in enzyme and assembly design, sustainability.
-​
-**Education**
-
-- Bachelors of Arts, Biochemistry, Claremont Mckenna College
-
-[![Derp.](images/slice-1_orig.jpg)](index.html)
-
-**Publications**​
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -38,5 +34,3 @@ I'm interested in enzyme and assembly design, sustainability.
 \* Co-first authors
 
 <!-- publications:end -->
-
-​

@@ -1,20 +1,21 @@
 ---
-title: "Current - Stephanie Crilly - KORTEMME LAB @ UCSF"
-slug: current---stephanie-crilly
-source_url: https://kortemmelab.ucsf.edu/current---stephanie-crilly.html
-mirror_file: site/current---stephanie-crilly.html
-word_count: 222
-reachable_from_home: true
-images:
-  - site/images/crilly-01_orig.png
-external_links:
-  - https://doi.org/10.7554/elife.67478
-  - https://doi.org/10.1007/s00232-020-00158-7
-  - https://doi.org/10.1038/s41586-020-2888-2
-  - https://doi.org/10.1016/j.ceb.2018.12.006
-  - https://doi.org/10.1091/mbc.e18-05-0292
-  - https://doi.org/10.1523/jneurosci.0339-16.2016
-  - https://doi.org/10.1074/jbc.m114.615427
+name: "Stephanie Crilly"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I am interested in designing signaling proteins and systems, as well as developing tools to study endogenous signaling events."
+photo: "images/people/stephanie-crilly.png"
+email: "scrilly23@gmail.com"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Microbiology, Penn State University"
+  - "PhD, Cellular & Molecular Biology, University of Michigan"
 publications:
   - "10.7554/elife.67478"
   - "10.1007/s00232-020-00158-7"
@@ -24,21 +25,12 @@ publications:
   - "10.1523/jneurosci.0339-16.2016"
   - "10.1074/jbc.m114.615427"
   - "10.1101/2025.06.02.657515"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---stephanie-crilly.html"
+mirror_file: "site/current---stephanie-crilly.html"
 ---
 
-**Stephanie Crilly**
-Postdoctoral Scholar
-
-I am interested in designing signaling proteins and systems, as well as developing tools to study endogenous signaling events.
-
-**Education**​​
-
-- Bachelor of Science, Microbiology, Penn State University
-- PhD, Cellular & Molecular Biology, University of Michigan
-
-![Derp.](images/crilly-01_orig.png)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

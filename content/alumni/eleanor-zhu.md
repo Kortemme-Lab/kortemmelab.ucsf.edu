@@ -1,33 +1,29 @@
 ---
-title: "Alumni - Eleanor Zhu - KORTEMME LAB @ UCSF"
-slug: alumni---eleanor-zhu
-source_url: https://kortemmelab.ucsf.edu/alumni---eleanor-zhu.html
-mirror_file: site/alumni---eleanor-zhu.html
-word_count: 45
-reachable_from_home: false
-images:
-  - site/images/053123-brooklyn-1_2.jpg
+name: "Eleanor Zhu"
+pronouns: ""
+role: "Lab Technician"
+program: ""
+years_in_lab: ""
+current_position: ""
+co_mentors: []
+summary: "I am generally interested in protein design and testing de novo proteins using high throughput methods."
+photo: "images/people/eleanor-zhu.jpg"
+email: "eleanorzhutq@berkeley.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemical Biology, University of California, Berkeley"
+  - "Bachelor of Arts, Applied Mathematics, University of California, Berkeley"
 publications:
   - "10.1101/2025.06.02.657515"
   - "10.1101/2023.12.15.571823"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---eleanor-zhu.html"
+mirror_file: "site/alumni---eleanor-zhu.html"
 ---
-
-**Eleanor Zhu**
-
-Lab Technician
-
-I am generally interested in protein design and testing de novo proteins using high throughput methods.
-​​
-**Education**
-
-- Bachelor of Science, Chemical Biology, University of California, Berkeley
-- Bachelor of Arts, Applied Mathematics, University of California, Berkeley
-
-[![Derp.](images/053123-brooklyn-1_2.jpg)](index.html)
-
-**Publications**​
-
-​
 
 ## Publications
 

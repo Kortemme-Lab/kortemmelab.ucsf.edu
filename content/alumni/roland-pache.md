@@ -1,26 +1,31 @@
 ---
-title: "Alumni - Roland Pache - KORTEMME LAB @ UCSF"
+name: "Roland Pache"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2011-2015"
-slug: alumni---roland-pache
-source_url: https://kortemmelab.ucsf.edu/alumni---roland-pache.html
-mirror_file: site/alumni---roland-pache.html
-word_count: 95
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1073/pnas.1705064114
-  - https://doi.org/10.1016/b978-0-12-394292-0.00006-0
+current_position: "Scientist, Novozymes, Denmark"
+co_mentors: []
+summary: ""
+photo: "images/people/roland-pache.png"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1126/science.aax8780"
   - "10.1073/pnas.1705064114"
   - "10.1016/b978-0-12-394292-0.00006-0"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---roland-pache.html"
+mirror_file: "site/alumni---roland-pache.html"
 ---
 
-## Roland's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

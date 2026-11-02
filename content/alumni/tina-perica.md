@@ -1,27 +1,23 @@
 ---
-title: "Alumni - Tina Perica - KORTEMME LAB @ UCSF"
+name: "Tina Perica"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2014-2021"
-slug: alumni---tina-perica
-source_url: https://kortemmelab.ucsf.edu/alumni---tina-perica.html
-mirror_file: site/alumni---tina-perica.html
-word_count: 346
-reachable_from_home: true
-images:
-  - site/images/3332419.jpg
-external_links:
-  - http://profiles.ucsf.edu/tina.perica
-  - https://doi.org/10.1016/j.cels.2023.01.003
-  - https://doi.org/10.1038/s41586-021-03982-6
-  - https://doi.org/10.1038/s41586-020-2286-9
-  - https://doi.org/10.1126/science.1254346
-  - https://doi.org/10.1016/j.sbi.2013.07.004
-  - https://doi.org/10.1093/nar/gkt673
-  - https://doi.org/10.1016/j.cell.2013.02.044
-  - https://doi.org/10.1042/bst20120056
-  - https://doi.org/10.1073/pnas.1120028109
-  - https://doi.org/10.1002/pro.2071
-  - https://doi.org/10.1016/j.sbi.2010.03.007
-  - https://doi.org/10.1074/jbc.m803219200
+current_position: "Assistant Professor, University of Zurich, Switzerland"
+co_mentors: []
+summary: "I am interested in studying the genotype-to-phenotype relationships by using the knowledge of protein structure and biophysics. I aim to do that by testing the quantitative effects of designed perturbations on the genetic interactions."
+photo: "images/people/tina-perica.jpg"
+email: "tina.perica@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+  ucsf_profile: "http://profiles.ucsf.edu/tina.perica"
+education:
+  - "Bachelor of Science, Molecular Biology, Zagreb University, Croatia"
+  - "Ph.D., Molecular Biology, Cambridge University, UK"
 publications:
   - "10.1016/j.cels.2023.01.003"
   - "10.1038/s41586-021-03982-6"
@@ -35,24 +31,13 @@ publications:
   - "10.1073/pnas.1120028109"
   - "10.1016/j.sbi.2010.03.007"
   - "10.1074/jbc.m803219200"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---tina-perica.html"
+mirror_file: "site/alumni---tina-perica.html"
 ---
-
-**Tina Perica
-​**Postdoctoral scholar
-[UCSF profile](http://profiles.ucsf.edu/tina.perica)
-
-[**​**](current---tanja-kortemme.html)I am interested in studying the genotype-to-phenotype relationships by using the knowledge of protein structure and biophysics. I aim to do that by testing the quantitative effects of designed perturbations on the genetic interactions.
-
 *Sir Henry Wellcome Postdoctoral Fellow*
 
-**Qualifications**
-
-- Bachelor of Science, Molecular Biology, Zagreb University, Croatia
-- Ph.D., Molecular Biology, Cambridge University, UK
-
-![Tanja Kortemme](images/3332419.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,20 +1,21 @@
 ---
-title: "Current - Yilun Qi - KORTEMME LAB @ UCSF"
-slug: current---yilun-qi
-source_url: https://kortemmelab.ucsf.edu/current---yilun-qi.html
-mirror_file: site/current---yilun-qi.html
-word_count: 189
-reachable_from_home: true
-images:
-  - site/images/yilun.jpg
-external_links:
-  - https://doi.org/10.1016/j.celrep.2022.110732
-  - https://doi.org/10.1126/science.abg0635
-  - https://doi.org/10.1126/science.aba8490
-  - https://doi.org/10.1126/science.abb5872
-  - https://doi.org/10.1038/s41422-019-0255-3
-  - https://doi.org/10.1038/s41422-019-0205-0
-  - https://doi.org/10.1038/s41422-018-0029-3
+name: "Yilun Qi"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I am fascinated by the relationship between protein structure and function. I hope to leverage protein design technologies to sample a variety of protein structures and functions."
+photo: "images/people/yilun-qi.jpg"
+email: "yilun.qi@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, College of Life Sciences, Nankai University"
+  - "Ph.D., Institutes of Biomedical Sciences, Fudan University"
 publications:
   - "10.1038/s41422-018-0029-3"
   - "10.1126/science.aba8490"
@@ -23,21 +24,12 @@ publications:
   - "10.1038/s41422-019-0205-0"
   - "10.1126/science.abb5872"
   - "10.1038/s41422-019-0255-3"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---yilun-qi.html"
+mirror_file: "site/current---yilun-qi.html"
 ---
 
-**Yilun Qi**
-Postdoctoral Scholar
-
-I am fascinated by the relationship between protein structure and function. I hope to leverage protein design technologies to sample a variety of protein structures and functions.
-
-**Education**​
-
-- Bachelor of Science, College of Life Sciences, Nankai University
-- Ph.D., Institutes of Biomedical Sciences, Fudan University
-
-![Derp.](images/yilun.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

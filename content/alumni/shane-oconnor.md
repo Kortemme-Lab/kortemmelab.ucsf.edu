@@ -1,21 +1,20 @@
 ---
-title: "Alumni - Shane O'Connor - KORTEMME LAB @ UCSF"
+name: "Shane O'Connor"
+pronouns: ""
+role: ""
+program: ""
 years_in_lab: "2011-2016"
-slug: alumni---shane-oconnor
-source_url: https://kortemmelab.ucsf.edu/alumni---shane-oconnor.html
-mirror_file: site/alumni---shane-oconnor.html
-word_count: 239
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1242/bio.036103
-  - https://doi.org/10.1021/acs.jpcb.7b11367
-  - https://doi.org/10.7554/elife.15802
-  - https://doi.org/10.1371/journal.pone.0130433
-  - https://doi.org/10.1371/journal.pone.0063906
-  - https://doi.org/10.1371/journal.pcbi.1002639
+current_position: "Software Engineer, Kitman Labs"
+co_mentors: []
+summary: ""
+photo: "images/people/shane-oconnor.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1038/s41592-020-0848-2"
@@ -26,11 +25,12 @@ publications:
   - "10.1371/journal.pone.0130433"
   - "10.1371/journal.pone.0063906"
   - "10.1371/journal.pcbi.1002639"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---shane-oconnor.html"
+mirror_file: "site/alumni---shane-oconnor.html"
 ---
 
-## Shane's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

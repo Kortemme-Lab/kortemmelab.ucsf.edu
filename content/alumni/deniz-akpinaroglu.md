@@ -1,38 +1,34 @@
 ---
-title: "Alumni - Deniz Akpinaroglu - KORTEMME LAB @ UCSF"
+name: "Deniz Akpinaroglu"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2020-2025"
-slug: alumni---deniz-akpinaroglu
-source_url: https://kortemmelab.ucsf.edu/alumni---deniz-akpinaroglu.html
-mirror_file: site/alumni---deniz-akpinaroglu.html
-word_count: 85
-reachable_from_home: true
-images:
-  - site/images/dsc-0190_orig.jpg
-external_links:
-  - https://doi.org/10.1101/2021.11.01.466827
-  - https://doi.org/10.1101/2021.09.22.461349
+current_position: "ML Scientist, Generate Biosciences"
+co_mentors: []
+summary: "I'm interested in designing small-molecule binding proteins with deep learning."
+photo: "images/people/deniz-akpinaroglu.jpg"
+email: "dakpinaroglu@berkeley.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Bioengineering, UC Merced"
 publications:
   - "10.1371/journal.pone.0258173"
   - "10.1242/dev.200325"
   - "10.1101/2025.06.02.657515"
   - "10.1101/2025.08.03.668353"
   - "10.1101/2023.12.15.571823"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---deniz-akpinaroglu.html"
+mirror_file: "site/alumni---deniz-akpinaroglu.html"
 ---
-
-**Deniz Akpinaroglu**
-Graduate Student
-
-I'm interested in designing small-molecule binding proteins with deep learning.
-
 *NSF GRFP Fellow*
 
-**Education**
-
-- Bachelor of Science, Bioengineering, UC Merced
-
-[![Derp.](images/dsc-0190_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

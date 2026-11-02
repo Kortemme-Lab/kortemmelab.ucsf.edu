@@ -1,34 +1,22 @@
 ---
-title: "Alumni - Yang Zhang - KORTEMME LAB @ UCSF"
+name: "Yang (Sunny) Zhang"
+pronouns: ""
+role: "Specialist"
+program: ""
 years_in_lab: "2017-2021"
-slug: alumni---yang-zhang
-source_url: https://kortemmelab.ucsf.edu/alumni---yang-zhang.html
-mirror_file: site/alumni---yang-zhang.html
-word_count: 538
-reachable_from_home: true
-images:
-  - site/images/fullsizerender_1_orig.jpg
-external_links:
-  - https://doi.org/10.1038/s41586-021-03982-6
-  - https://doi.org/10.1126/science.abe9403
-  - https://doi.org/10.1073/pnas.2016093117
-  - https://doi.org/10.1126/science.abc0881
-  - https://doi.org/10.7554/elife.53476
-  - https://doi.org/10.1107/s2053230x1500179x
-  - https://doi.org/10.1016/j.tube.2014.12.003
-  - https://doi.org/10.1107/s1744309111032143
-  - https://doi.org/10.1107/s1744309111030879
-  - https://doi.org/10.1107/s174430911102690x
-  - https://doi.org/10.1107/s1744309111012541
-  - https://doi.org/10.1007/s10969-010-9087-6
-  - https://doi.org/10.1006/prep.1998.0973
-  - https://doi.org/10.1006/prep.1997.0834
-  - https://doi.org/10.1128/jb.179.17.5333-5339.1997
-  - https://doi.org/10.1021/bi00118a022
-  - https://doi.org/10.1016/s0021-9258(18)54547-6
-  - https://doi.org/10.1021/bi00468a003
-  - https://doi.org/10.1021/bi00444a025
-  - https://doi.org/10.1016/s0021-9258(19)57303-3
+current_position: "Senior Protein Scientist, BigHat Bio"
+co_mentors: []
+summary: ""
+photo: "images/people/yang-zhang.jpg"
+email: "Yang.Zhang2@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemistry, Peking University, Beijing, China"
+  - "Ph.D., Biochemistry, Boston College"
 publications:
   - "10.1038/s41586-021-03982-6"
   - "10.1126/science.abe9403"
@@ -50,20 +38,12 @@ publications:
   - "10.1021/bi00468a003"
   - "10.1021/bi00444a025"
   - "10.1016/s0021-9258(19)57303-3"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---yang-zhang.html"
+mirror_file: "site/alumni---yang-zhang.html"
 ---
 
-**Yang (Sunny) Zhang**
-Specialist
-
-​
-**Education**
-
-- Bachelor of Science, Chemistry, Peking University, Beijing, China
-- Ph.D., Biochemistry, Boston College
-
-[![Derp.](images/fullsizerender_1_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

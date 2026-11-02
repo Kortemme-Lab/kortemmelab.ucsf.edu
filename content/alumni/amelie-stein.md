@@ -1,28 +1,32 @@
 ---
-title: "Alumni - Amelie Stein - KORTEMME LAB @ UCSF"
+name: "Amelie Stein"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2011-2015"
-slug: alumni---amelie-stein
-source_url: https://kortemmelab.ucsf.edu/alumni---amelie-stein.html
-mirror_file: site/alumni---amelie-stein.html
-word_count: 126
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1021/ct500864r
-  - https://doi.org/10.1371/journal.pone.0063090
-  - https://doi.org/10.1073/pnas.1114487109
+current_position: "Associate Professor, University of Copenhagen, Denmark"
+co_mentors: []
+summary: ""
+photo: "images/people/amelie-stein.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1038/s41592-020-0848-2"
   - "10.1371/journal.pcbi.1007507"
   - "10.1021/ct500864r"
   - "10.1371/journal.pone.0063090"
   - "10.1073/pnas.1114487109"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---amelie-stein.html"
+mirror_file: "site/alumni---amelie-stein.html"
 ---
 
-## Amelie's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

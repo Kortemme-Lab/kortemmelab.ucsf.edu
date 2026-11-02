@@ -1,31 +1,29 @@
 ---
-title: "Current - Dominic Grisingher - KORTEMME LAB @ UCSF"
-slug: current---dominic-grisingher
-source_url: https://kortemmelab.ucsf.edu/current---dominic-grisingher.html
-mirror_file: site/current---dominic-grisingher.html
-word_count: 62
-reachable_from_home: true
-images:
-  - site/images/dom.jpg
-external_links:
-  - https://doi.org/10.1039/d0ob00793e
+name: "Dominic Grisingher"
+pronouns: ""
+role: "Graduate Student"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "Protein switch design for protein-protein interactions."
+photo: "images/people/dominic-grisingher.jpg"
+email: "dominic.grisingher@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biochemistry, Arizona State University"
+  - "Masters of Science, Biochemistry, Arizona State University"
 publications:
   - "10.1039/d0ob00793e"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---dominic-grisingher.html"
+mirror_file: "site/current---dominic-grisingher.html"
 ---
 
-**[​​﻿](index.html)Dominic Grisingher**
-Graduate Student
-
-Protein switch design for protein-protein interactions.
-
-**​Education**
-
-- Bachelor of Science, Biochemistry, Arizona State University
-- Masters of Science, Biochemistry, Arizona State University
-
-[![Derp.](images/dom.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

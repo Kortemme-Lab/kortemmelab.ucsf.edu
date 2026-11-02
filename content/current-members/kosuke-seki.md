@@ -1,18 +1,21 @@
 ---
-title: "Current -  Kosuke Seki - KORTEMME LAB @ UCSF"
-slug: current---kosuke-seki
-source_url: https://kortemmelab.ucsf.edu/current---kosuke-seki.html
-mirror_file: site/current---kosuke-seki.html
-word_count: 181
-reachable_from_home: true
-images:
-  - site/images/kosuke_orig.jpg
-external_links:
-  - https://doi.org/10.1021/acschembio.3c00051
-  - https://doi.org/10.1038/s41467-022-29239-y
-  - https://doi.org/10.1002/biot.202100330
-  - https://doi.org/10.3389/fbioe.2020.590341
-  - https://doi.org/10.1021/acssynbio.8b00358
+name: "Kosuke Seki"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I'm interested in de novo design of ligand binding proteins and in high-throughput method development."
+photo: "images/people/kosuke-seki.jpg"
+email: "kosuke.seki@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemical Engineering, University of California, Irvine"
+  - "Ph.D., Chemical and Biological Engineering, Northwestern University"
 publications:
   - "10.1021/acschembio.3c00051"
   - "10.1038/s41467-022-29239-y"
@@ -21,21 +24,12 @@ publications:
   - "10.3389/fbioe.2020.590341"
   - "10.1101/2025.08.03.668353"
   - "10.1101/2023.12.15.571823"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---kosuke-seki.html"
+mirror_file: "site/current---kosuke-seki.html"
 ---
 
-**Kosuke Seki**
-Postdoctoral Scholar
-
-I'm interested in de novo design of ligand binding proteins and in high-throughput method development.
-
-**Education**
-
-- Bachelor of Science, Chemical Engineering, University of California, Irvine
-- Ph.D., Chemical and Biological Engineering, Northwestern University
-
-[![Derp.](images/kosuke_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -49,5 +43,3 @@ I'm interested in de novo design of ligand binding proteins and in high-throughp
 7. Black, W. B., King, E., Wang, Y., Jenic, A., Rowley, A. T., Seki, K., Luo, R. & Li, H. [Engineering a Coenzyme A Detour To Expand the Product Scope and Enhance the Selectivity of the Ehrlich Pathway](https://doi.org/10.1021/acssynbio.8b00358). *ACS Synth. Biol.* **7**, 2758–2764 (2018).
 
 <!-- publications:end -->
-
-​

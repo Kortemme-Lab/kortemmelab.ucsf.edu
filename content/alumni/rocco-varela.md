@@ -1,19 +1,28 @@
 ---
-title: "Alumni - Rocco Varela - KORTEMME LAB @ UCSF"
-slug: alumni---rocco-varela
-source_url: https://kortemmelab.ucsf.edu/alumni---rocco-varela.html
-mirror_file: site/alumni---rocco-varela.html
-word_count: 47
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1371/journal.pcbi.1002639
+name: "Rocco Varela"
+pronouns: ""
+role: "Rotation Student"
+program: "BMI"
+years_in_lab: ""
+current_position: ""
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1371/journal.pcbi.1002639"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---rocco-varela.html"
+mirror_file: "site/alumni---rocco-varela.html"
 ---
 
-## Rocco's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

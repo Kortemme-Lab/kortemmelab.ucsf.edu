@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Greg Kapp - KORTEMME LAB @ UCSF"
+name: "Greg Kapp"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2004-2009"
-slug: alumni---greg-kapp
-source_url: https://kortemmelab.ucsf.edu/alumni---greg-kapp.html
-mirror_file: site/alumni---greg-kapp.html
-word_count: 38
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.1114487109
+current_position: "Director of Protein Sciences, Motley Bio"
+co_mentors: []
+summary: ""
+photo: "images/people/greg-kapp.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.1114487109"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---greg-kapp.html"
+mirror_file: "site/alumni---greg-kapp.html"
 ---
 
-## Greg's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -417,6 +417,16 @@ GENERATED_FIELDS = {"title", "slug", "source_url", "mirror_file", "word_count",
                     "reachable_from_home", "images", "external_links"}
 
 
+def is_profile(path):
+    """A profile in the new format (it has a `name:` field) is edited by hand
+    and is the source of truth: extract.py never overwrites it, even with
+    --refresh. See intake/profile-template.md."""
+    if not os.path.exists(path):
+        return False
+    text = open(path, encoding="utf-8").read()
+    return text.startswith("---\n") and bool(re.search(r"^name:", text[4:].split("\n---\n", 1)[0], re.M))
+
+
 def preserved_fields(path):
     """Raw header lines of the fields extract.py doesn't own."""
     if not os.path.exists(path):
@@ -549,7 +559,11 @@ def main():
         rel = content_path(slug, index)
         dest = os.path.join(ROOT, rel)
         redo = refresh is not None and (not refresh or slug in refresh)
-        if redo or not os.path.exists(dest):
+        if is_profile(dest):
+            if refresh and slug in refresh:
+                print(f"skipped {rel}: a hand-edited profile, never regenerated")
+            kept += 1
+        elif redo or not os.path.exists(dest):
             fm[2:2] = preserved_fields(dest)          # right after the title
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             with open(dest, "w", encoding="utf-8") as out:

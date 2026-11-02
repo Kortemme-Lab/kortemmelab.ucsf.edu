@@ -1,20 +1,20 @@
 ---
-title: "Alumni - Kyle Barlow - KORTEMME LAB @ UCSF"
+name: "Kyle Barlow"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2012-2017"
-slug: alumni---kyle-barlow
-source_url: https://kortemmelab.ucsf.edu/alumni---kyle-barlow.html
-mirror_file: site/alumni---kyle-barlow.html
-word_count: 203
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1038/s41592-020-0848-2
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1242/bio.036103
-  - https://doi.org/10.1021/acs.jpcb.7b11367
-  - https://doi.org/10.7554/elife.15802
-  - https://doi.org/10.1007/978-1-4939-3569-7_12
-  - https://doi.org/10.1371/journal.pone.0130433
+current_position: "Senior Scientist, Adimab"
+co_mentors: []
+summary: ""
+photo: "images/people/kyle-barlow.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1038/s41592-020-0848-2"
   - "10.1371/journal.pcbi.1007507"
@@ -24,11 +24,12 @@ publications:
   - "10.7554/elife.15802"
   - "10.1007/978-1-4939-3569-7_12"
   - "10.1371/journal.pone.0130433"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---kyle-barlow.html"
+mirror_file: "site/alumni---kyle-barlow.html"
 ---
 
-## Kyle's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

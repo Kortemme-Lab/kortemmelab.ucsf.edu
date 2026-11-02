@@ -1,22 +1,29 @@
 ---
-title: "Alumni - Lin Liu - KORTEMME LAB @ UCSF"
+name: "Lin Liu"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2011-2015"
-slug: alumni---lin-liu
-source_url: https://kortemmelab.ucsf.edu/alumni---lin-liu.html
-mirror_file: site/alumni---lin-liu.html
-word_count: 58
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1126/science.abc0881
+current_position: "Senior Scientist, Remegen"
+co_mentors: []
+summary: ""
+photo: "images/people/lin-liu.png"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1126/science.abc0881"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---lin-liu.html"
+mirror_file: "site/alumni---lin-liu.html"
 ---
 
-## Lin's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,20 +1,21 @@
 ---
-title: "Alumni - Cody Krivacic - KORTEMME LAB @ UCSF"
+name: "Cody Krivacic"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2017-2022"
-slug: alumni---cody-krivacic
-source_url: https://kortemmelab.ucsf.edu/alumni---cody-krivacic.html
-mirror_file: site/alumni---cody-krivacic.html
-word_count: 236
-reachable_from_home: true
-images:
-  - site/images/codykrivacic_1.jpg
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1021/acs.jmedchem.6b00515
-  - https://doi.org/10.1089/adt.2015.640
-  - https://doi.org/10.1016/j.bmcl.2015.02.017
-  - https://doi.org/10.1021/bi301284f
+current_position: "Principal Scientist, Evercrisp Biosciences"
+co_mentors: []
+summary: ""
+photo: "images/people/cody-krivacic.jpg"
+email: "krivacic@berkeley.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biochemistry, UC Santa Barbara"
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1126/science.aax8780"
@@ -22,20 +23,13 @@ publications:
   - "10.1089/adt.2015.640"
   - "10.1016/j.bmcl.2015.02.017"
   - "10.1021/bi301284f"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---cody-krivacic.html"
+mirror_file: "site/alumni---cody-krivacic.html"
 ---
+I am interested in understanding how best to apply our computational tools to protein engineering challenges. I am currently working on a computational method that re-positions amino acids of interest by manipulating the protein backbone and testing my designs experimentally. The ability to precisely define side-chain positions in protein binding sites will enable the engineering of proteins with altered specificity.
 
-**Cody Krivacic**﻿
-Graduate Student
-
-​I am interested in understanding how best to apply our computational tools to protein engineering challenges. I am currently working on a computational method that re-positions amino acids of interest by manipulating the protein backbone and testing my designs experimentally. The ability to precisely define side-chain positions in protein binding sites will enable the engineering of proteins with altered specificity.
-
-**Education**
-
-- Bachelor of Science, Biochemistry, UC Santa Barbara
-
-![Amanda Loshbaugh](images/codykrivacic_1.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

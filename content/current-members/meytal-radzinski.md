@@ -1,20 +1,22 @@
 ---
-title: "Current -  Meytal Radzinski - KORTEMME LAB @ UCSF"
-slug: current---meytal-radzinski
-source_url: https://kortemmelab.ucsf.edu/current---meytal-radzinski.html
-mirror_file: site/current---meytal-radzinski.html
-word_count: 235
-reachable_from_home: true
-images:
-  - site/images/meytal_orig.jpg
-external_links:
-  - https://doi.org/10.1016/j.str.2023.05.014
-  - https://doi.org/10.1038/s41598-023-36347-2
-  - https://doi.org/10.3390/biom11030469
-  - https://doi.org/10.1016/j.redox.2019.101280
-  - https://doi.org/10.1016/j.redox.2018.11.010
-  - https://doi.org/10.1007/s00294-018-0878-9
-  - https://doi.org/10.7554/elife.37623
+name: "Meytal Radzinski"
+pronouns: ""
+role: ""
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I am interested in studying the allosteric control of protein interaction networks and the layers of regulation that determine interaction specificity of protein switches under different cellular and organismal conditions."
+photo: "images/people/meytal-radzinski.jpg"
+email: "meytal.radzinski@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Physics and Biology, Hebrew University of Jerusalem"
+  - "Master of Science, Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem"
+  - "Ph.D., Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem"
 publications:
   - "10.1016/j.str.2023.05.014"
   - "10.1038/s41598-023-36347-2"
@@ -23,23 +25,13 @@ publications:
   - "10.1016/j.redox.2018.11.010"
   - "10.1007/s00294-018-0878-9"
   - "10.7554/elife.37623"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---meytal-radzinski.html"
+mirror_file: "site/current---meytal-radzinski.html"
 ---
-
-**Meytal Radzinski**
-
-I am interested in studying the allosteric control of protein interaction networks and the layers of regulation that determine interaction specificity of protein switches under different cellular and organismal conditions.
-
 *Rothschild Fellow*
 
-**Education**
-
-- Bachelor of Science, Physics and Biology, Hebrew University of Jerusalem
-- Master of Science, Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem
-- Ph.D., Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem
-
-[![Derp.](images/meytal_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -55,5 +47,3 @@ I am interested in studying the allosteric control of protein interaction networ
 \* Co-first authors
 
 <!-- publications:end -->
-
-​

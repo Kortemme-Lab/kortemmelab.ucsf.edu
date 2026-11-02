@@ -1,31 +1,24 @@
 ---
-title: "Alumni - Simon Kretschmer - KORTEMME LAB @ UCSF"
+name: "Simon Kretschmer"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2019-2023"
-slug: alumni---simon-kretschmer
-source_url: https://kortemmelab.ucsf.edu/alumni---simon-kretschmer.html
-mirror_file: site/alumni---simon-kretschmer.html
-word_count: 435
-reachable_from_home: true
-images:
-  - site/images/photo-sk-cropped_1_orig.png
-external_links:
-  - https://profiles.ucsf.edu/simon.kretschmer
-  - https://doi.org/10.1021/acssynbio.3c00080
-  - https://doi.org/10.1109/jproc.2022.3157898
-  - https://doi.org/10.1021/acssynbio.0c00604
-  - https://doi.org/10.1002/anie.202015184
-  - https://doi.org/10.1186/s12915-019-0665-1
-  - https://doi.org/10.1021/acssynbio.8b00415
-  - https://doi.org/10.1073/pnas.1719801115
-  - https://doi.org/10.1098/rstb.2017.0104
-  - https://doi.org/10.1002/anie.201712002
-  - https://doi.org/10.1007/978-3-030-00630-3_10
-  - https://doi.org/10.1371/journal.pone.0179582
-  - https://doi.org/10.1038/ncomms14665
-  - https://doi.org/10.1016/j.ceb.2016.02.005
-  - https://doi.org/10.1007/s12268-015-0550-6
-  - https://doi.org/10.3390/life4040915
-  - https://doi.org/10.1186/1746-4811-10-17
+current_position: "Scientist II, Altos Labs"
+co_mentors: []
+summary: ""
+photo: "images/people/simon-kretschmer.png"
+email: "simon.kretschmer@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+  ucsf_profile: "https://profiles.ucsf.edu/simon.kretschmer"
+education:
+  - "Bachelor of Science, Chemistry and Biochemistry, Ludwig Maximilian University of Munich"
+  - "Master of Science, Biochemistry, Ludwig Maximilian University of Munich"
+  - "Dr.rer.nat. (Ph.D.), Biochemistry, Max-Planck-Institute of Biochemistry / Ludwig Maximilian University of Munich"
 publications:
   - "10.1021/acssynbio.3c00080"
   - "10.1109/jproc.2022.3157898"
@@ -43,24 +36,14 @@ publications:
   - "10.1007/s12268-015-0550-6"
   - "10.3390/life4040915"
   - "10.1186/1746-4811-10-17"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---simon-kretschmer.html"
+mirror_file: "site/alumni---simon-kretschmer.html"
 ---
-
-**Simon Kretschmer**
-Postdoctoral Scholar
-[UCSF Profile](https://profiles.ucsf.edu/simon.kretschmer)
-
 *PBBR Postdoctoral Independent Research Grant
 Li Foundation Fellow*
 
-**Education**
-
-- Bachelor of Science, Chemistry and Biochemistry, Ludwig Maximilian University of Munich
-- Master of Science, Biochemistry, Ludwig Maximilian University of Munich
-- Dr.rer.nat. (Ph.D.), Biochemistry, Max-Planck-Institute of Biochemistry / Ludwig Maximilian University of Munich
-
-![Derp.](images/photo-sk-cropped_1_orig.png)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

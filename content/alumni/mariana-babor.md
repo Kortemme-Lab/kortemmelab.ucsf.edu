@@ -1,22 +1,29 @@
 ---
-title: "Alumni - Mariana Babor - KORTEMME LAB @ UCSF"
+name: "Mariana Babor"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2006-2009"
-slug: alumni---mariana-babor
-source_url: https://kortemmelab.ucsf.edu/alumni---mariana-babor.html
-mirror_file: site/alumni---mariana-babor.html
-word_count: 72
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1002/pro.632
-  - https://doi.org/10.1002/prot.22293
+current_position: "Senior Manager, DarwinHealth"
+co_mentors: []
+summary: ""
+photo: "images/people/mariana-babor.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1002/pro.632"
   - "10.1002/prot.22293"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---mariana-babor.html"
+mirror_file: "site/alumni---mariana-babor.html"
 ---
 
-## Mariana's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

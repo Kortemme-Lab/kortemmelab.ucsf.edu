@@ -1,19 +1,28 @@
 ---
-title: "Alumni - Pooja Suresh - KORTEMME LAB @ UCSF"
-slug: alumni---pooja-suresh
-source_url: https://kortemmelab.ucsf.edu/alumni---pooja-suresh.html
-mirror_file: site/alumni---pooja-suresh.html
-word_count: 39
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1021/acs.jpcb.7b11367
+name: "Pooja Suresh"
+pronouns: ""
+role: "Rotation Student"
+program: "Biophysics"
+years_in_lab: ""
+current_position: ""
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1021/acs.jpcb.7b11367"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---pooja-suresh.html"
+mirror_file: "site/alumni---pooja-suresh.html"
 ---
 
-## Pooja's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

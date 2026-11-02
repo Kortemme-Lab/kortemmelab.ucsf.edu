@@ -1,22 +1,29 @@
 ---
-title: "Alumni - Eyal Akiva - KORTEMME LAB @ UCSF"
+name: "Eyal Akiva"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2010-2011"
-slug: alumni---eyal-akiva
-source_url: https://kortemmelab.ucsf.edu/alumni---eyal-akiva.html
-mirror_file: site/alumni---eyal-akiva.html
-word_count: 62
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1371/journal.pcbi.1002639
-  - https://doi.org/10.1038/nature10719
+current_position: "VP Computational Biology, Lembas"
+co_mentors: []
+summary: ""
+photo: "images/people/eyal-akiva.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1371/journal.pcbi.1002639"
   - "10.1038/nature10719"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---eyal-akiva.html"
+mirror_file: "site/alumni---eyal-akiva.html"
 ---
 
-## Eyal's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

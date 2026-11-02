@@ -13,6 +13,8 @@ program: "Biophysics"
 # On graduating, set the end year ("2026-2031") and move this file to
 # content/alumni/.
 years_in_lab: "2026-present"
+# Alumni only: what they're doing now.
+# current_position: "Assistant Professor, Example University"
 # e.g. ["Mike Keiser"]
 co_mentors: []
 summary: "One to three sentences on what Jane works on."
@@ -20,6 +22,7 @@ summary: "One to three sentences on what Jane works on."
 photo: "images/people/jane-q-doe.jpg"
 # Only if they agreed to show it.
 email: ""
+# Other links are fine too, e.g. ucsf_profile: "https://profiles.ucsf.edu/..."
 links:
   orcid: "https://orcid.org/0000-0002-1825-0097"
   scholar: ""

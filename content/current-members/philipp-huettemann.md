@@ -1,34 +1,30 @@
 ---
-title: "Current - Philipp Huettemann - KORTEMME LAB @ UCSF"
-slug: current---philipp-huettemann
-source_url: https://kortemmelab.ucsf.edu/current---philipp-huettemann.html
-mirror_file: site/current---philipp-huettemann.html
-word_count: 94
-reachable_from_home: true
-images:
-  - site/images/profile-pic-cropped_orig.jpeg
-external_links:
-  - https://doi.org/10.1371/journal.pbio.3002650
-  - https://doi.org/10.26508/lsa.201900486
-  - https://doi.org/10.1016/j.bpj.2019.07.028
+name: "Philipp Huettemann"
+pronouns: ""
+role: "Graduate Student"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I'm interested in designing de novo signaling systems,"
+photo: "images/people/philipp-huettemann.jpg"
+email: "philipp.huettemann@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biochemistry, University of Michigan, Ann Arbor"
 publications:
   - "10.1371/journal.pbio.3002650"
   - "10.26508/lsa.201900486"
   - "10.1016/j.bpj.2019.07.028"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---philipp-huettemann.html"
+mirror_file: "site/current---philipp-huettemann.html"
 ---
 
-**Philipp Huettemann**
-Graduate Student
-
-I'm interested in designing de novo signaling systems,
-
-**Education**
-
-- Bachelor of Science, Biochemistry, University of Michigan, Ann Arbor
-
-[![Derp.](images/profile-pic-cropped_orig.jpeg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

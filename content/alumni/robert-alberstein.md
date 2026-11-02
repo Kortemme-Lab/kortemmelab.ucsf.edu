@@ -1,22 +1,22 @@
 ---
-title: "Alumni - Robert Alberstein - KORTEMME LAB @ UCSF"
+name: "Robert Alberstein"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2020-2022"
-slug: alumni---robert-alberstein
-source_url: https://kortemmelab.ucsf.edu/alumni---robert-alberstein.html
-mirror_file: site/alumni---robert-alberstein.html
-word_count: 301
-reachable_from_home: true
-images:
-  - site/images/robert-alberstein_orig.jpg
-external_links:
-  - https://doi.org/10.1016/j.sbi.2021.08.004
-  - https://doi.org/10.1038/s41467-020-17562-1
-  - https://doi.org/10.1038/s41586-019-1928-2
-  - https://doi.org/10.1021/acscentsci.8b00745
-  - https://doi.org/10.1021/jacs.8b05812
-  - https://doi.org/10.1038/s41557-018-0053-4
-  - https://doi.org/10.1073/pnas.1607010113
-  - https://doi.org/10.1073/pnas.1513771112
+current_position: "Principal ML Scientist, Prescient Design, Genentech"
+co_mentors: []
+summary: ""
+photo: "images/people/robert-alberstein.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biological Sciences - Neuroscience Track, Carnegie Mellon University"
+  - "Ph.D., Chemistry, University of California, San Diego"
 publications:
   - "10.1016/j.sbi.2021.08.004"
   - "10.1038/s41467-020-17562-1"
@@ -26,21 +26,13 @@ publications:
   - "10.1038/s41557-018-0053-4"
   - "10.1073/pnas.1607010113"
   - "10.1073/pnas.1513771112"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---robert-alberstein.html"
+mirror_file: "site/alumni---robert-alberstein.html"
 ---
-
-**Robert Alberstein**
-Postdoctoral Scholar
-
 I am interested in the construction of biomolecular machines, motors, and switches, which carry out their functions through structural changes coupled to thermodynamic driving forces (e.g. chemical gradients, nucleotide hydrolysis). My research is focused on understanding and developing methods for the design of conformationally pliable systems that can be switched/driven between states via energy input from chemical fuel or light.
 
-**Education**
-
-- Bachelor of Science, Biological Sciences - Neuroscience Track, Carnegie Mellon University
-- Ph.D., Chemistry, University of California, San Diego
-
-![Derp.](images/robert-alberstein_orig.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

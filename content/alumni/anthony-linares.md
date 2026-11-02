@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Anthony Linares - KORTEMME LAB @ UCSF"
+name: "Anthony Linares"
+pronouns: ""
+role: "Undergraduate Researcher"
+program: ""
 years_in_lab: "2006-2007"
-slug: alumni---anthony-linares
-source_url: https://kortemmelab.ucsf.edu/alumni---anthony-linares.html
-mirror_file: site/alumni---anthony-linares.html
-word_count: 44
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1016/j.jmb.2008.05.006
+current_position: "MD/PhD program, UCLA"
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1016/j.jmb.2008.05.006"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---anthony-linares.html"
+mirror_file: "site/alumni---anthony-linares.html"
 ---
 
-## Anthony's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,28 +1,23 @@
 ---
-title: "Current - Dru Myerscough - KORTEMME LAB @ UCSF"
-slug: current---dru-myerscough
-source_url: https://kortemmelab.ucsf.edu/current---dru-myerscough.html
-mirror_file: site/current---dru-myerscough.html
-word_count: 26
-reachable_from_home: true
-images:
-  - site/images/dru.jpg
+name: "Dru Myerscough"
+pronouns: ""
+role: "Graduate Student"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "Designing proteins with specific conformational dynamics"
+photo: "images/people/dru-myerscough.jpg"
+email: "dru.myerscough@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Biochemistry, Rice University"
+publications: []
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---dru-myerscough.html"
+mirror_file: "site/current---dru-myerscough.html"
 ---
-
-**Dru Myerscough**
-
-Graduate Student
-
-Designing proteins with specific conformational dynamics
-​
-​​*NSF GRFP Fellow*
-​
-**Education**
-
-- Bachelor of Science, Biochemistry, Rice University
-
-[![Derp.](images/dru.jpg)](index.html)
-
-**Publications**​
-
-​
+*NSF GRFP Fellow*

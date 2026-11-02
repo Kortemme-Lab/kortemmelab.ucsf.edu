@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Cristina Melero - KORTEMME LAB @ UCSF"
+name: "Cristina Melero"
+pronouns: ""
+role: ""
+program: ""
 years_in_lab: "2004-2012"
-slug: alumni---cristina-melero
-source_url: https://kortemmelab.ucsf.edu/alumni---cristina-melero.html
-mirror_file: site/alumni---cristina-melero.html
-word_count: 103
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.1410624111
-  - https://doi.org/10.1083/jcb.201004060
-  - https://doi.org/10.1074/jbc.m806370200
+current_position: ""
+co_mentors: []
+summary: ""
+photo: "images/people/cristina-melero.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.1410624111"
   - "10.1083/jcb.201004060"
   - "10.1074/jbc.m806370200"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---cristina-melero.html"
+mirror_file: "site/alumni---cristina-melero.html"
 ---
 
-## Cristina's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

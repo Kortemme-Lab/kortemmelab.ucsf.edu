@@ -1,26 +1,31 @@
 ---
-title: "Alumni - Elizabeth Humphris - KORTEMME LAB @ UCSF"
+name: "Elizabeth Humphris"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2005-2009"
-slug: alumni---elizabeth-humphris
-source_url: https://kortemmelab.ucsf.edu/alumni---elizabeth-humphris.html
-mirror_file: site/alumni---elizabeth-humphris.html
-word_count: 121
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1371/journal.pcbi.1002639
-  - https://doi.org/10.1093/nar/gkq369
-  - https://doi.org/10.1016/j.str.2008.09.012
-  - https://doi.org/10.1371/journal.pcbi.0030164
+current_position: "Associate Director, Orna Therapeutics"
+co_mentors: []
+summary: ""
+photo: "images/people/elizabeth-humphris.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1371/journal.pcbi.1002639"
   - "10.1093/nar/gkq369"
   - "10.1016/j.str.2008.09.012"
   - "10.1371/journal.pcbi.0030164"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---elizabeth-humphris.html"
+mirror_file: "site/alumni---elizabeth-humphris.html"
 ---
 
-## Elizabeth's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

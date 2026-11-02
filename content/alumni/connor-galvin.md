@@ -1,35 +1,31 @@
 ---
-title: "Alumni - Connor Galvin - KORTEMME LAB @ UCSF"
+name: "Connor Galvin"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2019-2025"
-slug: alumni---connor-galvin
-source_url: https://kortemmelab.ucsf.edu/alumni---connor-galvin.html
-mirror_file: site/alumni---connor-galvin.html
-word_count: 143
-reachable_from_home: true
-images:
-  - site/images/connor-galvin_orig.png
-external_links:
-  - https://doi.org/10.1107/s2053230x18009834
-  - https://doi.org/10.1016/j.dib.2017.11.013
-  - https://doi.org/10.1016/j.biologicals.2017.09.005
+current_position: "Adjunct Professor, University of San Francisco"
+co_mentors: []
+summary: "I am currently working on leveraging biological data to improve accuracy and efficiency in the computational design of de novo small molecule binding sites."
+photo: "images/people/connor-galvin.png"
+email: "connor.galvin17@ncf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Arts, Chemistry, New College of Florida"
 publications:
   - "10.1107/s2053230x18009834"
   - "10.1016/j.dib.2017.11.013"
   - "10.1016/j.biologicals.2017.09.005"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---connor-galvin.html"
+mirror_file: "site/alumni---connor-galvin.html"
 ---
 
-**[​​﻿​](index.html)Connor Galvin**
-Graduate Student
-
-I am currently working on leveraging biological data to improve accuracy and efficiency in the computational design of de novo small molecule binding sites.
-
-**Education**
-
-- Bachelor of Arts, Chemistry, New College of Florida
-
-[![Derp.](images/connor-galvin_orig.png)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

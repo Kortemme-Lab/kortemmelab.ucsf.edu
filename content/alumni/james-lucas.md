@@ -1,28 +1,32 @@
 ---
-title: "Alumni - James Lucas - KORTEMME LAB @ UCSF"
+name: "James Lucas"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2016-2020"
-slug: alumni---james-lucas
-source_url: https://kortemmelab.ucsf.edu/alumni---james-lucas.html
-mirror_file: site/alumni---james-lucas.html
-word_count: 132
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1371/journal.pcbi.1008178
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1038/s41467-019-09985-2
-  - https://doi.org/10.1021/acs.jpcb.7b11367
-  - https://doi.org/10.1002/pro.2669
+current_position: "Associate Director, Generate Biomedicines, Inc."
+co_mentors: []
+summary: ""
+photo: "images/people/james-lucas.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1371/journal.pcbi.1008178"
   - "10.1371/journal.pcbi.1007507"
   - "10.1038/s41467-019-09985-2"
   - "10.1021/acs.jpcb.7b11367"
   - "10.1002/pro.2669"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---james-lucas.html"
+mirror_file: "site/alumni---james-lucas.html"
 ---
 
-## James's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

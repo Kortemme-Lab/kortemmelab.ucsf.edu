@@ -1,24 +1,30 @@
 ---
-title: "Alumni - Samuel Thompson - KORTEMME LAB @ UCSF"
+name: "Samuel Thompson"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2014-2020"
-slug: alumni---samuel-thompson
-source_url: https://kortemmelab.ucsf.edu/alumni---samuel-thompson.html
-mirror_file: site/alumni---samuel-thompson.html
-word_count: 96
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.7554/elife.53476
-  - https://doi.org/10.1021/acs.jpcb.7b11367
-  - https://doi.org/10.7554/elife.15802
+current_position: "Postdoc, Stanford and University of Washington"
+co_mentors: []
+summary: ""
+photo: "images/people/samuel-thompson.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.7554/elife.53476"
   - "10.1021/acs.jpcb.7b11367"
   - "10.7554/elife.15802"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---samuel-thompson.html"
+mirror_file: "site/alumni---samuel-thompson.html"
 ---
 
-## Samuel's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

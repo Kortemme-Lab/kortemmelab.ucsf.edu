@@ -1,33 +1,31 @@
 ---
-title: "Alumni- Amy Guo - KORTEMME LAB @ UCSF"
+name: "Amy Guo"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2019-2025"
-slug: alumni--amy-guo
-source_url: https://kortemmelab.ucsf.edu/alumni--amy-guo.html
-mirror_file: site/alumni--amy-guo.html
-word_count: 71
-reachable_from_home: true
-images:
-  - site/images/amy-guo_orig.jpg
-external_links:
-  - https://doi.org/10.1016/j.sbi.2021.08.004
+current_position: "Senior ML Scientist, Genentech"
+co_mentors: []
+summary: "I am interested in the designability of dynamic proteins and mini-proteins. Currently, I am working on creating mini-ACE2 designs to bind the SARS-CoV-2 spike protein."
+photo: "images/people/amy-guo.jpg"
+email: "amy.guo@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Bioengineering and Chemistry/Materials Science, UCLA"
 publications:
   - "10.1016/j.sbi.2021.08.004"
   - "10.1101/2025.08.03.668353"
   - "10.1101/2023.12.15.571823"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni--amy-guo.html"
+mirror_file: "site/alumni--amy-guo.html"
 ---
 
-**[​​﻿​](index.html)Amy Guo**
-Graduate Student
-​
-I am interested in the designability of dynamic proteins and mini-proteins. Currently, I am working on creating mini-ACE2 designs to bind the SARS-CoV-2 spike protein.
-
-**Education**
-
-- Bachelor of Science, Bioengineering and Chemistry/Materials Science, UCLA
-
-[![Derp.](images/amy-guo_orig.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -39,4 +37,3 @@ I am interested in the designability of dynamic proteins and mini-proteins. Curr
 \* Co-first authors
 
 <!-- publications:end -->
-​

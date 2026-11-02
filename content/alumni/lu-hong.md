@@ -1,43 +1,35 @@
 ---
-title: "Alumni - Lu Hong - KORTEMME LAB @ UCSF"
+name: "Lu Hong"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2019-2023"
-slug: alumni---lu-hong
-source_url: https://kortemmelab.ucsf.edu/alumni---lu-hong.html
-mirror_file: site/alumni---lu-hong.html
-word_count: 208
-reachable_from_home: true
-images:
-  - site/images/lu-hong_orig.jpg
-external_links:
-  - https://profiles.ucsf.edu/lu.hong
-  - https://doi.org/10.1021/acs.jpcb.0c03521
-  - https://doi.org/10.15252/msb.20199355
-  - https://doi.org/10.1073/pnas.1812555115
-  - https://doi.org/10.1101/gad.307132.117
-  - https://doi.org/10.1063/1.4967274
+current_position: "Senior Research Scientist, AbCellera"
+co_mentors: []
+summary: "I'm interested in designing biomolecular systems that function out of equilibrium. Specifically, my goal is to accelerate the period of the Kai oscillator, a post-translational circadian clock found in cyanobacteria."
+photo: "images/people/lu-hong.jpg"
+email: "lu.hong@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+  ucsf_profile: "https://profiles.ucsf.edu/lu.hong"
+education:
+  - "Bachelor of Arts, Mathematics, Wabash College"
+  - "Ph.D., Biophysics, University of Chicago"
 publications:
   - "10.15252/msb.20199355"
   - "10.1021/acs.jpcb.0c03521"
   - "10.1073/pnas.1812555115"
   - "10.1101/gad.307132.117"
   - "10.1063/1.4967274"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---lu-hong.html"
+mirror_file: "site/alumni---lu-hong.html"
 ---
 
-**Lu Hong**
-Postdoctoral Scholar
-[UCSF Profile](https://profiles.ucsf.edu/lu.hong)
-
-​
-I'm interested in designing biomolecular systems that function out of equilibrium. Specifically, my goal is to accelerate the period of the Kai oscillator, a post-translational circadian clock found in cyanobacteria.
-
-**Education**
-
-- Bachelor of Arts, Mathematics, Wabash College
-- Ph.D., Biophysics, University of Chicago
-
-![Derp.](images/lu-hong_orig.jpg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

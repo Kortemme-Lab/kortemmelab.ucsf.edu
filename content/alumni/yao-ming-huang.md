@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Yao-ming Huang - KORTEMME LAB @ UCSF"
+name: "Yao-ming Huang"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2011-2016"
-slug: alumni---yao-ming-huang
-source_url: https://kortemmelab.ucsf.edu/alumni---yao-ming-huang.html
-mirror_file: site/alumni---yao-ming-huang.html
-word_count: 31
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1126/science.aax8780
+current_position: "Director, Protein Engineering, TCG Labs Soleil"
+co_mentors: []
+summary: ""
+photo: "images/people/yao-ming-huang.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1126/science.aax8780"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---yao-ming-huang.html"
+mirror_file: "site/alumni---yao-ming-huang.html"
 ---
 
-## Ming's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

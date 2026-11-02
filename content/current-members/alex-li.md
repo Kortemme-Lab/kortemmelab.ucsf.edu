@@ -1,42 +1,31 @@
 ---
-title: "Current - Alex Li - KORTEMME LAB @ UCSF"
-slug: current---alex-li
-source_url: https://kortemmelab.ucsf.edu/current---alex-li.html
-mirror_file: site/current---alex-li.html
-word_count: 94
-reachable_from_home: true
-images:
-  - site/images/293203951-984801102214879-1510324211296992793-n.jpg
-external_links:
-  - https://www.pinneylabucsf.com/
-  - http://github.com/alexjli
-  - http://alexjli.github.io/
-  - https://doi.org/10.1002/pro.4554
-  - https://doi.org/10.48550/ARXIV.2204.13048
+name: "Alex Li"
+pronouns: ""
+role: "Graduate Student"
+program: ""
+years_in_lab: ""
+co_mentors: ["Margaux Pinney"]
+summary: "Deep learning for de novo enzyme design."
+photo: "images/people/alex-li.jpg"
+email: "alexjli@berkeley.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: "http://alexjli.github.io/"
+  github: "http://github.com/alexjli"
+education:
+  - "Bachelor of Science, Chemistry, Massachusetts Institute of Technology"
 publications:
   - "10.1002/pro.4554"
   - "10.48550/arxiv.2204.13048"
   - "10.1101/2025.10.18.683228"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---alex-li.html"
+mirror_file: "site/current---alex-li.html"
 ---
+*NSF GRFP Fellow*
 
-**Alex Li**
-co-mentored by [Margaux Pinney](https://www.pinneylabucsf.com/)
-
-Graduate Student
-
-Deep learning for de novo enzyme design.
-​
-​​*NSF GRFP Fellow*
-​
-**Education**
-
-- Bachelor of Science, Chemistry, Massachusetts Institute of Technology
-
-[![Derp.](images/293203951-984801102214879-1510324211296992793-n.jpg)](index.html)
-
-[GitHub](http://github.com/alexjli), [Website](http://alexjli.github.io/)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
@@ -46,5 +35,3 @@ Deep learning for de novo enzyme design.
 3. Li, A. J., Sundar, V., Grigoryan, G. & Keating, A. E. TERMinator: A Neural Framework for Structure-Based Protein Design using Tertiary Repeating Motifs. Preprint at [https://doi.org/10.48550/ARXIV.2204.13048](https://doi.org/10.48550/ARXIV.2204.13048) (2022).
 
 <!-- publications:end -->
-
-​

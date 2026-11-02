@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Michael Michalik - KORTEMME LAB @ UCSF"
+name: "Michael Michalik"
+pronouns: ""
+role: "Undergraduate Researcher"
+program: ""
 years_in_lab: "2009-2010"
-slug: alumni---michael-michalik
-source_url: https://kortemmelab.ucsf.edu/alumni---michael-michalik.html
-mirror_file: site/alumni---michael-michalik.html
-word_count: 37
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1021/ja404992r
+current_position: "Graduate Program, University of Bonn, Germany"
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1021/ja404992r"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---michael-michalik.html"
+mirror_file: "site/alumni---michael-michalik.html"
 ---
 
-## Michael's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,18 +1,20 @@
 ---
-title: "Alumni - Greg Friedland - KORTEMME LAB @ UCSF"
+name: "Greg Friedland"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2004-2008"
-slug: alumni---greg-friedland
-source_url: https://kortemmelab.ucsf.edu/alumni---greg-friedland.html
-mirror_file: site/alumni---greg-friedland.html
-word_count: 194
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1016/j.sbi.2010.02.004
-  - https://doi.org/10.1093/nar/gkq369
-  - https://doi.org/10.1371/journal.pcbi.1000393
-  - https://doi.org/10.1016/j.str.2008.11.004
-  - https://doi.org/10.1016/j.jmb.2008.05.006
-  - https://doi.org/10.1073/pnas.0608127103
+current_position: "Postdoc, UC Berkeley/LBNL"
+co_mentors: []
+summary: ""
+photo: "images/people/greg-friedland.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1093/nar/gkq369"
   - "10.1016/j.sbi.2010.02.004"
@@ -20,11 +22,12 @@ publications:
   - "10.1016/j.str.2008.11.004"
   - "10.1016/j.jmb.2008.05.006"
   - "10.1073/pnas.0608127103"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---greg-friedland.html"
+mirror_file: "site/alumni---greg-friedland.html"
 ---
 
-## Greg's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,31 +1,23 @@
 ---
-title: "Alumni - Anum Glasgow - KORTEMME LAB @ UCSF"
+name: "Anum Azam Glasgow"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2017-2021"
-slug: alumni---anum-glasgow
-source_url: https://kortemmelab.ucsf.edu/alumni---anum-glasgow.html
-mirror_file: site/alumni---anum-glasgow.html
-word_count: 440
-reachable_from_home: true
-images:
-  - site/images/1465948436.png
-external_links:
-  - http://profiles.ucsf.edu/anum.azam
-  - https://glasgowlab.org/
-  - https://doi.org/10.1038/s41467-023-36798-1
-  - https://doi.org/10.1016/j.str.2023.01.009
-  - https://doi.org/10.1038/s41587-021-00878-8
-  - https://doi.org/10.1073/pnas.2016093117
-  - https://doi.org/10.1371/journal.pcbi.1007507
-  - https://doi.org/10.1126/science.aax8780
-  - https://doi.org/10.1007/978-1-4939-7893-9_12
-  - https://doi.org/10.1021/acssynbio.6b00335
-  - https://doi.org/10.1098/rsif.2015.0938
-  - https://doi.org/10.1002/bit.25656
-  - https://doi.org/10.1128/aem.01330-14
-  - https://doi.org/10.1007/s10544-010-9470-x
-  - https://doi.org/10.1021/la1013889
-  - https://doi.org/10.1088/0960-1317/19/7/075012
-  - https://doi.org/10.1371/journal.pone.0004451
+current_position: "Assistant Professor, Columbia University Medical Center"
+co_mentors: []
+summary: "I am interested in self-assembling systems and protein complexes. I am working on developing methods to design and experimentally test chemically inducible dimerization systems to produce versatile protein biosensors and improve our understanding of protein-ligand interfaces."
+photo: "images/people/anum-glasgow.png"
+email: "anum.azam@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: "https://glasgowlab.org/"
+  github: ""
+  ucsf_profile: "http://profiles.ucsf.edu/anum.azam"
+education:
+  - "Bachelor of Science, Biomedical Engineering, Johns Hopkins University"
+  - "Ph.D., Bioengineering, UC Berkeley"
 publications:
   - "10.1016/j.str.2023.01.009"
   - "10.1038/s41467-023-36798-1"
@@ -42,28 +34,15 @@ publications:
   - "10.1021/la1013889"
   - "10.1088/0960-1317/19/7/075012"
   - "10.1371/journal.pone.0004451"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---anum-glasgow.html"
+mirror_file: "site/alumni---anum-glasgow.html"
 ---
-
-**Anum Azam Glasgow
-​**Postdoctoral Scholar
-[UCSF profile](http://profiles.ucsf.edu/anum.azam)
-
-[Glasgow Lab website](https://glasgowlab.org/)
-
-I am interested in self-assembling systems and protein complexes. I am working on developing methods to design and experimentally test chemically inducible dimerization systems to produce versatile protein biosensors and improve our understanding of protein-ligand interfaces.
-
 *NIH NIGMS K99/R00 Postdoctoral Fellow
-​UCSF IRACDA Postdoctoral Fellow*
+UCSF IRACDA Postdoctoral Fellow*
 *UCSF Chancellor's Postdoctoral Fellow*
-​​
-**Qualifications**
 
-- Bachelor of Science, Biomedical Engineering, Johns Hopkins University
-- Ph.D., Bioengineering, UC Berkeley
-
-![Tanja Kortemme](images/1465948436.png)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

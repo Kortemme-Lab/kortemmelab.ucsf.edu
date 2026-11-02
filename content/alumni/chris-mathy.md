@@ -1,20 +1,21 @@
 ---
-title: "Alumni - Chris Mathy - KORTEMME LAB @ UCSF"
+name: "Chris Mathy"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2017-2022"
-slug: alumni---chris-mathy
-source_url: https://kortemmelab.ucsf.edu/alumni---chris-mathy.html
-mirror_file: site/alumni---chris-mathy.html
-word_count: 197
-reachable_from_home: true
-images:
-  - site/images/mathy-headshot.jpg
-external_links:
-  - https://doi.org/10.1016/j.sbi.2023.102602
-  - https://doi.org/10.1016/j.cels.2023.01.003
-  - https://doi.org/10.1371/journal.pcbi.1009624
-  - https://doi.org/10.1038/s41586-021-03982-6
-  - https://doi.org/10.1016/j.cell.2020.06.034
-  - https://doi.org/10.1038/s41586-020-2286-9
+current_position: "Postdoc, Stanford"
+co_mentors: []
+summary: "I'm interested in how organisms finely control system-wide behavior by tuning of protein structure, dynamics, and interactions. My current work is on the small GTPase Ran/Gsp1, looking into how its key partners regulate Gsp1 cycling to allow for different behavior in several cellular pathways."
+photo: "images/people/chris-mathy.jpg"
+email: "cjmathy@berkeley.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Bioengineering, Stanford"
 publications:
   - "10.1016/j.sbi.2023.102602"
   - "10.1016/j.cels.2023.01.003"
@@ -22,20 +23,12 @@ publications:
   - "10.1038/s41586-021-03982-6"
   - "10.1016/j.cell.2020.06.034"
   - "10.1038/s41586-020-2286-9"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---chris-mathy.html"
+mirror_file: "site/alumni---chris-mathy.html"
 ---
 
-**[​​﻿](index.html)Chris Mathy**
-Graduate Student
-
-I'm interested in how organisms finely control system-wide behavior by tuning of protein structure, dynamics, and interactions. My current work is on the small GTPase Ran/Gsp1, looking into how its key partners regulate Gsp1 cycling to allow for different behavior in several cellular pathways.
-
-**Education**
-
-- Bachelor of Science, Bioengineering, Stanford
-
-[![Derp.](images/mathy-headshot.jpg)](index.html)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

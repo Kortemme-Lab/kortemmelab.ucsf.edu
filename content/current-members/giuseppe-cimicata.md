@@ -1,19 +1,22 @@
 ---
-title: "Current - Giuseppe Cimicata - KORTEMME LAB @ UCSF"
-slug: current---giuseppe-cimicata
-source_url: https://kortemmelab.ucsf.edu/current---giuseppe-cimicata.html
-mirror_file: site/current---giuseppe-cimicata.html
-word_count: 197
-reachable_from_home: true
-images:
-  - site/images/img-2227.jpeg
-external_links:
-  - https://doi.org/10.1128/mbio.00306-22
-  - https://doi.org/10.1093/nar/gkac046
-  - https://doi.org/10.1073/pnas.2113632118
-  - https://doi.org/10.1093/nar/gkab684
-  - https://doi.org/10.1002/bab.1613
-  - https://doi.org/10.3390/antibiotics5030024
+name: "Giuseppe Cimicata"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
+years_in_lab: ""
+co_mentors: []
+summary: "I’m interested in designing a reversible switching system triggered by protein-protein interactions. In parallel, I’m working on the reengineering and minimization of Cas9."
+photo: "images/people/giuseppe-cimicata.jpg"
+email: "giuseppe.cimicata@ucsf.edu"
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education:
+  - "Bachelor of Science, Chemistry, University of Turin"
+  - "Master of Science, Physical Chemistry, University of Turin"
+  - "Ph.D., Chemistry, Weizmann Institute of Science"
 publications:
   - "10.1128/mbio.00306-22"
   - "10.1093/nar/gkac046"
@@ -21,22 +24,12 @@ publications:
   - "10.1093/nar/gkab684"
   - "10.1002/bab.1613"
   - "10.3390/antibiotics5030024"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/current---giuseppe-cimicata.html"
+mirror_file: "site/current---giuseppe-cimicata.html"
 ---
 
-**Giuseppe Cimicata**
-Postdoctoral Scholar
-
-I’m interested in designing a reversible switching system triggered by protein-protein interactions. In parallel, I’m working on the reengineering and minimization of Cas9.
-
-**Education**​
-
-- Bachelor of Science, Chemistry, University of Turin
-- Master of Science, Physical Chemistry, University of Turin
-- Ph.D., Chemistry, Weizmann Institute of Science
-
-![Derp.](images/img-2227.jpeg)
-
-**Publications**
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

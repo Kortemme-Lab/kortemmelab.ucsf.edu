@@ -1,19 +1,28 @@
 ---
-title: "Alumni - Lin Liu - KORTEMME LAB @ UCSF"
-slug: alumni---lin-liu1
-source_url: https://kortemmelab.ucsf.edu/alumni---lin-liu1.html
-mirror_file: site/alumni---lin-liu1.html
-word_count: 37
-reachable_from_home: false
-external_links:
-  - https://doi.org/10.1126/science.abc0881
+name: "Lin Liu"
+pronouns: ""
+role: ""
+program: ""
+years_in_lab: ""
+current_position: ""
+co_mentors: []
+summary: ""
+photo: ""
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1126/science.abc0881"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---lin-liu1.html"
+mirror_file: "site/alumni---lin-liu1.html"
 ---
 
-## Lin Liu's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Florian Lauck - KORTEMME LAB @ UCSF"
+name: "Florian Lauck"
+pronouns: ""
+role: ""
+program: ""
 years_in_lab: "2008-2010"
-slug: alumni---florian-lauck
-source_url: https://kortemmelab.ucsf.edu/alumni---florian-lauck.html
-mirror_file: site/alumni---florian-lauck.html
-word_count: 45
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1093/nar/gkq369
+current_position: "Software Engineer, Evotec"
+co_mentors: []
+summary: ""
+photo: "images/people/florian-lauck.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1093/nar/gkq369"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---florian-lauck.html"
+mirror_file: "site/alumni---florian-lauck.html"
 ---
 
-## Florian's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Sen Liu - KORTEMME LAB @ UCSF"
+name: "Sen Liu"
+pronouns: ""
+role: "Postdoctoral Scholar"
+program: ""
 years_in_lab: "2008-2010"
-slug: alumni---sen-liu
-source_url: https://kortemmelab.ucsf.edu/alumni---sen-liu.html
-mirror_file: site/alumni---sen-liu.html
-word_count: 38
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.1114487109
+current_position: "Professor, Hubei University of Technology (HUBT), China"
+co_mentors: []
+summary: ""
+photo: "images/people/sen-liu.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.1114487109"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---sen-liu.html"
+mirror_file: "site/alumni---sen-liu.html"
 ---
 
-## Sen's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

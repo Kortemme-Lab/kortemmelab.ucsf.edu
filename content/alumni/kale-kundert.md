@@ -1,26 +1,31 @@
 ---
-title: "Alumni - Kale Kundert - KORTEMME LAB @ UCSF"
+name: "Kale Kundert"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2012-2019"
-slug: alumni---kale-kundert
-source_url: https://kortemmelab.ucsf.edu/alumni---kale-kundert.html
-mirror_file: site/alumni---kale-kundert.html
-word_count: 98
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.1073/pnas.2115480119
-  - https://doi.org/10.1038/s41467-019-09985-2
-  - https://doi.org/10.1515/hsz-2018-0348
-  - https://doi.org/10.1371/journal.pone.0130433
+current_position: "Postdoc, Harvard"
+co_mentors: []
+summary: ""
+photo: "images/people/kale-kundert.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.1073/pnas.2115480119"
   - "10.1038/s41467-019-09985-2"
   - "10.1515/hsz-2018-0348"
   - "10.1371/journal.pone.0130433"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---kale-kundert.html"
+mirror_file: "site/alumni---kale-kundert.html"
 ---
 
-## Kales's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->

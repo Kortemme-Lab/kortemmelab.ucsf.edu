@@ -1,20 +1,28 @@
 ---
-title: "Alumni - Pradeep Bandaru - KORTEMME LAB @ UCSF"
+name: "Pradeep Bandaru"
+pronouns: ""
+role: "Graduate Student"
+program: ""
 years_in_lab: "2013-2017"
-slug: alumni---pradeep-bandaru
-source_url: https://kortemmelab.ucsf.edu/alumni---pradeep-bandaru.html
-mirror_file: site/alumni---pradeep-bandaru.html
-word_count: 30
-reachable_from_home: true
-external_links:
-  - https://doi.org/10.7554/elife.27810
+current_position: "Data Scientist, Palantir Technologies"
+co_mentors: []
+summary: ""
+photo: "images/people/pradeep-bandaru.jpg"
+email: ""
+links:
+  orcid: ""
+  scholar: ""
+  website: ""
+  github: ""
+education: []
 publications:
   - "10.7554/elife.27810"
+# Where this profile came from: the old Weebly site.
+source_url: "https://kortemmelab.ucsf.edu/alumni---pradeep-bandaru.html"
+mirror_file: "site/alumni---pradeep-bandaru.html"
 ---
 
-## Pradeep's Publications in our lab
-
----
+## Publications
 
 <!-- publications:start -->
 <!-- Generated from content/bibliography.json by scripts/render-publications.py. To change this list, edit `publications:` in this file's header. -->
