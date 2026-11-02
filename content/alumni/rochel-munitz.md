@@ -1,7 +1,7 @@
 ---
 name: "Rochel Munitz"
 pronouns: ""
-role: ""
+role: "Graduate Student"
 program: ""
 years_in_lab: ""
 current_position: ""

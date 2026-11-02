@@ -7,7 +7,7 @@ years_in_lab: ""
 co_mentors: []
 summary: "Designing a protein system that exhibits zero-order ultrasensitivity."
 photo: "images/people/yulia-gutierrez.jpg"
-email: ""
+email: "Yulia.Gutierrez@ucsf.edu"
 links:
   orcid: ""
   scholar: ""

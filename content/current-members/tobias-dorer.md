@@ -1,7 +1,7 @@
 ---
 name: "Tobias Dorer"
 pronouns: ""
-role: ""
+role: "Visiting Scholar"
 program: ""
 years_in_lab: ""
 co_mentors: []

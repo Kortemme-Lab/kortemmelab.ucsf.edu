@@ -6,7 +6,7 @@ and the page text is extracted to serve as a starting point for a rebuild.
 
 | | |
 |---|---|
-| Pages | 101 |
+| Pages | 100 |
 | Body text | ~32,500 words |
 | Photos | 237 (182 referenced from page text, the rest gallery and click-to-enlarge originals) |
 | Size | 50 MB, of which 46 MB is photos |
@@ -29,7 +29,7 @@ the calendar on Meetings.
 ```
 kortemmelab.ucsf.edu/
 ├── site/                  the website; this folder is the web root
-│   ├── *.html             101 pages, same filenames as the live site
+│   ├── *.html             100 pages, same filenames as the live site
 │   ├── images/            every photo, flat
 │   │   └── backgrounds/   page background images
 │   └── assets/
@@ -43,7 +43,7 @@ kortemmelab.ucsf.edu/
 │   ├── journal-abbreviations.json   Nature-style journal abbreviations
 │   ├── *.md               the 10 pages on the site's menu
 │   ├── current-members/   one file per current lab member (20)
-│   ├── alumni/            one file per alumnus (53)
+│   ├── alumni/            one file per alumnus (52)
 │   ├── images/people/     every profile's headshot
 │   └── archive/           pages kept but not in use (18), see below
 ├── structure/             inventories for a rebuild
@@ -80,11 +80,11 @@ people by name; a rebuild should generate rosters from the two folders instead.
 
 **Alumni files record their years in the lab** as `years_in_lab` in the
 frontmatter (e.g. `"2019-2025"`). The live site kept these only on the Lab
-Alumni roster, and `scripts/alumni-years.py` copied them to 46 of the 53
+Alumni roster, and `scripts/alumni-years.py` copied them to 46 of the 52
 alumni. When someone graduates, add the field yourself. The script only fills
-it in where it's missing, so it never overwrites yours. The other seven have
-no years on the roster: Eleanor Zhu, Rochel Munitz and the duplicate
-`lin-liu1` aren't on it at all, and Jenna Pellegrino, Joel Karpiak, Pooja
+it in where it's missing, so it never overwrites yours. The other six have
+no years on the roster: Eleanor Zhu and Rochel Munitz aren't on it at all,
+and Jenna Pellegrino, Joel Karpiak, Pooja
 Suresh and Rocco Varela appear only in its list of rotation students, with the
 quarter they rotated rather than their years in the lab.
 
@@ -219,7 +219,8 @@ the renderer uses `mirror_file` to keep the local copy of the old site in
 step. Profiles are edited by hand: `extract.py` never overwrites one, even
 with `--refresh`.
 
-The 73 migrated profiles were converted by `scripts/convert-profiles.py`
+The 73 migrated profiles (72 now: a duplicate of Lin Liu's was deleted) were
+converted by `scripts/convert-profiles.py`
 from three sources: the text of each person's old page, its email link, and
 the alumni roster. The roster supplied photos, roles and current positions
 for the 38 older alumni whose own pages held only a publication list.
@@ -228,20 +229,18 @@ anything that needs a look. In short:
 
 - **20 current members have no start year.** The old site never recorded
   one. Fill in `years_in_lab` as `"2021-present"`.
-- **9 have no role.** Lisa Schmidt and Tobias Dorer are visiting researchers
-  whose pages don't state a role; Meytal Radzinski's and Rochel Munitz's
-  pages give none; four alumni are listed under "Staff" on the roster without
-  a title (Cristina Melero, Debbie Jeon, Florian Lauck, Shane O'Connor); and
-  `lin-liu1` is the duplicate of Lin Liu's profile.
-- **Two emails were dropped as wrong.** Lisa Schmidt's page linked to Tobias
+- **4 have no role**: alumni listed under "Staff" on the roster without a
+  title (Cristina Melero, Debbie Jeon, Florian Lauck, Shane O'Connor). Roles
+  for the other five the old pages left out were filled in by hand.
+- **Two wrong emails were corrected.** Lisa Schmidt's page linked to Tobias
   Dorer's address and Yulia Gutierrez's to Dru Myerscough's; both pages were
-  evidently copied from a colleague's. Their `email` is empty until you add
-  the right one. The old pages, and so the local copy in `site/`, still have
-  the wrong links.
+  evidently copied from a colleague's. Their profiles now have their own
+  addresses. The old pages, and so the local copy in `site/`, still have the
+  wrong links.
 - **Names come from each person's own page** where it differs from the old
   page title: Jon Zhang, Anum Azam Glasgow, Yang (Sunny) Zhang.
-- **10 have no photo**: five early undergraduates, four rotation students
-  and the `lin-liu1` duplicate. The roster had no photo for any of them.
+- **9 have no photo**: five early undergraduates and four rotation students.
+  The roster had no photo for any of them.
 - **Fellowships and awards** (e.g. *NSF GRFP Fellow*) are in each bio as they
   were written on the old page.
 
@@ -349,18 +348,17 @@ stylesheet resolves.
 
 ## Pages no visitor can reach
 
-**22 of the 101 pages can't be reached by clicking from the homepage.** The
+**21 of the 100 pages can't be reached by clicking from the homepage.** The
 `reachable_from_home` column in `structure/pages.csv` flags them. Weebly keeps
 publishing a page after it's unlinked, so the sitemap lists pages no visitor
 can find. Most are now in the archive. The ones that matter are people:
 `current---lisa-schmidt.html` is a *current* member whose page is missing
-from Current Members, which is probably an oversight; `alumni---lin-liu1.html`
-is a thinner, unlinked duplicate of `alumni---lin-liu.html`; and
+from Current Members, which is probably an oversight; and
 `alumni---eleanor-zhu.html` and `alumni---rochel-munitz.html` are unlinked
 too.
 
-Also note that 73 of the 101 pages are individual profiles (20 current
-members, 53 alumni), which is worth knowing before choosing a template.
+Also note that 72 of the 100 pages are individual profiles (20 current
+members, 52 alumni), which is worth knowing before choosing a template.
 
 ## Known limitations
 

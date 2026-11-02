@@ -1,13 +1,13 @@
 ---
 name: "Lisa Schmidt"
 pronouns: ""
-role: ""
+role: "Visiting Scholar"
 program: ""
 years_in_lab: ""
 co_mentors: []
 summary: "Understanding allosteric regulation in switches and design of new switching proteins."
 photo: "images/people/lisa-schmidt.jpg"
-email: ""
+email: "lisa.schmidt@mpinat.mpg.de"
 links:
   orcid: ""
   scholar: ""

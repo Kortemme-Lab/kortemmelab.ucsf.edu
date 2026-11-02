@@ -1,7 +1,7 @@
 {
   "site": "https://kortemmelab.ucsf.edu",
   "platform": "Weebly",
-  "page_count": 101,
+  "page_count": 100,
   "navigation": [
     {
       "title": "Home",
@@ -380,17 +380,6 @@
       "reachable_from_home": true,
       "image_count": 0,
       "external_link_count": 2
-    },
-    {
-      "slug": "alumni---lin-liu1",
-      "title": "Alumni - Lin Liu - KORTEMME LAB @ UCSF",
-      "source_url": "https://kortemmelab.ucsf.edu/alumni---lin-liu1.html",
-      "mirror_file": "site/alumni---lin-liu1.html",
-      "content_file": "content/alumni/lin-liu1.md",
-      "word_count": 52,
-      "reachable_from_home": false,
-      "image_count": 0,
-      "external_link_count": 1
     },
     {
       "slug": "alumni---lu-hong",

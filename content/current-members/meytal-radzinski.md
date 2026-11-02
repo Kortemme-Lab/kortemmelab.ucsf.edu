@@ -1,7 +1,7 @@
 ---
 name: "Meytal Radzinski"
 pronouns: ""
-role: ""
+role: "Postdoctoral Scholar"
 program: ""
 years_in_lab: ""
 co_mentors: []
