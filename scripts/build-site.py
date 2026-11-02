@@ -471,10 +471,9 @@ class Site:
                         + "\n</ul>")
         if postdoc:
             text.append(f"<h3>Postdoctoral work</h3>\n<p>{html.escape(postdoc)}</p>")
-        text.append(f'<p class="more"><a href="{page}#publications">{html.escape(p.name.split()[0])}&rsquo;s publications</a></p>')
         links = [f'<a href="{page}">Bio</a>']
         if (p.meta.get("links") or {}).get("ucsf_profile"):
-            links.append(f'<a href="{html.escape(p.meta["links"]["ucsf_profile"])}">Profile</a>')
+            links.append(f'<a href="{html.escape(p.meta["links"]["ucsf_profile"])}">UCSF Profile</a>')
         email = (f'<a class="email" href="mailto:{html.escape(p.get("email"))}" title="{html.escape(p.get("email"))}" '
                  f'aria-label="Email {html.escape(p.name)}">{ENVELOPE}</a>' if p.get("email") else "<span></span>")
         side = (f'<a href="{page}" tabindex="-1">{self.photo(p, "")}</a>\n<div class="meta">{email}'

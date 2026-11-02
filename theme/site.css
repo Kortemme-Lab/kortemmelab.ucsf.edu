@@ -164,7 +164,6 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; }
 .pi h2.name a { color: var(--accent); }
 .pi h3 { font-size: 15px; margin: 22px 0 6px; }
 .pi ul { margin: 0; padding-left: 1.4em; list-style: disc; }
-.pi .more { margin-top: 18px; font-weight: 700; font-size: 15px; }
 .pi-side .photo { width: 100%; display: block; border: 1px solid #ddd; padding: 3px; background: var(--panel); }
 .pi-side .meta { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 14px; font-size: 15px; text-align: right; }
 .pi-side .meta strong { color: var(--heading); font-weight: 600; }
