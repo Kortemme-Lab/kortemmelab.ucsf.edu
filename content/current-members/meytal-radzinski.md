@@ -15,7 +15,7 @@ links:
   github: ""
 education:
   - "B.S., Physics and Biology, Hebrew University of Jerusalem"
-  - "M.S., Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem"
+  - "M.Sc., Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem"
   - "Ph.D., Structural Biochemistry and Molecular Biology, Hebrew University of Jerusalem"
 publications:
   - "10.1016/j.str.2023.05.014"
