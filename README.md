@@ -29,7 +29,7 @@ you send and publishes it, and the website then updates by itself.
 | To… | Open this issue | You'll need |
 |---|---|---|
 | put yourself on the website when you join | [**New lab member**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form |
-| add new papers to your profile, or change anything else on it (current members and alumni alike) | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
+| update your profile (add new papers, update your bio, add links)! For both current members and alumni | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
 | tell us you're leaving the lab | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
 | share lab news: an award, a new job, a graduation, a grant | [**Add news**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing else: just the form |
 | add photos to the gallery | [**Add photos to the gallery**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | your photos |
