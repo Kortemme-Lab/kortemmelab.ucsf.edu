@@ -8,7 +8,7 @@ body:
       value: |
         ## 1. Make your changes
 
-        1. **[Open the profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html)** (it opens in your browser; bookmark it for later),
+        1. **[Open the profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html)**,
            choose **Update my profile**, and pick your name. Everything fills in from your profile on the website.
         2. Change what you like: add new papers (from ORCID, or by DOI), or change your position, summary,
            photo or links. If a new paper is the published version of a preprint, the form asks whether it
