@@ -106,16 +106,20 @@ parts and `scripts/add-person.py` for the rest:
 1. **Let workflows open pull requests:** Settings > Actions > General >
    *Workflow permissions* > tick **Allow GitHub Actions to create and approve
    pull requests**. Without it, the issue comment says this is missing.
-2. **Give each member access** before they submit: Settings > Collaborators >
-   Add people. The workflow ignores issues from anyone without access.
+2. **Give each member access** before they submit. Anyone can open an issue
+   on a public repository, but the workflow ignores issues from people
+   without access, so strangers can't fill the repository with branches and
+   pull requests. The repository belongs to the **Kortemme-Lab**
+   organization, so:
+   - lab members join the organization, with **Read** access to this
+     repository (easiest through a team);
+   - alumni are added as outside collaborators with **Read**;
+   - website managers get **Write** or **Maintain**, so they can merge.
 
-   **What that access allows, for now:** this repository belongs to a
-   personal account, and on a personal account every collaborator can also
-   *push* to it. Nothing in GitHub stops a collaborator from changing `main`
-   directly. The pull-request review only works because people use it. Moving
-   the repository to a GitHub **organization** (free) fixes this: there,
-   members can be given **Read** access, which is enough to open issues but
-   not to push. See *Next steps* below.
+   **Read** is enough to open issues but not to push, so nothing changes
+   `main` without a manager merging a pull request. The organization's own
+   Settings > Actions must also allow workflows to create pull requests, or
+   the repository setting in step 1 can't be turned on.
 3. **Try it once** yourself, with each of the two issues. To make a test `.zip`
    in the form, use ORCID's test researcher, Josiah Carberry
    (0000-0002-1825-0097), or load and change your own profile. Then close the
@@ -143,8 +147,8 @@ DOI needs no download, so it works either way.
 
 The `.zip` and the issue text come from outside, so:
 
-- **Only collaborators' issues are handled,** which matters if the
-  repository is ever public.
+- **Only issues from people with access are handled** (organization members
+  and collaborators), which matters because the repository is public.
 - **The issue's text is never run.** It reaches `submission-issue.py` as an
   environment variable and is only parsed there, never put into a shell
   command.
@@ -180,12 +184,8 @@ The `.zip` and the issue text come from outside, so:
 
 ## Next steps (planned)
 
-1. **Move the repository to a GitHub organization,** so members get Read
-   access instead of push access (see above). GitHub redirects the old
-   address. Afterwards, update the `blonn25/kortemmelab.ucsf.edu` links in
-   `.github/ISSUE_TEMPLATE/*.yml` and in `REPO` in `intake/profile-form.html`.
-2. **Publish the site with GitHub Pages** (from `/docs`). The issue forms can
+1. **Publish the site with GitHub Pages** (from `/docs`). The issue forms can
    then link straight to the live profile form, with no download.
-3. **"Find me" in the profile form:** once the site is on Pages, the build
+2. **"Find me" in the profile form:** once the site is on Pages, the build
    can publish a small list of profiles that the form reads. Updating then
    becomes "pick your name" instead of downloading your profile file.

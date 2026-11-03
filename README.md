@@ -28,21 +28,23 @@ you send and publishes it, and the website then updates by itself.
 
 | To… | Open this issue | You'll need |
 |---|---|---|
-| put yourself on the website when you join | [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form |
-| add new papers to your profile, or change anything else on it (current members and alumni alike) | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
-| tell us you're leaving the lab | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
-| share lab news: an award, a new job, a graduation, a grant | [**Add news**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing else: just the form |
-| add photos to the gallery | [**Add photos to the gallery**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | your photos |
+| put yourself on the website when you join | [**New lab member**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form |
+| add new papers to your profile, or change anything else on it (current members and alumni alike) | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
+| tell us you're leaving the lab | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
+| share lab news: an award, a new job, a graduation, a grant | [**Add news**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing else: just the form |
+| add photos to the gallery | [**Add photos to the gallery**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | your photos |
 
 All of them are also under the repository's **Issues** tab > **New issue**.
 
-**You need a GitHub account,** and a website manager must have added you to
-this repository; ask one to. No GitHub account? Make your `.zip` with the
+**You need a GitHub account,** and a website manager must have given you
+access: lab members join the Kortemme-Lab organization, and alumni are added
+to this repository. Ask one to. (Anyone can open an issue here, but the forms
+only respond to people with access.) No GitHub account? Make your `.zip` with the
 profile form anyway and email it to a website manager (or email them your
 news or photos).
 
 **The profile form** is a single file. Open
-[it on GitHub](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html),
+[it on GitHub](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html),
 click the **download** button (↓, the *Download raw file* icon at the top
 right of the file), and open the downloaded file in your web browser. It
 needs nothing installed. Nothing you type leaves your computer, except your
@@ -78,7 +80,7 @@ are kept in your browser until you save, so you can stop and come back.
    [Preprints and their published versions](#preprints-and-their-published-versions).
 8. Check the **Preview**, then click **Save my profile**. You get one file,
    `your-name-profile.zip`.
-9. Open a [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml)
+9. Open a [**New lab member**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=new-member.yml)
    issue. Put your name in the title (`New lab member: Jane Doe`), drag the
    `.zip` into *Your profile .zip*, tick the publishing box, and click
    **Create**.
@@ -89,8 +91,8 @@ For current members and alumni alike: new papers, a new position, a new
 photo, a different summary, links, or papers to take off your profile.
 
 1. **Download your current profile.** On GitHub, open
-   [current members](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/current-members) or
-   [alumni](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/alumni),
+   [current members](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/current-members) or
+   [alumni](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/alumni),
    click your file (e.g. `jane-doe.md`), and click the **download** button (↓).
 2. Download and open the profile form (see [Before you start](#before-you-start)).
 3. Under **Start here**, choose **Update my profile**, click *Choose file*,
@@ -108,7 +110,7 @@ photo, a different summary, links, or papers to take off your profile.
    - untick *Show my email on my profile* to remove your email from the website.
 5. Check the **Preview**, then click **Save my profile**. You get
    `your-name-profile-update.zip`.
-6. Open an [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml)
+6. Open an [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml)
    issue. Put your name in the title (`Profile update: Jane Doe`), drag the
    `.zip` into *Your updated profile .zip*, tick the publishing box, and click
    **Create**.
@@ -133,7 +135,7 @@ at any time to update their current position.
 
 ### Sharing news
 
-1. Open an [**Add news**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) issue, and
+1. Open an [**Add news**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) issue, and
    put a few words in the title (`News: Radhika's seed award`).
 2. Choose the **month** and type the **year** it happened.
 3. Write the **news** as one sentence, as it should appear on the website,
@@ -147,7 +149,7 @@ News appears in date order, newest first.
 
 ### Adding photos to the gallery
 
-1. Open an [**Add photos to the gallery**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml)
+1. Open an [**Add photos to the gallery**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml)
    issue, and put a few words in the title (`Gallery: lab retreat 2026`).
 2. Drag up to 10 **photos** (JPG or PNG) into the *Photos* box, and wait for
    each to finish uploading. Put the one you'd like captioned first.
@@ -289,8 +291,12 @@ whether any preprint has since been published, and adds those links. It
 never removes a link, so confirmed and hand-made ones are safe.
 
 **One-time setup:** Settings > Actions > General > *Workflow permissions* >
-tick **Allow GitHub Actions to create and approve pull requests**. Add each
-member under Settings > Collaborators before they submit.
+tick **Allow GitHub Actions to create and approve pull requests** (the same
+setting in the Kortemme-Lab organization's Settings > Actions must allow it).
+Give each person access before they submit: add lab members to the
+organization, with **Read** access to this repository (a team makes this
+easy), and alumni as outside collaborators with **Read**. Website managers
+need **Write** or **Maintain** to merge.
 
 | If the reply on the issue says… | Do this |
 |---|---|
@@ -303,10 +309,9 @@ touch `content/bibliography.json`), edit the second issue (any small change
 will do), and its pull request is rebuilt from the latest `main`.
 
 How the route works, the identity check, its safety measures, and the
-planned next steps are in `intake/github-issue-route.md`. A note on access:
-this repository belongs to a personal account, so every collaborator can
-also push to it directly. Until it moves to a GitHub organization, the review
-step relies on people using the issue forms.
+planned next steps are in `intake/github-issue-route.md`. With **Read**
+access, members can open issues but can't push, so nothing reaches the
+website without a manager merging it.
 
 <details>
 <summary><strong>Building and publishing the website</strong></summary>
@@ -407,17 +412,17 @@ you do.
 
 In Settings > Pages, choose *Deploy from a branch*, branch `main`, folder
 `/docs`, and Save. After that, every push publishes the site, first at
-`https://blonn25.github.io/kortemmelab.ucsf.edu/`. Every link on the site is
+`https://kortemme-lab.github.io/kortemmelab.ucsf.edu/`. Every link on the site is
 relative, so it works there and at a custom address. Email addresses on
 profiles are public, as they were on the old site.
 
 **To use kortemmelab.ucsf.edu:**
 
 1. Ask UCSF IT, who manage `ucsf.edu`, to change the DNS:
-   - a **CNAME** record, `kortemmelab.ucsf.edu` → `blonn25.github.io`,
+   - a **CNAME** record, `kortemmelab.ucsf.edu` → `kortemme-lab.github.io`,
      replacing the one that points at Weebly;
-   - a **TXT** record that verifies the domain: in your own GitHub settings >
-     Pages > *Add a domain*, enter `kortemmelab.ucsf.edu`, and GitHub shows
+   - a **TXT** record that verifies the domain: in the Kortemme-Lab
+     organization's Settings > Pages > *Add a domain*, enter `kortemmelab.ucsf.edu`, and GitHub shows
      the record to pass on. Verifying stops anyone else from claiming the
      domain on GitHub.
 2. Once IT confirms, in the repository's Settings > Pages, enter
@@ -427,9 +432,7 @@ profiles are public, as they were on the old site.
    certificate can take up to a day.
 
 Don't set the custom domain before the DNS is changed, or GitHub sends
-visitors from the github.io address to the old Weebly site. If the repository
-is moving to an organization soon, move it first: the CNAME record names the
-owner (`<org>.github.io`), so that saves asking IT twice. After the switch,
+visitors from the github.io address to the old Weebly site. After the switch,
 cancel the Weebly site; old profile addresses keep working through the
 forwarding pages.
 

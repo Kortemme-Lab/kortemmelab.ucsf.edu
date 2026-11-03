@@ -9,10 +9,10 @@ body:
         ## 1. Make your changes
 
         1. **Download your current profile:** find your name among the
-           [current members](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/current-members)
-           or [alumni](https://github.com/blonn25/kortemmelab.ucsf.edu/tree/main/content/alumni)
+           [current members](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/current-members)
+           or [alumni](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/alumni)
            (a file like `jane-doe.md`), open it, and click the **download** button (↓, top right).
-        2. **Get the [profile form](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**
+        2. **Get the [profile form](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**
            the same way, and open the downloaded `profile-form.html` in your browser.
         3. In the form, choose **Update my profile** and pick the profile file you downloaded. Everything fills in.
            Change what you like: add new papers (from ORCID, or by DOI), or change your position, summary,
