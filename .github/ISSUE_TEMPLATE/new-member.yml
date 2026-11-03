@@ -10,9 +10,8 @@ body:
 
         ## 1. Make your profile
 
-        **[Get the profile form](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**:
-        on that page, click the **download** button (↓, top right of the file) and open the
-        downloaded `profile-form.html` in your web browser.
+        **[Open the profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html)** (it opens in your browser; bookmark it for later)
+        and choose **I'm new to the lab**.
 
         Fill it in: your details, a headshot, and your papers (it can find them from your ORCID iD).
         Then click **Save my profile**. You'll get one file, `your-name-profile.zip`.

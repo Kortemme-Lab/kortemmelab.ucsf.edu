@@ -27,7 +27,8 @@ anywhere.
 
 Old addresses (current---kosuke-seki.html and so on) get small pages that
 forward to the new ones, so links elsewhere on the web keep working. The
-new-member form (intake/profile-form.html) is copied to docs/profile-form.html.
+profile form (intake/profile-form.html) is copied to docs/profile-form.html,
+with docs/profiles.json, every profile's file, for its "Update my profile".
 
 Uses only the Python standard library. Safe to re-run: docs/ is rebuilt from
 scratch each time (a CNAME file there is kept).
@@ -605,8 +606,17 @@ class Site:
             shutil.copyfile(os.path.join(THEME, name), os.path.join(OUT, "assets", name))
         for name in os.listdir(os.path.join(THEME, "fonts")):
             shutil.copyfile(os.path.join(THEME, "fonts", name), os.path.join(OUT, "assets", "fonts", name))
-        # the new-member form, at an address to send people (it's on no menu)
+        # the profile form, at an address to send people (it's on no menu)
         shutil.copyfile(os.path.join(ROOT, "intake", "profile-form.html"), os.path.join(OUT, "profile-form.html"))
+
+    def profile_list(self):
+        """docs/profiles.json: every profile's file, so the profile form can load one by name."""
+        out = [{"slug": p.slug, "name": p.name, "kind": p.kind, "role": p.role, "years": p.years,
+                "text": open(os.path.join(CONTENT, "current-members" if p.kind == "current" else "alumni",
+                                          p.slug + ".md"), encoding="utf-8").read()}
+               for p in sorted(self.people, key=lambda p: p.name.lower())]
+        with open(os.path.join(OUT, "profiles.json"), "w", encoding="utf-8") as fh:
+            json.dump(out, fh, ensure_ascii=False, separators=(",", ":"))
 
     def copy_images(self):
         """Every image a page refers to, from content/."""
@@ -656,6 +666,7 @@ def main():
     site = Site()
     clear_output()
     site.copy_assets()
+    site.profile_list()
     for label, slug, children in NAV:
         for l, s in [(label, slug)] + children:
             if s not in GENERATED and not os.path.exists(os.path.join(OUT, s + ".html")):

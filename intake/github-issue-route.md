@@ -24,17 +24,22 @@ the issue.
 ## What the member does
 
 **Joining:** they open *New lab member*. At the top of it is a link to the
-profile form (`intake/profile-form.html`): they download it, open it in their
-browser, fill it in, and click Save. They put their name in the issue's title,
+profile form, hosted on the website but on none of its menus
+(https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html,
+copied from `intake/profile-form.html` by the build). They fill it in and
+click Save. They put their name in the issue's title,
 drag in the `.zip`, tick that they're happy for it to be published, and click
 Create.
 
 **Adding papers, or changing anything else** (position, summary, photo,
 links, removing a paper):
-1. They open *Update my profile*, which links to their profile file. They
-   find their name among the current members or alumni and download it.
-2. In the profile form they choose **Update my profile** and pick that file.
-   Every field fills in, with their papers listed and ticked.
+1. They open *Update my profile*, which links to the same profile form.
+2. There they choose **Update my profile** and pick their name. The list
+   comes from `profiles.json`, which the build writes next to the form with
+   every profile's file, so it matches the website. Every field fills in,
+   with their papers listed and ticked. (Opened from a downloaded copy
+   instead, the form can't read that list, and asks for the profile's `.md`
+   file.)
 3. They change what they like, adding new papers from ORCID or by DOI, and
    save. If a new paper is the published version of a preprint, the form asks
    whether it replaces the preprint. The `.zip` is named
@@ -184,8 +189,6 @@ The `.zip` and the issue text come from outside, so:
 
 ## Next steps (planned)
 
-1. **Publish the site with GitHub Pages** (from `/docs`). The issue forms can
-   then link straight to the live profile form, with no download.
-2. **"Find me" in the profile form:** once the site is on Pages, the build
-   can publish a small list of profiles that the form reads. Updating then
-   becomes "pick your name" instead of downloading your profile file.
+Nothing planned right now. Once the custom domain (kortemmelab.ucsf.edu) is
+set up, the github.io links in the issue forms and the README keep working:
+GitHub forwards them to the custom domain.

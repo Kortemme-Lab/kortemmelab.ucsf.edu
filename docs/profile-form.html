@@ -15,8 +15,11 @@
 
       python3 scripts/add-person.py --zip <first-last>-profile.zip
 
-  Open it straight from disk, or from the website (build-site.py copies it to
-  docs/profile-form.html). No libraries, no build step.
+  Members use it on the website, where build-site.py copies it
+  (docs/profile-form.html, linked from the issue forms but on no menu). There,
+  "Update my profile" lists everyone from docs/profiles.json, which the build
+  writes. Opened straight from disk it still works: you then choose the
+  profile's .md file instead. No libraries, no build step.
 -->
 <style>
   @font-face { font-family: "Raleway"; font-weight: 500; src: url("assets/fonts/raleway-medium.woff2") format("woff2"); }
@@ -79,6 +82,7 @@
           padding: 12px 14px; cursor: pointer; font-weight: 500; color: var(--text); margin: 0; }
   .mode:has(input:checked) { border-color: var(--link); background: #f2f8fa; }
   .mode input { margin-top: 5px; }
+  #photo-current { display: block; width: 96px; height: 96px; object-fit: cover; margin-top: 8px; border-radius: 2px; }
   .mode strong { color: var(--heading); }
   #update-box { margin-top: 18px; }
   .sub { border-left: 3px solid #e3eef1; padding: 4px 0 2px 16px; margin: 4px 0 16px; }
@@ -144,6 +148,13 @@
       <span><strong>Update my profile</strong><br><span class="hint">Change the profile already on the website. Alumni too.</span></span></label>
   </div>
   <div id="update-box" hidden>
+    <div id="find-box" hidden>
+      <label for="who" class="req">Who are you?</label>
+      <select id="who"><option value="">Choose your name…</option></select>
+      <p class="hint">Everyone on the website, current members and alumni. Everything below fills in from your
+        profile, ready to change.</p>
+    </div>
+    <div id="file-box">
     <label for="existing" class="req">Your current profile</label>
     <input type="file" id="existing" accept=".md,text/markdown,text/plain">
     <p class="hint">First download it: find your name among the
@@ -151,6 +162,7 @@
       <a class="repo-link" data-path="tree/main/content/alumni" target="_blank" rel="noopener">alumni</a>
       (e.g. <code>jane-doe.md</code>), open it, and click the download button (↓, top right). Then choose it here:
       everything below fills in from it, ready to change.</p>
+    </div>
     <p class="status" id="existing-status"></p>
   </div>
 </fieldset>
@@ -235,7 +247,8 @@
       <p class="hint">JPG or PNG, ideally at least 400 × 400 pixels. The website shows it square:
         once it's loaded, <strong>drag the photo</strong> to choose what's in the square, and use
         <strong>Zoom</strong> to frame it closer. What you see in the square is exactly what's saved.</p>
-      <p class="hint" id="photo-keep" hidden><strong>Updating?</strong> Leave this empty to keep the photo already on your profile.</p>
+      <p class="hint" id="photo-keep" hidden><strong>Updating?</strong> Leave this empty to keep the photo already on your profile.
+        <img id="photo-current" alt="Your photo on the website now" hidden></p>
       <p class="status" id="photo-status"></p>
       <button type="button" id="photo-remove" hidden>Remove photo</button>
     </div>
@@ -341,7 +354,7 @@
   var $ = function (id) { return document.getElementById(id); };
   // mode: "new" or "update"; slug and current: the profile being updated, and its papers
   // pairs: "published|preprint" -> "replace" or "keep", the member's answer about each
-  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null, mode: "new", slug: "", current: [], pairs: {} };
+  var state = { works: [], picked: {}, lookups: {}, failed: {}, photo: null, mode: "new", slug: "", current: [], pairs: {}, photoNow: "" };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -558,39 +571,80 @@
   function setVal(id, v) { var e = $(id); if (e.type === "checkbox") e.checked = !!v; else e.value = v == null ? "" : v; }
 
   function loadExisting(file) {
-    var st = $("existing-status");
     return file.text().then(function (text) {
-      var got = parseProfile(text), m = got && got.meta;
-      var slug = (file.name.toLowerCase().match(/^([a-z0-9]+(?:-[a-z0-9]+)*)/) || [])[1];
-      if (!got || !slug) {
-        st.className = "status bad";
-        st.textContent = "That doesn't look like a profile from the website. It should be a file like jane-doe.md, downloaded as above.";
-        return;
-      }
-      state.slug = slug;
-      ["name", "pronouns", "program", "summary", "current_position", "position_after_lab"].forEach(function (f) { setVal(f, m[f]); });
-      var known = Array.prototype.some.call($("role").options, function (o) { return o.value && o.value !== "other" && o.text === m.role; });
-      setVal("role", m.role ? (known ? m.role : "other") : ""); setVal("role-other", known ? "" : m.role);
-      $("role-other").hidden = val("role") !== "other";
-      var years = String(m.years_in_lab || "").match(/^\s*(\d{4})?\s*(?:[-–]\s*(\d{4}|present))?/i) || [];
-      setVal("year", years[1] || ""); setVal("end_year", /^\d{4}$/.test(years[2] || "") ? years[2] : "");
-      setVal("left", /^\d{4}$/.test(years[2] || "") || !!m.current_position);
-      setVal("co_mentors", (m.co_mentors || []).join(", "));
-      setVal("bio", got.bio); setVal("education", (m.education || []).join("\n"));
-      setVal("email", m.email); setVal("show_email", !!m.email);
-      var links = m.links || {};
-      setVal("orcid", (String(links.orcid || "").match(/\d{4}-\d{4}-\d{4}-\d{3}[\dX]/i) || [""])[0]);
-      setVal("scholar", links.scholar); setVal("website", links.website); setVal("github", links.github);
-      state.current = (m.publications || []).map(function (d) { return cleanDoi(d); });
-      state.current.forEach(function (d) { state.picked[d] = true; });
-      drawCurrent(); showLeaving(); save(); preview();
-      st.className = "status good";
-      st.textContent = "Loaded " + m.name + "'s profile (" + file.name + "), with " + state.current.length +
-                       " paper" + (state.current.length === 1 ? "" : "s") + ". Change anything below, then save.";
-      titlesFor(state.current);
+      loadProfile(text, (file.name.toLowerCase().match(/^([a-z0-9]+(?:-[a-z0-9]+)*)/) || [])[1], file.name);
     }).catch(function (e) {
+      var st = $("existing-status");
       st.className = "status bad"; st.textContent = "Couldn't read that file (" + e.message + ").";
     });
+  }
+  function loadProfile(text, slug, from) {
+    var st = $("existing-status");
+    var got = parseProfile(text), m = got && got.meta;
+    if (!got || !slug) {
+      st.className = "status bad";
+      st.textContent = "That doesn't look like a profile from the website. It should be a file like jane-doe.md, downloaded as above.";
+      return;
+    }
+    state.slug = slug;
+    ["name", "pronouns", "program", "summary", "current_position", "position_after_lab"].forEach(function (f) { setVal(f, m[f]); });
+    var known = Array.prototype.some.call($("role").options, function (o) { return o.value && o.value !== "other" && o.text === m.role; });
+    setVal("role", m.role ? (known ? m.role : "other") : ""); setVal("role-other", known ? "" : m.role);
+    $("role-other").hidden = val("role") !== "other";
+    var years = String(m.years_in_lab || "").match(/^\s*(\d{4})?\s*(?:[-–]\s*(\d{4}|present))?/i) || [];
+    setVal("year", years[1] || ""); setVal("end_year", /^\d{4}$/.test(years[2] || "") ? years[2] : "");
+    setVal("left", /^\d{4}$/.test(years[2] || "") || !!m.current_position);
+    setVal("co_mentors", (m.co_mentors || []).join(", "));
+    setVal("bio", got.bio); setVal("education", (m.education || []).join("\n"));
+    setVal("email", m.email); setVal("show_email", !!m.email);
+    var links = m.links || {};
+    setVal("orcid", (String(links.orcid || "").match(/\d{4}-\d{4}-\d{4}-\d{3}[\dX]/i) || [""])[0]);
+    setVal("scholar", links.scholar); setVal("website", links.website); setVal("github", links.github);
+    state.current = (m.publications || []).map(function (d) { return cleanDoi(d); });
+    state.current.forEach(function (d) { state.picked[d] = true; });
+    state.photoNow = m.photo || "";
+    drawCurrent(); showLeaving(); showPhotoNow(); save(); preview();
+    st.className = "status good";
+    st.textContent = "Loaded " + m.name + "'s profile" + (from ? " (" + from + ")" : "") + ", with " + state.current.length +
+                     " paper" + (state.current.length === 1 ? "" : "s") + ". Change anything below, then save.";
+    titlesFor(state.current);
+  }
+
+  // On the website, everyone's profile is listed in profiles.json (written by
+  // build-site.py), so members pick their name instead of finding the file.
+  var people = {};
+  function findPeople() {
+    if (location.protocol === "file:") return;          // opened from disk: choose the file instead
+    fetch("profiles.json", { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (list) {
+      var groups = { current: document.createElement("optgroup"), alumni: document.createElement("optgroup") };
+      groups.current.label = "Current members"; groups.alumni.label = "Alumni";
+      list.forEach(function (p) {
+        people[p.slug] = p;
+        var o = document.createElement("option");
+        o.value = p.slug;
+        o.textContent = p.name + (p.kind === "alumni" && p.years ? " (" + p.years + ")" : "");
+        groups[p.kind === "alumni" ? "alumni" : "current"].appendChild(o);
+      });
+      $("who").appendChild(groups.current); $("who").appendChild(groups.alumni);
+      if (state.slug && people[state.slug]) $("who").value = state.slug;
+      $("find-box").hidden = false; $("file-box").hidden = true;
+    }).catch(function () { /* not on the website: the file chooser stays */ });
+  }
+  function pickPerson() {
+    var p = people[val("who")];
+    if (!p) return;
+    if (state.slug && state.slug !== p.slug && !confirm("Load " + p.name + "'s profile? It replaces what's on this form now.")) {
+      $("who").value = state.slug; return;
+    }
+    loadProfile(p.text, p.slug);
+  }
+  function showPhotoNow() {                   // the photo on the website now, when the form is on the website
+    var img = $("photo-current");
+    img.hidden = !state.photoNow || location.protocol === "file:";
+    if (!img.hidden) img.src = state.photoNow;
   }
 
   function titlesFor(dois) {                  // a few at a time, so doi.org isn't flooded
@@ -931,7 +985,7 @@
 
   function problems() {
     var out = [], p = person();
-    if (state.mode === "update" && !state.slug) out.push(["existing", "Choose your current profile first, under Start here, so this updates it."]);
+    if (state.mode === "update" && !state.slug) out.push([$("find-box").hidden ? "existing" : "who", "Choose your current profile first, under Start here, so this updates it."]);
     if (!p.name) out.push(["name", "Your full name is needed."]);
     else if (!p.slug) out.push(["name", "Your name needs at least one letter A–Z for the file name."]);
     if (!p.role) out.push(["role", "Choose your role in the lab."]);
@@ -1015,7 +1069,8 @@
   // ---- keeping a draft in this browser ---------------------------------------------------------
   function save() {
     try {
-      var d = { picked: state.picked, works: state.works, mode: state.mode, slug: state.slug, current: state.current, pairs: state.pairs };
+      var d = { picked: state.picked, works: state.works, mode: state.mode, slug: state.slug, current: state.current, pairs: state.pairs,
+                photoNow: state.photoNow };
       FIELDS.forEach(function (f) { d[f] = $(f).type === "checkbox" ? $(f).checked : $(f).value; });
       localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
     } catch (e) { /* private window or storage off: the form still works */ }
@@ -1027,17 +1082,17 @@
       FIELDS.forEach(function (f) { if (f in d) { if ($(f).type === "checkbox") $(f).checked = d[f]; else $(f).value = d[f]; } });
       state.picked = d.picked || {}; state.works = d.works || [];
       state.mode = d.mode === "update" ? "update" : "new"; state.slug = d.slug || ""; state.current = d.current || [];
-      state.pairs = d.pairs || {};
+      state.pairs = d.pairs || {}; state.photoNow = d.photoNow || "";
       if (state.works.length) drawWorks();
       if (state.current.length) { drawCurrent(); titlesFor(state.current); }
-      if (state.slug) $("existing-status").textContent = "Updating " + state.slug + ".md (kept from last time). Choose the file again to start over from it.";
+      if (state.slug) $("existing-status").textContent = "Updating " + (val("name") || state.slug) + "'s profile (kept from last time). To start again from the website's copy, click Start over at the bottom.";
     } catch (e) { /* ignore a damaged or missing draft */ }
   }
   function startOver() {
     if (!confirm("Clear everything on this form?")) return;
     try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
     $("form").reset(); state.works = []; state.picked = {}; state.lookups = {}; state.failed = {};
-    state.slug = ""; state.current = []; state.pairs = {}; drawCurrent(); drawPairs(); $("existing-status").textContent = ""; setMode("new"); showLeaving();
+    state.slug = ""; state.current = []; state.pairs = {}; state.photoNow = ""; $("who").value = ""; showPhotoNow(); drawCurrent(); drawPairs(); $("existing-status").textContent = ""; setMode("new"); showLeaving();
     removePhoto(); drawWorks(); $("doi-list").innerHTML = ""; $("orcid-status").textContent = "";
     $("messages").innerHTML = ""; $("done").hidden = true; $("role-other").hidden = true;
     $("year").value = new Date().getFullYear(); preview();
@@ -1047,10 +1102,12 @@
   Array.prototype.forEach.call(document.querySelectorAll(".repo-link"), function (a) { a.href = REPO + "/" + a.getAttribute("data-path"); });
   $("year").value = new Date().getFullYear();
   restore();
-  setMode(state.mode); showLeaving();
+  setMode(state.mode); showLeaving(); showPhotoNow();
   $("mode-new").addEventListener("change", function () { setMode("new"); save(); preview(); });
   $("mode-update").addEventListener("change", function () { setMode("update"); save(); preview(); });
   $("existing").addEventListener("change", function () { if (this.files[0]) loadExisting(this.files[0]); });
+  $("who").addEventListener("change", pickPerson);
+  findPeople();
   $("left").addEventListener("change", showLeaving);
   $("pairs-replace").addEventListener("click", function () { answerAll("replace"); });
   $("pairs-keep").addEventListener("click", function () { answerAll("keep"); });
@@ -1071,7 +1128,7 @@
 
   // for scripts/tests: the profile and the .zip this form would save, without a download
   window.profileForm = { person: person, markdown: markdown, buildZip: buildZip, loadPhoto: loadPhoto, checkDois: checkDois,
-                         loadExisting: loadExisting, parseProfile: parseProfile, setMode: setMode,
+                         loadExisting: loadExisting, loadProfile: loadProfile, parseProfile: parseProfile, setMode: setMode,
                          pairs: pairs, answerAll: answerAll };
 })();
 </script>

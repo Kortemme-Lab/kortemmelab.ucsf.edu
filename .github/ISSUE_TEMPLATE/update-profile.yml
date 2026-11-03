@@ -8,18 +8,13 @@ body:
       value: |
         ## 1. Make your changes
 
-        1. **Download your current profile:** find your name among the
-           [current members](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/current-members)
-           or [alumni](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/alumni)
-           (a file like `jane-doe.md`), open it, and click the **download** button (↓, top right).
-        2. **Get the [profile form](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html)**
-           the same way, and open the downloaded `profile-form.html` in your browser.
-        3. In the form, choose **Update my profile** and pick the profile file you downloaded. Everything fills in.
-           Change what you like: add new papers (from ORCID, or by DOI), or change your position, summary,
+        1. **[Open the profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html)** (it opens in your browser; bookmark it for later),
+           choose **Update my profile**, and pick your name. Everything fills in from your profile on the website.
+        2. Change what you like: add new papers (from ORCID, or by DOI), or change your position, summary,
            photo or links. If a new paper is the published version of a preprint, the form asks whether it
            replaces the preprint. If you're leaving the lab, tick **I've left the lab, or I'm leaving it**
            and give the year and what you're doing next.
-        4. Click **Save my profile**. You'll get one file, `your-name-profile-update.zip`.
+        3. Click **Save my profile**. You'll get one file, `your-name-profile-update.zip`.
 
         ## 2. Attach it here
 

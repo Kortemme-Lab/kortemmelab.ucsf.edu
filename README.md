@@ -43,17 +43,16 @@ only respond to people with access.) No GitHub account? Make your `.zip` with th
 profile form anyway and email it to a website manager (or email them your
 news or photos).
 
-**The profile form** is a single file. Open
-[it on GitHub](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html),
-click the **download** button (↓, the *Download raw file* icon at the top
-right of the file), and open the downloaded file in your web browser. It
-needs nothing installed. Nothing you type leaves your computer, except your
-ORCID iD and DOIs, which are looked up at orcid.org and doi.org. Your answers
+**The profile form** is a page on the lab website that isn't on its menus:
+**[open the profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html)**,
+and bookmark it if you like. It needs nothing installed or downloaded.
+Nothing you type leaves your computer, except your ORCID iD and DOIs, which
+are looked up at orcid.org and doi.org. Your answers
 are kept in your browser until you save, so you can stop and come back.
 
 ### Joining the lab
 
-1. Download and open the profile form (above).
+1. Open the [profile form](#before-you-start).
 2. Under **Start here**, choose **I'm new to the lab**.
 3. Fill in **About you**: your name as it should appear on the website, your
    pronouns if you'd like them shown, your role, your program, the year you
@@ -90,15 +89,12 @@ are kept in your browser until you save, so you can stop and come back.
 For current members and alumni alike: new papers, a new position, a new
 photo, a different summary, links, or papers to take off your profile.
 
-1. **Download your current profile.** On GitHub, open
-   [current members](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/current-members) or
-   [alumni](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/tree/main/content/alumni),
-   click your file (e.g. `jane-doe.md`), and click the **download** button (↓).
-2. Download and open the profile form (see [Before you start](#before-you-start)).
-3. Under **Start here**, choose **Update my profile**, click *Choose file*,
-   and pick the profile you just downloaded. Every field fills in from it,
-   and your papers appear under *On your profile now*, all ticked.
-4. Change whatever you like:
+1. Open the [profile form](#before-you-start).
+2. Under **Start here**, choose **Update my profile** and pick your name
+   under *Who are you?* (current members first, then alumni). Every field
+   fills in from your profile on the website, your papers appear under *On
+   your profile now*, all ticked, and your current photo is shown.
+3. Change whatever you like:
    - edit any text field;
    - **add new papers:** click *Find my papers on ORCID* and tick the new ones,
      or paste their DOIs under *Other papers* and click *Look these up*. If one
@@ -108,9 +104,9 @@ photo, a different summary, links, or papers to take off your profile.
    - choose a new headshot (and crop it, as when joining), or leave the photo
      field empty to keep the one you have;
    - untick *Show my email on my profile* to remove your email from the website.
-5. Check the **Preview**, then click **Save my profile**. You get
+4. Check the **Preview**, then click **Save my profile**. You get
    `your-name-profile-update.zip`.
-6. Open an [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml)
+5. Open an [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml)
    issue. Put your name in the title (`Profile update: Jane Doe`), drag the
    `.zip` into *Your updated profile .zip*, tick the publishing box, and click
    **Create**.
@@ -121,7 +117,7 @@ is, and your page keeps its web address even if you change your name.
 ### Leaving the lab
 
 Follow [Adding papers or changing your profile](#adding-papers-or-changing-your-profile).
-At step 4, under **About you**, tick **I've left the lab, or I'm leaving it**,
+At step 3, under **About you**, tick **I've left the lab, or I'm leaving it**,
 and fill in:
 
 - **Year you left (or are leaving):** required.
@@ -361,7 +357,8 @@ run from the Actions tab (Build the website > Run workflow).
 | Lab Alumni | every file in `content/alumni/`, by role and then newest first, plus `content/rotation-students.csv` |
 | `people/<name>.html` | each person's file, unless it says `profile_page: false` (17 older alumni who appear on the roster only) |
 | `current---kosuke-seki.html` and the like | small pages forwarding the old site's profile addresses to the new ones |
-| `profile-form.html` | `intake/profile-form.html`, copied as it is; it's on no menu |
+| `profile-form.html` | `intake/profile-form.html`, copied as it is; it's on no menu, and the issue forms link to it |
+| `profiles.json` | every profile's file, so the form's *Update my profile* can list everyone by name |
 
 #### The look, and writing pages
 
