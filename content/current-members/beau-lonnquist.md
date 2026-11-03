@@ -5,7 +5,7 @@ role: "Graduate Student"
 program: "Biophysics"
 years_in_lab: "2026-present"
 co_mentors: ["Brian Cheung"]
-summary: "I'm interested in multistate protein design methods for system-level and ensemble-based design."
+summary: "I'm interested in computational methods for system-level and ensemble-based protein design."
 photo: "images/people/beau-lonnquist.jpg"
 email: "beau.lonnquist@ucsf.edu"
 links:
