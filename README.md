@@ -300,9 +300,15 @@ need **Write** or **Maintain** to merge.
 | it couldn't download the `.zip` | only happens if the repository is private: add an `INTAKE_TOKEN` secret (steps in `intake/github-issue-route.md`), then edit the issue to check again |
 | something went wrong | open the run from the link in the reply (Actions tab) and read the failed step |
 
-If merging says there's a **conflict** (two submissions at once can both
-touch `content/bibliography.json`), edit the second issue (any small change
-will do), and its pull request is rebuilt from the latest `main`.
+**Several submissions at once:** merge them one at a time. After each merge,
+every other open submission's pull request is remade from the updated
+website by itself (`refresh-submissions.yml`), and its issue reply says so.
+Wait a couple of minutes for that before merging the next one. Otherwise,
+two that touch the same spot (news from the same month, gallery photos, or
+new papers, which all go in shared files) would show a **conflict**. If one
+still does (for instance, because someone added their own commit to that
+pull request, which the refresh leaves alone), edit its issue (any small
+change will do) to remake it, or resolve it by hand.
 
 How the route works, the identity check, its safety measures, and the
 planned next steps are in `intake/github-issue-route.md`. With **Read**
@@ -467,8 +473,9 @@ kortemmelab.ucsf.edu/
 ├── .github/               on GitHub: the issue forms (New lab member, Update my
 │                          profile, Add news, Add photos to the gallery), and
 │                          workflows that rebuild docs/ after each push
-│                          (build-site.yml) and turn those issues into pull
-│                          requests (submission.yml)
+│                          (build-site.yml), turn those issues into pull
+│                          requests (submission.yml), and remake the open ones
+│                          after each merge (refresh-submissions.yml)
 └── archive/               the old site and how it was copied; for reference only
     ├── site/              the old website; this folder is its web root
     ├── structure/         inventories of the old site (pages, images, papers, emails)

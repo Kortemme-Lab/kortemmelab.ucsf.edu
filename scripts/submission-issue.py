@@ -3,11 +3,19 @@
 
 Run by .github/workflows/submission.yml, one step at a time:
 
+    allowed   whether to handle this issue at all: a submission, still open, from
+              someone with access to the repository (on a refresh, it reads the
+              issue from GitHub, as there's no issue event to read it from)
     fetch     read the issue: download its profile .zip or photos, or read its news
     check     check the submission, as add-person.py / add-content.py --dry-run do
     apply     make the change for real, on the branch the workflow has checked out
     pr        open, or update, the pull request for that branch
     comment   report back on the issue: the pull request, or what to fix
+
+and by .github/workflows/refresh-submissions.yml:
+
+    refresh   after something is merged, remake every other open submission's
+              pull request from the latest main, so none is left with a conflict
 
 There are four kinds, one per issue form (.github/ISSUE_TEMPLATE/), all
 reviewed the same way:
@@ -37,7 +45,15 @@ API = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 SERVER = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
 ISSUE = os.environ.get("ISSUE_NUMBER", "")
-AUTHOR = os.environ.get("ISSUE_AUTHOR", "")
+# On a refresh, the `allowed` step saves the issue here for the steps after it
+ISSUE_FILE = os.path.join(TEMP, "submission-issue.json")
+try:
+    SAVED = json.load(open(ISSUE_FILE, encoding="utf-8"))
+except (OSError, ValueError):
+    SAVED = {}
+AUTHOR = os.environ.get("ISSUE_AUTHOR") or SAVED.get("author", "")
+REFRESH = os.environ.get("REFRESH") == "true"
+ALLOWED = ("OWNER", "MEMBER", "COLLABORATOR")
 BASE = os.environ.get("BASE_BRANCH", "main")
 BRANCH = f"submission/issue-{ISSUE}"
 # Each kind: its label (set by its issue form), the title its form starts with, and a description
@@ -47,22 +63,24 @@ KINDS = {"new": ("new-member", "New lab member", "A new lab member's profile"),
          "gallery": ("gallery", "Gallery:", "Photos for the website's gallery")}
 
 
-def issue_kind():
-    try:
-        labels = set(json.loads(os.environ.get("ISSUE_LABELS") or "[]"))
-    except ValueError:
-        labels = set()
-    title = os.environ.get("ISSUE_TITLE", "")
+def issue_kind(labels=None, title=None):
+    if labels is None:
+        try:
+            labels = json.loads(os.environ.get("ISSUE_LABELS") or "[]") or SAVED.get("labels", [])
+        except ValueError:
+            labels = []
+    labels = set(labels)
+    title = os.environ.get("ISSUE_TITLE") or SAVED.get("title", "") if title is None else title
     for kind, (label, prefix, _) in KINDS.items():
         if label in labels:
             return kind
     for kind, (label, prefix, _) in KINDS.items():
         if title.startswith(prefix):
             return kind
-    return os.environ.get("SUBMISSION_KIND") if os.environ.get("SUBMISSION_KIND") in KINDS else "new"
+    return os.environ.get("SUBMISSION_KIND") if os.environ.get("SUBMISSION_KIND") in KINDS else None
 
 
-KIND = issue_kind()
+KIND = issue_kind() or "new"
 MARKER = "<!-- submission-bot -->"               # finds this workflow's own comment again
 MAX_BYTES = 20_000_000
 MAX_PHOTOS = 10
@@ -123,6 +141,48 @@ def api_error(e):
         return json.loads(e.read()).get("message", "")
     except Exception:
         return str(e)
+
+
+# --- allowed -----------------------------------------------------------------------------
+def has_access(login, association):
+    """Whether this GitHub account may submit: an organization member or a collaborator.
+
+    GitHub reports an organization member whose membership is private (the
+    default) as CONTRIBUTOR or NONE, so for anyone else, ask whether they're a
+    collaborator: that includes members with access through a team or the
+    organization's default permission."""
+    if association in ALLOWED:
+        return True
+    try:
+        api("GET", f"/repos/{REPO}/collaborators/{urllib.parse.quote(login)}")
+        return True                          # 204: they have access
+    except urllib.error.HTTPError as e:
+        print(f"{login}: not a collaborator ({e.code})")
+        return False
+
+
+def allowed():
+    """Whether to go on: output ok=true, or ok=false (and the run ends quietly)."""
+    if not re.fullmatch(r"\d+", ISSUE):
+        print(f"not an issue number: {ISSUE!r}")
+        return output(ok="false")
+    if REFRESH and REPO:                     # a refresh: no issue event, so read the issue itself
+        i = api("GET", f"/repos/{REPO}/issues/{ISSUE}")
+        info = {"author": i["user"]["login"], "title": i.get("title") or "", "body": i.get("body") or "",
+                "labels": [l["name"] for l in i.get("labels") or []], "state": i.get("state"),
+                "association": i.get("author_association", ""), "is_pr": "pull_request" in i}
+        with open(ISSUE_FILE, "w", encoding="utf-8") as fh:
+            json.dump(info, fh)
+        if info["is_pr"] or info["state"] != "open" or not issue_kind(info["labels"], info["title"]):
+            print(f"issue #{ISSUE} isn't an open submission; nothing to do")
+            return output(ok="false")
+        login, association = info["author"], info["association"]
+    else:
+        login, association = AUTHOR, os.environ.get("ISSUE_ASSOCIATION", "")
+    if REPO and not has_access(login, association):
+        print(f"{login} ({association}) has no access to {REPO}; this issue is left alone")
+        return output(ok="false")
+    output(ok="true")
 
 
 # --- fetch -------------------------------------------------------------------------------
@@ -199,7 +259,7 @@ def ensure_label():
 def fetch():
     if REPO:
         ensure_label()
-    body = os.environ.get("ISSUE_BODY", "")
+    body = os.environ.get("ISSUE_BODY") or SAVED.get("body", "")
     answers = fields(body)
     remember(kind=KIND)
     print(f"kind: {KIND}")
@@ -383,31 +443,66 @@ def pr():
     output(pr=p["html_url"])
 
 
+# --- refresh -----------------------------------------------------------------------------------
+def refresh():
+    """Remake each open submission's pull request from the latest main.
+
+    Run after anything is merged. Each is redone by submission.yml, exactly as
+    if its issue had just been edited, so it's checked again. A pull request
+    someone has added their own commits to is left alone, so their work isn't
+    lost; it's for a website manager to update."""
+    if not REPO:
+        return print("refresh only runs on GitHub")
+    pulls = api("GET", f"/repos/{REPO}/pulls?state=open&base={urllib.parse.quote(BASE)}&per_page=100") or []
+    for p in pulls:
+        m = re.fullmatch(r"submission/issue-(\d+)", p["head"]["ref"])
+        if not m or (p["head"].get("repo") or {}).get("full_name") != REPO:
+            continue
+        commits = api("GET", f"/repos/{REPO}/pulls/{p['number']}/commits?per_page=100") or []
+        if any(c["commit"]["author"]["name"] != "github-actions[bot]" for c in commits):
+            print(f"#{p['number']} (issue #{m.group(1)}): has someone's own commits, so it's left alone")
+            continue
+        api("POST", f"/repos/{REPO}/actions/workflows/submission.yml/dispatches",
+            {"ref": BASE, "inputs": {"issue": m.group(1)}})
+        print(f"#{p['number']} (issue #{m.group(1)}): being remade")
+
+
 # --- the comment on the issue ------------------------------------------------------------------
 def message():
     s, run = state(), f"{SERVER}/{REPO}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
     e, stage = s.get("report", {}), s.get("stage")
+    if stage == "pr" and s.get("pr_url"):
+        return success(s, e) + ("\n\n*Something else was published since this was submitted, so the pull request "
+                                "was remade from the latest website, and checked again.*" if REFRESH else "")
+    return problem(s, e, run)
+
+
+def success(s, e):
+    """The reply once the pull request is open."""
+    notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
+    kind = e.get("kind", "new")
+    if kind in ("news", "gallery"):
+        return (f"Thanks! Pull request #{s['pr_number']} adds "
+                + ("your news item to the News page" if kind == "news" else
+                   f"{len(e.get('photos') or [])} photo(s) to the gallery, scaled down and with their location data removed")
+                + ". A website manager will look it over and publish it."
+                + (f"\n\nA few things they may want to check:{notes}" if notes else "")
+                + "\n\nTo change anything before then, edit this issue; the pull request updates by itself.")
+    done = {"new": "Your profile passed its checks, and",
+            "update": "Your changes passed their checks, and"}[kind]
+    return (f"Thanks, {e.get('name', '')}! {done} pull request #{s['pr_number']} makes the change: "
+            f"{', '.join(e.get('changes') or [])}. A website manager will look it over and publish it."
+            + (f"\n\nA few things they may want to check:{notes}" if notes else "") +
+            "\n\nTo change anything before then, save a new .zip from the profile form and attach it "
+            "by editing this issue; the pull request updates by itself.")
+
+
+def problem(s, e, run):
+    stage = s.get("stage")
     fix = {"news": "**Edit this issue** to correct it.",
            "gallery": "**Edit this issue** to change the photos or caption."}.get(
         KIND, "Fix it in the profile form, save again, then **edit this issue** and drag the new .zip into its box.") \
         + " This check runs again by itself."
-    if stage == "pr" and s.get("pr_url"):
-        notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
-        kind = e.get("kind", "new")
-        if kind in ("news", "gallery"):
-            return (f"Thanks! Pull request #{s['pr_number']} adds "
-                    + ("your news item to the News page" if kind == "news" else
-                       f"{len(e.get('photos') or [])} photo(s) to the gallery, scaled down and with their location data removed")
-                    + ". A website manager will look it over and publish it."
-                    + (f"\n\nA few things they may want to check:{notes}" if notes else "")
-                    + "\n\nTo change anything before then, edit this issue; the pull request updates by itself.")
-        done = {"new": "Your profile passed its checks, and",
-                "update": "Your changes passed their checks, and"}[kind]
-        return (f"Thanks, {e.get('name', '')}! {done} pull request #{s['pr_number']} makes the change: "
-                f"{', '.join(e.get('changes') or [])}. A website manager will look it over and publish it."
-                + (f"\n\nA few things they may want to check:{notes}" if notes else "") +
-                "\n\nTo change anything before then, save a new .zip from the profile form and attach it "
-                "by editing this issue; the pull request updates by itself.")
     if stage == "fetch" and s.get("problem") == "news_missing":
         return ("I need the month, the year and the news itself. **Edit this issue** to fill them in, "
                 "and this check runs again by itself.")
@@ -465,7 +560,8 @@ def comment():
 
 
 if __name__ == "__main__":
-    steps = {"fetch": fetch, "check": check, "apply": apply, "pr": pr, "comment": comment}
+    steps = {"allowed": allowed, "fetch": fetch, "check": check, "apply": apply, "pr": pr, "comment": comment,
+             "refresh": refresh}
     if len(sys.argv) != 2 or sys.argv[1] not in steps:
         sys.exit(f"usage: {os.path.basename(sys.argv[0])} {'|'.join(steps)}")
     steps[sys.argv[1]]()

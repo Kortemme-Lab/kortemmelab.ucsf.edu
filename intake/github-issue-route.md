@@ -153,7 +153,12 @@ DOI needs no download, so it works either way.
 The `.zip` and the issue text come from outside, so:
 
 - **Only issues from people with access are handled** (organization members
-  and collaborators), which matters because the repository is public.
+  and collaborators), which matters because the repository is public. The
+  workflow's first step checks this. GitHub reports a member whose
+  membership is private (the default) as a mere contributor, so anyone not
+  reported as a member is looked up as a collaborator, which includes members
+  with access through a team. Anyone else's issue is left alone, with no
+  reply.
 - **The issue's text is never run.** It reaches `submission-issue.py` as an
   environment variable and is only parsed there, never put into a shell
   command.
@@ -168,9 +173,18 @@ The `.zip` and the issue text come from outside, so:
 
 ## Good to know
 
-- **Two submissions at once** can both touch `content/bibliography.json`. If
-  merging the second says there's a conflict, edit its issue (any small
-  change will do), and the pull request is rebuilt from the latest `main`.
+- **Several submissions at once** each get their own branch and pull
+  request, so they never overwrite each other. Profiles of different people
+  never clash, but news from the same month, gallery photos and new papers go
+  in shared files (`content/news.md`, `content/gallery.md`,
+  `content/bibliography.json` and the publication lists). So after every push
+  to `main` that changes `content/`, `refresh-submissions.yml` asks
+  `submission.yml` to redo every other open submission from the latest
+  `main` (a `workflow_dispatch` with its issue number), as if its issue had
+  been edited: checked again, branch rebuilt, pull request and reply updated.
+  Merge one, wait a couple of minutes, merge the next. A pull request with
+  anyone's commits besides the workflow's is left alone; edit its issue to
+  remake it anyway (which drops those commits), or resolve it by hand.
 - **Alumni on the roster only** (`profile_page: false`, with no page of their
   own) can update too. The pull request notes that deleting that line gives
   them a profile page.

@@ -8,6 +8,10 @@ name: Submission
 # rebuilds the website. The outcome (the pull request, or what to fix) is
 # posted as a comment on the issue, and kept up to date if they edit it.
 #
+# After anything is merged, refresh-submissions.yml runs this again for every
+# other open submission (workflow_dispatch, with the issue number), so each
+# pull request is remade from the latest main and none is left with a conflict.
+#
 # Nothing here can change main: it only pushes a submission/issue-N branch.
 # The issue's text never reaches a shell command; scripts/submission-issue.py
 # reads it from the environment. See intake/github-issue-route.md.
@@ -15,17 +19,25 @@ name: Submission
 on:
   issues:
     types: [opened, edited, reopened]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: The issue number of a submission to redo, from the latest main
+        required: true
+        type: string
 
 # One run per issue; a newer edit replaces a run still in progress.
 concurrency:
-  group: submission-${{ github.event.issue.number }}
+  group: submission-${{ github.event.issue.number || inputs.issue }}
   cancel-in-progress: true
 
 jobs:
   submit:
-    # Only open issues from the forms, from people with access to the repository.
+    # Only open issues from the forms (or a refresh); the first step then checks
+    # that whoever opened it has access to the repository.
     if: >-
-      github.event.issue.state == 'open' &&
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.state == 'open' &&
       (contains(github.event.issue.labels.*.name, 'new-member') ||
        contains(github.event.issue.labels.*.name, 'profile-update') ||
        contains(github.event.issue.labels.*.name, 'news') ||
@@ -33,8 +45,7 @@ jobs:
        startsWith(github.event.issue.title, 'New lab member') ||
        startsWith(github.event.issue.title, 'Profile update') ||
        startsWith(github.event.issue.title, 'News:') ||
-       startsWith(github.event.issue.title, 'Gallery:')) &&
-      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association)
+       startsWith(github.event.issue.title, 'Gallery:')))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -42,8 +53,11 @@ jobs:
       pull-requests: write     # open the pull request
       issues: write            # comment and label
     env:
-      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue }}
       ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+      ISSUE_ASSOCIATION: ${{ github.event.issue.author_association }}
+      # a refresh: the issue is read from GitHub instead of from the event
+      REFRESH: ${{ github.event_name == 'workflow_dispatch' }}
       # which form it came from: the script reads its label, or else its title
       ISSUE_TITLE: ${{ github.event.issue.title }}
       ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
@@ -59,8 +73,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Organization members, collaborators, and nobody else. Ends the run
+      # quietly (no reply) otherwise, or if a refresh finds the issue closed.
+      - name: Check who opened it
+        id: allowed
+        run: python3 scripts/submission-issue.py allowed
+
       - name: Read the issue
         id: fetch
+        if: steps.allowed.outputs.ok == 'true'
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: python3 scripts/submission-issue.py fetch
@@ -101,5 +122,5 @@ jobs:
         run: python3 scripts/submission-issue.py pr
 
       - name: Report back on the issue
-        if: always()
+        if: always() && steps.allowed.outputs.ok == 'true'
         run: python3 scripts/submission-issue.py comment

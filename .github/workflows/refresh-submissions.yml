@@ -1,0 +1,45 @@
+name: Refresh submissions
+
+# When something is merged into main, every other open submission's pull
+# request was made from the website as it was before. Where two touch the same
+# spot (news from the same month, gallery photos, new papers, which all go in
+# shared files), GitHub would show a conflict and refuse to merge. So after
+# each merge, this asks submission.yml to remake each one from the latest main,
+# exactly as if its issue had been edited: checked again, branch rebuilt, pull
+# request and issue reply updated. A website manager still merges each one.
+#
+# A pull request someone has added their own commits to is left alone, so
+# their changes aren't overwritten. See scripts/submission-issue.py (refresh).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+  workflow_dispatch:
+
+# A newer merge's refresh replaces one still running: it remakes them all anyway.
+concurrency:
+  group: refresh-submissions
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write           # start submission.yml for each open submission
+      pull-requests: read
+      contents: read
+    env:
+      BASE_BRANCH: ${{ github.event.repository.default_branch }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Remake the open submissions' pull requests
+        run: python3 scripts/submission-issue.py refresh
