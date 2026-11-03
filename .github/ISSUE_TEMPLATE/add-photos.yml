@@ -1,0 +1,47 @@
+name: Add photos to the gallery
+description: Share photos for the website's Gallery, such as a retreat, a celebration or a lab outing.
+title: "Gallery: "
+labels: ["gallery"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Put a few words in the title above (e.g. `Gallery: lab retreat 2026`), add your photos and a
+        caption below, and click **Create**. A check replies on this issue within a couple of minutes,
+        and a website manager then publishes them at the top of the gallery.
+
+        For the website, photos are scaled down and **their location data and other hidden details are
+        removed**. The photos you attach here also stay visible on this issue, which anyone can see, so
+        if a photo was taken somewhere private, turn its location off before attaching it (on an
+        iPhone: *Share* > *Options* > turn off *Location*, then save or AirDrop it).
+  - type: textarea
+    id: photos
+    attributes:
+      label: Photos
+      description: >-
+        Drag up to 10 photos (JPG or PNG) into this box, or click here and then the paperclip.
+        Wait until each has finished uploading. The first photo is the one shown with the caption.
+      placeholder: Drop your photos here
+    validations:
+      required: true
+  - type: input
+    id: caption
+    attributes:
+      label: Caption (optional)
+      description: Shown under the first photo, e.g. "Lab retreat at Asilomar, May 2026".
+    validations:
+      required: false
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Permission
+      options:
+        - label: Everyone recognisable in these photos is happy for them to be on the lab website.
+          required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else for the website manager?
+      description: Optional.
+    validations:
+      required: false

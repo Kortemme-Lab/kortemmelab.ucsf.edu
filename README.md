@@ -3,8 +3,9 @@
 The source of the Kortemme Lab website, kortemmelab.ucsf.edu.
 
 **Lab members:** this page explains how to put yourself on the website, add
-your papers, update your profile, and record that you're leaving the lab. It's
-all done with a short form and a GitHub issue; no coding is needed.
+your papers, update your profile, record that you're leaving the lab, share
+lab news, and add photos to the gallery. It's all done with GitHub issue
+forms (and, for profiles, a short form of our own); no coding is needed.
 
 **Website managers:** how the site is built and run is
 [further down](#for-website-managers).
@@ -15,26 +16,30 @@ all done with a short form and a GitHub issue; no coding is needed.
 - [Joining the lab](#joining-the-lab)
 - [Adding papers or changing your profile](#adding-papers-or-changing-your-profile)
 - [Leaving the lab](#leaving-the-lab)
+- [Sharing news](#sharing-news)
+- [Adding photos to the gallery](#adding-photos-to-the-gallery)
 - [Preprints and their published versions](#preprints-and-their-published-versions)
 - [After you submit](#after-you-submit)
 
 ### Before you start
 
-Everything goes through one of two GitHub issue forms. A website manager
-reviews what you send and publishes it, and the website then updates by
-itself.
+Everything goes through a GitHub issue form. A website manager reviews what
+you send and publishes it, and the website then updates by itself.
 
 | To… | Open this issue | You'll need |
 |---|---|---|
 | put yourself on the website when you join | [**New lab member**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | the profile form |
 | add new papers to your profile, or change anything else on it (current members and alumni alike) | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the profile form and your current profile file |
 | tell us you're leaving the lab | [**Update my profile**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
+| share lab news: an award, a new job, a graduation, a grant | [**Add news**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing else: just the form |
+| add photos to the gallery | [**Add photos to the gallery**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | your photos |
 
-Both are also under the repository's **Issues** tab > **New issue**.
+All of them are also under the repository's **Issues** tab > **New issue**.
 
 **You need a GitHub account,** and a website manager must have added you to
 this repository; ask one to. No GitHub account? Make your `.zip` with the
-profile form anyway and email it to a website manager.
+profile form anyway and email it to a website manager (or email them your
+news or photos).
 
 **The profile form** is a single file. Open
 [it on GitHub](https://github.com/blonn25/kortemmelab.ucsf.edu/blob/main/intake/profile-form.html),
@@ -126,6 +131,37 @@ Once it's published, you move from Current Members to Lab Alumni, with your
 years and positions on the alumni roster. Alumni can come back the same way
 at any time to update their current position.
 
+### Sharing news
+
+1. Open an [**Add news**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) issue, and
+   put a few words in the title (`News: Radhika's seed award`).
+2. Choose the **month** and type the **year** it happened.
+3. Write the **news** as one sentence, as it should appear on the website,
+   using first names as the News page does: "Radhika wins a 2024 Mary Anne
+   Koda-Kimble Seed Award for Innovation".
+4. Optionally add a **link** to a web page about it (an announcement or
+   article); the news item links to it.
+5. Click **Create**.
+
+News appears in date order, newest first.
+
+### Adding photos to the gallery
+
+1. Open an [**Add photos to the gallery**](https://github.com/blonn25/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml)
+   issue, and put a few words in the title (`Gallery: lab retreat 2026`).
+2. Drag up to 10 **photos** (JPG or PNG) into the *Photos* box, and wait for
+   each to finish uploading. Put the one you'd like captioned first.
+3. Optionally add a **caption**, e.g. "Lab retreat at Asilomar, May 2026". It's
+   shown under the first photo.
+4. Tick that everyone recognisable in the photos is happy for them to be on
+   the website, and click **Create**.
+
+The photos go at the top of the gallery. For the website, they're scaled
+down and their location data and other hidden details are removed. The photos
+you attach also stay visible on the issue, which anyone can see, so if one was
+taken somewhere private, turn its location off before attaching it (on an
+iPhone: *Share* > *Options* > turn off *Location*).
+
 ### Preprints and their published versions
 
 Preprints are welcome on the website. When one of yours is published, add
@@ -158,12 +194,13 @@ within two minutes. The reply either:
   what it changes, e.g. "current position, research summary, 1 paper added".
   Nothing more is needed from you: a website manager reviews it and publishes
   it, and your issue closes by itself once it's published. Or
-- **says what to fix**, e.g. a `.zip` attached to the wrong kind of issue, or
-  a DOI that doesn't exist.
+- **says what to fix**, e.g. a `.zip` attached to the wrong kind of issue, a
+  DOI that doesn't exist, or a missing month.
 
 To fix something, or to change your mind before it's published, **edit the
-issue**: the ⋯ menu on your issue's first post > *Edit*. Attach a new `.zip`
-(save again from the form) and click *Update comment*. The check runs again,
+issue**: the ⋯ menu on your issue's first post > *Edit*. Change what's needed
+(for a profile, attach a new `.zip` saved again from the form) and click
+*Update comment*. The check runs again,
 and the pull request updates itself. There's no need to open a new issue.
 
 If the reply says something you don't understand, or nothing appears after a
@@ -176,12 +213,14 @@ The website is plain HTML in `docs/`, built from Markdown files in
 Pages. `archive/` keeps a copy of the old Weebly site for reference. The
 repository is public, so anything committed to it is public too.
 
-Day to day, the job is reviewing what lab members submit, just below.
+Day to day, the job is reviewing what lab members submit (profiles, news
+and photos), just below.
 Everything else is in the dropdowns after it:
 
 - **Building and publishing the website:** building `docs/` locally, the
-  automatic rebuild on every push, what each page is made from, the look, and
-  GitHub Pages with the kortemmelab.ucsf.edu address.
+  automatic rebuild on every push, what each page is made from, the look,
+  adding news or photos by hand, and GitHub Pages with the kortemmelab.ucsf.edu
+  address.
 - **Where everything is:** the repository's layout, and how people's files
   are organized.
 - **Publications and the bibliography:** how every publication list is
@@ -196,10 +235,10 @@ Everything else is in the dropdowns after it:
 ### Reviewing and publishing submissions
 
 1. **Open the pull request** linked from the issue (or from the **Pull
-   requests** tab). Its description says what changes, shows the photo if
-   there's a new one, lists any preprints it replaces, and notes anything worth
-   a look, such as a DOI that was left out because it doesn't resolve.
-2. **Check who sent it.** The description compares the GitHub account that
+   requests** tab). Its description says what changes, shows any new photos,
+   lists any preprints it replaces, and notes anything worth a look, such as a
+   DOI that was left out because it doesn't resolve.
+2. **For a profile, check who sent it.** The description compares the GitHub account that
    opened the issue with the GitHub link already on that profile:
    - **✓ Opened by … the GitHub account on this profile:** it's them.
    - **⚠ … but this profile's GitHub link is …:** someone else's account. Make
@@ -209,7 +248,13 @@ Everything else is in the dropdowns after it:
      profiles. Check the change looks right for that person.
 3. **Look at *Files changed*:** the profile text, any new photo, and the
    redrawn publication lists. A profile moving to Lab Alumni shows as a file
-   renamed from `current-members/` to `alumni/`.
+   renamed from `current-members/` to `alumni/`. For **news**, it's one line in
+   `content/news.md`: check the wording and date. For **photos**, they're new
+   files in `content/images/gallery/` (already scaled down, with their
+   metadata removed) plus a few lines at the top of `content/gallery.md`:
+   check the photos are suitable and the caption reads well. To fix wording
+   yourself, edit the file in the pull request (*Files changed* > ⋯ > *Edit
+   file*) before merging.
 4. **Merge** it (*Merge pull request* > *Confirm merge*), and delete the
    branch when GitHub offers. The issue closes, and the *Build the website*
    workflow rebuilds `docs/` within a couple of minutes. Then `git pull`
@@ -333,9 +378,30 @@ The Gallery shows its photos as a carousel, as the old site did: one large
 photo with its caption, arrows (or the arrow keys, or a swipe on a phone) to
 move through them, and a strip of thumbnails below. It's switched on by
 `carousel: true` in `content/gallery.md`'s header and drawn by
-`theme/carousel.js` from the page's photo grid, so to add a photo, add it to
-`content/gallery.md` like the others. Without JavaScript the grid shows
-instead.
+`theme/carousel.js` from the page's photo grid, so the gallery is just the
+list of photos in `content/gallery.md`, top first. Without JavaScript the grid
+shows instead.
+
+#### Adding news or photos by hand
+
+The *Add news* and *Add photos to the gallery* issues use
+`scripts/add-content.py`, which can be run directly too:
+
+```bash
+python3 scripts/add-content.py news --month June --year 2025 --text "Colin receives tenure" --link https://…
+```
+
+```bash
+python3 scripts/add-content.py photos --caption "Lab retreat 2026" ~/Downloads/a.jpg ~/Downloads/b.jpg
+```
+
+News goes into `content/news.md` in date order. Photos go at the top of the
+gallery, saved in `content/images/gallery/`, turned upright, scaled down to at
+most 1600 pixels, and **without their metadata**, so no GPS location is
+published. Photos need Pillow (`python3 -m pip install pillow`); the workflow
+installs it on GitHub. Both take `--dry-run`. Editing `content/news.md` or
+`content/gallery.md` by hand works too; strip a photo's location yourself if
+you do.
 
 #### Publishing on GitHub Pages
 
@@ -381,15 +447,16 @@ kortemmelab.ucsf.edu/
 │   ├── current-members/   one file per current lab member
 │   ├── alumni/            one file per alumnus (including 17 roster-only)
 │   ├── images/            every photo the pages use
-│   │   └── people/        every profile's headshot
+│   │   ├── people/        every profile's headshot
+│   │   └── gallery/       photos added to the gallery since the move
 │   ├── bibliography.json  every paper cited on the site, keyed by DOI
 │   ├── journal-abbreviations.json   Nature-style journal abbreviations
 │   ├── rotation-students.csv   past rotation students, for Lab Alumni
 │   └── archive/           old pages kept but not in use (18)
 ├── theme/                 the look: layout.html, site.css, carousel.js, fonts/
 ├── scripts/               build-site.py, render-publications.py, bibliography.py,
-│                          add-person.py and profile-issue.py run the site;
-│                          the rest made the copy of the old site
+│                          add-person.py, add-content.py and submission-issue.py
+│                          run the site; the rest made the copy of the old site
 ├── intake/                adding and updating lab members
 │   ├── profile-form.html  the form members fill in; saves a .zip
 │   ├── github-issue-route.md  joining, updating and leaving through issues; setup
@@ -397,10 +464,11 @@ kortemmelab.ucsf.edu/
 │   ├── profile-template.md   the shape of a profile
 │   └── photos/            downloaded headshots go here (kept out of git)
 ├── docs/                  the website itself, generated: don't edit, rebuild
-├── .github/               on GitHub: the New lab member and Update my profile
-│                          issue forms, and workflows that rebuild docs/ after each push
-│                          (build-site.yml) and turn those issues into pull requests
-│                          (profile-submission.yml)
+├── .github/               on GitHub: the issue forms (New lab member, Update my
+│                          profile, Add news, Add photos to the gallery), and
+│                          workflows that rebuild docs/ after each push
+│                          (build-site.yml) and turn those issues into pull
+│                          requests (submission.yml)
 └── archive/               the old site and how it was copied; for reference only
     ├── site/              the old website; this folder is its web root
     ├── structure/         inventories of the old site (pages, images, papers, emails)

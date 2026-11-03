@@ -1,0 +1,105 @@
+name: Submission
+
+# Handles the website's issue forms: "New lab member", "Update my profile",
+# "Add news" and "Add photos to the gallery". When one is opened (or edited),
+# this reads it -- the .zip from the profile form, the news item, or the
+# photos -- checks it, makes the change on a branch of its own, and opens a
+# pull request. A website manager merges it to publish; build-site.yml then
+# rebuilds the website. The outcome (the pull request, or what to fix) is
+# posted as a comment on the issue, and kept up to date if they edit it.
+#
+# Nothing here can change main: it only pushes a submission/issue-N branch.
+# The issue's text never reaches a shell command; scripts/submission-issue.py
+# reads it from the environment. See intake/github-issue-route.md.
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+# One run per issue; a newer edit replaces a run still in progress.
+concurrency:
+  group: submission-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    # Only open issues from the forms, from people with access to the repository.
+    if: >-
+      github.event.issue.state == 'open' &&
+      (contains(github.event.issue.labels.*.name, 'new-member') ||
+       contains(github.event.issue.labels.*.name, 'profile-update') ||
+       contains(github.event.issue.labels.*.name, 'news') ||
+       contains(github.event.issue.labels.*.name, 'gallery') ||
+       startsWith(github.event.issue.title, 'New lab member') ||
+       startsWith(github.event.issue.title, 'Profile update') ||
+       startsWith(github.event.issue.title, 'News:') ||
+       startsWith(github.event.issue.title, 'Gallery:')) &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.issue.author_association)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write          # push the submission/issue-N branch
+      pull-requests: write     # open the pull request
+      issues: write            # comment and label
+    env:
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+      # which form it came from: the script reads its label, or else its title
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      ISSUE_LABELS: ${{ toJSON(github.event.issue.labels.*.name) }}
+      BASE_BRANCH: ${{ github.event.repository.default_branch }}
+      GH_TOKEN: ${{ github.token }}
+      # Only needed if the repository is private, where GitHub may not let the
+      # workflow's own token read attachments; the issue comment says so.
+      INTAKE_TOKEN: ${{ secrets.INTAKE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read the issue
+        id: fetch
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python3 scripts/submission-issue.py fetch
+
+      # Photos are scaled down and their metadata removed with Pillow, the
+      # standard Python imaging library. Nothing else needs it.
+      - name: Install Pillow (photos only)
+        if: steps.fetch.outputs.lane == 'gallery'
+        run: |
+          python3 -m pip install --quiet --only-binary=:all: pillow==12.0.0
+
+      - name: Check the submission
+        id: check
+        if: steps.fetch.outputs.lane != ''
+        run: python3 scripts/submission-issue.py check
+
+      - name: Make the change on a branch
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          branch="submission/issue-$ISSUE_NUMBER"
+          git switch -c "$branch"
+          python3 scripts/submission-issue.py apply
+          # Make sure the site still builds with the change. docs/ itself is
+          # left out of the pull request: it's rebuilt once this is merged,
+          # so two pull requests can't collide in the generated pages.
+          python3 scripts/build-site.py
+          git checkout -- docs
+          git clean -fdq docs
+          git add -A content
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Submission from issue #$ISSUE_NUMBER" \
+                        -m "Via .github/workflows/submission.yml."
+          git push --force origin "$branch"
+
+      - name: Open or update the pull request
+        if: steps.check.outputs.ok == 'true'
+        run: python3 scripts/submission-issue.py pr
+
+      - name: Report back on the issue
+        if: always()
+        run: python3 scripts/submission-issue.py comment

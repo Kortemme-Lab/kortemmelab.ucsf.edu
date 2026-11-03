@@ -647,7 +647,7 @@ def add_from_zips(paths, dry_run, no_render, report_path=None, expect=None):
 
 
 def finish(report, report_path, dry_run, no_render, changed, bib_added, E, bib_dirty=False):
-    if report_path:                         # for .github/workflows/profile-submission.yml
+    if report_path:                         # for .github/workflows/submission.yml
         with open(report_path, "w", encoding="utf-8") as fh:
             json.dump(report, fh, indent=2, ensure_ascii=False)
     if dry_run:

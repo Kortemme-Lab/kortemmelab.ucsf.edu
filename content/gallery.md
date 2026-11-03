@@ -60,7 +60,7 @@ images:
 carousel: true
 ---
 
-## Gallery (50 images)
+## Gallery
 
 ![Alumni from all over the world returned to San Francisco for the Kortemme Lab's 20 year reunion! April, 2024](images/img-0890.jpg)
 *Alumni from all over the world returned to San Francisco for the Kortemme Lab's 20 year reunion! April, 2024*

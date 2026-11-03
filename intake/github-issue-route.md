@@ -1,4 +1,4 @@
-# Profiles through GitHub issues: joining, updating, leaving
+# Submitting through GitHub issues: profiles, news and photos
 
 Lab members add or change their own profiles by opening a GitHub issue. A
 workflow checks what they sent and turns it into a pull request; a website
@@ -9,6 +9,17 @@ forms (Issues > New issue):
 |---|---|---|
 | **New lab member** | someone joining | the `.zip` saved by the profile form |
 | **Update my profile** | current members and alumni: new papers, any other change, or leaving the lab | the `.zip` from the form's *Update my profile* mode |
+| **Add news** | anyone with news for the News page | a month, a year, one sentence and an optional link |
+| **Add photos to the gallery** | anyone with photos for the gallery | up to 10 photos, an optional caption, and a tick that everyone pictured agrees |
+
+News and photos need no form of our own: the issue form is enough. The news
+item goes into `content/news.md` in date order; the photos go at the top of
+`content/gallery.md`, saved in `content/images/gallery/` after being turned
+upright, scaled down to at most 1600 pixels and stripped of their metadata
+(including GPS location), by `scripts/add-content.py`. The workflow installs
+Pillow, the standard Python imaging library, for that step only. The photos
+attached to the issue itself stay as they were uploaded, and are as public as
+the issue.
 
 ## What the member does
 
@@ -60,8 +71,9 @@ so putting your own account into someone else's `.zip` doesn't get past it.
 
 ## What happens in between
 
-`.github/workflows/profile-submission.yml` runs when either is opened,
-edited or reopened. It uses `scripts/profile-issue.py` for the GitHub
+For profiles, in more detail: `.github/workflows/submission.yml` runs when
+any of the forms' issues is opened, edited or reopened. It uses
+`scripts/submission-issue.py` for the GitHub
 parts and `scripts/add-person.py` for the rest:
 
 1. **Get the .zip.** It finds the newest `.zip` attached and downloads it.
@@ -69,7 +81,7 @@ parts and `scripts/add-person.py` for the rest:
    profile mustn't exist yet. An update must match a profile that does exist,
    and must actually change something. A `.zip` from the wrong mode is turned
    away with a note saying which issue it belongs on.
-3. **Make the change on a branch** of its own, `profile/issue-N`, made fresh
+3. **Make the change on a branch** of its own, `submission/issue-N`, made fresh
    from `main`. A new profile is filed. An update is **merged** into the
    existing profile: only the fields the form edits are replaced. Extra
    links, the old-site records and anything added by hand are kept, and so is
@@ -133,7 +145,7 @@ The `.zip` and the issue text come from outside, so:
 
 - **Only collaborators' issues are handled,** which matters if the
   repository is ever public.
-- **The issue's text is never run.** It reaches `profile-issue.py` as an
+- **The issue's text is never run.** It reaches `submission-issue.py` as an
   environment variable and is only parsed there, never put into a shell
   command.
 - **Only `github.com` attachment links are downloaded,** up to 20 MB, and only
@@ -143,7 +155,7 @@ The `.zip` and the issue text come from outside, so:
   it's an update. All must be in the expected folders, with real image data.
   Anything else stops it.
 - **The workflow can't publish anything.** It pushes only its own
-  `profile/issue-N` branch. Only a person's merge changes `main`.
+  `submission/issue-N` branch. Only a person's merge changes `main`.
 
 ## Good to know
 

@@ -1,0 +1,50 @@
+name: Add news
+description: Share lab news for the website's News page, such as an award, a new job, a graduation or a grant.
+title: "News: "
+labels: ["news"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Put a few words in the title above (e.g. `News: Radhika's seed award`), fill in the boxes below,
+        and click **Create**. A check replies on this issue within a couple of minutes, and a website
+        manager then publishes it on the website's News page.
+  - type: dropdown
+    id: month
+    attributes:
+      label: Month
+      description: When it happened.
+      options: [January, February, March, April, May, June, July, August, September, October, November, December]
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: Year
+      placeholder: "2026"
+    validations:
+      required: true
+  - type: textarea
+    id: news
+    attributes:
+      label: News
+      description: >-
+        One sentence, as it should appear on the website, using first names as the News page
+        does. For example: "Radhika wins a 2024 Mary Anne Koda-Kimble Seed Award for Innovation".
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link (optional)
+      description: A web page about it, such as an announcement or article. The news item links to it.
+      placeholder: https://…
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else for the website manager?
+      description: Optional.
+    validations:
+      required: false

@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""The GitHub side of profile submissions: "New lab member" and "Update my profile" issues.
+"""The GitHub side of submissions made through the website's issue forms.
 
-Run by .github/workflows/profile-submission.yml, one step at a time:
+Run by .github/workflows/submission.yml, one step at a time:
 
-    fetch     find the profile .zip attached to the issue and download it
-    check     check the submission, as add-person.py --dry-run does
+    fetch     read the issue: download its profile .zip or photos, or read its news
+    check     check the submission, as add-person.py / add-content.py --dry-run do
     apply     make the change for real, on the branch the workflow has checked out
     pr        open, or update, the pull request for that branch
     comment   report back on the issue: the pull request, or what to fix
 
-There are two kinds of submission, one per issue form, reviewed the same way:
+There are four kinds, one per issue form (.github/ISSUE_TEMPLATE/), all
+reviewed the same way:
   - new: a .zip from the profile form, on a New lab member issue
-  - update: a .zip from the form's "Update my profile" mode, on an Update my
-    profile issue, merged into the existing profile (which moves to Lab
-    Alumni if it gives an end year)
+  - update: a .zip from the form's "Update my profile" mode, merged into the
+    existing profile (which moves to Lab Alumni if it gives an end year)
+  - news: a month, year and sentence, on an Add news issue
+  - gallery: photos and a caption, on an Add photos to the gallery issue; the
+    photos are scaled down and their metadata (GPS location) removed
 
 Everything from the issue reaches this script through environment variables
 and is only ever parsed here, never placed in a shell command. The steps
@@ -26,25 +29,55 @@ import datetime, json, os, re, subprocess, sys, urllib.error, urllib.parse, urll
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP = os.environ.get("RUNNER_TEMP") or "/tmp"
-STATE = os.path.join(TEMP, "profile-submission-state.json")
-REPORT = os.path.join(TEMP, "profile-submission-report.json")
+STATE = os.path.join(TEMP, "submission-state.json")
+REPORT = os.path.join(TEMP, "submission-report.json")
 ZIP = os.path.join(TEMP, "submission.zip")
+PHOTOS = os.path.join(TEMP, "photos")
 API = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 SERVER = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
 ISSUE = os.environ.get("ISSUE_NUMBER", "")
 AUTHOR = os.environ.get("ISSUE_AUTHOR", "")
-KIND = "update" if os.environ.get("SUBMISSION_KIND") == "update" else "new"
 BASE = os.environ.get("BASE_BRANCH", "main")
-BRANCH = f"profile/issue-{ISSUE}"
-LABELS = {"new": ("new-member", "A new lab member's profile"),
-          "update": ("profile-update", "A change to a lab member's profile")}
-MARKER = "<!-- profile-submission-bot -->"       # finds this workflow's own comment again
+BRANCH = f"submission/issue-{ISSUE}"
+# Each kind: its label (set by its issue form), the title its form starts with, and a description
+KINDS = {"new": ("new-member", "New lab member", "A new lab member's profile"),
+         "update": ("profile-update", "Profile update", "A change to a lab member's profile"),
+         "news": ("news", "News:", "Lab news for the website"),
+         "gallery": ("gallery", "Gallery:", "Photos for the website's gallery")}
+
+
+def issue_kind():
+    try:
+        labels = set(json.loads(os.environ.get("ISSUE_LABELS") or "[]"))
+    except ValueError:
+        labels = set()
+    title = os.environ.get("ISSUE_TITLE", "")
+    for kind, (label, prefix, _) in KINDS.items():
+        if label in labels:
+            return kind
+    for kind, (label, prefix, _) in KINDS.items():
+        if title.startswith(prefix):
+            return kind
+    return os.environ.get("SUBMISSION_KIND") if os.environ.get("SUBMISSION_KIND") in KINDS else "new"
+
+
+KIND = issue_kind()
+MARKER = "<!-- submission-bot -->"               # finds this workflow's own comment again
 MAX_BYTES = 20_000_000
+MAX_PHOTOS = 10
 # An attachment dragged into an issue: user-attachments/files/<id>/<name>.zip,
 # or the older <owner>/<repo>/files/<id>/<name>.zip
 ATTACHMENT = re.compile(r"https://github\.com/(?:user-attachments/files/\d+|[\w.-]+/[\w.-]+/files/\d+)"
                         r"/[^\s)\]\"'<>]+?\.zip", re.I)
+# An image dragged into an issue: user-attachments/assets/<uuid>, or the older forms
+IMAGE = re.compile(r"https://(?:github\.com/user-attachments/assets/[0-9a-f-]{36}"
+                   r"|github\.com/[\w.-]+/[\w.-]+/assets/\d+/[0-9a-f-]{36}"
+                   r"|user-images\.githubusercontent\.com/\d+/[^\s)\]\"'<>]+?\.(?:png|jpe?g))", re.I)
+# The issue forms' field labels, which head each answer in the issue's text
+FIELDS = {"month": "Month", "year": "Year", "news": "News", "link": "Link (optional)",
+          "photos": "Photos", "caption": "Caption (optional)"}
+MAGIC = {"zip": (b"PK\x03\x04",), "image": (b"\xff\xd8", b"\x89PNG", b"RIFF")}
 
 
 # --- shared state, outputs, the GitHub API -------------------------------------------
@@ -79,7 +112,7 @@ def api(method, path, body=None):
         data=json.dumps(body).encode() if body is not None else None,
         headers={"Authorization": f"Bearer {os.environ['GH_TOKEN']}",
                  "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
-                 "User-Agent": "kortemmelab-profile-submission"})
+                 "User-Agent": "kortemmelab-submission"})
     with urllib.request.urlopen(req, timeout=30) as r:
         data = r.read()
         return json.loads(data) if data else None
@@ -102,23 +135,57 @@ class NoAuthElsewhere(urllib.request.HTTPRedirectHandler):
         return new
 
 
-def download(url, token):
+def download(url, token, what="zip"):
     req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}",
                                                "Accept": "application/octet-stream",
-                                               "User-Agent": "kortemmelab-profile-submission"})
+                                               "User-Agent": "kortemmelab-submission"})
     opener = urllib.request.build_opener(NoAuthElsewhere)
     with opener.open(req, timeout=60) as r:
         data = r.read(MAX_BYTES + 1)
     if len(data) > MAX_BYTES:
-        raise ValueError("the .zip is over 20 MB")
-    if not data.startswith(b"PK\x03\x04"):
-        raise ValueError("what came back wasn't a .zip (most likely a sign-in page)")
+        raise ValueError(f"the {'.zip' if what == 'zip' else 'photo'} is over 20 MB")
+    if not data.startswith(MAGIC[what]):
+        raise ValueError(f"what came back wasn't a {'.zip' if what == 'zip' else 'JPG or PNG'} "
+                         "(most likely a sign-in page)")
     return data
+
+
+def fetch_file(url, what):
+    """The file at an attachment URL, trying the workflow's token, then INTAKE_TOKEN."""
+    tried = []
+    for name in ("GH_TOKEN", "INTAKE_TOKEN"):
+        token = os.environ.get(name)
+        if not token:
+            print(f"{name}: not set")              # INTAKE_TOKEN: no repository secret by that name
+            tried.append(f"{name}: not set")
+            continue
+        try:
+            data = download(url, token, what)
+        except (urllib.error.URLError, ValueError, OSError) as e:
+            print(f"{name}: refused ({getattr(e, 'code', '') or e})")
+            tried.append(f"{name}: {getattr(e, 'code', '') or e}")
+            continue
+        print(f"{name}: downloaded {len(data)} bytes")
+        return data, tried
+    return None, tried
+
+
+def fields(body):
+    """An issue form's answers, by field label ("_No response_" counts as empty)."""
+    out, label = {}, None
+    for ln in (body or "").replace("\r\n", "\n").split("\n"):
+        m = re.match(r"^###\s+(.+?)\s*$", ln)
+        if m:
+            label = m.group(1)
+            out[label] = []
+        elif label:
+            out[label].append(ln)
+    return {k: ("" if "\n".join(v).strip() == "_No response_" else "\n".join(v).strip()) for k, v in out.items()}
 
 
 def ensure_label():
     """Make sure the issue carries its label (best effort: it's only for sorting)."""
-    name, description = LABELS[KIND]
+    name, _, description = KINDS[KIND]
     try:
         api("POST", f"/repos/{REPO}/labels", {"name": name, "color": "4caac9", "description": description})
     except urllib.error.HTTPError:
@@ -133,38 +200,68 @@ def fetch():
     if REPO:
         ensure_label()
     body = os.environ.get("ISSUE_BODY", "")
+    answers = fields(body)
     remember(kind=KIND)
+    print(f"kind: {KIND}")
+    if KIND == "news":
+        news = {k: answers.get(FIELDS[k], "") for k in ("month", "year", "news", "link")}
+        if not (news["month"] and news["year"] and news["news"]):
+            remember(stage="fetch", problem="news_missing")
+            return output(lane="")
+        remember(stage="fetched", lane="news", news=news)
+        return output(lane="news")
+    if KIND == "gallery":
+        urls = list(dict.fromkeys(IMAGE.findall(answers.get(FIELDS["photos"], "") or body)))
+        if not urls:
+            remember(stage="fetch", problem="no_photos")
+            return output(lane="")
+        if len(urls) > MAX_PHOTOS:
+            remember(stage="fetch", problem="too_many_photos", count=len(urls))
+            return output(lane="")
+        os.makedirs(PHOTOS, exist_ok=True)
+        files = []
+        for n, url in enumerate(urls, 1):
+            print(f"photo {n}: {url}")
+            data, tried = fetch_file(url, "image")
+            if data is None:
+                remember(stage="fetch", problem="download", url=url, tried=tried, what="photo")
+                return output(lane="")
+            path = os.path.join(PHOTOS, f"photo-{n}")
+            with open(path, "wb") as fh:
+                fh.write(data)
+            files.append(path)
+        remember(stage="fetched", lane="gallery", photos=files, caption=answers.get(FIELDS["caption"], ""))
+        return output(lane="gallery")
     urls = ATTACHMENT.findall(body)
     if not urls:
         remember(stage="fetch", problem="no_zip")
         return output(lane="")
-    url, tried = urls[-1], []                # the newest attachment, if there are several
+    url = urls[-1]                           # the newest attachment, if there are several
     print(f"attachment: {url}")
-    for name in ("GH_TOKEN", "INTAKE_TOKEN"):
-        token = os.environ.get(name)
-        if not token:
-            print(f"{name}: not set")              # INTAKE_TOKEN: no repository secret by that name
-            tried.append(f"{name}: not set")
-            continue
-        try:
-            data = download(url, token)
-        except (urllib.error.URLError, ValueError, OSError) as e:
-            print(f"{name}: refused ({getattr(e, 'code', '') or e})")
-            tried.append(f"{name}: {getattr(e, 'code', '') or e}")
-            continue
-        print(f"{name}: downloaded {len(data)} bytes")
-        with open(ZIP, "wb") as fh:
-            fh.write(data)
-        remember(stage="fetched", lane="zip", url=url)
-        return output(lane="zip")
-    remember(stage="fetch", problem="download", url=url, tried=tried)
-    output(lane="")
+    data, tried = fetch_file(url, "zip")
+    if data is None:
+        remember(stage="fetch", problem="download", url=url, tried=tried, what=".zip")
+        return output(lane="")
+    with open(ZIP, "wb") as fh:
+        fh.write(data)
+    remember(stage="fetched", lane="zip", url=url)
+    output(lane="zip")
 
 
 # --- check and apply -------------------------------------------------------------------------
 def add_person(dry_run):
-    cmd = [sys.executable, os.path.join(ROOT, "scripts", "add-person.py"), "--report", REPORT,
-           "--zip", ZIP, "--expect", KIND]
+    """Run the script that makes this kind of change; its report says what it found."""
+    s, scripts = state(), os.path.join(ROOT, "scripts")
+    if s.get("lane") == "news":
+        n = s["news"]
+        cmd = [sys.executable, os.path.join(scripts, "add-content.py"), "news", "--month", n["month"],
+               "--year", n["year"], "--text", n["news"], "--link", n["link"]]
+    elif s.get("lane") == "gallery":
+        cmd = [sys.executable, os.path.join(scripts, "add-content.py"), "photos",
+               "--caption", s.get("caption", "")] + s["photos"]
+    else:
+        cmd = [sys.executable, os.path.join(scripts, "add-person.py"), "--zip", ZIP, "--expect", KIND]
+    cmd += ["--report", REPORT]
     run = subprocess.run(cmd + (["--dry-run"] if dry_run else []), capture_output=True, text=True)
     print(run.stdout, run.stderr)
     try:
@@ -201,12 +298,43 @@ def apply():
 
 # --- the pull request ------------------------------------------------------------------------
 def pr_title(e):
-    name = e.get("name") or "a lab member"
-    return {"new": f"Add {name} to the website", "update": f"Update {name}'s profile"}[e.get("kind", "new")]
+    kind, name = e.get("kind", "new"), e.get("name") or "a lab member"
+    if kind == "news":
+        text = e.get("text", "")
+        return f"News: {text if len(text) <= 70 else text[:67].rstrip() + '…'}"
+    if kind == "gallery":
+        n = len(e.get("photos") or [])
+        return f"Gallery: {n} photo{'s' * (n != 1)}" + (f", “{e['caption']}”" if e.get("caption") else "")
+    return {"new": f"Add {name} to the website", "update": f"Update {name}'s profile"}[kind]
+
+
+def content_pr_body(e):
+    """News or gallery: what will appear, and where."""
+    notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
+    if e["kind"] == "news":
+        what = (f"Adds a news item for **{e.get('date')}** to the News page, from #{ISSUE}:\n\n"
+                f"> {e.get('text')}" + (f"\n>\n> Links to {e['link']}" if e.get("link") else "")
+                + f"\n\nIt goes in date order in `content/news.md`.")
+    else:
+        pics = "".join(f"\n<img src=\"{SERVER}/{REPO}/blob/{BRANCH}/{p['file']}?raw=true\" width=\"220\" "
+                       f"alt=\"Photo {k}\"> " for k, p in enumerate(e.get("photos") or [], 1))
+        sizes = "".join(f"\n- `{p['file']}`: {p['saved']} pixels (from {p['original']})" for p in e.get("photos") or [])
+        what = (f"Adds {len(e.get('photos') or [])} photo(s) to the top of the gallery, from #{ISSUE}"
+                + (f", captioned “{e['caption']}” (on the first photo)" if e.get("caption") else ", with no caption")
+                + f".\n{pics}\n\nEach was turned upright, scaled down, and saved **without its metadata**, "
+                "so the camera's GPS location isn't published:" + sizes)
+    return (what + (f"\n\n**Worth a look:**{notes}" if notes else "")
+            + f"\n\nSubmitted by `{AUTHOR}`, who confirmed on the issue "
+            + ("that everyone pictured is happy for the photos to be online." if e["kind"] == "gallery" else "that it can be published.")
+            + "\n\n**To publish:** check it under *Files changed*, then merge. The website rebuilds by itself. "
+            "To ask for changes, comment on the issue; when they edit it, this pull request updates itself."
+            f"\n\nCloses #{ISSUE}\n\n{MARKER}")
 
 
 def pr_body(e):
     kind = e.get("kind", "new")
+    if kind in ("news", "gallery"):
+        return content_pr_body(e)
     photo = (f"\n\n<img src=\"{SERVER}/{REPO}/blob/{BRANCH}/content/images/people/{e['photo']}?raw=true\" "
              f"width=\"180\" alt=\"{e['name']}'s headshot\">") if e.get("photo") else ""
     what = {"new": f"Adds **{e['name']}** ({e.get('role') or 'no role given'}) to the website",
@@ -259,17 +387,36 @@ def pr():
 def message():
     s, run = state(), f"{SERVER}/{REPO}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
     e, stage = s.get("report", {}), s.get("stage")
-    fix = ("Fix it in the profile form, save again, then **edit this issue** and drag the new .zip into its box. "
-           "This check runs again by itself.")
+    fix = {"news": "**Edit this issue** to correct it.",
+           "gallery": "**Edit this issue** to change the photos or caption."}.get(
+        KIND, "Fix it in the profile form, save again, then **edit this issue** and drag the new .zip into its box.") \
+        + " This check runs again by itself."
     if stage == "pr" and s.get("pr_url"):
         notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
+        kind = e.get("kind", "new")
+        if kind in ("news", "gallery"):
+            return (f"Thanks! Pull request #{s['pr_number']} adds "
+                    + ("your news item to the News page" if kind == "news" else
+                       f"{len(e.get('photos') or [])} photo(s) to the gallery, scaled down and with their location data removed")
+                    + ". A website manager will look it over and publish it."
+                    + (f"\n\nA few things they may want to check:{notes}" if notes else "")
+                    + "\n\nTo change anything before then, edit this issue; the pull request updates by itself.")
         done = {"new": "Your profile passed its checks, and",
-                "update": "Your changes passed their checks, and"}[e.get("kind", "new")]
+                "update": "Your changes passed their checks, and"}[kind]
         return (f"Thanks, {e.get('name', '')}! {done} pull request #{s['pr_number']} makes the change: "
                 f"{', '.join(e.get('changes') or [])}. A website manager will look it over and publish it."
                 + (f"\n\nA few things they may want to check:{notes}" if notes else "") +
                 "\n\nTo change anything before then, save a new .zip from the profile form and attach it "
                 "by editing this issue; the pull request updates by itself.")
+    if stage == "fetch" and s.get("problem") == "news_missing":
+        return ("I need the month, the year and the news itself. **Edit this issue** to fill them in, "
+                "and this check runs again by itself.")
+    if stage == "fetch" and s.get("problem") == "no_photos":
+        return ("I couldn't find any photos in this issue. **Edit this issue** and drag your photos (JPG or "
+                "PNG) into the *Photos* box. Once they're there, this check runs again by itself.")
+    if stage == "fetch" and s.get("problem") == "too_many_photos":
+        return (f"That's {s.get('count')} photos; please send at most {MAX_PHOTOS} per issue. **Edit this "
+                "issue** to remove some (open another issue for the rest).")
     if stage == "fetch" and s.get("problem") == "no_zip":
         box, file = (("Your updated profile .zip", "…-profile-update.zip") if KIND == "update"
                      else ("Your profile .zip", "…-profile.zip"))
@@ -277,7 +424,7 @@ def message():
                 f"`{file}` (from the profile form) into the *{box}* box. Once it's there, this check "
                 "runs again by itself.")
     if stage == "fetch" and s.get("problem") == "download":
-        return ("I found your .zip but couldn't download it, so nothing has happened yet. This is a "
+        return (f"I found your {s.get('what', '.zip')} but couldn't download it, so nothing has happened yet. This is a "
                 "setting on the website's side, not something you did.\n\n"
                 "**For the website manager:** GitHub didn't let this workflow read the issue's attachment "
                 f"({'; '.join(s.get('tried') or ['no token'])}). "
