@@ -9,12 +9,12 @@ external_links:
   - https://graduate.ucsf.edu/programs/
   - https://biophysics.ucsf.edu/
   - https://tetrad.ucsf.edu
-  - https://bioinformatics.ucsf.edu/
+  - https://bmi.ucsf.edu/
   - http://ccb.ucsf.edu/
   - https://graduate.ucsf.edu/bioe/
 ---
 
-Graduate students join our lab after acceptance into a [UCSF Graduate Program](https://graduate.ucsf.edu/programs/) and first-year rotations. I am a member of five graduate programs: [Biophysics](https://biophysics.ucsf.edu/), [Tetrad,](https://tetrad.ucsf.edu)[Bioinformatics](https://bioinformatics.ucsf.edu/), [Chemistry and Chemical Biology (CCB)](http://ccb.ucsf.edu/) and the [joint UC Berkeley - UCSF Graduate Program in Bioengineering](https://graduate.ucsf.edu/bioe/). Prospective Graduate students should apply to one of these programs; we cannot accept graduate students directly into our lab.
+Graduate students join our lab after acceptance into a [UCSF Graduate Program](https://graduate.ucsf.edu/programs/) and first-year rotations. I am a member of five graduate programs: [Biophysics](https://biophysics.ucsf.edu/), [Tetrad](https://tetrad.ucsf.edu), [Bioinformatics](https://bmi.ucsf.edu/), [Chemistry and Chemical Biology (CCB)](http://ccb.ucsf.edu/) and the [joint UC Berkeley - UCSF Graduate Program in Bioengineering](https://graduate.ucsf.edu/bioe/). Prospective Graduate students should apply to one of these programs; we cannot accept graduate students directly into our lab.
 
 Post-doctoral candidates should be highly motivated and experienced, with a passion for science and interest in quantitative biology, computational method development including deep learning, molecular modeling and design, or molecular & cellular engineering. The Kortemme Lab provides a stimulating interdisciplinary environment; we have diverse backgrounds in computer science, physics, engineering, biology and biochemistry. Candidates should have a deep scientific background and knowledge in one or more of these areas, and have a strong record of scientific contributions (typically first-author journal publications or preprints).
 
