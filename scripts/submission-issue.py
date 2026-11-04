@@ -452,6 +452,10 @@ def pr():
     owner = REPO.split("/")[0]
     try:
         found = api("GET", f"/repos/{REPO}/pulls?state=open&head={urllib.parse.quote(owner + ':' + BRANCH)}")
+        if not found and REFRESH:            # merged or closed while it was being remade
+            remember(gone=True)
+            print(f"no open pull request from {BRANCH} any more; not opening a new one")
+            return output(pr="")
         if found:
             p = api("PATCH", f"/repos/{REPO}/pulls/{found[0]['number']}", {"title": title, "body": body})
         else:
@@ -462,6 +466,23 @@ def pr():
         return output(pr="")
     remember(stage="pr", pr_url=p["html_url"], pr_number=p["number"])
     output(pr=p["html_url"])
+
+
+def still_open():
+    """On a refresh, just before pushing: is its pull request still open?
+
+    A manager may merge (or close) it while it's being remade. Pushing then
+    would bring the branch back, and the next step would open a second pull
+    request for something already published. Exits 1 if it's gone."""
+    if not (REFRESH and REPO):
+        return
+    owner = REPO.split("/")[0]
+    found = api("GET", f"/repos/{REPO}/pulls?state=open&head={urllib.parse.quote(owner + ':' + BRANCH)}")
+    issue = api("GET", f"/repos/{REPO}/issues/{ISSUE}")
+    if not found or issue.get("state") != "open":
+        remember(gone=True)
+        print(f"issue #{ISSUE}'s pull request was merged or closed while it was being remade; leaving it")
+        sys.exit(1)
 
 
 # --- refresh -----------------------------------------------------------------------------------
@@ -565,6 +586,8 @@ def problem(s, e, run):
 
 
 def comment():
+    if state().get("gone"):
+        return print("merged or closed during a refresh; the issue's reply is left as it was")
     when = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     attempt = os.environ.get("GITHUB_RUN_ATTEMPT", "1")
     body = f"{message()}\n\n<sub>Checked {when}" + (f", attempt {attempt}" if attempt != "1" else "") + \
@@ -582,7 +605,7 @@ def comment():
 
 if __name__ == "__main__":
     steps = {"allowed": allowed, "fetch": fetch, "check": check, "apply": apply, "pr": pr, "comment": comment,
-             "refresh": refresh}
+             "refresh": refresh, "still-open": still_open}
     if len(sys.argv) != 2 or sys.argv[1] not in steps:
         sys.exit(f"usage: {os.path.basename(sys.argv[0])} {'|'.join(steps)}")
     steps[sys.argv[1]]()

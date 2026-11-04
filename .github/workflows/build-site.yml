@@ -33,7 +33,9 @@ on:
       - ".github/workflows/build-site.yml"
   workflow_dispatch:
 
-# One build at a time, so two quick pushes can't race to commit docs/.
+# One build at a time, so two quick pushes can't race to commit docs/. Each
+# builds the latest main (not the commit that started it), so a build waiting
+# behind another includes everything merged so far.
 concurrency:
   group: build-site-${{ github.ref }}
   cancel-in-progress: false
@@ -46,6 +48,9 @@ jobs:
       contents: write          # to commit the rebuilt docs/ (not used on pull requests)
     steps:
       - uses: actions/checkout@v4
+        with:
+          # the latest main; on a pull request, the pull request as usual
+          ref: ${{ github.event_name != 'pull_request' && github.ref || '' }}
 
       - uses: actions/setup-python@v5
         with:
@@ -62,15 +67,24 @@ jobs:
       - name: Commit the rebuilt site
         if: github.event_name != 'pull_request'
         run: |
-          git add -A content docs
-          if git diff --cached --quiet; then
-            echo "docs/ was already up to date; nothing to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Rebuild the website" \
-                     -m "Automatic, by .github/workflows/build-site.yml after ${GITHUB_SHA::7}."
-          # someone may have pushed while this ran
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git add -A content docs
+            if git diff --cached --quiet; then
+              echo "docs/ was already up to date; nothing to commit."
+              exit 0
+            fi
+            git commit -q -m "Rebuild the website" \
+                          -m "Automatic, by .github/workflows/build-site.yml after $(git rev-parse --short HEAD)."
+            if git push origin HEAD:main; then exit 0; fi
+            # Someone merged while this ran. Rebuild from the newest main
+            # rather than rebasing, which would clash in the generated pages.
+            echo "main changed while this ran; rebuilding from the latest."
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python3 scripts/render-publications.py
+            python3 scripts/build-site.py
+          done
+          echo "main kept changing; run this workflow again by hand." >&2
+          exit 1
