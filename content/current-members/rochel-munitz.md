@@ -4,7 +4,6 @@ pronouns: ""
 role: "Graduate Student"
 program: ""
 years_in_lab: ""
-current_position: ""
 co_mentors: []
 summary: "I am interested in combining machine learning and experimental approaches to accelerate de novo protein design, particularly of protein switches."
 photo: "images/people/rochel-munitz.jpg"
