@@ -54,6 +54,15 @@ except (OSError, ValueError):
 AUTHOR = os.environ.get("ISSUE_AUTHOR") or SAVED.get("author", "")
 REFRESH = os.environ.get("REFRESH") == "true"
 ALLOWED = ("OWNER", "MEMBER", "COLLABORATOR")
+# Anyone's issue is handled, and a pull request from someone without access is
+# flagged for its reviewer. The repository variable LAB_ONLY=true (Settings >
+# Secrets and variables > Actions > Variables) makes it ignore those instead.
+LAB_ONLY = os.environ.get("LAB_ONLY", "").strip().lower() == "true"
+ACCESS_FILE = os.path.join(TEMP, "submission-access.json")
+try:
+    OUTSIDER = json.load(open(ACCESS_FILE, encoding="utf-8")).get("outsider", False)
+except (OSError, ValueError):
+    OUTSIDER = False
 BASE = os.environ.get("BASE_BRANCH", "main")
 BRANCH = f"submission/issue-{ISSUE}"
 # Each kind: its label (set by its issue form), the title its form starts with, and a description
@@ -179,9 +188,14 @@ def allowed():
         login, association = info["author"], info["association"]
     else:
         login, association = AUTHOR, os.environ.get("ISSUE_ASSOCIATION", "")
-    if REPO and not has_access(login, association):
-        print(f"{login} ({association}) has no access to {REPO}; this issue is left alone")
+    outsider = bool(REPO) and not has_access(login, association)
+    if outsider and LAB_ONLY:
+        print(f"{login} ({association}) has no access to {REPO}, and LAB_ONLY is set; this issue is left alone")
         return output(ok="false")
+    if outsider:
+        print(f"{login} ({association}) has no access to {REPO}; handled, and flagged on the pull request")
+    with open(ACCESS_FILE, "w", encoding="utf-8") as fh:
+        json.dump({"outsider": outsider}, fh)
     output(ok="true")
 
 
@@ -368,6 +382,13 @@ def pr_title(e):
     return {"new": f"Add {name} to the website", "update": f"Update {name}'s profile"}[kind]
 
 
+def outsider_note():
+    """For the reviewer, when the submitter has no access to the repository."""
+    return (f"⚠ **`{AUTHOR}` isn't in the Kortemme-Lab organization and has no access to this repository.** "
+            "Make sure this really comes from the lab before merging; if it doesn't, close this pull "
+            "request and the issue.\n\n") if OUTSIDER else ""
+
+
 def content_pr_body(e):
     """News or gallery: what will appear, and where."""
     notes = "".join(f"\n- {n}" for n in e.get("notes") or [])
@@ -383,7 +404,7 @@ def content_pr_body(e):
                 + (f", captioned “{e['caption']}” (on the first photo)" if e.get("caption") else ", with no caption")
                 + f".\n{pics}\n\nEach was turned upright, scaled down, and saved **without its metadata**, "
                 "so the camera's GPS location isn't published:" + sizes)
-    return (what + (f"\n\n**Worth a look:**{notes}" if notes else "")
+    return (outsider_note() + what + (f"\n\n**Worth a look:**{notes}" if notes else "")
             + f"\n\nSubmitted by `{AUTHOR}`, who confirmed on the issue "
             + ("that everyone pictured is happy for the photos to be online." if e["kind"] == "gallery" else "that it can be published.")
             + "\n\n**To publish:** check it under *Files changed*, then merge. The website rebuilds by itself. "
@@ -409,7 +430,7 @@ def pr_body(e):
            "none": f"Opened by `{AUTHOR}`. This profile has no GitHub link to compare with"
                    + (", so check the change is really theirs before merging." if kind != "new" else ".")
            }[e.get("identity", "none")]
-    return (f"{what}, from #{ISSUE}.{photo}\n\n"
+    return (outsider_note() + f"{what}, from #{ISSUE}.{photo}\n\n"
             f"- File: `{e.get('path')}`\n- Publications listed: {e.get('publications', 0)}\n"
             + (f"\n**What changes:**{changes}\n" if changes and kind != "new" else "")
             + (f"\n**Preprints replaced** (confirmed by the member; gone from every page once this is merged):"

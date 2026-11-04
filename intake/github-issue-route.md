@@ -111,20 +111,20 @@ parts and `scripts/add-person.py` for the rest:
 1. **Let workflows open pull requests:** Settings > Actions > General >
    *Workflow permissions* > tick **Allow GitHub Actions to create and approve
    pull requests**. Without it, the issue comment says this is missing.
-2. **Give each member access** before they submit. Anyone can open an issue
-   on a public repository, but the workflow ignores issues from people
-   without access, so strangers can't fill the repository with branches and
-   pull requests. The repository belongs to the **Kortemme-Lab**
-   organization, so:
-   - lab members join the organization, with **Read** access to this
-     repository (easiest through a team);
-   - alumni are added as outside collaborators with **Read**;
-   - website managers get **Write** or **Maintain**, so they can merge.
+2. **Decide who can change the website.** Submitting needs only a GitHub
+   account: anyone can open an issue on a public repository, and the
+   workflow handles everyone's. Merging and pushing need **Write**,
+   **Maintain** or **Admin**, so:
+   - keep the organization's base role at **Read** (organization Settings >
+     Member privileges > Base permissions). It applies to every member, on
+     every repository, and can't be lowered for one repository;
+   - give website managers **Write** or **Maintain** (Admin to change the
+     repository's settings);
+   - alumni and other outsiders need nothing.
 
-   **Read** is enough to open issues but not to push, so nothing changes
-   `main` without a manager merging a pull request. The organization's own
-   Settings > Actions must also allow workflows to create pull requests, or
-   the repository setting in step 1 can't be turned on.
+   The organization's own Settings > Actions must also allow workflows to
+   create pull requests, or the repository setting in step 1 can't be
+   turned on.
 3. **Try it once** yourself, with each of the two issues. To make a test `.zip`
    in the form, use ORCID's test researcher, Josiah Carberry
    (0000-0002-1825-0097), or load and change your own profile. Then close the
@@ -152,13 +152,16 @@ DOI needs no download, so it works either way.
 
 The `.zip` and the issue text come from outside, so:
 
-- **Only issues from people with access are handled** (organization members
-  and collaborators), which matters because the repository is public. The
-  workflow's first step checks this. GitHub reports a member whose
-  membership is private (the default) as a mere contributor, so anyone not
-  reported as a member is looked up as a collaborator, which includes members
-  with access through a team. Anyone else's issue is left alone, with no
-  reply.
+- **Submissions from outside the lab are flagged.** The workflow's first
+  step checks whether whoever opened the issue is an organization member or a
+  collaborator. GitHub reports a member whose membership is private (the
+  default) as a mere contributor, so anyone not reported as a member is
+  looked up as a collaborator, which includes members with access through a
+  team or the base role. If they aren't, their pull request opens with a
+  warning, for the reviewer to check or close. To ignore their issues instead
+  (no reply, no branch), set the repository variable `LAB_ONLY` to `true`
+  (Settings > Secrets and variables > Actions > Variables); delete it to go
+  back.
 - **The issue's text is never run.** It reaches `submission-issue.py` as an
   environment variable and is only parsed there, never put into a shell
   command.

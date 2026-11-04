@@ -29,9 +29,8 @@ do:
 **To fix or change something,** edit your issue (the ⋯ menu on its first
 post > *Edit*) instead of opening a new one. The check runs again.
 
-**First time?** You need a GitHub account with access to this repository; ask
-a website manager. Without access, the forms don't respond. No GitHub account?
-Email your `.zip`, news or photos to a website manager instead.
+**First time?** All you need is a GitHub account. No GitHub account? Email
+your `.zip`, news or photos to a website manager instead.
 
 ### Good to know
 
@@ -100,10 +99,13 @@ reviewing submissions; everything else is in the sections after that.
 
 **Setup** (done once): in the repository's and the organization's Settings >
 Actions > General, tick **Allow GitHub Actions to create and approve pull
-requests**. Give lab members **Read** access through the Kortemme-Lab
-organization (a team makes it easy), alumni **Read** as outside
-collaborators, and website managers **Write** or **Maintain**. Read is enough
-to submit, but not to push, so nothing reaches the website without a merge.
+requests**. Keep the organization's base role at **Read** (organization
+Settings > Member privileges) and give website managers **Write** or
+**Maintain**, so nothing reaches the website without a manager's merge.
+Anyone can submit; a pull request from someone outside the organization says
+so at the top, so check it before merging, or close it. To ignore those
+instead, add the repository variable `LAB_ONLY` = `true` (Settings > Secrets
+and variables > Actions > Variables).
 How the route works and its safety measures: `intake/github-issue-route.md`.
 
 <details>
