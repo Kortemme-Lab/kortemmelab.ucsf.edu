@@ -1,6 +1,58 @@
 [
   {
     "type": "journal-article",
+    "DOI": "10.1126/sciadv.aed7476",
+    "URL": "http://dx.doi.org/10.1126/sciadv.aed7476",
+    "title": "ResMap: A community resource for systematic mapping of therapy-persistent residual cancer cell dependencies across contexts",
+    "container-title": "Science Advances",
+    "container-title-short": "Sci. Adv.",
+    "author": [
+      {
+        "family": "Sun",
+        "given": "Xiaoxiao"
+      },
+      {
+        "family": "Gayathri",
+        "given": "Savitha"
+      },
+      {
+        "family": "Kumbier",
+        "given": "Karl"
+      },
+      {
+        "family": "Hammerlindl",
+        "given": "Heinz"
+      },
+      {
+        "family": "Ahern",
+        "given": "Erin"
+      },
+      {
+        "family": "Wu",
+        "given": "Lani F."
+      },
+      {
+        "family": "Altschuler",
+        "given": "Steven J."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          6,
+          12
+        ]
+      ]
+    },
+    "volume": "12",
+    "issue": "24",
+    "publisher": "American Association for the Advancement of Science (AAAS)",
+    "page": "eaed7476",
+    "id": "10.1126/sciadv.aed7476"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1038/s41594-025-01669-4",
     "URL": "http://dx.doi.org/10.1038/s41594-025-01669-4",
     "title": "Computational design of sequence-specific DNA-binding proteins",
@@ -738,6 +790,57 @@
     "publisher": "Wiley",
     "page": "2500872",
     "id": "10.1002/adma.202500872"
+  },
+  {
+    "type": "posted-content",
+    "DOI": "10.1101/2025.04.02.646877",
+    "URL": "http://dx.doi.org/10.1101/2025.04.02.646877",
+    "title": "Distinct energetic blueprints diversify function of conserved protein folds",
+    "author": [
+      {
+        "family": "Wells",
+        "given": "Malcolm L."
+      },
+      {
+        "family": "Lu",
+        "given": "Chenlin"
+      },
+      {
+        "family": "Sultanov",
+        "given": "Daniel"
+      },
+      {
+        "family": "Weber",
+        "given": "Kyle C."
+      },
+      {
+        "family": "Ahern",
+        "given": "Erin"
+      },
+      {
+        "family": "Gong",
+        "given": "Zhen"
+      },
+      {
+        "family": "Chen",
+        "given": "Ethan"
+      },
+      {
+        "family": "Glasgow",
+        "given": "Anum"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          4,
+          7
+        ]
+      ]
+    },
+    "publisher": "openRxiv",
+    "id": "10.1101/2025.04.02.646877"
   },
   {
     "type": "posted-content",
