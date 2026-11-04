@@ -13,7 +13,7 @@ external_links:
   - http://biophysics.ucsf.edu/
   - https://graduate.ucsf.edu/bioe
   - https://tetrad.ucsf.edu
-  - http://bioinformatics.ucsf.edu/
+  - https://bmi.ucsf.edu/
   - http://ccb.ucsf.edu/
   - http://www.synberc.org/
 ---
@@ -38,7 +38,7 @@ We are part of:
 [Graduate Program in Biophysics](http://biophysics.ucsf.edu/)
 [UCB/UCSF Graduate Program in Bioengineering](https://graduate.ucsf.edu/bioe)
 [Tetrad Graduate Program](https://tetrad.ucsf.edu)
-[Graduate Program in Bioinformatics](http://bioinformatics.ucsf.edu/)
+[Graduate Program in Bioinformatics](https://bmi.ucsf.edu/)
 [Graduate Program in Chemistry and Chemical Biology (CCB)](http://ccb.ucsf.edu/)
 
 [Synthetic Biology Engineering and Research Center (SynBERC)​](http://www.synberc.org/)
