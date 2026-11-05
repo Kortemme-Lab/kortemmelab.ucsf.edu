@@ -8,13 +8,16 @@ Website managers, see [For website managers](#for-website-managers).
 Everything is done with an issue form here on GitHub. Pick what you want to
 do:
 
+<!-- The form links use www.github.com on purpose: a click on a github.com link
+     from this page is handled inside GitHub's page, which drops ?template= and
+     shows a blank issue. www.github.com redirects to the same form, loaded fresh. -->
 | I want to… | Open this form | Before you open it |
 |---|---|---|
-| add myself to the website | [**New lab member**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | make your `.zip` in the [profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html): *I'm new to the lab* |
-| add papers or change my profile (members and alumni) | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | make your `.zip` in the [profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html): *Update my profile*, then pick your name |
-| say I'm leaving the lab | [**Update my profile**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
-| share lab news | [**Add news**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing |
-| add photos to the gallery | [**Add photos to the gallery**](https://github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | nothing |
+| add myself to the website | [**New lab member**](https://www.github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=new-member.yml) | make your `.zip` in the [profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html): *I'm new to the lab* |
+| add papers or change my profile (members and alumni) | [**Update my profile**](https://www.github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | make your `.zip` in the [profile form](https://kortemme-lab.github.io/kortemmelab.ucsf.edu/profile-form.html): *Update my profile*, then pick your name |
+| say I'm leaving the lab | [**Update my profile**](https://www.github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=update-profile.yml) | the same, ticking *I've left the lab* |
+| share lab news | [**Add news**](https://www.github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-news.yml) | nothing |
+| add photos to the gallery | [**Add photos to the gallery**](https://www.github.com/Kortemme-Lab/kortemmelab.ucsf.edu/issues/new?template=add-photos.yml) | nothing |
 
 ### How it works
 
