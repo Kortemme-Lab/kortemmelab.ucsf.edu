@@ -2,8 +2,8 @@
 name: "Yulia Gutierrez"
 pronouns: ""
 role: "Graduate Student"
-program: ""
-years_in_lab: ""
+program: "Biophysics"
+years_in_lab: "2024-present"
 co_mentors: []
 summary: "Designing a protein system that exhibits zero-order ultrasensitivity."
 photo: "images/people/yulia-gutierrez.jpg"
@@ -22,7 +22,9 @@ publications:
 source_url: "https://kortemmelab.ucsf.edu/current---yulia-gutierrez.html"
 mirror_file: "archive/site/current---yulia-gutierrez.html"
 ---
+
 *Shurl and Kay Curci Foundation Ph.D. Scholarship*
+*Achievement Rewards for College Scientists (ARCS) Scholarship*
 
 ## Publications
 
