@@ -32,6 +32,275 @@
   },
   {
     "type": "journal-article",
+    "DOI": "10.1038/s41467-026-71395-y",
+    "URL": "http://dx.doi.org/10.1038/s41467-026-71395-y",
+    "title": "In vivo CAR T cell generation using retargeted and functionalized lentiviral vectors with reduced immunogenicity",
+    "container-title": "Nature Communications",
+    "container-title-short": "Nat Commun",
+    "author": [
+      {
+        "family": "Ibrahim",
+        "given": "Kyrellos E."
+      },
+      {
+        "family": "Mears",
+        "given": "Kepler S."
+      },
+      {
+        "family": "Allen",
+        "given": "Peter M."
+      },
+      {
+        "family": "Chinai",
+        "given": "Jordan M."
+      },
+      {
+        "family": "Avila",
+        "given": "Omar I."
+      },
+      {
+        "family": "Muscato",
+        "given": "Audrey J."
+      },
+      {
+        "family": "Lane-Reticker",
+        "given": "Sarah K."
+      },
+      {
+        "family": "Rojas",
+        "given": "Alexander"
+      },
+      {
+        "family": "Knudsen",
+        "given": "Nelson H."
+      },
+      {
+        "family": "Chao",
+        "given": "Chun-Cheih"
+      },
+      {
+        "family": "Yates",
+        "given": "Kathleen B."
+      },
+      {
+        "family": "Manguso",
+        "given": "Robert T."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          6
+        ]
+      ]
+    },
+    "volume": "17",
+    "issue": "1",
+    "publisher": "Springer Science and Business Media LLC",
+    "page": "4923",
+    "id": "10.1038/s41467-026-71395-y"
+  },
+  {
+    "type": "journal-article",
+    "DOI": "10.1021/acssynbio.6c00363",
+    "URL": "http://dx.doi.org/10.1021/acssynbio.6c00363",
+    "title": "Engineering Novel Polyhydroxyalkanoates Using Polyketide Synthases in Pseudomonas putida",
+    "container-title": "ACS Synthetic Biology",
+    "author": [
+      {
+        "family": "Keiser",
+        "given": "Leah S."
+      },
+      {
+        "family": "Jain",
+        "given": "Aalini"
+      },
+      {
+        "family": "Gatenil",
+        "given": "Panarai Primrose"
+      },
+      {
+        "family": "Schmidt",
+        "given": "Matthias"
+      },
+      {
+        "family": "Zhu",
+        "given": "Yolanda"
+      },
+      {
+        "family": "Varongchayakul",
+        "given": "Cholapat"
+      },
+      {
+        "family": "Len",
+        "given": "Amarrah Crysti"
+      },
+      {
+        "family": "Ibrahim",
+        "given": "Kyrellos"
+      },
+      {
+        "family": "Englund",
+        "given": "Elias"
+      },
+      {
+        "family": "Keasling",
+        "given": "Jay D."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          8,
+          28
+        ]
+      ]
+    },
+    "volume": "15",
+    "issue": "9",
+    "page": "3712-3726",
+    "publisher": "American Chemical Society (ACS)",
+    "id": "10.1021/acssynbio.6c00363"
+  },
+  {
+    "type": "posted-content",
+    "DOI": "10.64898/2026.09.11.750945",
+    "URL": "http://dx.doi.org/10.64898/2026.09.11.750945",
+    "title": "Generative Design of New-to-nature Biosynthetic Assembly Lines with Genomic Language Modeling",
+    "author": [
+      {
+        "family": "Lanclos",
+        "given": "Nathan"
+      },
+      {
+        "family": "Ibrahim",
+        "given": "Kyrellos E."
+      },
+      {
+        "family": "Cornman",
+        "given": "Andre"
+      },
+      {
+        "family": "Huang",
+        "given": "Marco"
+      },
+      {
+        "family": "Gill",
+        "given": "Vikram"
+      },
+      {
+        "family": "Jain",
+        "given": "Aalini"
+      },
+      {
+        "family": "Abraham",
+        "given": "Jonathan"
+      },
+      {
+        "family": "Gin",
+        "given": "Jennifer W."
+      },
+      {
+        "family": "Chen",
+        "given": "Yan"
+      },
+      {
+        "family": "Petzold",
+        "given": "Christopher J."
+      },
+      {
+        "family": "Baerwald",
+        "given": "Justin"
+      },
+      {
+        "family": "Kortemme",
+        "given": "Tanja"
+      },
+      {
+        "family": "Keasling",
+        "given": "Jay D."
+      },
+      {
+        "family": "Hwang",
+        "given": "Yunha"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          17
+        ]
+      ]
+    },
+    "publisher": "openRxiv",
+    "id": "10.64898/2026.09.11.750945"
+  },
+  {
+    "type": "posted-content",
+    "DOI": "10.64898/2026.07.22.740177",
+    "URL": "http://dx.doi.org/10.64898/2026.07.22.740177",
+    "title": "Programming protein shape as an explicit design layer via CAD blueprint-guided diffusion",
+    "author": [
+      {
+        "family": "Qi",
+        "given": "Yilun"
+      },
+      {
+        "family": "Zhang",
+        "given": "Guoxun"
+      },
+      {
+        "family": "Yserentant",
+        "given": "Klaus"
+      },
+      {
+        "family": "Lee",
+        "given": "Sonya"
+      },
+      {
+        "family": "Lyubimov",
+        "given": "Artem"
+      },
+      {
+        "family": "Ibrahim",
+        "given": "Kyrellos"
+      },
+      {
+        "family": "Cimicata",
+        "given": "Giuseppe"
+      },
+      {
+        "family": "Fraser",
+        "given": "James S."
+      },
+      {
+        "family": "Huang",
+        "given": "Bo"
+      },
+      {
+        "family": "Kortemme",
+        "given": "Tanja"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          7,
+          23
+        ]
+      ]
+    },
+    "publisher": "openRxiv",
+    "id": "10.64898/2026.07.22.740177"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1021/acssynbio.6c00373",
     "URL": "http://dx.doi.org/10.1021/acssynbio.6c00373",
     "title": "Engineered Orthogonal Translation Systems from Metagenomic Libraries Expand the Genetic Code",
