@@ -134,10 +134,12 @@ external_links:
 
 ### Pre-prints
 
-1. Li, A. J. & Kortemme, T. All-atom protein design via SE(3) flow matching with ProteinZen. Preprint at [https://doi.org/10.1101/2025.10.18.683228](https://doi.org/10.1101/2025.10.18.683228) (2025).
-2. Seki, K., Guo, A. B., Akpinaroglu, D. & Kortemme, T. A combinatorial mutational map of active non-native protein kinases by deep learning guided sequence design. Preprint at [https://doi.org/10.1101/2025.08.03.668353](https://doi.org/10.1101/2025.08.03.668353) (2025).
-3. Orr, B., Crilly, S. E., Akpinaroglu, D., Zhu, E., Keiser, M. J. et al. An improved model for prediction of de novo designed proteins with diverse geometries. Preprint at [https://doi.org/10.1101/2025.06.02.657515](https://doi.org/10.1101/2025.06.02.657515) (2025).
-4. Akpinaroglu, D., Seki, K., Guo, A., Zhu, E., Kelly, M. J. S. et al. Structure-conditioned masked language models for protein sequence design generalize beyond the native sequence space. Preprint at [https://doi.org/10.1101/2023.12.15.571823](https://doi.org/10.1101/2023.12.15.571823) (2023).
+1. Lanclos, N., Ibrahim, K. E., Cornman, A., Huang, M., Gill, V. et al. Generative Design of New-to-nature Biosynthetic Assembly Lines with Genomic Language Modeling. Preprint at [https://doi.org/10.64898/2026.09.11.750945](https://doi.org/10.64898/2026.09.11.750945) (2026).
+2. Qi, Y., Zhang, G., Yserentant, K., Lee, S., Lyubimov, A. et al. Programming protein shape as an explicit design layer via CAD blueprint-guided diffusion. Preprint at [https://doi.org/10.64898/2026.07.22.740177](https://doi.org/10.64898/2026.07.22.740177) (2026).
+3. Li, A. J. & Kortemme, T. All-atom protein design via SE(3) flow matching with ProteinZen. Preprint at [https://doi.org/10.1101/2025.10.18.683228](https://doi.org/10.1101/2025.10.18.683228) (2025).
+4. Seki, K., Guo, A. B., Akpinaroglu, D. & Kortemme, T. A combinatorial mutational map of active non-native protein kinases by deep learning guided sequence design. Preprint at [https://doi.org/10.1101/2025.08.03.668353](https://doi.org/10.1101/2025.08.03.668353) (2025).
+5. Orr, B., Crilly, S. E., Akpinaroglu, D., Zhu, E., Keiser, M. J. et al. An improved model for prediction of de novo designed proteins with diverse geometries. Preprint at [https://doi.org/10.1101/2025.06.02.657515](https://doi.org/10.1101/2025.06.02.657515) (2025).
+6. Akpinaroglu, D., Seki, K., Guo, A., Zhu, E., Kelly, M. J. S. et al. Structure-conditioned masked language models for protein sequence design generalize beyond the native sequence space. Preprint at [https://doi.org/10.1101/2023.12.15.571823](https://doi.org/10.1101/2023.12.15.571823) (2023).
 
 ### 2026 Publications
 
