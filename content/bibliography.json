@@ -32,6 +32,53 @@
   },
   {
     "type": "journal-article",
+    "DOI": "10.1021/acssynbio.6c00373",
+    "URL": "http://dx.doi.org/10.1021/acssynbio.6c00373",
+    "title": "Engineered Orthogonal Translation Systems from Metagenomic Libraries Expand the Genetic Code",
+    "container-title": "ACS Synthetic Biology",
+    "author": [
+      {
+        "family": "Seki",
+        "given": "Kosuke"
+      },
+      {
+        "family": "Nguyen",
+        "given": "Michael T. A."
+      },
+      {
+        "family": "Penev",
+        "given": "Petar I."
+      },
+      {
+        "family": "Banfield",
+        "given": "Jillian F."
+      },
+      {
+        "family": "Isaacs",
+        "given": "Farren J."
+      },
+      {
+        "family": "Jewett",
+        "given": "Michael C."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          14
+        ]
+      ]
+    },
+    "volume": "15",
+    "issue": "10",
+    "page": "4157-4171",
+    "publisher": "American Chemical Society (ACS)",
+    "id": "10.1021/acssynbio.6c00373"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1126/sciadv.aed7476",
     "URL": "http://dx.doi.org/10.1126/sciadv.aed7476",
     "title": "ResMap: A community resource for systematic mapping of therapy-persistent residual cancer cell dependencies across contexts",
@@ -1026,6 +1073,58 @@
     "page": "e3002650",
     "publisher": "Public Library of Science (PLoS)",
     "id": "10.1371/journal.pbio.3002650"
+  },
+  {
+    "type": "journal-article",
+    "DOI": "10.1021/acs.chemrev.4c00116",
+    "URL": "http://dx.doi.org/10.1021/acs.chemrev.4c00116",
+    "title": "Cell-Free Gene Expression: Methods and Applications",
+    "container-title": "Chemical Reviews",
+    "container-title-short": "Chem. Rev.",
+    "author": [
+      {
+        "family": "Hunt",
+        "given": "Andrew C."
+      },
+      {
+        "family": "Rasor",
+        "given": "Blake J."
+      },
+      {
+        "family": "Seki",
+        "given": "Kosuke"
+      },
+      {
+        "family": "Ekas",
+        "given": "Holly M."
+      },
+      {
+        "family": "Warfel",
+        "given": "Katherine F."
+      },
+      {
+        "family": "Karim",
+        "given": "Ashty S."
+      },
+      {
+        "family": "Jewett",
+        "given": "Michael C."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          19
+        ]
+      ]
+    },
+    "volume": "125",
+    "issue": "1",
+    "page": "91-149",
+    "publisher": "American Chemical Society (ACS)",
+    "id": "10.1021/acs.chemrev.4c00116"
   },
   {
     "type": "journal-article",
