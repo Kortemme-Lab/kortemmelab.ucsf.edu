@@ -139,6 +139,10 @@ external_links:
 3. Orr, B., Crilly, S. E., Akpinaroglu, D., Zhu, E., Keiser, M. J. et al. An improved model for prediction of de novo designed proteins with diverse geometries. Preprint at [https://doi.org/10.1101/2025.06.02.657515](https://doi.org/10.1101/2025.06.02.657515) (2025).
 4. Akpinaroglu, D., Seki, K., Guo, A., Zhu, E., Kelly, M. J. S. et al. Structure-conditioned masked language models for protein sequence design generalize beyond the native sequence space. Preprint at [https://doi.org/10.1101/2023.12.15.571823](https://doi.org/10.1101/2023.12.15.571823) (2023).
 
+### 2026 Publications
+
+1. Huettemann, P. & Kortemme, T. [Programming biological behavior with AI-guided de novo protein design](https://doi.org/10.1016/j.molcel.2026.08.027). *Mol. Cell* **86**, 4167–4182 (2026).
+
 ### 2025 Publications
 
 1. Kasap, C., Izgutdina, A., Patiño-Escobar, B., Kang, A. S., Chilakapati, N. et al. [Targeting high-risk multiple myeloma genotypes with optimized anti-CD70 CAR T cells](https://doi.org/10.1182/blood.2024025536). *Blood* **146**, 819–833 (2025).
