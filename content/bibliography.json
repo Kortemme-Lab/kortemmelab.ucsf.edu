@@ -1,6 +1,37 @@
 [
   {
     "type": "journal-article",
+    "DOI": "10.1016/j.molcel.2026.08.027",
+    "URL": "http://dx.doi.org/10.1016/j.molcel.2026.08.027",
+    "title": "Programming biological behavior with AI-guided de novo protein design",
+    "container-title": "Molecular Cell",
+    "container-title-short": "Molecular Cell",
+    "author": [
+      {
+        "family": "Huettemann",
+        "given": "Philipp"
+      },
+      {
+        "family": "Kortemme",
+        "given": "Tanja"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          10
+        ]
+      ]
+    },
+    "volume": "86",
+    "issue": "20",
+    "page": "4167-4182",
+    "publisher": "Elsevier BV",
+    "id": "10.1016/j.molcel.2026.08.027"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1126/sciadv.aed7476",
     "URL": "http://dx.doi.org/10.1126/sciadv.aed7476",
     "title": "ResMap: A community resource for systematic mapping of therapy-persistent residual cancer cell dependencies across contexts",
