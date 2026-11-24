@@ -166,6 +166,94 @@
     "id": "10.1021/acssynbio.6c00363"
   },
   {
+    "type": "journal-article",
+    "DOI": "10.1021/acs.chemrev.5c01097",
+    "URL": "http://dx.doi.org/10.1021/acs.chemrev.5c01097",
+    "title": "Membrane Protein Folding and Biogenesis: Insights from Single-Molecule Force Spectroscopy",
+    "container-title": "Chemical Reviews",
+    "container-title-short": "Chem. Rev.",
+    "author": [
+      {
+        "family": "Kim",
+        "given": "Sang Ah"
+      },
+      {
+        "family": "Kim",
+        "given": "Seoyoon"
+      },
+      {
+        "family": "Nam",
+        "given": "Jaehyun"
+      },
+      {
+        "family": "Kim",
+        "given": "Eojin"
+      },
+      {
+        "family": "Yoon",
+        "given": "Tae-Young"
+      },
+      {
+        "family": "Min",
+        "given": "Duyoung"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          5,
+          21
+        ]
+      ]
+    },
+    "volume": "126",
+    "issue": "11",
+    "page": "6680-6727",
+    "publisher": "American Chemical Society (ACS)",
+    "id": "10.1021/acs.chemrev.5c01097"
+  },
+  {
+    "type": "journal-article",
+    "DOI": "10.1073/pnas.2528216123",
+    "URL": "http://dx.doi.org/10.1073/pnas.2528216123",
+    "title": "Single-molecule dissection of CFTR folding defects and pharmacological rescue",
+    "container-title": "Proceedings of the National Academy of Sciences",
+    "container-title-short": "Proc. Natl. Acad. Sci. U.S.A.",
+    "author": [
+      {
+        "family": "Kim",
+        "given": "Sang Ah"
+      },
+      {
+        "family": "Levring",
+        "given": "Jesper"
+      },
+      {
+        "family": "Chen",
+        "given": "Jue"
+      },
+      {
+        "family": "Yoon",
+        "given": "Tae-Young"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          3,
+          31
+        ]
+      ]
+    },
+    "volume": "123",
+    "issue": "14",
+    "publisher": "National Academy of Sciences",
+    "page": "e2528216123",
+    "id": "10.1073/pnas.2528216123"
+  },
+  {
     "type": "posted-content",
     "DOI": "10.64898/2026.09.11.750945",
     "URL": "http://dx.doi.org/10.64898/2026.09.11.750945",
@@ -792,6 +880,49 @@
     "page": "819-833",
     "publisher": "American Society of Hematology",
     "id": "10.1182/blood.2024025536"
+  },
+  {
+    "type": "journal-article",
+    "DOI": "10.1146/annurev-biophys-070524-100658",
+    "URL": "http://dx.doi.org/10.1146/annurev-biophys-070524-100658",
+    "title": "Emerging Patterns in Membrane Protein Folding Pathways",
+    "container-title": "Annual Review of Biophysics",
+    "author": [
+      {
+        "family": "Kim",
+        "given": "Sang Ah"
+      },
+      {
+        "family": "Kim",
+        "given": "Hyun Gyu"
+      },
+      {
+        "family": "Wijesinghe",
+        "given": "W.C. Bhashini"
+      },
+      {
+        "family": "Min",
+        "given": "Duyoung"
+      },
+      {
+        "family": "Yoon",
+        "given": "Tae-Young"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          6
+        ]
+      ]
+    },
+    "volume": "54",
+    "issue": "1",
+    "page": "141-162",
+    "publisher": "Annual Reviews",
+    "id": "10.1146/annurev-biophys-070524-100658"
   },
   {
     "type": "posted-content",
@@ -2715,6 +2846,94 @@
   },
   {
     "type": "journal-article",
+    "DOI": "10.1038/s41589-022-01002-w",
+    "URL": "http://dx.doi.org/10.1038/s41589-022-01002-w",
+    "title": "Evolutionary balance between foldability and functionality of a glucose transporter",
+    "container-title": "Nature Chemical Biology",
+    "container-title-short": "Nat Chem Biol",
+    "author": [
+      {
+        "family": "Choi",
+        "given": "Hyun-Kyu"
+      },
+      {
+        "family": "Kang",
+        "given": "Hyunook"
+      },
+      {
+        "family": "Lee",
+        "given": "Chanwoo"
+      },
+      {
+        "family": "Kim",
+        "given": "Hyun Gyu"
+      },
+      {
+        "family": "Phillips",
+        "given": "Ben P."
+      },
+      {
+        "family": "Park",
+        "given": "Soohyung"
+      },
+      {
+        "family": "Tumescheit",
+        "given": "Charlotte"
+      },
+      {
+        "family": "Kim",
+        "given": "Sang Ah"
+      },
+      {
+        "family": "Lee",
+        "given": "Hansol"
+      },
+      {
+        "family": "Roh",
+        "given": "Soung-Hun"
+      },
+      {
+        "family": "Hong",
+        "given": "Heedeok"
+      },
+      {
+        "family": "Steinegger",
+        "given": "Martin"
+      },
+      {
+        "family": "Im",
+        "given": "Wonpil"
+      },
+      {
+        "family": "Miller",
+        "given": "Elizabeth A."
+      },
+      {
+        "family": "Choi",
+        "given": "Hee-Jung"
+      },
+      {
+        "family": "Yoon",
+        "given": "Tae-Young"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          4,
+          28
+        ]
+      ]
+    },
+    "volume": "18",
+    "issue": "7",
+    "page": "713-723",
+    "publisher": "Springer Science and Business Media LLC",
+    "id": "10.1038/s41589-022-01002-w"
+  },
+  {
+    "type": "journal-article",
     "DOI": "10.1128/mbio.00306-22",
     "URL": "http://dx.doi.org/10.1128/mbio.00306-22",
     "title": "Structural Studies Reveal the Role of Helix 68 in the Elongation Step of Protein Biosynthesis",
@@ -3166,6 +3385,82 @@
     "page": "167387",
     "publisher": "Elsevier BV",
     "id": "10.1016/j.jmb.2021.167387"
+  },
+  {
+    "type": "journal-article",
+    "DOI": "10.1038/s41467-022-28510-6",
+    "URL": "http://dx.doi.org/10.1038/s41467-022-28510-6",
+    "title": "Structural basis of neuropeptide Y signaling through Y1 receptor",
+    "container-title": "Nature Communications",
+    "container-title-short": "Nat Commun",
+    "author": [
+      {
+        "family": "Park",
+        "given": "Chaehee"
+      },
+      {
+        "family": "Kim",
+        "given": "Jinuk"
+      },
+      {
+        "family": "Ko",
+        "given": "Seung-Bum"
+      },
+      {
+        "family": "Choi",
+        "given": "Yeol Kyo"
+      },
+      {
+        "family": "Jeong",
+        "given": "Hyeongseop"
+      },
+      {
+        "family": "Woo",
+        "given": "Hyeonuk"
+      },
+      {
+        "family": "Kang",
+        "given": "Hyunook"
+      },
+      {
+        "family": "Bang",
+        "given": "Injin"
+      },
+      {
+        "family": "Kim",
+        "given": "Sang Ah"
+      },
+      {
+        "family": "Yoon",
+        "given": "Tae-Young"
+      },
+      {
+        "family": "Seok",
+        "given": "Chaok"
+      },
+      {
+        "family": "Im",
+        "given": "Wonpil"
+      },
+      {
+        "family": "Choi",
+        "given": "Hee-Jung"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          2,
+          14
+        ]
+      ]
+    },
+    "volume": "13",
+    "issue": "1",
+    "publisher": "Springer Science and Business Media LLC",
+    "page": "853",
+    "id": "10.1038/s41467-022-28510-6"
   },
   {
     "type": "journal-article",
